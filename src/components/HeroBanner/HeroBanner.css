@@ -346,12 +346,13 @@
     padding: 6px;
     display: flex;
     align-items: center;
+    gap: 5px;
   }
 
   .limited-offer-container {
     width: fit-content;
-    height: auto;
-    padding: 4px 6px;
+    height: fit-content;
+    padding: 3px 6px;
     font-size: 6px;
     line-height: 10.59px;
     display: flex;
