@@ -20,6 +20,7 @@ import OurPartners from './pages/OurPartners/OurPartners';
 import HowToBuyAndSell from './pages/HowToBuyAndSell/HowToBuyAndSell';
 import MobileNavbar from './components/MobileNavbar/MobileNavbar';
 import ProductPage from './pages/ProductPage/ProductPage';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/' element={<LandingPage />}>
           <Route index element={<HomePage />} />
           <Route path='marketplace' element={<Marketplace />} />
+          <Route path="product/:id" element={<ProductDetails />} />
           <Route path='buy-now' element={<BuyNow />} />
           <Route path='auctions' element={<Auctions />} />
           <Route path='to-let' element={<ToLet />} />
