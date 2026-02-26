@@ -80,7 +80,7 @@ const BrowseByCategory = () => {
               <div
                 className={
                   category === name
-                    ? 'browse-category-icon-container active-btn'
+                    ? 'browse-category-icon-container category-active-btn'
                     : 'browse-category-icon-container'
                 }
                 onClick={() => setCategory(name)}
