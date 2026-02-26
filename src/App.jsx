@@ -20,8 +20,11 @@ import OurPartners from './pages/OurPartners/OurPartners';
 import HowToBuyAndSell from './pages/HowToBuyAndSell/HowToBuyAndSell';
 import MobileNavbar from './components/MobileNavbar/MobileNavbar';
 import ProductPage from './pages/ProductPage/ProductPage';
+import useAppContext from './context/AppContext';
 
 const App = () => {
+  const { products } = useAppContext();
+
   return (
     <BrowserRouter>
       <MobileNavbar />
