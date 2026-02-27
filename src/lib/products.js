@@ -45,3 +45,17 @@ export const getPublicProductById = async (id) => {
   const response = await api.get(`/api/product/public/${id}`);
   return response.data?.data;
 };
+
+export const getFeaturedProducts = async (params = {}) => {
+  const response = await api.get("/api/product", {
+    params: { approvalStatus: "APPROVED", isFeatured: "true", ...params },
+  });
+  return response.data?.data || [];
+};
+
+export const getRecommendedProducts = async (params = {}) => {
+  const response = await api.get("/api/product", {
+    params: { approvalStatus: "APPROVED", isRecommended: "true", ...params },
+  });
+  return response.data?.data || [];
+};

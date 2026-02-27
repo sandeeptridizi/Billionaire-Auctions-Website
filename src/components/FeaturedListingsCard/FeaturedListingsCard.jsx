@@ -1,10 +1,12 @@
 import './FeaturedListingsCard.css';
 
+import { Link } from 'react-router-dom';
 import { BsPatchCheck } from 'react-icons/bs';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
 
 const FeaturedListingsCard = ({
+  id,
   title,
   year,
   time,
@@ -12,8 +14,9 @@ const FeaturedListingsCard = ({
   cost,
   category,
   location,
+  isStatic,
 }) => {
-  return (
+  const content = (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
         <img src={image} alt={title} className='featured-img' />
@@ -44,6 +47,16 @@ const FeaturedListingsCard = ({
       </div>
     </div>
   );
+
+  if (!isStatic && id) {
+    return (
+      <Link to={`/product/${id}`} className='featured-listings-card-link'>
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 };
 
 export default FeaturedListingsCard;

@@ -58,6 +58,12 @@
   color: rgba(152, 16, 250, 1);
 }
 
+.recommendation-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 @media screen and (max-width: 510px) {
   .recommendation-cost {
     font-size: 9.41px;

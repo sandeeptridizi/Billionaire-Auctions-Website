@@ -1,5 +1,7 @@
 import './FeaturedListings.css';
 
+import { useEffect, useState } from 'react';
+
 import { LuCrown } from 'react-icons/lu';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
@@ -17,8 +19,10 @@ import home from '../../assets/home.jpg';
 import apartment from '../../assets/apartment.jpg';
 
 import FeaturedListingsCard from '../FeaturedListingsCard/FeaturedListingsCard';
+import { formatCategoryLabel, getFeaturedProducts } from '../../lib/products';
+import { getFile } from '../../lib/s3';
 
-const featuredData = [
+const staticFeaturedData = [
   {
     id: 1,
     title: 'Roll Royce Phantom Elite',
@@ -28,6 +32,7 @@ const featuredData = [
     cost: '12,50,00,000',
     category: 'Cars',
     location: 'Banglore',
+    isStatic: true,
   },
   {
     id: 2,
@@ -38,6 +43,7 @@ const featuredData = [
     cost: '28,50,000',
     category: 'Furniture',
     location: 'New Delhi',
+    isStatic: true,
   },
   {
     id: 3,
@@ -48,6 +54,7 @@ const featuredData = [
     cost: '8,75,00,000',
     category: 'Jewellery & Watches',
     location: 'Hyderabad',
+    isStatic: true,
   },
   {
     id: 4,
@@ -58,10 +65,49 @@ const featuredData = [
     cost: '2,40,00,000',
     category: 'Arts & Paintings',
     location: 'Pune',
+    isStatic: true,
   },
 ];
 
 const FeaturedListings = () => {
+  const [featured, setFeatured] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const list = await getFeaturedProducts();
+        const mapped = list.map((product) => ({
+          id: product.id,
+          title: product.title,
+          year: product.meta?.year || '—',
+          time: new Date(product.createdAt).toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }),
+          image: product.media?.[0] ? getFile(product.media[0]) : home,
+          cost:
+            typeof product.value === 'number'
+              ? product.value.toLocaleString('en-IN')
+              : 'Price on request',
+          category: formatCategoryLabel(product.category),
+          location: product.meta?.location || 'Location not specified',
+        }));
+        setFeatured(mapped);
+      } catch {
+        // ignore and fall back to static data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeatured();
+  }, []);
+
+  const featuredData =
+    !loading && featured.length > 0 ? featured : staticFeaturedData;
+
   return (
     <>
       <div className='mobile-featured-listings-container'>

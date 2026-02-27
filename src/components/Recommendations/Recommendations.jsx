@@ -1,5 +1,7 @@
 import './Recommendations.css';
 
+import { useEffect, useState } from 'react';
+
 import { FaRegStar } from 'react-icons/fa6';
 
 import { FaAngleLeft } from 'react-icons/fa6';
@@ -13,8 +15,10 @@ import table from '../../assets/table.jpg';
 import watch from '../../assets/watch.jpg';
 import home from '../../assets/home.jpg';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
+import { formatCategoryLabel, getRecommendedProducts } from '../../lib/products';
+import { getFile } from '../../lib/s3';
 
-const recommendationData = [
+const staticRecommendationData = [
   {
     id: 1,
     title: 'Designer Dining Set',
@@ -25,6 +29,7 @@ const recommendationData = [
     location: 'Jaipur',
     icon1: '',
     icon2: <FaArrowTrendUp />,
+    isStatic: true,
   },
   {
     id: 2,
@@ -36,6 +41,7 @@ const recommendationData = [
     location: 'Mumbai',
     icon1: <BsPatchCheck />,
     icon2: '',
+    isStatic: true,
   },
   {
     id: 3,
@@ -47,10 +53,50 @@ const recommendationData = [
     location: 'Pune',
     icon1: <BsPatchCheck />,
     icon2: <FaArrowTrendUp />,
+    isStatic: true,
   },
 ];
 
 const Recommendations = () => {
+  const [recommended, setRecommended] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRecommended = async () => {
+      try {
+        const list = await getRecommendedProducts();
+        const mapped = list.map((product) => ({
+          id: product.id,
+          title: product.title,
+          time: new Date(product.createdAt).toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }),
+          image: product.media?.[0] ? getFile(product.media[0]) : home,
+          cost:
+            typeof product.value === 'number'
+              ? product.value.toLocaleString('en-IN')
+              : 'Price on request',
+          category: formatCategoryLabel(product.category),
+          location: product.meta?.location || 'Location not specified',
+          icon1: product.isFeatured ? <BsPatchCheck /> : '',
+          icon2: product.isRecommended ? <FaArrowTrendUp /> : '',
+        }));
+        setRecommended(mapped);
+      } catch {
+        // ignore and fall back to static data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecommended();
+  }, []);
+
+  const recommendationData =
+    !loading && recommended.length > 0 ? recommended : staticRecommendationData;
+
   return (
     <>
       <div className='mobile-featured-listings-container'>

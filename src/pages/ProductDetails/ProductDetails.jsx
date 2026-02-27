@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LuCrown } from "react-icons/lu";
 import { BsPatchCheck } from "react-icons/bs";
-import { getPublicProductById } from "../../lib/products";
+import { getFeaturedProducts, getPublicProductById } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
 import { FiSearch } from "react-icons/fi";
@@ -29,34 +29,11 @@ import villa from "../../assets/villa2.jpg";
 import exclusiveVilla from "../../assets/exclusive-villa.jpg";
 import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
 
-const data = [
-  {
-    id: 1,
-    image: cityApartment,
-    cost: "₹2.85 Cr",
-    location: "Bandra West, Mumbai",
-    title: "Premium 3BHK Apartment with City View",
-  },
-  {
-    id: 2,
-    image: villa,
-    cost: "₹12.5 Cr",
-    location: "Jublee Hills, Hyderabad",
-    title: "Luxury Villa with Private Pool",
-  },
-  {
-    id: 3,
-    image: penthouse,
-    cost: "₹8.75 Cr",
-    location: "Whitefield, Bangalore",
-    title: "Premium Penthouse with Terrace",
-  },
-];
-
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -72,6 +49,21 @@ const ProductDetails = () => {
     };
 
     fetchProduct();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const list = await getFeaturedProducts();
+        const filtered = list.filter((item) => item.id !== id);
+        setFeatured(filtered);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Failed to load featured products", error);
+      }
+    };
+
+    fetchFeatured();
   }, [id]);
 
   if (loading) {
@@ -608,34 +600,42 @@ const ProductDetails = () => {
           </button>
         </div>
         <div className="similar-luxury-items-grid-container">
-          {data.map((item) => {
-            const { id, image, cost, location, title } = item;
-            return (
-              <div className="similar-luxury-item-container" key={id}>
-                <div className="luxury-item-img-container">
-                  <img src={image} alt="image" className="luxury-item-img" />
-                  <div className="luxury-item-header">
-                    <div className="luxury-item-verified-container">
-                      <BsPatchCheck className="verified-icon" /> Verified
-                    </div>
-                    <div className="luxury-item-luxury-container">
-                      <LuCrown /> LUXURY
-                    </div>
+          {featured.slice(0, 3).map((item) => (
+            <div className="similar-luxury-item-container" key={item.id}>
+              <div className="luxury-item-img-container">
+                <img
+                  src={item.media?.[0] ? getFile(item.media[0]) : cityApartment}
+                  alt={item.title}
+                  className="luxury-item-img"
+                />
+                <div className="luxury-item-header">
+                  <div className="luxury-item-verified-container">
+                    <BsPatchCheck className="verified-icon" /> Verified
                   </div>
-                  <div className="luxury-item-footer">
-                    <p className="luxury-item-cost">{cost}</p>
-                    <p className="luxury-item-location">
-                      <GrLocation /> {location}
-                    </p>
+                  <div className="luxury-item-luxury-container">
+                    <LuCrown /> {item.tier || "LUXURY"}
                   </div>
                 </div>
-                <div className="luxury-item-content-container">
-                  <h3 className="luxury-item-title">{title}</h3>
-                  <button className="luxury-item-btn">View Details</button>
+                <div className="luxury-item-footer">
+                  <p className="luxury-item-cost">
+                    {typeof item.value === "number"
+                      ? `₹${item.value.toLocaleString("en-IN")}`
+                      : "Price on request"}
+                  </p>
+                  <p className="luxury-item-location">
+                    <GrLocation />{" "}
+                    {item.meta?.location || item.location || "Location not specified"}
+                  </p>
                 </div>
               </div>
-            );
-          })}
+              <div className="luxury-item-content-container">
+                <h3 className="luxury-item-title">{item.title}</h3>
+                <Link to={`/product/${item.id}`} className="luxury-item-btn">
+                  View Details
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="exclusive-collection-container">

@@ -1,9 +1,11 @@
 import './RecommendationCard.css';
 
+import { Link } from 'react-router-dom';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
 
 const RecommendationCard = ({
+  id,
   title,
   time,
   image,
@@ -12,8 +14,9 @@ const RecommendationCard = ({
   location,
   icon1,
   icon2,
+  isStatic,
 }) => {
-  return (
+  const content = (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
         <img src={image} alt={title} className='featured-img' />
@@ -40,6 +43,16 @@ const RecommendationCard = ({
       </div>
     </div>
   );
+
+  if (!isStatic && id) {
+    return (
+      <Link to={`/product/${id}`} className='recommendation-card-link'>
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 };
 
 export default RecommendationCard;

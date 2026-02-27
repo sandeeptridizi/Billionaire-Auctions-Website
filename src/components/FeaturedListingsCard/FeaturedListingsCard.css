@@ -141,6 +141,12 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+.featured-listings-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 @media screen and (max-width: 510px) {
   .featured-listings-card-container {
     width: 100%;
