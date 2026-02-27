@@ -12,7 +12,7 @@ import PricingPlans from './pages/PricingPlans/PricingPlans';
 import OurServices from './pages/OurServices/OurServices';
 import Advertise from './pages/Advertise/Advertise';
 import ContactUs from './pages/ContactUs/ContactUs';
-import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
+// import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions/TermsConditions';
 import RefundPolicy from './pages/RefundPolicy/RefundPolicy';
 import MobileFooter from './components/MobileFooter/MobileFooter';
@@ -46,7 +46,7 @@ const App = () => {
           <Route path='browse/advertise' element={<Advertise />} />
           <Route path='products/:page/:category' element={<ProductPage />} />
           <Route path='contact-us' element={<ContactUs />} />
-          <Route path='privacy-policy' element={<PrivacyPolicy />} />
+          {/* <Route path='privacy-policy' element={<PrivacyPolicy />} /> */}
           <Route path='terms-conditions' element={<TermsConditions />} />
           <Route path='refund-policy' element={<RefundPolicy />} />
         </Route>
