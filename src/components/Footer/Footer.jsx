@@ -1,6 +1,6 @@
 import './Footer.css';
 
-import starIcon from '../../assets/star-icon.png';
+import companyLogo from '../../assets/company-logo.png';
 import { FiFacebook } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
 import { TbBrandTwitter } from 'react-icons/tb';
@@ -16,10 +16,9 @@ const Footer = () => {
     <div className='footer-container'>
       <div className='footer-info-links-container'>
         <div className='footer-info-container'>
-          <div className='footer-info-header'>
-            <img src={starIcon} alt='star' className='footer-star-icon' />
-            Billionaire Auction
-          </div>
+          <Link to='/'>
+            <img src={companyLogo} alt='Billionaire Auctions' className='company-logo' />
+           </Link>
           <p className='footer-info-text'>
             The world's premier marketplace for luxury properties, rare
             collectibles, and exceptional assets.
@@ -78,26 +77,25 @@ const Footer = () => {
           <h3 className='footer-link-heading'>Contact Us</h3>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
-              <GrLocation className='footer-icons' /> Luxury Plaza, Connaught
-              Place, New Delhi - 110001, India
+              <GrLocation className='footer-icons' /> Izzath Nagar, Kondapur, Hyderabad, Telangana 500084
             </div>
           </div>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
-              <FiPhone className='footer-icons' /> +91 1800-123-4567
+              <FiPhone className='footer-icons' /> +91 77310 01879
             </div>
           </div>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
               <MdMailOutline className='footer-icons' />{' '}
-              contact@billionaireauction.com
+              Elite@billionaireauction.com
             </div>
           </div>
         </div>
       </div>
       <div className='footer-copy-right-container'>
         <p className='footer-copy-right-text'>
-          &copy; 2026 Billionaire Auction. All rights reserved.
+          &copy; 2026 Billionaire Auction Pvt Ltd. All rights reserved.
         </p>
         <div className='footer-section-links-container'>
           <Link to='privacy-policy'>

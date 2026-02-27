@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { HiOutlineLocationMarker } from "react-icons/hi";
 import { LuCrown } from "react-icons/lu";
 import { BsPatchCheck } from "react-icons/bs";
 import { getPublicProductById } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
 import { FiSearch } from "react-icons/fi";
-import { IoDiamondOutline } from "react-icons/io5";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
@@ -20,6 +18,10 @@ import { PiCarProfile } from "react-icons/pi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FiCheckCircle } from "react-icons/fi";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
+import { LuHouse } from 'react-icons/lu';
+import { TbSofa } from 'react-icons/tb';
+import { IoDiamondOutline } from 'react-icons/io5';
+import { RiBankLine } from 'react-icons/ri';
 
 import cityApartment from "../../assets/city-apartment.jpg";
 import penthouse from "../../assets/penthouse.jpg";
@@ -242,10 +244,6 @@ const ProductDetails = () => {
                     <p className="brand-name">Phantom</p>
                   </div>
                   <div className="product-grid-item">
-                    <p className="product-brand">Variant</p>
-                    <p className="brand-name">Vintage Edition</p>
-                  </div>
-                  <div className="product-grid-item">
                     <p className="product-brand">Year</p>
                     <p className="brand-name">1965</p>
                   </div>
@@ -258,6 +256,10 @@ const ProductDetails = () => {
                     <p className="brand-name">Automatic</p>
                   </div>
                   <div className="product-grid-item">
+                    <p className="product-brand">Condition</p>
+                    <p className="brand-name">Good</p>
+                  </div>
+                  <div className="product-grid-item">
                     <p className="product-brand">KM Driven</p>
                     <p className="brand-name">45,000 km</p>
                   </div>
@@ -266,8 +268,32 @@ const ProductDetails = () => {
                     <p className="brand-name">Second Owner</p>
                   </div>
                   <div className="product-grid-item">
-                    <p className="product-brand">Registration</p>
-                    <p className="brand-name">Delhi</p>
+                    <p className="product-brand">Tyres</p>
+                    <p className="brand-name">Brand New</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Color</p>
+                    <p className="brand-name">Black</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Accident History</p>
+                    <p className="brand-name">No</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Service History</p>
+                    <p className="brand-name">Available</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Number of Keys</p>
+                    <p className="brand-name">2 Keys</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Seller Type</p>
+                    <p className="brand-name">Owner</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Registration State</p>
+                    <p className="brand-name">Telangana</p>
                   </div>
                   <div className="product-grid-item">
                     <p className="product-brand">Insurance</p>
@@ -275,147 +301,237 @@ const ProductDetails = () => {
                       Comprehensive (Valid till Dec 2026)
                     </p>
                   </div>
-                </div>
-              </div>
-              <div className="product-description-container">
-                <h2 className="product-description">Engine Specifications</h2>
-                <div className="product-grid-item-container">
                   <div className="product-grid-item">
-                    <p className="product-brand">Displacement</p>
-                    <p className="brand-name">6,230 cc</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Power</p>
-                    <p className="brand-name">200 bhp @ 4,000 rpm</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Torque</p>
-                    <p className="brand-name">480 Nm @ 1,500 rpm</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Cylinders</p>
-                    <p className="brand-name">V8</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Gearbox</p>
-                    <p className="brand-name">4-Speed Automatic</p>
-                  </div>
-                </div>
-              </div>
-              <div className="product-description-container">
-                <h2 className="product-description">Exterior & Interior</h2>
-                <h3 className="exterior-heading">Exterior</h3>
-                <div className="exterior-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Color</p>
-                    <p className="brand-name">Silver Cloud</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Wheels</p>
-                    <p className="brand-name">Original Chrome Wire Wheels</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">TyreCondition</p>
-                    <p className="brand-name">Excellent</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Headlights</p>
-                    <p className="brand-name">Classic Round Headlamps</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Sunroof</p>
-                    <p className="brand-name">No</p>
-                  </div>
-                </div>
-                <h3 className="exterior-heading">Interior</h3>
-                <div className="exterior-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Upholstery</p>
-                    <p className="brand-name">Premium Leather (Burgundy)</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Seating</p>
-                    <p className="brand-name">5 Seater</p>
-                  </div>
-                </div>
-                <div className="exterior-point-grid-container">
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Wooden
-                    Dashboard
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Original
-                    Instrumentation
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Picnic
-                    Tables
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Wool
-                    Carpets
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Classic
-                    Radio
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Air
-                    Conditioning (Added)
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Power
-                    Windows
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Central
-                    Locking
-                  </div>
-                </div>
-              </div>
-              <div className="product-description-container">
-                <h2 className="product-description">Additional Features</h2>
-                <div className="exterior-point-grid-container">
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Fully
-                    Restored
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Original
-                    Parts
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" />{" "}
-                    Maintained Service History
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Garage
-                    Kept
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" />{" "}
-                    Collector's Item
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Show
-                    Quality Finish
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" /> Rare
-                    Vintage Model
-                  </div>
-                  <div className="exterior-point-item-container">
-                    <FiCheckCircle className="exterior-circle-icon" />{" "}
-                    Investment Grade
+                    <p className="product-brand">RC Available</p>
+                    <p className="brand-name">Yes</p>
                   </div>
                 </div>
               </div>
             </>
           ) : product.category === "REAL_ESTATE" ? (
-            <></>
-          ) : (
-            <></>
-          )}
+            <>
+            <div className="product-description-container">
+                <h2 className="product-description">
+                  <LuHouse className="product-document-icon" /> Property
+                  Details
+                </h2>
+                <div className="product-grid-item-container">
+                  <div className="product-grid-item">
+                    <p className="product-brand">Property Type</p>
+                    <p className="brand-name">Flat</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Area/Locality</p>
+                    <p className="brand-name">Jubilee Hills</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Landmark</p>
+                    <p className="brand-name">Near Jubilee Hills Metro Station</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Ownership Type</p>
+                    <p className="brand-name">Freehold</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Approval Status</p>
+                    <p className="brand-name">RERA Approved</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Availability</p>
+                    <p className="brand-name">Immeidate</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Age of Property (Years)</p>
+                    <p className="brand-name">5 Years</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Facing</p>
+                    <p className="brand-name">East</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">No of Car Parking</p>
+                    <p className="brand-name">2</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : product.category === "FURNITURE" ? (
+            <>
+            <div className="product-description-container">
+                <h2 className="product-description">
+                  <TbSofa className="product-document-icon" /> Furniture
+                  Details
+                </h2>
+                <div className="product-grid-item-container">
+                  <div className="product-grid-item">
+                    <p className="product-brand">Furniture Type</p>
+                    <p className="brand-name">Sofa</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Material</p>
+                    <p className="brand-name">Solid Wood</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Condition</p>
+                    <p className="brand-name">Brand New</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Usage Condition</p>
+                    <p className="brand-name">Never Used</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Brand</p>
+                    <p className="brand-name">Custom</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Dimensions (L × W × H)</p>
+                    <p className="brand-name">180 × 120 × 80 cm</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Color / Finish</p>
+                    <p className="brand-name">Natural Wood</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Seating Capacity</p>
+                    <p className="brand-name">4 Seater</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Age of Furniture</p>
+                    <p className="brand-name">Less than 1 year</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Assembly Required</p>
+                    <p className="brand-name">Yes</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Original Purchase Price</p>
+                    <p className="brand-name">₹ 1,50,000</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Reason for Selling</p>
+                    <p className="brand-name">Relocation</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Seller Type</p>
+                    <p className="brand-name">Owner</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : product.category === "JEWELLERY_AND_WATCHES" ? (
+            <>
+            <div className="product-description-container">
+                <h2 className="product-description">
+                  <IoDiamondOutline className="product-document-icon" /> Jewellery & Watches
+                  Details
+                </h2>
+                <div className="product-grid-item-container">
+                  <div className="product-grid-item">
+                    <p className="product-brand">Item Type</p>
+                    <p className="brand-name">Jewellery</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Condition</p>
+                    <p className="brand-name">Brand New</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Gender</p>
+                    <p className="brand-name">Unisex</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Invoice Available</p>
+                    <p className="brand-name">Yes</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ): product.category === "ANTIQUES" ? (
+            <>
+            <div className="product-description-container">
+                <h2 className="product-description">
+                  <RiBankLine className="product-document-icon" /> Antiques Details
+                </h2>
+                <div className="product-grid-item-container">
+                  <div className="product-grid-item">
+                    <p className="product-brand">Antique Type</p>
+                    <p className="brand-name">Coins</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Approximate Age (years)</p>
+                    <p className="brand-name">50 Years</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Origin</p>
+                    <p className="brand-name">Indian</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Material</p>
+                    <p className="brand-name">Bronze</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Condition</p>
+                    <p className="brand-name">Excellent</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Restoration</p>
+                    <p className="brand-name">Yes</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Documentation</p>
+                    <p className="brand-name">Available</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Historical Period</p>
+                    <p className="brand-name">Mughal</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )
+          : product.category === "ANTIQUES" ? (
+            <>
+            <div className="product-description-container">
+                <h2 className="product-description">
+                  <RiBankLine className="product-document-icon" /> Antiques Details
+                </h2>
+                <div className="product-grid-item-container">
+                  <div className="product-grid-item">
+                    <p className="product-brand">Antique Type</p>
+                    <p className="brand-name">Coins</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Approximate Age (years)</p>
+                    <p className="brand-name">50 Years</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Origin</p>
+                    <p className="brand-name">Indian</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Material</p>
+                    <p className="brand-name">Bronze</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Condition</p>
+                    <p className="brand-name">Excellent</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Restoration</p>
+                    <p className="brand-name">Yes</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Documentation</p>
+                    <p className="brand-name">Available</p>
+                  </div>
+                  <div className="product-grid-item">
+                    <p className="product-brand">Historical Period</p>
+                    <p className="brand-name">Mughal</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )
+          : null}
         </div>
         <div className="product-page-quick-info-container">
           <div className="product-page-safety-tips-container">

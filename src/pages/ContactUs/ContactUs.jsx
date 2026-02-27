@@ -80,8 +80,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Email</h3>
-                <p className='email'>support@billionaireauction.com</p>
-                <p className='email'>info@billionaireauction.com</p>
+                <p className='email'>elite@billionaireauction.com</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -90,8 +89,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Phone</h3>
-                <p className='email'>+91 22 1234 5678</p>
-                <p className='email'>+91 22 8765 4321</p>
+                <p className='email'>+91 77310 01879</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -100,10 +98,8 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Address</h3>
-                <p className='email'>123 Luxury Plaza</p>
-                <p className='email'>Nariman Point</p>
-                <p className='email'>Mumbai, Maharashtra 400021</p>
-                <p className='email'>India</p>
+                <p className='email'>Izzat Nagar, Kondapur</p>
+                <p className='email'>Hyderabad, Telangana 500084</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
