@@ -86,51 +86,9 @@ const ProductDetails = () => {
   return (
     <div className="product-page-container">
       <div className="product-page-search-category-container">
-        <div className="product-page-search-btn-container">
-          <div className="product-page-search-container">
-            <FiSearch className="product-search-icon" />
-            <input
-              type="text"
-              placeholder="Search luxury properties, cars, arts, jewelry, watches..."
-              className="product-search"
-            />
-          </div>
-          <button className="product-search-btn">
-            <FiSearch /> Search
-          </button>
-        </div>
         <div className="product-page-breadcrums-category-btns-container">
           <div className="product-page-bread-crums">
             Home / <span className="product-category">{product.title}</span>
-          </div>
-          <div className="buy-now-btns-container">
-            <div
-              className={
-                product.tier === "ALL"
-                  ? "buy-now-btn-container active-btn"
-                  : "buy-now-btn-container"
-              }
-            >
-              All
-            </div>
-            <div
-              className={
-                product.tier === "LUXURY"
-                  ? "buy-now-btn-container active-btn"
-                  : "buy-now-btn-container"
-              }
-            >
-              <LuCrown /> Luxury
-            </div>
-            <div
-              className={
-                product.tier === "CLASSIC"
-                  ? "buy-now-btn-container active-btn"
-                  : "buy-now-btn-container"
-              }
-            >
-              <IoDiamondOutline /> Classic
-            </div>
           </div>
         </div>
       </div>
