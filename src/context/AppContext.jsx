@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import api from '../lib/api';
 
 const AppContext = createContext();
 
@@ -8,13 +9,11 @@ export const AppProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(
-        'https://3nkfewwusk.ap-south-1.awsapprunner.com/api/product',
-      );
-      const data = await response.json();
-      setProducts(data?.data);
+      setErrorMsg('');
+      const response = await api.get('/api/product/public');
+      setProducts(response?.data?.data || []);
     } catch (error) {
-      setErrorMsg(error.msg);
+      setErrorMsg(error?.response?.data?.message || error?.message || 'Failed to fetch products');
     }
   };
 
