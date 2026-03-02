@@ -11,7 +11,7 @@ import { MdOutlinePalette } from 'react-icons/md';
 import { GoTrophy } from 'react-icons/go';
 import { RiBankLine } from 'react-icons/ri';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { GoPeople } from 'react-icons/go';
 import { BsBoxSeam } from 'react-icons/bs';
@@ -42,6 +42,7 @@ import others from '../../assets/others.jpg';
 import aeroplane from '../../assets/aeroplane.jpg';
 import ship from '../../assets/ship.jpg';
 import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionCardComponent';
+import { getAuctionsProducts, mapProductToCard } from '../../lib/products';
 
 const btns = [
   {
@@ -416,6 +417,48 @@ const othersData = [
 
 const Auctions = () => {
   const [selectedBtn, setSelectedBtn] = useState('All');
+  const [search, setSearch] = useState('');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const list = await getAuctionsProducts();
+        const mapped = list.map((product) => {
+          const card = mapProductToCard(product);
+          return {
+            id: card.id,
+            title: card.title,
+            image: card.image || apartment,
+            cost:
+              typeof product.value === 'number'
+                ? `${product.value.toLocaleString('en-IN')}+`
+                : 'Price on request',
+            location: product.meta?.auctionVenue || product.meta?.location || 'Unspecified',
+            date: product.meta?.auctionDate || product.meta?.date || '',
+            lots: product.meta?.lots || '',
+            registered: product.meta?.registered || '',
+          };
+        });
+        setProducts(mapped);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load auction products', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = useMemo(() => {
+    if (!search) return products;
+    return products.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()),
+    );
+  }, [products, search]);
 
   return (
     <div className='buy-now-container'>
@@ -471,6 +514,19 @@ const Auctions = () => {
           </div>
         </div>
       </div>
+      <div className='buy-now-categories-container'>
+        <div className='buy-now-search-filter-container'>
+          <div className='buy-now-search-container'>
+            <input
+              type='text'
+              placeholder='Search auction events...' 
+              className='buy-now-input'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
       <div className='auctions-steps-main-container'>
         <div className='auctions-steps-header'>
           <h1 className='auctions-step-heading'>
@@ -495,14 +551,25 @@ const Auctions = () => {
         </div>
       </div>
       <div className='auctions-flex-container'>
-        <AuctionCardComponent data={realEstateData} name='Real Estate' />
-        <AuctionCardComponent data={carsData} name='Cars' />
-        <AuctionCardComponent data={furnitureData} name='Furniture' />
-        <AuctionCardComponent data={jewelleryData} name='Jewellery & Watches' />
-        <AuctionCardComponent data={artsData} name='Arts & Paintings' />
-        <AuctionCardComponent data={antiquesData} name='Antiques' />
-        <AuctionCardComponent data={collectablesData} name='Collectables' />
-        <AuctionCardComponent data={othersData} name='Others' />
+        {(loading && products.length === 0
+          ? [
+              { name: 'Real Estate', data: realEstateData },
+              { name: 'Cars', data: carsData },
+              { name: 'Furniture', data: furnitureData },
+              { name: 'Jewellery & Watches', data: jewelleryData },
+              { name: 'Arts & Paintings', data: artsData },
+              { name: 'Antiques', data: antiquesData },
+              { name: 'Collectables', data: collectablesData },
+              { name: 'Others', data: othersData },
+            ]
+          : [{ name: 'Auctions', data: filteredProducts }]
+        ).map((section) => (
+          <AuctionCardComponent
+            key={section.name}
+            data={section.data}
+            name={section.name}
+          />
+        ))}
       </div>
     </div>
   );

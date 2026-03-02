@@ -41,6 +41,22 @@ export const getPublicProducts = async (params = {}) => {
   return response.data?.data || [];
 };
 
+export const getMarketplaceProducts = async (params = {}) => {
+  return getPublicProducts({ listingType: "MARKETPLACE", ...params });
+};
+
+export const getBuyNowProducts = async (params = {}) => {
+  return getPublicProducts({ listingType: "BUY_NOW", ...params });
+};
+
+export const getAuctionsProducts = async (params = {}) => {
+  return getPublicProducts({ listingType: "AUCTIONS", ...params });
+};
+
+export const getToLetProducts = async (params = {}) => {
+  return getPublicProducts({ listingType: "TO_LET", ...params });
+};
+
 export const getPublicProductById = async (id) => {
   const response = await api.get(`/api/product/public/${id}`);
   return response.data?.data;

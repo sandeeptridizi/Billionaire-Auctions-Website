@@ -1,5 +1,6 @@
 import './ToLet.css';
 
+import { useEffect, useMemo, useState } from 'react';
 import { FiHome } from 'react-icons/fi';
 import { IoSearch } from 'react-icons/io5';
 import { GrFilter } from 'react-icons/gr';
@@ -14,9 +15,8 @@ import { BsBank } from 'react-icons/bs';
 import { GrLocation } from 'react-icons/gr';
 import { LuCrown } from 'react-icons/lu';
 
-import heritage from '../../assets/heritage.jpg';
-import apartment from '../../assets/apartment.jpg';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
+import { getToLetProducts, mapProductToCard } from '../../lib/products';
 
 const categoryData = [
   {
@@ -104,148 +104,7 @@ const categoryBtns = [
   },
 ];
 
-const propertiesData = [
-  {
-    id: 1,
-    image: apartment,
-    cost: '3.5 Lakh/month',
-    location: 'Bandra West',
-    bhk: '4 BHK',
-    tubs: '5 Bath',
-    squareFeet: '4,500 sq.ft',
-    deposit: '35,00,000',
-    available: 'Immediate',
-    category: 'Fully Furnished',
-    views: '2,340 Views',
-    title: 'Luxury 4 BHK Penthouse - Sea View',
-  },
-  {
-    id: 2,
-    image: heritage,
-    cost: '2.25 Lakh/month',
-    location: 'DLF Phase 5',
-    bhk: '3 BHK',
-    tubs: '4 Bath',
-    squareFeet: '3,200 sq.ft',
-    deposit: '22,50,000',
-    available: 'March 2026',
-    category: 'Fully Furnished',
-    views: '1,876 Views',
-    title: 'Premium 3 BHK Apartment - Golf Course View',
-  },
-  {
-    id: 3,
-    image: apartment,
-    cost: '5 Lakh/month',
-    location: 'Whitefield',
-    bhk: '5 BHK',
-    tubs: '6 Bath',
-    squareFeet: '6000 sq.ft',
-    deposit: '50,00,000',
-    available: 'Immediate',
-    category: 'Semi Furnished',
-    views: '3,421 Views',
-    title: 'Spacious 5 BHK Villa with Pool',
-  },
-  {
-    id: 4,
-    image: heritage,
-    cost: '1.85 Lakh/month',
-    location: 'Hitech City',
-    bhk: '3 BHK',
-    tubs: '3 Bath',
-    squareFeet: '2,800 sq.ft',
-    deposit: '18,50,000',
-    available: 'April 2026',
-    category: 'Fully Furnished',
-    views: '1,654 Views',
-    title: 'Designer 3 BHK -Premium Tower',
-  },
-  {
-    id: 5,
-    image: apartment,
-    cost: '2.75 Lakh /month',
-    location: 'Connaught Place',
-    bhk: '4 BHK',
-    tubs: '5 Bath',
-    squareFeet: '3,800 sq.ft',
-    deposit: '27,50,000',
-    available: 'Immediate',
-    category: 'Fully Furnished',
-    views: '2,187 Views',
-    title: 'Elegant 4 BHK Duplex - City Center',
-  },
-  {
-    id: 6,
-    image: heritage,
-    cost: '1.25 Lakh/month',
-    location: 'Koramangala',
-    bhk: '2 BHK',
-    tubs: '2 Bath',
-    squareFeet: '1,800 sq.ft',
-    deposit: '12,50,000',
-    available: 'March 2026',
-    category: 'Fully Furnished',
-    views: '1,432 Views',
-    title: 'Modern 2 BHK - High Rise',
-  },
-  {
-    id: 7,
-    image: apartment,
-    cost: '2.5 Lakh/month',
-    location: 'Powai',
-    bhk: '4 BHK',
-    tubs: '4 Bath',
-    squareFeet: '3,500 sq.ft',
-    deposit: '25,00,000',
-    available: 'Immediate',
-    category: 'Semi Furnished',
-    views: '1,987 Views',
-    title: 'Luxury 4 BHK - Lake View',
-  },
-  {
-    id: 8,
-    image: heritage,
-    cost: '1.65 Lakh/month',
-    location: 'Banjara Hills',
-    bhk: '3 BHK',
-    tubs: '3 Bath',
-    squareFeet: '2,600 sq.ft',
-    deposit: '16,50,000',
-    available: 'April 2026',
-    category: 'Fully Furnished',
-    views: '1,543 Views',
-    title: 'Premium 3 BHK - Gated Community',
-  },
-  {
-    id: 9,
-    image: apartment,
-    cost: '6 Lakh/month',
-    location: 'Lonavala',
-    bhk: '5 BHK',
-    tubs: '6 Bath',
-    squareFeet: '7,500 sq.ft',
-    deposit: '60,00,000',
-    available: 'Immediate',
-    category: 'Semi Furnished',
-    views: '2,876 Views',
-    title: 'Exclusive 5 BHK Farmhouse',
-  },
-  {
-    id: 10,
-    image: heritage,
-    cost: '3 Lakh/month',
-    location: 'Candolim',
-    bhk: '3 BHK',
-    tubs: '4 Bath',
-    squareFeet: '3,000 sq.ft',
-    deposit: '30,00,000',
-    available: 'March 2026',
-    category: 'Fully Furnished',
-    views: '3,214 Views',
-    title: 'Beachfront 3 BHK Villa',
-  },
-];
+const propertiesData = [];
 
 const rentsData = [
   {
@@ -275,6 +134,53 @@ const rentsData = [
 ];
 
 const ToLet = () => {
+  const [search, setSearch] = useState('');
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const list = await getToLetProducts();
+        const mapped = list.map((product) => {
+          const card = mapProductToCard(product);
+          return {
+            id: card.id,
+            image: card.image,
+            cost:
+              typeof product.value === 'number'
+                ? `${product.value.toLocaleString('en-IN')} /month`
+                : 'Price on request',
+            location: product.meta?.location || 'Unspecified',
+            bhk: product.meta?.bhk || '',
+            tubs: product.meta?.baths || '',
+            squareFeet: product.meta?.area || '',
+            deposit: product.meta?.deposit || '',
+            available: product.meta?.availableFrom || '',
+            category: product.meta?.furnishing || '',
+            views: '',
+            title: card.title,
+          };
+        });
+        setProperties(mapped);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load to-let products', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filteredProperties = useMemo(() => {
+    if (!search) return properties;
+    return properties.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()),
+    );
+  }, [properties, search]);
+
   return (
     <div className='to-let-page-container'>
       <div className='to-let-page-background'>
@@ -293,6 +199,8 @@ const ToLet = () => {
               type='text'
               placeholder='Search for luxury items...'
               className='buy-now-input'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <div className='buy-now-filter-container'>
@@ -342,9 +250,11 @@ const ToLet = () => {
           <p className='property-text'>10 properties found</p>
         </div>
         <div className='property-grid-container'>
-          {propertiesData.map((item) => (
-            <PropertyCard key={item.id} {...item} />
-          ))}
+          {(loading && properties.length === 0 ? propertiesData : filteredProperties).map(
+            (item) => (
+              <PropertyCard key={item.id} {...item} />
+            ),
+          )}
         </div>
       </div>
       <div className='to-let-rent-us-container'>
