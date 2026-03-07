@@ -1,81 +1,88 @@
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './ProductPage.css';
 
-import { FiSearch } from 'react-icons/fi';
 import { LuCrown } from 'react-icons/lu';
 import { IoDiamondOutline } from 'react-icons/io5';
 import { BsPatchCheck } from 'react-icons/bs';
 import { GrLocation } from 'react-icons/gr';
-import { MdOutlineCalendarToday } from 'react-icons/md';
-import { LuPhone } from 'react-icons/lu';
-import { FiMessageCircle } from 'react-icons/fi';
-import { MdFavoriteBorder } from 'react-icons/md';
-import { SlShare } from 'react-icons/sl';
-import { FiFlag } from 'react-icons/fi';
-import { CgFileDocument } from 'react-icons/cg';
-import { PiCarProfile } from 'react-icons/pi';
-import { RiErrorWarningLine } from 'react-icons/ri';
-import { FiCheckCircle } from 'react-icons/fi';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 
-import { useState } from 'react';
-
-import car from '../../assets/car4.jpg';
-import car2 from '../../assets/car.jpg';
-import cityApartment from '../../assets/city-apartment.jpg';
-import penthouse from '../../assets/penthouse.jpg';
-import villa from '../../assets/villa2.jpg';
 import exclusiveVilla from '../../assets/exclusive-villa.jpg';
 import exclusivePenthouse from '../../assets/exclusive-penthouse.jpg';
 
-const data = [
-  {
-    id: 1,
-    image: cityApartment,
-    cost: '₹2.85 Cr',
-    location: 'Bandra West, Mumbai',
-    title: 'Premium 3BHK Apartment with City View',
-  },
-  {
-    id: 2,
-    image: villa,
-    cost: '₹12.5 Cr',
-    location: 'Jublee Hills, Hyderabad',
-    title: 'Luxury Villa with Private Pool',
-  },
-  {
-    id: 3,
-    image: penthouse,
-    cost: '₹8.75 Cr',
-    location: 'Whitefield, Bangalore',
-    title: 'Premium Penthouse with Terrace',
-  },
-];
+import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
+import { getPublicProducts, formatCategoryLabel, mapProductToCard } from '../../lib/products';
+import { getFile } from '../../lib/s3';
+
+const listingTypeMap = {
+  marketplace: 'MARKETPLACE',
+  'buy-now': 'BUY_NOW',
+  auctions: 'AUCTIONS',
+  'to-let': 'TO_LET',
+};
 
 const ProductPage = () => {
   const [selectedBtn, setSelectedBtn] = useState('All');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   const { page, category } = useParams();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const params = {};
+        if (page && listingTypeMap[page.toLowerCase()]) {
+          params.listingType = listingTypeMap[page.toLowerCase()];
+        }
+        if (category) {
+          const catKey = category.toUpperCase().replace(/[- ]/g, '_').replace(/&/g, 'AND');
+          params.category = catKey;
+        }
+        const list = await getPublicProducts(params);
+        setProducts(list);
+      } catch {
+        // silent fail
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [page, category]);
+
+  const filteredProducts = products.filter((product) => {
+    const byTier =
+      selectedBtn === 'Luxury'
+        ? product.tier === 'LUXURY'
+        : selectedBtn === 'Classic'
+          ? product.tier === 'CLASSIC'
+          : true;
+    const bySearch = search
+      ? product.title.toLowerCase().includes(search.toLowerCase())
+      : true;
+    return byTier && bySearch;
+  });
 
   return (
     <div className='product-page-container'>
       <div className='product-page-search-category-container'>
         <div className='product-page-search-btn-container'>
           <div className='product-page-search-container'>
-            <FiSearch className='product-search-icon' />
             <input
               type='text'
               placeholder='Search luxury properties, cars, arts, jewelry, watches...'
               className='product-search'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <button className='product-search-btn'>
-            <FiSearch /> Search
-          </button>
         </div>
         <div className='product-page-breadcrums-category-btns-container'>
           <div className='product-page-bread-crums'>
-            Home / {page} / <span className='product-category'>{category}</span>
+            <Link to='/'>Home</Link> / {page} / <span className='product-category'>{category}</span>
           </div>
           <div className='buy-now-btns-container'>
             <div
@@ -111,335 +118,58 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <div className='product-page-image-info-container'>
-        <div className='product-page-img-container'>
-          <img src={car} alt='car' className='product-car' />
-          <div className='product-page-img-grid-container'>
-            <img src={car} alt='car' className='grid-img' />
-            <img src={car2} alt='car' className='grid-img' />
-            <img src={car} alt='car' className='grid-img' />
-            <img src={car2} alt='car' className='grid-img' />
-          </div>
-        </div>
-        <div className='product-page-info-container'>
-          <div className='product-info-header'>
-            <div className='product-info-tags-container'>
-              <div className='product-verified-container'>
-                <BsPatchCheck className='product-check-icon' /> Verified
-              </div>
-              <div className='product-luxury-container'>
-                <LuCrown className='product-crown-icon' /> CLASSIC
-              </div>
-            </div>
-            <h3 className='product-info-heading'>
-              Vintage Rolls Royce Phantom
-            </h3>
-            <div className='product-location'>
-              <GrLocation className='product-location-icon' /> New Delhi, Delhi
-            </div>
-            <div className='product-calender'>
-              <MdOutlineCalendarToday /> Posted on 25 Jan 2026
-            </div>
-          </div>
-          <div className='product-info-price-container'>
-            <p className='product-info-text'>Asking Price</p>
-            <h2 className='product-info-price'>₹12,50,00,000</h2>
-            <p className='product-info-text'>Negotiable</p>
-          </div>
-          <div className='product-info-btns-container'>
-            <button className='product-info-enquire-btn'>
-              <LuPhone /> Enquire now
-            </button>
-            <button className='product-info-chat-btn'>
-              <FiMessageCircle /> Chat Now
-            </button>
-          </div>
-          <div className='product-info-social-container'>
-            <div className='save-container'>
-              <MdFavoriteBorder /> Save
-            </div>
-            <div className='save-container'>
-              <SlShare /> Share
-            </div>
-            <div className='save-container'>
-              <FiFlag /> Report
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='product-page-specifications-container'>
-        <div className='product-page-specifications'>
-          <div className='product-description-container'>
-            <h2 className='product-description'>
-              <CgFileDocument className='product-document-icon' /> Description
-            </h2>
-            <p className='product-text'>
-              A timeless masterpiece of British automotive engineering. This
-              vintage Rolls Royce Phantom represents the golden age of luxury
-              motoring. Completely restored to its original glory with authentic
-              parts and meticulous attention to detail.
-            </p>
-          </div>
-          <div className='product-description-container'>
-            <h2 className='product-description'>
-              <PiCarProfile className='product-document-icon' /> Vehicle Details
-            </h2>
-            <div className='product-grid-item-container'>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Brand</p>
-                <p className='brand-name'>Rolls Royce</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Model</p>
-                <p className='brand-name'>Phantom</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Variant</p>
-                <p className='brand-name'>Vintage Edition</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Year</p>
-                <p className='brand-name'>1965</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Fuel Type</p>
-                <p className='brand-name'>Petrol</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Transmission</p>
-                <p className='brand-name'>Automatic</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>KM Driven</p>
-                <p className='brand-name'>45,000 km</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Ownership</p>
-                <p className='brand-name'>Second Owner</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Registration</p>
-                <p className='brand-name'>Delhi</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Insurance</p>
-                <p className='brand-name'>
-                  Comprehensive (Valid till Dec 2026)
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className='product-description-container'>
-            <h2 className='product-description'>Engine Specifications</h2>
-            <div className='product-grid-item-container'>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Displacement</p>
-                <p className='brand-name'>6,230 cc</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Power</p>
-                <p className='brand-name'>200 bhp @ 4,000 rpm</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Torque</p>
-                <p className='brand-name'>480 Nm @ 1,500 rpm</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Cylinders</p>
-                <p className='brand-name'>V8</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Gearbox</p>
-                <p className='brand-name'>4-Speed Automatic</p>
-              </div>
-            </div>
-          </div>
-          <div className='product-description-container'>
-            <h2 className='product-description'>Exterior & Interior</h2>
-            <h3 className='exterior-heading'>Exterior</h3>
-            <div className='exterior-grid-item-container'>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Color</p>
-                <p className='brand-name'>Silver Cloud</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Wheels</p>
-                <p className='brand-name'>Original Chrome Wire Wheels</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>TyreCondition</p>
-                <p className='brand-name'>Excellent</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Headlights</p>
-                <p className='brand-name'>Classic Round Headlamps</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Sunroof</p>
-                <p className='brand-name'>No</p>
-              </div>
-            </div>
-            <h3 className='exterior-heading'>Interior</h3>
-            <div className='exterior-grid-item-container'>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Upholstery</p>
-                <p className='brand-name'>Premium Leather (Burgundy)</p>
-              </div>
-              <div className='product-grid-item'>
-                <p className='product-brand'>Seating</p>
-                <p className='brand-name'>5 Seater</p>
-              </div>
-            </div>
-            <div className='exterior-point-grid-container'>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Wooden
-                Dashboard
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Original
-                Instrumentation
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Picnic Tables
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Wool Carpets
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Classic Radio
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Air
-                Conditioning (Added)
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Power Windows
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Central
-                Locking
-              </div>
-            </div>
-          </div>
-          <div className='product-description-container'>
-            <h2 className='product-description'>Additional Features</h2>
-            <div className='exterior-point-grid-container'>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Fully
-                Restored
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Original
-                Parts
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Maintained
-                Service History
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Garage Kept
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Collector's
-                Item
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Show Quality
-                Finish
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Rare Vintage
-                Model
-              </div>
-              <div className='exterior-point-item-container'>
-                <FiCheckCircle className='exterior-circle-icon' /> Investment
-                Grade
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='product-page-quick-info-container'>
-          <div className='product-page-safety-tips-container'>
-            <h3 className='tips-heading'>
-              <RiErrorWarningLine className='error-icon' /> Safety Tips
-            </h3>
-            <div className='product-page-points-container'>
-              <div className='product-page-point-container'>
-                <FiCheckCircle className='point-circle-icon' /> Always meet
-                seller in person at a safe public location
-              </div>
-              <div className='product-page-point-container'>
-                <FiCheckCircle className='point-circle-icon' /> Verify product
-                authenticity before payment
-              </div>
-              <div className='product-page-point-container'>
-                <FiCheckCircle className='point-circle-icon' /> Never pay in
-                advance or transfer money online
-              </div>
-              <div className='product-page-point-container'>
-                <FiCheckCircle className='point-circle-icon' /> Get proper
-                documentation and receipts
-              </div>
-              <div className='product-page-point-container'>
-                <FiCheckCircle className='point-circle-icon' /> Report
-                suspicious activity immediately
-              </div>
-            </div>
-          </div>
-          <div className='product-quick-information-container'>
-            <h3 className='quick-info-heading'>Quick Information</h3>
-            <div className='quick-info-justify-container'>
-              <span className='quick-category'>Category</span>
-              <span className='category-name'>Cars</span>
-            </div>
-            <div className='quick-info-justify-container'>
-              <span className='quick-category'>Listing Type</span>
-              <span className='category-name'>Sale</span>
-            </div>
-            <div className='quick-info-justify-container'>
-              <span className='quick-category'>Posted On</span>
-              <span className='category-name'>25 Jan 2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className='similar-luxury-items-container'>
         <div className='similar-luxury-items-header'>
-          <h2 className='similar-luxury-items-heading'>Similar Luxury Items</h2>
-          <button className='view-all-btn'>
-            View All <LuSquareArrowOutUpRight />
-          </button>
+          <h2 className='similar-luxury-items-heading'>
+            {category || 'Products'} ({filteredProducts.length})
+          </h2>
         </div>
-        <div className='similar-luxury-items-grid-container'>
-          {data.map((item) => {
-            const { id, image, cost, location, title } = item;
-            return (
-              <div className='similar-luxury-item-container' key={id}>
-                <div className='luxury-item-img-container'>
-                  <img src={image} alt='image' className='luxury-item-img' />
-                  <div className='luxury-item-header'>
-                    <div className='luxury-item-verified-container'>
-                      <BsPatchCheck className='verified-icon' /> Verified
+        {loading ? (
+          <p style={{ padding: '40px', textAlign: 'center' }}>Loading products...</p>
+        ) : filteredProducts.length === 0 ? (
+          <p style={{ padding: '40px', textAlign: 'center' }}>No products found.</p>
+        ) : (
+          <div className='similar-luxury-items-grid-container'>
+            {filteredProducts.map((product) => {
+              const card = mapProductToCard(product);
+              return (
+                <div className='similar-luxury-item-container' key={product.id}>
+                  <div className='luxury-item-img-container'>
+                    <img
+                      src={product.media?.[0] ? getFile(product.media[0]) : ''}
+                      alt={product.title}
+                      className='luxury-item-img'
+                    />
+                    <div className='luxury-item-header'>
+                      <div className='luxury-item-verified-container'>
+                        <BsPatchCheck className='verified-icon' /> Verified
+                      </div>
+                      <div className='luxury-item-luxury-container'>
+                        <LuCrown /> {product.tier || 'GENERAL'}
+                      </div>
                     </div>
-                    <div className='luxury-item-luxury-container'>
-                      <LuCrown /> LUXURY
+                    <div className='luxury-item-footer'>
+                      <p className='luxury-item-cost'>
+                        {typeof product.value === 'number'
+                          ? `₹${product.value.toLocaleString('en-IN')}`
+                          : 'Price on request'}
+                      </p>
+                      <p className='luxury-item-location'>
+                        <GrLocation /> {product.meta?.location || 'Location not specified'}
+                      </p>
                     </div>
                   </div>
-                  <div className='luxury-item-footer'>
-                    <p className='luxury-item-cost'>{cost}</p>
-                    <p className='luxury-item-location'>
-                      <GrLocation /> {location}
-                    </p>
+                  <div className='luxury-item-content-container'>
+                    <h3 className='luxury-item-title'>{product.title}</h3>
+                    <Link to={`/product/${product.id}`} className='luxury-item-btn'>
+                      View Details
+                    </Link>
                   </div>
                 </div>
-                <div className='luxury-item-content-container'>
-                  <h3 className='luxury-item-title'>{title}</h3>
-                  <button className='luxury-item-btn'>View Details</button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       <div className='exclusive-collection-container'>
         <div className='featured-container'>

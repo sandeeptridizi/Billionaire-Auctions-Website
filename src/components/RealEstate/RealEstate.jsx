@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './RealEstate.css';
 
 import { LuHouse } from 'react-icons/lu';
@@ -5,47 +6,41 @@ import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
 import { RxCross2 } from 'react-icons/rx';
 
-import heritage from '../../assets/heritage.jpg';
-import apartment from '../../assets/apartment.jpg';
-
 import RealEstateCard from '../RealEstateCard/RealEstateCard';
-
-const realEstateData = [
-  {
-    id: 1,
-    title: 'Heritage Villa - Gated Community',
-    image: heritage,
-    cost: '28,50,00,000',
-    city: 'Gurgaon, Haryana',
-    location: 'Gurgaon',
-  },
-  {
-    id: 2,
-    title: 'Beachfront Villa - Goa',
-    image: apartment,
-    cost: '18,75,00,000',
-    city: 'Goa',
-    location: 'Goa',
-  },
-  {
-    id: 3,
-    title: 'Modern Apartment - City Center',
-    image: apartment,
-    cost: '12,50,00,000',
-    city: 'Bangalore, Karnataka',
-    location: 'Bangalore',
-  },
-  {
-    id: 4,
-    title: 'Colonial Mansion',
-    image: apartment,
-    cost: '35,00,00,000',
-    city: 'Kolkata, West Bengal',
-    location: 'Kolkata',
-  },
-];
+import { getPublicProducts } from '../../lib/products';
+import { getFile } from '../../lib/s3';
 
 const RealEstate = () => {
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRealEstate = async () => {
+      try {
+        const list = await getPublicProducts({ category: 'REAL_ESTATE' });
+        const mapped = list.slice(0, 4).map((product) => ({
+          id: product.id,
+          title: product.title,
+          image: product.media?.[0] ? getFile(product.media[0]) : '',
+          cost: typeof product.value === 'number'
+            ? product.value.toLocaleString('en-IN')
+            : 'Price on request',
+          city: product.meta?.location || 'Location not specified',
+          location: product.meta?.location || 'Location not specified',
+        }));
+        setProperties(mapped);
+      } catch {
+        // silent fail
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRealEstate();
+  }, []);
+
+  if (!loading && properties.length === 0) return null;
+
   return (
     <div className='real-estate-container'>
       <div className='featured-listings-header'>
@@ -55,7 +50,7 @@ const RealEstate = () => {
           </div>
           <div className='real-estate-content-container'>
             <h3 className='featured-listings-heading'>Real Estate</h3>
-            <p className='real-estate-text'>5 Products Available</p>
+            <p className='real-estate-text'>{properties.length} Products Available</p>
           </div>
         </div>
         <div className='real-estate-arrow-btn-container'>
@@ -71,9 +66,12 @@ const RealEstate = () => {
         </div>
       </div>
       <div className='real-estate-grid-container'>
-        {realEstateData.map((item) => (
-          <RealEstateCard key={item.id} {...item} />
-        ))}
+        {loading
+          ? <p>Loading...</p>
+          : properties.map((item) => (
+              <RealEstateCard key={item.id} {...item} />
+            ))
+        }
       </div>
     </div>
   );

@@ -75,3 +75,14 @@ export const getRecommendedProducts = async (params = {}) => {
   });
   return response.data?.data || [];
 };
+
+export const submitEnquiry = async ({ productId, visitorName, visitorEmail, visitorPhone, message }) => {
+  const response = await api.post("/api/enquiry", {
+    productId,
+    visitorName,
+    visitorEmail,
+    visitorPhone,
+    message,
+  });
+  return response.data;
+};

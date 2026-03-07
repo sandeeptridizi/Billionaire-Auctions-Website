@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LuCrown } from "react-icons/lu";
 import { BsPatchCheck } from "react-icons/bs";
-import { getFeaturedProducts, getPublicProductById } from "../../lib/products";
+import { getFeaturedProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
 import { FiSearch } from "react-icons/fi";
@@ -34,6 +34,27 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState([]);
+  const [showEnquiryForm, setShowEnquiryForm] = useState(false);
+  const [enquiryForm, setEnquiryForm] = useState({ visitorName: "", visitorEmail: "", visitorPhone: "", message: "" });
+  const [enquirySubmitting, setEnquirySubmitting] = useState(false);
+  const [enquirySuccess, setEnquirySuccess] = useState(false);
+  const [enquiryError, setEnquiryError] = useState("");
+
+  const handleEnquirySubmit = async (e) => {
+    e.preventDefault();
+    setEnquirySubmitting(true);
+    setEnquiryError("");
+    try {
+      await submitEnquiry({ productId: id, ...enquiryForm });
+      setEnquirySuccess(true);
+      setEnquiryForm({ visitorName: "", visitorEmail: "", visitorPhone: "", message: "" });
+      setTimeout(() => { setShowEnquiryForm(false); setEnquirySuccess(false); }, 2000);
+    } catch (err) {
+      setEnquiryError(err.response?.data?.message || "Failed to submit enquiry");
+    } finally {
+      setEnquirySubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -149,13 +170,35 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="product-info-btns-container">
-            <button className="product-info-enquire-btn">
+            <button className="product-info-enquire-btn" onClick={() => setShowEnquiryForm(true)}>
               <LuPhone /> Enquire now
             </button>
             <button className="product-info-chat-btn">
               <FiMessageCircle /> Chat Now
             </button>
           </div>
+          {showEnquiryForm && (
+            <div className="enquiry-modal-overlay" onClick={() => setShowEnquiryForm(false)}>
+              <div className="enquiry-modal" onClick={(e) => e.stopPropagation()}>
+                <h3>Enquire About This Product</h3>
+                {enquirySuccess ? (
+                  <p className="enquiry-success-msg">Enquiry submitted successfully!</p>
+                ) : (
+                  <form onSubmit={handleEnquirySubmit} className="enquiry-form">
+                    <input type="text" placeholder="Your Name *" required value={enquiryForm.visitorName} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorName: e.target.value })} />
+                    <input type="email" placeholder="Your Email *" required value={enquiryForm.visitorEmail} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorEmail: e.target.value })} />
+                    <input type="tel" placeholder="Your Phone (optional)" value={enquiryForm.visitorPhone} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorPhone: e.target.value })} />
+                    <textarea placeholder="Your Message *" required rows={4} value={enquiryForm.message} onChange={(e) => setEnquiryForm({ ...enquiryForm, message: e.target.value })} />
+                    {enquiryError && <p className="enquiry-error-msg">{enquiryError}</p>}
+                    <div className="enquiry-form-btns">
+                      <button type="button" onClick={() => setShowEnquiryForm(false)} className="enquiry-cancel-btn">Cancel</button>
+                      <button type="submit" disabled={enquirySubmitting} className="enquiry-submit-btn">{enquirySubmitting ? "Submitting..." : "Submit Enquiry"}</button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          )}
           <div className="product-info-social-container">
             <div className="save-container">
               <MdFavoriteBorder /> Save
@@ -177,311 +220,37 @@ const ProductDetails = () => {
             </h2>
             <p className="product-text">{product.description}</p>
           </div>
-          {product.category === "CARS" ? (
-            <>
-              <div className="product-description-container">
-                <h2 className="product-description">
-                  <PiCarProfile className="product-document-icon" /> Vehicle
-                  Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Brand</p>
-                    <p className="brand-name">Rolls Royce</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Model</p>
-                    <p className="brand-name">Phantom</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Year</p>
-                    <p className="brand-name">1965</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Fuel Type</p>
-                    <p className="brand-name">Petrol</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Transmission</p>
-                    <p className="brand-name">Automatic</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Condition</p>
-                    <p className="brand-name">Good</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">KM Driven</p>
-                    <p className="brand-name">45,000 km</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Ownership</p>
-                    <p className="brand-name">Second Owner</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Tyres</p>
-                    <p className="brand-name">Brand New</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Color</p>
-                    <p className="brand-name">Black</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Accident History</p>
-                    <p className="brand-name">No</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Service History</p>
-                    <p className="brand-name">Available</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Number of Keys</p>
-                    <p className="brand-name">2 Keys</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Seller Type</p>
-                    <p className="brand-name">Owner</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Registration State</p>
-                    <p className="brand-name">Telangana</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Insurance</p>
-                    <p className="brand-name">
-                      Comprehensive (Valid till Dec 2026)
-                    </p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">RC Available</p>
-                    <p className="brand-name">Yes</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : product.category === "REAL_ESTATE" ? (
-            <>
+          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views').length > 0 && (
             <div className="product-description-container">
-                <h2 className="product-description">
-                  <LuHouse className="product-document-icon" /> Property
-                  Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Property Type</p>
-                    <p className="brand-name">Flat</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Area/Locality</p>
-                    <p className="brand-name">Jubilee Hills</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Landmark</p>
-                    <p className="brand-name">Near Jubilee Hills Metro Station</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Ownership Type</p>
-                    <p className="brand-name">Freehold</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Approval Status</p>
-                    <p className="brand-name">RERA Approved</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Availability</p>
-                    <p className="brand-name">Immeidate</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Age of Property (Years)</p>
-                    <p className="brand-name">5 Years</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Facing</p>
-                    <p className="brand-name">East</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">No of Car Parking</p>
-                    <p className="brand-name">2</p>
-                  </div>
-                </div>
+              <h2 className="product-description">
+                {product.category === "CARS" || product.category === "BIKES" ? (
+                  <><PiCarProfile className="product-document-icon" /> Vehicle Details</>
+                ) : product.category === "REAL_ESTATE" ? (
+                  <><LuHouse className="product-document-icon" /> Property Details</>
+                ) : product.category === "FURNITURE" ? (
+                  <><TbSofa className="product-document-icon" /> Furniture Details</>
+                ) : product.category === "JEWELLERY_AND_WATCHES" ? (
+                  <><IoDiamondOutline className="product-document-icon" /> Jewellery &amp; Watches Details</>
+                ) : product.category === "ANTIQUES" ? (
+                  <><RiBankLine className="product-document-icon" /> Antiques Details</>
+                ) : (
+                  <><CgFileDocument className="product-document-icon" /> Details</>
+                )}
+              </h2>
+              <div className="product-grid-item-container">
+                {Object.entries(product.meta)
+                  .filter(([key]) => key !== 'location' && key !== 'views')
+                  .map(([key, value]) => (
+                    <div className="product-grid-item" key={key}>
+                      <p className="product-brand">
+                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}
+                      </p>
+                      <p className="brand-name">{String(value)}</p>
+                    </div>
+                  ))}
               </div>
-            </>
-          ) : product.category === "FURNITURE" ? (
-            <>
-            <div className="product-description-container">
-                <h2 className="product-description">
-                  <TbSofa className="product-document-icon" /> Furniture
-                  Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Furniture Type</p>
-                    <p className="brand-name">Sofa</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Material</p>
-                    <p className="brand-name">Solid Wood</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Condition</p>
-                    <p className="brand-name">Brand New</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Usage Condition</p>
-                    <p className="brand-name">Never Used</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Brand</p>
-                    <p className="brand-name">Custom</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Dimensions (L × W × H)</p>
-                    <p className="brand-name">180 × 120 × 80 cm</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Color / Finish</p>
-                    <p className="brand-name">Natural Wood</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Seating Capacity</p>
-                    <p className="brand-name">4 Seater</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Age of Furniture</p>
-                    <p className="brand-name">Less than 1 year</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Assembly Required</p>
-                    <p className="brand-name">Yes</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Original Purchase Price</p>
-                    <p className="brand-name">₹ 1,50,000</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Reason for Selling</p>
-                    <p className="brand-name">Relocation</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Seller Type</p>
-                    <p className="brand-name">Owner</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : product.category === "JEWELLERY_AND_WATCHES" ? (
-            <>
-            <div className="product-description-container">
-                <h2 className="product-description">
-                  <IoDiamondOutline className="product-document-icon" /> Jewellery & Watches
-                  Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Item Type</p>
-                    <p className="brand-name">Jewellery</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Condition</p>
-                    <p className="brand-name">Brand New</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Gender</p>
-                    <p className="brand-name">Unisex</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Invoice Available</p>
-                    <p className="brand-name">Yes</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          ): product.category === "ANTIQUES" ? (
-            <>
-            <div className="product-description-container">
-                <h2 className="product-description">
-                  <RiBankLine className="product-document-icon" /> Antiques Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Antique Type</p>
-                    <p className="brand-name">Coins</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Approximate Age (years)</p>
-                    <p className="brand-name">50 Years</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Origin</p>
-                    <p className="brand-name">Indian</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Material</p>
-                    <p className="brand-name">Bronze</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Condition</p>
-                    <p className="brand-name">Excellent</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Restoration</p>
-                    <p className="brand-name">Yes</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Documentation</p>
-                    <p className="brand-name">Available</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Historical Period</p>
-                    <p className="brand-name">Mughal</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )
-          : product.category === "ANTIQUES" ? (
-            <>
-            <div className="product-description-container">
-                <h2 className="product-description">
-                  <RiBankLine className="product-document-icon" /> Antiques Details
-                </h2>
-                <div className="product-grid-item-container">
-                  <div className="product-grid-item">
-                    <p className="product-brand">Antique Type</p>
-                    <p className="brand-name">Coins</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Approximate Age (years)</p>
-                    <p className="brand-name">50 Years</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Origin</p>
-                    <p className="brand-name">Indian</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Material</p>
-                    <p className="brand-name">Bronze</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Condition</p>
-                    <p className="brand-name">Excellent</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Restoration</p>
-                    <p className="brand-name">Yes</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Documentation</p>
-                    <p className="brand-name">Available</p>
-                  </div>
-                  <div className="product-grid-item">
-                    <p className="product-brand">Historical Period</p>
-                    <p className="brand-name">Mughal</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )
-          : null}
+            </div>
+          )}
         </div>
         <div className="product-page-quick-info-container">
           <div className="product-page-safety-tips-container">

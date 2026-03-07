@@ -11,51 +11,11 @@ import { FaArrowTrendUp } from 'react-icons/fa6';
 import { GrLocation } from 'react-icons/gr';
 import { IoMdTime } from 'react-icons/io';
 
-import table from '../../assets/table.jpg';
-import watch from '../../assets/watch.jpg';
 import home from '../../assets/home.jpg';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
 import { formatCategoryLabel, getRecommendedProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
 
-const staticRecommendationData = [
-  {
-    id: 1,
-    title: 'Designer Dining Set',
-    time: '2 days ago',
-    image: table,
-    cost: '18,50,000',
-    category: 'Furniture',
-    location: 'Jaipur',
-    icon1: '',
-    icon2: <FaArrowTrendUp />,
-    isStatic: true,
-  },
-  {
-    id: 2,
-    title: 'Patek Philippe Watch',
-    time: '1 day ago',
-    image: watch,
-    cost: '95,00,000',
-    category: 'Jewellery & Watches',
-    location: 'Mumbai',
-    icon1: <BsPatchCheck />,
-    icon2: '',
-    isStatic: true,
-  },
-  {
-    id: 3,
-    title: 'Abstract Art Collection',
-    time: '4 days ago',
-    image: home,
-    cost: '1,20,00,000',
-    category: 'Arts & Paintings',
-    location: 'Pune',
-    icon1: <BsPatchCheck />,
-    icon2: <FaArrowTrendUp />,
-    isStatic: true,
-  },
-];
 
 const Recommendations = () => {
   const [recommended, setRecommended] = useState([]);
@@ -94,8 +54,7 @@ const Recommendations = () => {
     fetchRecommended();
   }, []);
 
-  const recommendationData =
-    !loading && recommended.length > 0 ? recommended : staticRecommendationData;
+  const recommendationData = recommended;
 
   return (
     <>
@@ -104,90 +63,43 @@ const Recommendations = () => {
           <FaRegStar className='mobile-crown-icon' /> Recommendations
         </h3>
         <div className='mobile-featured-listings-grid-container'>
-          <div className='mobile-featured-grid-item-one-container'>
-            <div className='mobile-featured-grid-item-image-container'>
-              <img src={table} alt='table' className='mobile-apartment-img' />
-              <div className='mobile-featured-grid-item-header'>
-                <div className='mobile-item-recommendation-container'>
-                  Luxury
+          {recommendationData.slice(0, 3).map((item) => (
+            <div className='mobile-featured-grid-item-one-container' key={item.id}>
+              <div className='mobile-featured-grid-item-image-container'>
+                <img src={item.image} alt={item.title} className='mobile-apartment-img' />
+                <div className='mobile-featured-grid-item-header'>
+                  {item.icon1 && (
+                    <div className='mobile-grid-item-check-icon-container'>
+                      {item.icon1}
+                    </div>
+                  )}
+                  <div className='mobile-item-recommendation-container'>
+                    Luxury
+                  </div>
+                  {item.icon2 && (
+                    <div className='mobile-grid-item-growth-icon-container'>
+                      {item.icon2}
+                    </div>
+                  )}
                 </div>
-                <div className='mobile-grid-item-growth-icon-container'>
-                  <FaArrowTrendUp />
-                </div>
-              </div>
-              <div className='mobile-featured-item-footer'>
-                <p className='mobile-item-recommendation-cost'>₹18,50,000</p>
-                <p className='mobile-item-location'>
-                  <GrLocation /> Jaipur
-                </p>
-              </div>
-            </div>
-            <div className='mobile-featured-item-content-container'>
-              <p className='mobile-item-title'>Designer Dining Set</p>
-              <div className='mobile-recommendation-footer-container'>
-                <p className='mobile-time'>
-                  <IoMdTime /> 2 days ago
-                </p>
-                <p className='mobile-category'>Furniture</p>
-              </div>
-            </div>
-          </div>
-          <div className='mobile-featured-grid-item-one-container'>
-            <div className='mobile-featured-grid-item-image-container'>
-              <img src={watch} alt='watch' className='mobile-apartment-img' />
-              <div className='mobile-featured-grid-item-header'>
-                <div className='mobile-grid-item-check-icon-container'>
-                  <BsPatchCheck />
-                </div>
-                <div className='mobile-item-recommendation-container'>
-                  Luxury
+                <div className='mobile-featured-item-footer'>
+                  <p className='mobile-item-recommendation-cost'>₹{item.cost}</p>
+                  <p className='mobile-item-location'>
+                    <GrLocation /> {item.location}
+                  </p>
                 </div>
               </div>
-              <div className='mobile-featured-item-footer'>
-                <p className='mobile-item-recommendation-cost'>₹95,00,000</p>
-                <p className='mobile-item-location'>
-                  <GrLocation /> Mumbai
-                </p>
-              </div>
-            </div>
-            <div className='mobile-featured-item-content-container'>
-              <p className='mobile-item-title'>Patek Philippe Watch</p>
-              <div className='mobile-recommendation-footer-container'>
-                <p className='mobile-time'>
-                  <IoMdTime /> 1 day ago
-                </p>
-                <p className='mobile-category'>Jewellery & Watches</p>
-              </div>
-            </div>
-          </div>
-          <div className='mobile-featured-grid-item-one-container'>
-            <div className='mobile-featured-grid-item-image-container'>
-              <img src={watch} alt='watch' className='mobile-apartment-img' />
-              <div className='mobile-featured-grid-item-header'>
-                <div className='mobile-grid-item-check-icon-container'>
-                  <BsPatchCheck />
-                </div>
-                <div className='mobile-item-recommendation-container'>
-                  Luxury
+              <div className='mobile-featured-item-content-container'>
+                <p className='mobile-item-title'>{item.title}</p>
+                <div className='mobile-recommendation-footer-container'>
+                  <p className='mobile-time'>
+                    <IoMdTime /> {item.time}
+                  </p>
+                  <p className='mobile-category'>{item.category}</p>
                 </div>
               </div>
-              <div className='mobile-featured-item-footer'>
-                <p className='mobile-item-recommendation-cost'>₹95,00,000</p>
-                <p className='mobile-item-location'>
-                  <GrLocation /> Mumbai
-                </p>
-              </div>
             </div>
-            <div className='mobile-featured-item-content-container'>
-              <p className='mobile-item-title'>Patek Philippe Watch</p>
-              <div className='mobile-recommendation-footer-container'>
-                <p className='mobile-time'>
-                  <IoMdTime /> 1 day ago
-                </p>
-                <p className='mobile-category'>Jewellery & Watches</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className='recommendations-container'>
@@ -206,9 +118,15 @@ const Recommendations = () => {
           </div>
         </div>
         <div className='featured-listings-grid-container'>
-          {recommendationData.map((item) => (
-            <RecommendationCard key={item.id} {...item} />
-          ))}
+          {loading ? (
+            <p>Loading recommendations...</p>
+          ) : recommendationData.length === 0 ? (
+            <p>No recommendations available.</p>
+          ) : (
+            recommendationData.map((item) => (
+              <RecommendationCard key={item.id} {...item} />
+            ))
+          )}
         </div>
       </div>
     </>
