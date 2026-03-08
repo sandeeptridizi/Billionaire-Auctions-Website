@@ -1,0 +1,292 @@
+.refund-policy-tag-container {
+  width: 100%;
+  background: rgba(255, 251, 235, 1);
+  border-left: 3.75px solid rgba(212, 175, 55, 1);
+  border-radius: 4px;
+  padding: 24px 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.refund-policy-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.refund-policy-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.circle-icon {
+  width: 24px;
+  height: 24px;
+  color: rgba(251, 44, 54, 1);
+}
+
+.non-refundable-container {
+  width: 100%;
+  background: rgba(254, 242, 242, 1);
+  border-left: 3.75px solid rgba(251, 44, 54, 1);
+  padding: 16px 16px 16px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(159, 7, 18, 1);
+}
+
+.market-footer-container {
+  width: 100%;
+  background: rgba(249, 250, 251, 1);
+  border: 1.25px solid rgba(209, 213, 220, 1);
+  padding: 26px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.market-footer-heading {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.check-circle {
+  width: 24px;
+  height: 24px;
+  color: rgba(0, 201, 80, 1);
+}
+
+.duplicate-transactions-tag-container {
+  width: 100%;
+  background: rgba(239, 246, 255, 1);
+  border-left: 3.75px solid rgba(43, 127, 255, 1);
+  padding: 24px 24px 24px 28px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.duplicate-transactions-heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(28, 57, 142, 1);
+}
+
+.duplicate-transaction-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(25, 60, 184, 1);
+}
+
+.duplicate-transaction-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(25, 60, 184, 1);
+}
+
+.disclaimer-heading {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.disclaimer-tag-container {
+  width: 100%;
+  background: rgba(255, 247, 237, 1);
+  border-left: 3.75px solid rgba(255, 105, 0, 1);
+  padding: 24px 24px 24px 28px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.queries-container {
+  width: 100%;
+  background: linear-gradient(90deg, #fffbeb 0%, #f9fafb 100%);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.queries-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.queries-text span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.queries-desc {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.queries-desc span {
+  background: rgba(243, 244, 246, 1);
+  width: fit-content;
+  padding: 6px 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.queries-footer-text {
+  border-top: 1.25px solid rgba(212, 175, 55, 0.3);
+  width: 100%;
+  padding-top: 17.25px;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 20px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.refund-policy-footer-container {
+  width: 60%;
+  margin: 0px auto 48px auto;
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 14px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.refund-policy-footer-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.refund-policy-footer-tag-container {
+  display: flex;
+  align-items: center;
+}
+
+.refund-policy-footer-tag-container p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.refund-policy-footer-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 1);
+  margin-right: 12px;
+}
+
+@media screen and (max-width: 510px) {
+  .refund-policy-footer-container {
+    width: 95%;
+    margin: 0px auto 48px auto;
+  }
+  .refund-policy-footer-tag-container p {
+    font-size: 13px;
+  }
+
+  .refund-policy-footer-circle {
+    margin-right: 12px;
+  }
+
+  .refund-policy-tag-container {
+    width: 100%;
+  }
+
+  .refund-policy-text {
+    font-size: 13px;
+  }
+
+  .refund-policy-desc {
+    font-size: 13px;
+  }
+
+  .non-refundable-container {
+    font-size: 14px;
+  }
+
+  .duplicate-transactions-tag-container {
+    padding: 18px;
+  }
+
+  .duplicate-transaction-container {
+    font-size: 14px;
+  }
+
+  .disclaimer-tag-container {
+    padding: 16px;
+  }
+
+  .user-eligibility-container {
+    font-size: 14px;
+  }
+
+  .privacy-policy-heading {
+    font-size: 28px;
+  }
+
+  .privacy-policy-heading {
+    font-size: 20px;
+  }
+
+  .privacy-policy-text {
+    font-size: 12px;
+  }
+
+  .personal-data-heading {
+    font-size: 18px;
+  }
+
+  .queries-container {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .refund-policy-footer-container {
+    padding: 16px;
+    border-radius: 10px;
+  }
+}

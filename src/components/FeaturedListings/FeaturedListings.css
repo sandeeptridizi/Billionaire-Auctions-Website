@@ -1,0 +1,437 @@
+.featured-listings-container {
+  width: 90%;
+  margin: 0 auto;
+  border: 1.25px solid rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.featured-listings-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featured-listings-heading-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.crown-icon {
+  width: 28px;
+  height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.featured-listings-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.featured-listings-arrow-btn-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow-btn {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: rgba(10, 10, 10, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.featured-listings-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.mobile-featured-listings-container {
+  display: none;
+}
+
+@media screen and (max-width: 510px) {
+  .featured-listings-container {
+    display: none;
+  }
+
+  .mobile-featured-listings-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0px 16px;
+  }
+
+  .mobile-crown-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(212, 175, 55, 1);
+  }
+
+  .mobile-featured-heading {
+    font-size: 13.29px;
+    font-weight: 700;
+    line-height: 17.72px;
+    color: rgba(44, 44, 44, 1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .mobile-featured-listings-grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  .mobile-featured-grid-item-one-container {
+    width: 145px;
+    height: auto;
+    background: rgba(255, 255, 255, 1);
+    border: 0.37px solid rgba(229, 231, 235, 1);
+    border-radius: 4.62px;
+  }
+
+  .mobile-featured-grid-item-image-container {
+    width: 100%;
+    height: 133px;
+    position: relative;
+  }
+
+  .mobile-apartment-img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .mobile-featured-grid-item-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mobile-grid-item-check-icon-container {
+    width: 19px;
+    height: 11px;
+    border-radius: 3.69px;
+    padding: 1.85px 5.54px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-check-icon {
+    width: 7.39px;
+    height: 7.39px;
+    color: rgba(212, 175, 55, 1);
+  }
+
+  .mobile-item-luxury-container {
+    width: fit-content;
+    padding: 1.85px 5.54px;
+    border-radius: 3.69px;
+    background: rgba(212, 175, 55, 0.9);
+    font-size: 5.54px;
+    font-weight: 400;
+    line-height: 7.39px;
+    color: #fff;
+  }
+
+  .mobile-featured-item-footer {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-item-cost {
+    font-size: 9.23px;
+    font-weight: 700;
+    line-height: 12.93px;
+    color: #fff;
+  }
+
+  .mobile-item-location {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .mobile-featured-item-content-container {
+    width: 100%;
+    padding: 9.23px;
+    display: flex;
+    flex-direction: column;
+    gap: 5.54px;
+  }
+
+  .mobile-item-title {
+    font-size: 8.31px;
+    font-weight: 700;
+    line-height: 12.93px;
+    color: rgba(44, 44, 44, 1);
+  }
+
+  .mobile-content-footer-container {
+    display: flex;
+    align-items: center;
+    gap: 5.5px;
+  }
+
+  .mobile-text {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .mobile-content-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-year {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(44, 44, 44, 1);
+  }
+
+  .mobile-year-number {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+  }
+
+  .mobile-time {
+    display: flex;
+    align-items: center;
+    gap: 2.77px;
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+  }
+
+  .featured-listings-heading {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .featured-listings-container {
+    display: none;
+  }
+
+  .mobile-featured-listings-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0px 10px;
+  }
+
+  .mobile-crown-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(212, 175, 55, 1);
+  }
+
+  .mobile-featured-heading {
+    font-size: 13.29px;
+    font-weight: 700;
+    line-height: 17.72px;
+    color: rgba(44, 44, 44, 1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .mobile-featured-listings-grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  .mobile-featured-grid-item-one-container {
+    width: 100px;
+    height: auto;
+    background: rgba(255, 255, 255, 1);
+    border: 0.37px solid rgba(229, 231, 235, 1);
+    border-radius: 4.62px;
+  }
+
+  .mobile-featured-grid-item-image-container {
+    width: 100%;
+    height: 133px;
+    position: relative;
+  }
+
+  .mobile-apartment-img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .mobile-featured-grid-item-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mobile-grid-item-check-icon-container {
+    width: 19px;
+    height: 11px;
+    border-radius: 3.69px;
+    padding: 1.85px 5.54px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-check-icon {
+    width: 7.39px;
+    height: 7.39px;
+    color: rgba(212, 175, 55, 1);
+  }
+
+  .mobile-item-luxury-container {
+    width: fit-content;
+    padding: 1.85px 5.54px;
+    border-radius: 3.69px;
+    background: rgba(212, 175, 55, 0.9);
+    font-size: 5.54px;
+    font-weight: 400;
+    line-height: 7.39px;
+    color: #fff;
+  }
+
+  .mobile-featured-item-footer {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-item-cost {
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 12.93px;
+    color: #fff;
+  }
+
+  .mobile-item-location {
+    font-size: 4px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .mobile-featured-item-content-container {
+    width: 100%;
+    padding: 9.23px;
+    display: flex;
+    flex-direction: column;
+    gap: 5.54px;
+  }
+
+  .mobile-item-title {
+    font-size: 6px;
+    font-weight: 700;
+    line-height: 12.93px;
+    color: rgba(44, 44, 44, 1);
+  }
+
+  .mobile-content-footer-container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mobile-text {
+    font-size: 4px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .mobile-content-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-year {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(44, 44, 44, 1);
+  }
+
+  .mobile-year-number {
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+  }
+
+  .mobile-time {
+    display: flex;
+    align-items: center;
+    gap: 2.77px;
+    font-size: 6.46px;
+    font-weight: 400;
+    line-height: 9.23px;
+    color: rgba(106, 114, 130, 1);
+  }
+}

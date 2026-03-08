@@ -1,0 +1,114 @@
+.browse-category-container {
+  width: 90%;
+  margin: 16px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.browse-category-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.browse-category-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: rgba(44, 44, 44, 1);
+  text-align: center;
+}
+
+.browse-category-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+  text-align: center;
+}
+
+.browse-category-btns-container {
+  width: 63%;
+  margin: 48px auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.browse-category-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.browse-category-icon-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 1);
+  border: 3.75px solid rgba(229, 231, 235, 1);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: rgba(74, 85, 101, 1);
+  cursor: pointer;
+}
+
+.category-active-btn {
+  background: rgba(212, 175, 55, 1);
+  border: 3.75px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+
+.browse-category-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(54, 65, 83, 1);
+  text-align: center;
+}
+
+@media screen and (max-width: 510px) {
+  .browse-category-container {
+    width: 100%;
+  }
+
+  .browse-category-heading {
+    font-size: 15px;
+    line-height: 32px;
+  }
+
+  .browse-category-text {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .browse-category-btns-container {
+    width: 98%;
+    /* margin: 10px auto 0 auto;
+    flex-wrap: wrap; */
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .browse-category-icon-container {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  .browse-category-title {
+    font-size: 6px;
+    line-height: 10.69px;
+  }
+}

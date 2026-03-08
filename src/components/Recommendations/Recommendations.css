@@ -1,0 +1,93 @@
+.recommendations-container {
+  width: 90%;
+  margin: 0 auto;
+  border: 1.25px solid rgba(173, 70, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.star-icon {
+  width: 28px;
+  height: 28px;
+  color: rgba(152, 16, 250, 1);
+}
+
+@media screen and (max-width: 510px) {
+  .recommendations-container {
+    display: none;
+  }
+
+  .mobile-item-recommendation-container {
+    width: fit-content;
+    background: linear-gradient(90deg, #ad46ff 0%, #f6339a 100%);
+    border-radius: 32px;
+    box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5.23px 7.84px -1.57px rgba(0, 0, 0, 0.1);
+    padding: 4px 6px;
+    font-size: 6.27px;
+    font-weight: 700;
+    line-height: 8.37px;
+    color: #fff;
+  }
+
+  .mobile-grid-item-growth-icon-container {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7px;
+    color: #fff;
+    background: rgba(0, 201, 80, 0.95);
+    box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5.23px 7.84px -1.57px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-grid-item-check-icon-container {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7px;
+    color: rgba(152, 16, 250, 1);
+    background: #fff;
+    box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5.23px 7.84px -1.57px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-item-recommendation-cost {
+    font-size: 9.41px;
+    font-weight: 700;
+    color: rgba(194, 122, 255, 1);
+  }
+
+  .mobile-recommendation-footer-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-category {
+    font-size: 6.27px;
+    font-weight: 700;
+    line-height: 8.37px;
+    color: rgba(152, 16, 250, 1);
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .mobile-category {
+    font-size: 4.2px;
+    font-weight: 700;
+    line-height: 8.37px;
+    color: rgba(152, 16, 250, 1);
+  }
+}

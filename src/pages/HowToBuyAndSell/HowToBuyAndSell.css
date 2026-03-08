@@ -1,0 +1,292 @@
+.how-it-works-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.how-it-works-background {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 64px;
+}
+
+.how-it-works-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: #fff;
+}
+
+.how-it-works-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.how-to-buy-container {
+  width: 90%;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.how-to-buy-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.how-to-buy-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.how-to-buy-item-container {
+  background: rgba(255, 248, 231, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.how-to-buy-item-icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.step {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.how-to-buy-item-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.how-to-buy-item-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+  text-align: center;
+}
+
+.how-to-sell-container {
+  width: 100%;
+  padding: 64px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  background: rgba(255, 248, 231, 1);
+}
+
+.how-to-sell-item-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.how-to-sell-item-icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.sell-step {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.safety-tips-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  padding: 64px 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.safety-tips-heading {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.safety-tips-list-container {
+  width: 75%;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.safety-tips-item-container {
+  width: 100%;
+  height: 57px;
+  background: rgba(255, 248, 231, 1);
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.safety-tips-icon {
+  width: 24px;
+  height: 24px;
+  color: rgba(212, 175, 55, 1);
+}
+
+@media screen and (max-width: 510px) {
+  .how-it-works-container {
+    width: 100%;
+  }
+
+  .how-it-works-background {
+    width: 100%;
+    padding: 48px 18px;
+  }
+
+  .how-it-works-heading {
+    font-size: 32px;
+  }
+
+  .how-it-works-text {
+    font-size: 16px;
+  }
+
+  .how-to-buy-container {
+    width: 100%;
+    padding: 0px 18px;
+  }
+
+  .how-to-buy-heading {
+    font-size: 32px;
+  }
+
+  .how-to-buy-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .how-to-buy-item-container {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .how-to-buy-item-icon-container {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .step {
+    font-size: 20px;
+  }
+
+  .how-to-buy-item-title {
+    font-size: 18px;
+  }
+
+  .how-to-buy-item-text {
+    font-size: 13px;
+  }
+
+  .how-to-sell-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .how-to-buy-heading {
+    font-size: 32px;
+  }
+
+  .how-to-sell-item-container {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .how-to-sell-item-icon-container {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .sell-step {
+    font-size: 20px;
+  }
+
+  .how-to-buy-item-title {
+    font-size: 18px;
+  }
+
+  .safety-tips-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .safety-tips-heading {
+    font-size: 32px;
+  }
+
+  .safety-tips-list-container {
+    width: 100%;
+  }
+
+  .safety-tips-item-container {
+    font-size: 14px;
+  }
+}

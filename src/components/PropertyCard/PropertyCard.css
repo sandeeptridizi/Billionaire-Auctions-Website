@@ -1,0 +1,127 @@
+.property-card-header {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.property-available-container {
+  width: fit-content;
+  height: auto;
+  background: rgba(0, 201, 80, 1);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 32px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.property-card-footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.property-card-footer-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.property-rent {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.property-card-cost {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.property-card-square-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1.25px solid rgba(229, 231, 235, 1);
+}
+
+.property-card-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.property-icon {
+  width: 16px;
+  height: 16px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.property-deposit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.deposit-heading {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(106, 114, 130, 1);
+}
+
+.deposit {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(30, 41, 57, 1);
+}
+
+.property-furnished-views-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.property-furnished-container {
+  background: rgba(255, 248, 231, 1);
+  width: fit-content;
+  height: auto;
+  padding: 8px 12px;
+  border-radius: 32px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.property-views-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(106, 114, 130, 1);
+}

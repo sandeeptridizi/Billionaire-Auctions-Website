@@ -1,0 +1,239 @@
+.footer-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  border-top: 3.75px solid rgba(212, 175, 55, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-info-links-container {
+  width: 90%;
+  margin: 48px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-info-container {
+  width: 272px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-info-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.footer-star-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.footer-info-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.footer-icons-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-icon-container {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background: rgba(243, 244, 246, 1);
+  color: rgba(44, 44, 44, 1);
+  cursor: pointer;
+}
+
+.footer-link-container {
+  width: 272px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-link-heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+  cursor: pointer;
+}
+
+.footer-contact-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-icon-info-container {
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.footer-icons {
+  width: 20px;
+  height: 20px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.footer-copy-right-container {
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 33.24px;
+  padding-bottom: 33.24px;
+  border-top: 1.25px solid rgba(229, 231, 235, 1);
+}
+
+.footer-copy-right-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.footer-section-links-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-section-links-container span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(74, 85, 101, 1);
+  cursor: pointer;
+}
+
+.footer-section-grid-container {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  text-decoration: none;
+}
+
+.footer-section-links-container a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 510px) {
+  .footer-container {
+    width: 100%;
+    background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .footer-info-links-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-info-container {
+    width: 100%;
+  }
+
+  .footer-info-header {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .footer-info-text {
+    width: fit-content;
+    font-size: 8px;
+    color: rgba(153, 161, 175, 1);
+  }
+
+  .footer-links span {
+    color: rgba(153, 161, 175, 1);
+  }
+
+  .footer-star-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .footer-info-text {
+    width: 414px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .footer-link-container {
+    width: 100%;
+  }
+
+  .footer-section-grid-container {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-icon-info-container,
+  .footer-contact-info-container {
+    width: 100%;
+    color: rgba(153, 161, 175, 1);
+  }
+
+  .footer-copy-right-container {
+    width: 100%;
+    border-top: 1.35px solid rgba(30, 41, 57, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-copy-right-text {
+    color: rgba(153, 161, 175, 1);
+  }
+
+  .footer-section-links-container span {
+    font-size: 9px;
+    line-height: 20px;
+    color: rgba(153, 161, 175, 1);
+  }
+}

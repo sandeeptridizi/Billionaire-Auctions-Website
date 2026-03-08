@@ -1,0 +1,235 @@
+.featured-listings-card-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(229, 231, 235, 1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.featured-listings-card-image-container {
+  width: 100%;
+  height: 223px;
+  position: relative;
+}
+
+.featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.featured-listings-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-icon-container {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.luxury-container {
+  width: fit-content;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 32px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #fff;
+}
+
+.featured-listings-content-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featured-listings-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.featured-listings-year {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.year {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(106, 114, 130, 1);
+}
+
+.featured-listings-time-category-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featured-listings-time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(106, 114, 130, 1);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.featured-listings-category {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.featured-listings-card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0px 8px;
+}
+
+.cost {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.featured-listings-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+@media screen and (max-width: 510px) {
+  .featured-listings-card-container {
+    width: 100%;
+    border-radius: 4.62px;
+  }
+
+  .featured-listings-card-image-container {
+    width: 100%;
+    height: 150px;
+  }
+
+  .featured-img {
+    border-top-right-radius: 4.62px;
+    border-top-left-radius: 4.62px;
+  }
+
+  .card-icon-container {
+    width: 18.46px;
+    height: 11.08px;
+    padding: 1.85px 5.54px;
+    border-radius: 3.69px;
+  }
+
+  .check-icon {
+    width: 7.39px;
+    height: 7.39px;
+  }
+
+  .luxury-container {
+    width: fit-content;
+    height: auto;
+    border-radius: 3.69px;
+    padding: 1.85px 5.54px;
+    font-size: 5.54px;
+    line-height: 7.39px;
+  }
+
+  .featured-listings-card-footer {
+    padding: 4px;
+  }
+
+  .cost {
+    font-size: 7px;
+    line-height: 9.23px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .location {
+    font-size: 6.46px;
+    line-height: 9.23px;
+  }
+
+  .featured-listings-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .featured-listings-title {
+    font-size: 13px;
+    line-height: 12.93px;
+  }
+
+  .featured-listings-year {
+    font-size: 6.46px;
+    line-height: 9.23px;
+  }
+
+  .year {
+    font-size: 6.46px;
+    line-height: 9.23px;
+  }
+
+  .featured-listings-time-category-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .featured-listings-time,
+  .featured-listings-category {
+    font-size: 12px;
+    line-height: 9.23px;
+  }
+}

@@ -1,0 +1,437 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { LuCrown } from "react-icons/lu";
+import { BsPatchCheck } from "react-icons/bs";
+import { getFeaturedProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
+import "./ProductDetails.css";
+import { getFile } from "../../lib/s3";
+import { FiSearch } from "react-icons/fi";
+import { GrLocation } from "react-icons/gr";
+import { MdOutlineCalendarToday } from "react-icons/md";
+import { LuPhone } from "react-icons/lu";
+import { FiMessageCircle } from "react-icons/fi";
+import { MdFavoriteBorder } from "react-icons/md";
+import { SlShare } from "react-icons/sl";
+import { FiFlag } from "react-icons/fi";
+import { CgFileDocument } from "react-icons/cg";
+import { PiCarProfile } from "react-icons/pi";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { FiCheckCircle } from "react-icons/fi";
+import { LuSquareArrowOutUpRight } from "react-icons/lu";
+import { LuHouse } from 'react-icons/lu';
+import { TbSofa } from 'react-icons/tb';
+import { IoDiamondOutline } from 'react-icons/io5';
+import { RiBankLine } from 'react-icons/ri';
+
+import cityApartment from "../../assets/city-apartment.jpg";
+import penthouse from "../../assets/penthouse.jpg";
+import villa from "../../assets/villa2.jpg";
+import exclusiveVilla from "../../assets/exclusive-villa.jpg";
+import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
+
+const ProductDetails = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [featured, setFeatured] = useState([]);
+  const [showEnquiryForm, setShowEnquiryForm] = useState(false);
+  const [enquiryForm, setEnquiryForm] = useState({ visitorName: "", visitorEmail: "", visitorPhone: "", message: "" });
+  const [enquirySubmitting, setEnquirySubmitting] = useState(false);
+  const [enquirySuccess, setEnquirySuccess] = useState(false);
+  const [enquiryError, setEnquiryError] = useState("");
+
+  const handleEnquirySubmit = async (e) => {
+    e.preventDefault();
+    setEnquirySubmitting(true);
+    setEnquiryError("");
+    try {
+      await submitEnquiry({ productId: id, ...enquiryForm });
+      setEnquirySuccess(true);
+      setEnquiryForm({ visitorName: "", visitorEmail: "", visitorPhone: "", message: "" });
+      setTimeout(() => { setShowEnquiryForm(false); setEnquirySuccess(false); }, 2000);
+    } catch (err) {
+      setEnquiryError(err.response?.data?.message || "Failed to submit enquiry");
+    } finally {
+      setEnquirySubmitting(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!id) return;
+      try {
+        const response = await getPublicProductById(id);
+        setProduct(response || null);
+      } catch (error) {
+        console.error("Failed to load product details", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const list = await getFeaturedProducts();
+        const filtered = list.filter((item) => item.id !== id);
+        setFeatured(filtered);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Failed to load featured products", error);
+      }
+    };
+
+    fetchFeatured();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="product-details-page">Loading product details...</div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="product-details-page">
+        <p>Product not found.</p>
+        <Link to="/marketplace" className="product-details-back">
+          Back to marketplace
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="product-page-container">
+      <div className="product-page-search-category-container">
+        <div className="product-page-breadcrums-category-btns-container">
+          <div className="product-page-bread-crums">
+            Home / <span className="product-category">{product.title}</span>
+          </div>
+        </div>
+      </div>
+      <div className="product-page-image-info-container">
+        <div className="product-page-img-container">
+          <img
+            src={getFile(product.media[0])}
+            alt="car"
+            className="product-car"
+          />
+          <div className="product-page-img-grid-container">
+            <img
+              src={getFile(product.media[1])}
+              alt="car"
+              className="grid-img"
+            />
+            <img
+              src={getFile(product.media[2])}
+              alt="car"
+              className="grid-img"
+            />
+            <img
+              src={getFile(product.media[3])}
+              alt="car"
+              className="grid-img"
+            />
+            <img
+              src={getFile(product.media[4])}
+              alt="car"
+              className="grid-img"
+            />
+          </div>
+        </div>
+        <div className="product-page-info-container">
+          <div className="product-info-header">
+            <div className="product-info-tags-container">
+              <div className="product-verified-container">
+                <BsPatchCheck className="product-check-icon" /> Verified
+              </div>
+              <div className="product-luxury-container">
+                <LuCrown className="product-crown-icon" /> {product.tier}
+              </div>
+            </div>
+            <h3 className="product-info-heading">{product.title}</h3>
+            <div className="product-location">
+              <GrLocation className="product-location-icon" />{" "}
+              {product.location || "Unspecified"}
+            </div>
+            <div className="product-calender">
+              <MdOutlineCalendarToday /> Posted on {product.createdAt}
+            </div>
+          </div>
+          <div className="product-info-price-container">
+            <p className="product-info-text">Asking Price</p>
+            <h2 className="product-info-price">₹{product.value}</h2>
+            <p className="product-info-text">
+              {product.negotiable ? "Negotiable" : "Not Negotiable"}
+            </p>
+          </div>
+          <div className="product-info-btns-container">
+            <button className="product-info-enquire-btn" onClick={() => setShowEnquiryForm(true)}>
+              <LuPhone /> Enquire now
+            </button>
+            <button className="product-info-chat-btn">
+              <FiMessageCircle /> Chat Now
+            </button>
+          </div>
+          {showEnquiryForm && (
+            <div className="enquiry-modal-overlay" onClick={() => setShowEnquiryForm(false)}>
+              <div className="enquiry-modal" onClick={(e) => e.stopPropagation()}>
+                <h3>Enquire About This Product</h3>
+                {enquirySuccess ? (
+                  <p className="enquiry-success-msg">Enquiry submitted successfully!</p>
+                ) : (
+                  <form onSubmit={handleEnquirySubmit} className="enquiry-form">
+                    <input type="text" placeholder="Your Name *" required value={enquiryForm.visitorName} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorName: e.target.value })} />
+                    <input type="email" placeholder="Your Email *" required value={enquiryForm.visitorEmail} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorEmail: e.target.value })} />
+                    <input type="tel" placeholder="Your Phone (optional)" value={enquiryForm.visitorPhone} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorPhone: e.target.value })} />
+                    <textarea placeholder="Your Message *" required rows={4} value={enquiryForm.message} onChange={(e) => setEnquiryForm({ ...enquiryForm, message: e.target.value })} />
+                    {enquiryError && <p className="enquiry-error-msg">{enquiryError}</p>}
+                    <div className="enquiry-form-btns">
+                      <button type="button" onClick={() => setShowEnquiryForm(false)} className="enquiry-cancel-btn">Cancel</button>
+                      <button type="submit" disabled={enquirySubmitting} className="enquiry-submit-btn">{enquirySubmitting ? "Submitting..." : "Submit Enquiry"}</button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          )}
+          <div className="product-info-social-container">
+            <div className="save-container">
+              <MdFavoriteBorder /> Save
+            </div>
+            <div className="save-container">
+              <SlShare /> Share
+            </div>
+            <div className="save-container">
+              <FiFlag /> Report
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="product-page-specifications-container">
+        <div className="product-page-specifications">
+          <div className="product-description-container">
+            <h2 className="product-description">
+              <CgFileDocument className="product-document-icon" /> Description
+            </h2>
+            <p className="product-text">{product.description}</p>
+          </div>
+          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views').length > 0 && (
+            <div className="product-description-container">
+              <h2 className="product-description">
+                {product.category === "CARS" || product.category === "BIKES" ? (
+                  <><PiCarProfile className="product-document-icon" /> Vehicle Details</>
+                ) : product.category === "REAL_ESTATE" ? (
+                  <><LuHouse className="product-document-icon" /> Property Details</>
+                ) : product.category === "FURNITURE" ? (
+                  <><TbSofa className="product-document-icon" /> Furniture Details</>
+                ) : product.category === "JEWELLERY_AND_WATCHES" ? (
+                  <><IoDiamondOutline className="product-document-icon" /> Jewellery &amp; Watches Details</>
+                ) : product.category === "ANTIQUES" ? (
+                  <><RiBankLine className="product-document-icon" /> Antiques Details</>
+                ) : (
+                  <><CgFileDocument className="product-document-icon" /> Details</>
+                )}
+              </h2>
+              <div className="product-grid-item-container">
+                {Object.entries(product.meta)
+                  .filter(([key]) => key !== 'location' && key !== 'views')
+                  .map(([key, value]) => (
+                    <div className="product-grid-item" key={key}>
+                      <p className="product-brand">
+                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}
+                      </p>
+                      <p className="brand-name">{String(value)}</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="product-page-quick-info-container">
+          <div className="product-page-safety-tips-container">
+            <h3 className="tips-heading">
+              <RiErrorWarningLine className="error-icon" /> Safety Tips
+            </h3>
+            <div className="product-page-points-container">
+              <div className="product-page-point-container">
+                <FiCheckCircle className="point-circle-icon" /> Always meet
+                seller in person at a safe public location
+              </div>
+              <div className="product-page-point-container">
+                <FiCheckCircle className="point-circle-icon" /> Verify product
+                authenticity before payment
+              </div>
+              <div className="product-page-point-container">
+                <FiCheckCircle className="point-circle-icon" /> Never pay in
+                advance or transfer money online
+              </div>
+              <div className="product-page-point-container">
+                <FiCheckCircle className="point-circle-icon" /> Get proper
+                documentation and receipts
+              </div>
+              <div className="product-page-point-container">
+                <FiCheckCircle className="point-circle-icon" /> Report
+                suspicious activity immediately
+              </div>
+            </div>
+          </div>
+          <div className="product-quick-information-container">
+            <h3 className="quick-info-heading">Quick Information</h3>
+            <div className="quick-info-justify-container">
+              <span className="quick-category">Category</span>
+              <span className="category-name">
+                {product.category
+                  .toLowerCase()
+                  .split("_")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
+              </span>
+            </div>
+            <div className="quick-info-justify-container">
+              <span className="quick-category">Listing Type</span>
+              <span className="category-name">
+                {product.listingType
+                  ? product.listingType
+                      .toLowerCase()
+                      .split("_")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
+                      .join(" ")
+                  : ""}
+              </span>
+            </div>
+            <div className="quick-info-justify-container">
+              <span className="quick-category">Posted On</span>
+              <span className="category-name">
+                {new Date(product.createdAt).toLocaleDateString("en-US", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="similar-luxury-items-container">
+        <div className="similar-luxury-items-header">
+          <h2 className="similar-luxury-items-heading">Similar Luxury Items</h2>
+          <button className="view-all-btn">
+            View All <LuSquareArrowOutUpRight />
+          </button>
+        </div>
+        <div className="similar-luxury-items-grid-container">
+          {featured.slice(0, 3).map((item) => (
+            <div className="similar-luxury-item-container" key={item.id}>
+              <div className="luxury-item-img-container">
+                <img
+                  src={item.media?.[0] ? getFile(item.media[0]) : cityApartment}
+                  alt={item.title}
+                  className="luxury-item-img"
+                />
+                <div className="luxury-item-header">
+                  <div className="luxury-item-verified-container">
+                    <BsPatchCheck className="verified-icon" /> Verified
+                  </div>
+                  <div className="luxury-item-luxury-container">
+                    <LuCrown /> {item.tier || "LUXURY"}
+                  </div>
+                </div>
+                <div className="luxury-item-footer">
+                  <p className="luxury-item-cost">
+                    {typeof item.value === "number"
+                      ? `₹${item.value.toLocaleString("en-IN")}`
+                      : "Price on request"}
+                  </p>
+                  <p className="luxury-item-location">
+                    <GrLocation />{" "}
+                    {item.meta?.location || item.location || "Location not specified"}
+                  </p>
+                </div>
+              </div>
+              <div className="luxury-item-content-container">
+                <h3 className="luxury-item-title">{item.title}</h3>
+                <Link to={`/product/${item.id}`} className="luxury-item-btn">
+                  View Details
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="exclusive-collection-container">
+        <div className="featured-container">
+          <div className="featured-image-container">
+            <img
+              src={exclusiveVilla}
+              alt="exclusive villa"
+              className="featured-img"
+            />
+            <div className="featured-tag-container">FEATURED</div>
+          </div>
+          <div className="featured-content-container">
+            <h2 className="featured-heading">Exclusive Luxury Collection</h2>
+            <p className="featured-text">
+              Discover handpicked premium items from India's most trusted luxury
+              marketplace.
+            </p>
+            <div className="featured-footer-container">
+              <p className="featured-footer-title">Starting from ₹50 Lac</p>
+              <button className="featured-footer-btn">
+                Explore Now <LuSquareArrowOutUpRight />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="featured-container">
+          <div className="featured-image-container">
+            <img
+              src={exclusivePenthouse}
+              alt="exclusive villa"
+              className="featured-img"
+            />
+            <div className="special-tag-container">SPECIAL OFFER</div>
+          </div>
+          <div className="featured-content-container">
+            <h2 className="featured-heading">List Your Item Free</h2>
+            <p className="featured-text">
+              Join thousands of sellers. Zero listing fees until Jan 2027!
+            </p>
+            <div className="featured-footer-container">
+              <p className="featured-footer-desc">No Commission*</p>
+              <button className="featured-footer-btn">
+                List Now <LuSquareArrowOutUpRight />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="product-page-footer-container">
+        <h2 className="product-page-footer-heading">
+          <LuCrown className="product-footer-icon" /> Join Billionaire Auction
+          Premium
+        </h2>
+        <p className="product-footer-text">
+          Get exclusive access to luxury offline auctions, verified elite items,
+          and personalized concierge services.
+        </p>
+        <div className="product-footer-btn-container">
+          <button className="featured-footer-btn">
+            Explore Now <LuSquareArrowOutUpRight />
+          </button>
+          <button className="product-footer-btn">
+            View Premium Plans <LuSquareArrowOutUpRight />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetails;

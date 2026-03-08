@@ -1,0 +1,1020 @@
+.about-us-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-us-background {
+  width: 100%;
+  height: 390px;
+  background: url('../../assets/about-us.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+}
+
+.about-star-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.about-us-heading {
+  font-synthesis-small-caps: 60px;
+  font-weight: 700;
+  line-height: 60px;
+  color: #fff;
+}
+
+.about-us-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(209, 213, 220, 1);
+}
+
+.about-us-founder-info-container {
+  width: 100%;
+  padding: 80px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.person-icon {
+  width: 64px;
+  height: 64px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.founder-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.founder-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.about-us-founder-info-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.about-us-founder-info-grid-item-one-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.founder-background-container {
+  width: 100%;
+  height: 420px;
+  border-radius: 16px;
+  background: url('../../assets/founder-img.png');
+  border: 3.75px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.founder-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+}
+
+.founder-name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.founder-desc {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.founder-education-container {
+  background: rgba(255, 248, 231, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.graduate-icon {
+  width: 32px;
+  height: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.founder-education-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.education-heading {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.education-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.about-us-founder-info-grid-item-two-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.journey-container {
+  width: 100%;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.journey-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.journey-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: rgba(209, 213, 220, 1);
+}
+
+.vision-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.vision-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.vision-quote {
+  border-left: 3.75px solid rgba(212, 175, 55, 1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29.25px;
+  color: rgba(54, 65, 83, 1);
+  display: flex;
+  gap: 5px;
+}
+
+.vision-author {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(212, 175, 55, 1);
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.building-container {
+  background: rgba(255, 248, 231, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.building-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.building-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.building-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.about-us-billionaire-auction-container {
+  width: 100%;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 80px 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.billionaire-auction-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.billionaire-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: #fff;
+}
+
+.billionaire-auction-container {
+  width: 95%;
+  margin: 32px auto;
+  background: linear-gradient(180deg, #fff8e7 0%, #ffffff 100%);
+  border: 3.75px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 52px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.billionaire-auction-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.billionaire-auction-text span {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.billionaire-auction-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.billionaire-auction-grid-item-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.billionaire-auction-grid-item-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+}
+
+.billionaire-auction-grid-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.billionaire-auction-footer {
+  width: 100%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  border-radius: 16px;
+  padding: 32px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29px;
+  color: #fff;
+}
+
+.why-choose-section {
+  width: 100%;
+  background: rgba(255, 248, 231, 1);
+  padding: 64px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.why-choose-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.award-icon {
+  width: 64px;
+  height: 64px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.why-choose-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.why-choose-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.why-choose-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.why-choose-grid-item-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.why-choose-item-icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.why-choose-item-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.why-choose-item-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.future-roadmap-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  padding: 80px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.future-roadmap-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.future-roadmap-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.future-roadmap-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.future-roadmap-grid-item-container {
+  background: linear-gradient(180deg, #fff8e7 0%, #ffffff 100%);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.future-roadmap-item-icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.future-roadmap-item-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.future-roadmap-item-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+  text-align: center;
+}
+
+.offline-luxury-auctions-container {
+  height: 620px;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offline-luxury-auctions-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hotel-icon {
+  width: 32px;
+  height: 32px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.offline-luxury-auctions-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #fff;
+}
+
+.offline-luxury-auctions-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(209, 213, 220, 1);
+}
+
+.offline-location-container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.location-icon-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #fff;
+}
+
+.location-name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #fff;
+}
+
+.offline-luxury-auctions-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+  color: rgba(209, 213, 220, 1);
+}
+
+.right-icon {
+  width: 16px;
+  height: 16px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.offline-luxury-auctions-desc-container {
+  background: rgba(212, 175, 55, 1);
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+  color: #fff;
+}
+
+.community-membership-container {
+  height: 620px;
+  background: rgba(255, 248, 231, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.community-membership-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.community-icon {
+  width: 28px;
+  height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.community-heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.community-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.community-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.community-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.community-list-item-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.check-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.community-footer-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+  color: rgba(54, 65, 83, 1);
+}
+
+@media screen and (max-width: 510px) {
+  .about-us-container {
+    width: 100%;
+  }
+
+  .about-us-background {
+    width: 100%;
+    background-image: cover;
+  }
+
+  .about-us-heading {
+    font-size: 24px;
+  }
+
+  .about-us-text {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .about-us-founder-info-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .person-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .founder-heading {
+    font-size: 32px;
+  }
+
+  .founder-text {
+    font-size: 16px;
+  }
+
+  .about-us-founder-info-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .about-us-billionaire-auction-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .billionaire-heading {
+    font-size: 24px;
+  }
+
+  .billionaire-auction-container {
+    width: 100%;
+  }
+
+  .billionaire-auction-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .why-choose-section {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .award-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .why-choose-heading {
+    font-size: 24px;
+  }
+
+  .why-choose-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .why-choose-grid-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .why-choose-item-icon-container {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .why-choose-item-title {
+    font-size: 18px;
+  }
+
+  .why-choose-item-text {
+    font-size: 14px;
+  }
+
+  .future-roadmap-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .future-roadmap-heading {
+    font-size: 24px;
+  }
+
+  .future-roadmap-text {
+    font-size: 16px;
+  }
+
+  .future-roadmap-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .future-roadmap-item-icon-container {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .future-roadmap-item-title {
+    font-size: 18px;
+  }
+
+  .future-roadmap-item-text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .about-us-heading {
+    font-size: 20px;
+  }
+
+  .founder-name {
+    font-size: 22px;
+  }
+
+  .founder-desc {
+    font-size: 18px;
+  }
+
+  .founder-education-container {
+    padding: 16px;
+  }
+
+  .graduate-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .education-heading {
+    font-size: 14px;
+  }
+
+  .education-text {
+    font-size: 12px;
+  }
+
+  .journey-container {
+    padding: 16px;
+  }
+
+  .journey-heading {
+    font-size: 20px;
+  }
+
+  .journey-text {
+    font-size: 14px;
+  }
+
+  .vision-container {
+    padding: 16px;
+  }
+
+  .vision-heading {
+    font-size: 20px;
+  }
+
+  .vision-quote {
+    font-size: 13px;
+    padding-left: 10px;
+  }
+
+  .vision-author {
+    font-size: 14px;
+  }
+
+  .building-container {
+    padding: 16px;
+  }
+
+  .building-heading {
+    font-size: 18px;
+  }
+
+  .building-text {
+    font-size: 14px;
+  }
+
+  .billionaire-heading {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .billionaire-auction-container {
+    padding: 16px;
+  }
+
+  .billionaire-auction-text {
+    font-size: 16px;
+  }
+
+  .billionaire-auction-text span {
+    font-size: 16px;
+  }
+
+  .billionaire-auction-grid-item-container {
+    padding: 16px;
+  }
+
+  .billionaire-auction-grid-item-icon-container {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .billionaire-auction-grid-item-title {
+    font-size: 12px;
+  }
+
+  .billionaire-auction-footer {
+    padding: 16px;
+    font-size: 13px;
+  }
+
+  .why-choose-heading {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .why-choose-text {
+    font-size: 16px;
+  }
+
+  .why-choose-grid-item-container {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .why-choose-item-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .future-roadmap-heading {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .future-roadmap-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .future-roadmap-grid-item-container {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .offline-luxury-auctions-container {
+    padding: 16px;
+    height: auto;
+  }
+
+  .hotel-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .offline-luxury-auctions-heading {
+    font-size: 18px;
+  }
+
+  .offline-luxury-auctions-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .offline-location-container {
+    padding: 12px;
+  }
+
+  .location-icon-container {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+
+  .location-name {
+    font-size: 16px;
+  }
+
+  .community-membership-container {
+    padding: 16px;
+    height: auto;
+  }
+
+  .community-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .community-heading {
+    font-size: 14px;
+  }
+
+  .community-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .community-desc {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .community-list-item-container {
+    font-size: 10px;
+  }
+
+  .community-footer-text {
+    font-size: 12px;
+  }
+
+  .offline-luxury-auctions-container {
+    padding: 16px;
+  }
+
+  .hotel-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

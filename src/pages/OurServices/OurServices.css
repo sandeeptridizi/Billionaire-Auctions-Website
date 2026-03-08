@@ -1,0 +1,508 @@
+.our-services-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.our-services-background {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 80px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.our-services-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: #fff;
+}
+
+.our-services-text {
+  width: 763px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(209, 213, 220, 1);
+  text-align: center;
+}
+
+.our-services-offer-container {
+  width: 90%;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.our-services-offer-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.offer-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.offer-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.our-services-offer-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.our-services-grid-item-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(229, 231, 235, 1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.our-services-grid-item-icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.our-services-grid-item-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.our-services-grid-item-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.our-services-points-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.our-services-point-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.our-services-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 1);
+}
+
+.our-services-committe-container {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8e7 100%);
+  padding: 64px 68px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.committe-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.committe-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.committe-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(74, 85, 101, 1);
+}
+
+.committe-grid-container {
+  width: 75%;
+  margin: 32px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.committe-grid-item-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.committe-tag-container {
+  width: fit-content;
+  height: auto;
+  padding: 8px 10px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #fff;
+}
+
+.committe-member {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: rgba(44, 44, 44, 1);
+}
+
+.committe-position {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.committe-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(106, 114, 130, 1);
+}
+
+.committe-list-container {
+  padding-right: 24px;
+  border-top: 1.25px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.committe-list-item-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.committe-item-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(54, 65, 83, 1);
+  margin-top: 24px;
+}
+
+.committe-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 1);
+}
+
+.committe-btn {
+  width: 100%;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #fff;
+}
+
+.our-services-personalized-container {
+  width: 100%;
+  height: auto;
+  padding: 64px 260px;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+}
+
+.personalized-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.personalized-heading {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+  color: #fff;
+}
+
+.personalized-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(209, 213, 220, 1);
+}
+
+.personalized-btn-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.schedule-btn {
+  padding: 16px 20px;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 32px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.services-btn {
+  padding: 16px 20px;
+  background: transparent;
+  border-radius: 32px;
+  border: 1.25px solid #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 510px) {
+  .our-services-container {
+    width: 100%;
+  }
+
+  .our-services-background {
+    width: 100%;
+    padding: 48px 18px;
+  }
+
+  .our-services-heading {
+    font-size: 32px;
+  }
+
+  .our-services-text {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .our-services-offer-container,
+  .our-services-offer-header {
+    width: 100%;
+    padding: 0px 18px;
+  }
+
+  .offer-heading {
+    font-size: 32px;
+  }
+
+  .offer-text {
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .our-services-offer-grid-container {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .our-services-grid-item-container {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .our-services-grid-item-icon-container {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+  }
+
+  .our-services-committe-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .committe-heading {
+    font-size: 32px;
+  }
+
+  .committe-grid-container {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .our-services-personalized-container {
+    width: 100%;
+    padding: 32px 18px;
+  }
+
+  .personalized-content-container {
+    width: 100%;
+  }
+
+  .personalized-heading {
+    font-size: 28px;
+  }
+
+  .personalized-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .personalized-btn-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .schedule-btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .services-btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .our-services-heading {
+    font-size: 24px;
+  }
+
+  .offer-heading {
+    font-size: 24px;
+  }
+
+  .our-services-grid-item-container {
+    padding: 16px;
+  }
+
+  .our-services-grid-item-icon-container {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .our-services-grid-item-title {
+    font-size: 20px;
+  }
+
+  .our-services-grid-item-text {
+    font-size: 14px;
+  }
+
+  .committe-heading {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .committe-text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .committe-grid-item-container {
+    padding: 16px;
+  }
+
+  .committe-tag-container {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .committe-member {
+    font-size: 20px;
+  }
+
+  .committe-position {
+    font-size: 16px;
+  }
+
+  .committe-list-item-container {
+    font-size: 13px;
+  }
+
+  .committe-btn {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .personalized-heading {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,23 @@
+.auction-card-heading-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.auction-card-category-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auction-card-category {
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 10px;
+  background: rgba(212, 175, 55, 1);
+  color: #fff;
+  border-radius: 32px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}

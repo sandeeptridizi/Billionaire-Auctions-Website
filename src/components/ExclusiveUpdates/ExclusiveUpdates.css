@@ -1,0 +1,242 @@
+.exclusive-updates-background {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.exclusive-updates-content-container {
+  width: 75%;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.exclusive-updates-tag {
+  background: rgba(212, 175, 55, 0.2);
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 32px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(212, 175, 55, 1);
+  border: 1.25px solid rgba(212, 175, 55, 1);
+}
+
+.notification-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.exclusive-updates-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: #fff;
+}
+
+.sub-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.exclusive-updates-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(209, 213, 220, 1);
+  width: 846px;
+  text-align: center;
+}
+
+.exclusive-email-subscribe-btn-container {
+  width: 896px;
+  padding: 34px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.25px solid rgba(212, 175, 55, 0.3);
+}
+
+.exclusive-email-btn-container {
+  width: 829px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exclusive-email-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 612px;
+  height: 55.98px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 32px;
+}
+
+.email-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(212, 175, 55, 1);
+}
+
+.email-input {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.email-input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(106, 114, 130, 1);
+}
+
+.exclusive-btn {
+  width: 200px;
+  height: 55.98px;
+  border-radius: 32px;
+  background: rgba(212, 175, 55, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+}
+
+.exclusive-updates-highlights-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.exclusive-hightlight-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(153, 161, 175, 1);
+}
+
+.yellow-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 1);
+}
+
+.exclusive-updates-footer-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(106, 114, 130, 1);
+}
+
+.exclusive-number {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(212, 175, 55, 1);
+}
+
+@media screen and (max-width: 510px) {
+  .exclusive-updates-background,
+  .exclusive-updates-content-container {
+    width: 100%;
+  }
+
+  .exclusive-updates-tag {
+    display: none;
+  }
+
+  .exclusive-updates-heading,
+  .exclusive-updates-sub-heading {
+    font-size: 24px;
+  }
+
+  .exclusive-updates-sub-heading {
+    color: rgba(212, 175, 55, 1);
+  }
+
+  .exclusive-updates-text {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .exclusive-email-subscribe-btn-container {
+    width: 95%;
+    margin: 0px auto;
+    height: auto;
+    padding: 12px;
+    gap: 3px;
+  }
+
+  .exclusive-email-btn-container {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .exclusive-email-icon-container {
+    width: 70%;
+    height: 25px;
+  }
+
+  .email-icon-container {
+    width: auto;
+    height: auto;
+    padding: 4px;
+  }
+
+  .email-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .email-input::placeholder {
+    font-size: 12px;
+  }
+
+  .exclusive-btn {
+    width: 30%;
+    height: 25px;
+    font-size: 8px;
+    padding: 4px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+  }
+
+  .exclusive-hightlight-container {
+    width: 100%;
+    font-size: 8px;
+    justify-content: center;
+  }
+
+  .exclusive-updates-footer-text {
+    display: none;
+  }
+}
