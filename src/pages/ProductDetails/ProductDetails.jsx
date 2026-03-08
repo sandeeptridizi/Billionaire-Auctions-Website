@@ -5,7 +5,6 @@ import { BsPatchCheck } from "react-icons/bs";
 import { getFeaturedProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
-import { FiSearch } from "react-icons/fi";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
@@ -24,8 +23,6 @@ import { IoDiamondOutline } from 'react-icons/io5';
 import { RiBankLine } from 'react-icons/ri';
 
 import cityApartment from "../../assets/city-apartment.jpg";
-import penthouse from "../../assets/penthouse.jpg";
-import villa from "../../assets/villa2.jpg";
 import exclusiveVilla from "../../assets/exclusive-villa.jpg";
 import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
 
@@ -39,6 +36,31 @@ const ProductDetails = () => {
   const [enquirySubmitting, setEnquirySubmitting] = useState(false);
   const [enquirySuccess, setEnquirySuccess] = useState(false);
   const [enquiryError, setEnquiryError] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const images = product?.media?.slice(1, 5) || [];
+
+  useEffect(() => {
+  if (images.length < 4) {
+  images.push(...images.slice(0, 4 - images.length));
+}
+
+  const interval = setInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % images.length);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [images.length]);
+
+  const orderedImages =
+  images.length > 0
+    ? [
+        images[activeIndex],
+        images[(activeIndex + 1) % images.length],
+        images[(activeIndex + 2) % images.length],
+        images[(activeIndex + 3) % images.length],
+      ]
+    : [];
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -114,34 +136,33 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="product-page-image-info-container">
-        <div className="product-page-img-container">
-          <img
-            src={getFile(product.media[0])}
-            alt="car"
-            className="product-car"
-          />
-          <div className="product-page-img-grid-container">
+        <div className="product-gallery">
+
+          {/* Main Image */}
+          <div className="product-main-image-container">
             <img
-              src={getFile(product.media[1])}
-              alt="car"
-              className="grid-img"
+              src={orderedImages[0] ? getFile(orderedImages[0]) : ""}
+              className="product-main-image"
+              alt="product"
             />
-            <img
-              src={getFile(product.media[2])}
-              alt="car"
-              className="grid-img"
-            />
-            <img
-              src={getFile(product.media[3])}
-              alt="car"
-              className="grid-img"
-            />
-            <img
-              src={getFile(product.media[4])}
-              alt="car"
-              className="grid-img"
-            />
+            <div className="image-counter">
+              {activeIndex + 1} / {images.length}
+            </div>
           </div>
+
+          {/* Thumbnails */}
+          <div className="product-thumbnails">
+            {images.map((img, index) => (
+              <img
+                key={index}
+                src={getFile(img)}
+                className={`thumbnail ${index === activeIndex ? "active-thumb" : ""}`}
+                onClick={() => setActiveIndex(index)}
+                alt="thumb"
+              />
+            ))}
+          </div>
+
         </div>
         <div className="product-page-info-container">
           <div className="product-info-header">
