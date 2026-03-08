@@ -20,6 +20,7 @@ const HomePage = () => {
       <BillionaireAuction />
       <BuyAndSell />
       <ExclusiveUpdates />
+      <MobileFooter />
     </div>
   );
 };

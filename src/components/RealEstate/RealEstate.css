@@ -87,7 +87,19 @@
   }
 
   .real-estate-grid-container {
-    display: flex;
-    gap: 2px;
-  }
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+.real-estate-grid-container::-webkit-scrollbar {
+  display: none; 
+}
+
+.real-estate-grid-container > * {
+  flex: 0 0 33.33%;
+}
 }

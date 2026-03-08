@@ -7,6 +7,10 @@
   gap: 24px;
 }
 
+.company-logo1{
+  width: 280px;
+  height: auto;
+}
 .footer-info-links-container {
   width: 90%;
   margin: 48px auto;
@@ -59,8 +63,16 @@
   align-items: center;
   font-size: 20px;
   background: rgba(243, 244, 246, 1);
-  color: rgba(44, 44, 44, 1);
+  color: rgba(212, 175, 55, 1);
   cursor: pointer;
+}
+
+.footer-icon-container a{
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-link-container {

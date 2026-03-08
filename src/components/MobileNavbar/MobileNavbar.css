@@ -20,8 +20,8 @@
   }
 
   .mobile-logo {
-    width: 80px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     cursor: pointer;
   }
 
@@ -32,13 +32,73 @@
   }
 
   .mobile-nav-link-container {
-    display: flex;
+     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    color: rgba(212, 175, 55, 1);
   }
+  .mobile-nav-link-container span {
+  font-size: 10px;
+  }
+
+  .mobile-nav-link-container.active {
+  background-color: rgba(212, 175, 55, 1);
+  border-radius: 6px;
+  padding: 4px;
+  }
+
+  .browse-links-container1{
+  width: 160px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #fff;
+  color: #2c2c2c;
+  border-radius: 8px;
+  border: 2px solid rgba(212, 175, 55, 1);
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  z-index: 9;
+}
+
+.browse-links-container1 a {
+  width: 100%;
+  padding: 8px 16px;
+  transition: all 0.5s ease;
+  color: #2c2c2c;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.browse-links-container1 span {
+  color: #2c2c2c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.browse-links-container1 a:hover {
+  width: 100%;
+  background: rgba(212, 175, 55, 1);
+  color: #fff;
+}
+
+.browse-links-container1 span:hover {
+  color: #fff;
+}
+  .mobile-nav-link-container.active span {
+  color: white;
+  }
+
+
+.mobile-nav-link-container.active .mobile-nav-logo {
+  color: white;
+}
 
   .mobile-nav-links-container a {
     text-decoration: none;
@@ -47,8 +107,8 @@
   }
 
   .mobile-nav-logo {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
   }
 
   .mobile-nav-login-burger-container {

@@ -1,10 +1,13 @@
 import './BuyAndSell.css';
+import { useNavigate } from "react-router-dom";
 
 import { FiShoppingBag } from 'react-icons/fi';
 import { LuTag } from 'react-icons/lu';
 import { FaArrowRight } from 'react-icons/fa6';
 
 const BuyAndSell = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='buy-sell-container'>
       <div
@@ -21,8 +24,7 @@ const BuyAndSell = () => {
           <h2 className='buy-heading'>Buy Now</h2>
         </div>
         <p className='buy-text'>
-          Browse and purchase luxury items instantly. Explore our exclusive
-          collection available for immediate sale from verified sellers.
+          Browse luxury and classic items available for immediate purchase from verified sellers. Our team manages enquiries, verification, site visits, and documentation to ensure a secure transaction.
         </p>
         <div className='buy-list-container'>
           <div className='buy-list-item-container'>
@@ -30,33 +32,34 @@ const BuyAndSell = () => {
               className='dot'
               style={{ background: 'rgba(255, 255, 255, 1)' }}
             ></span>{' '}
-            Verified Authenticity
+            Verified Listings
           </div>
           <div className='buy-list-item-container'>
             <span
               className='dot'
               style={{ background: 'rgba(255, 255, 255, 1)' }}
             ></span>{' '}
-            Secure Payment
+            Site Viewing Support
           </div>
           <div className='buy-list-item-container'>
             <span
               className='dot'
               style={{ background: 'rgba(255, 255, 255, 1)' }}
             ></span>{' '}
-            White Glove Delivery
+            Documentation Assistance
           </div>
           <div className='buy-list-item-container'>
             <span
               className='dot'
               style={{ background: 'rgba(255, 255, 255, 1)' }}
             ></span>{' '}
-            Premium Insurance
+            Secure Transaction Process
           </div>
         </div>
         <button
           className='buy-btn'
-          style={{ backgroundColor: '#fff', color: 'rgba(212, 175, 55, 1)' }}
+          style={{ backgroundColor: '#fff', color: 'rgba(212, 175, 55, 1)' }} onClick={() => navigate("/buy-now")}
+
         >
           Browse Buy Now items <FaArrowRight />
         </button>
@@ -64,7 +67,7 @@ const BuyAndSell = () => {
       <div
         className='buy-container'
         style={{
-          background: 'linear-gradient(180deg, #2C2C2C 0%, #1A1A1A 100%)',
+          background: 'linear-gradient(180deg, #999999 0%, #8a8a8a 100%)',
         }}
       >
         <div className='buy-icon-content-container'>
@@ -80,7 +83,7 @@ const BuyAndSell = () => {
           <h2 className='buy-heading'>Sell With Us</h2>
         </div>
         <p className='buy-text'>
-          Join our elite network of sellers. List your luxury items and reach
+          Join our elite network of sellers. <br></br>List your luxury items and reach
           high-net-worth buyers worldwide.
         </p>
         <div className='buy-list-container'>
@@ -115,7 +118,7 @@ const BuyAndSell = () => {
         </div>
         <button
           className='buy-btn'
-          style={{ color: '#fff', backgroundColor: 'rgba(212, 175, 55, 1)' }}
+          style={{ color: '#fff', backgroundColor: 'rgba(212, 175, 55, 1)' }} onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}
         >
           Start Selling Today <FaArrowRight />
         </button>

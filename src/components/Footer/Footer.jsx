@@ -3,7 +3,7 @@ import './Footer.css';
 import companyLogo from '../../assets/company-logo.png';
 import { FiFacebook } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
-import { TbBrandTwitter } from 'react-icons/tb';
+import { FaYoutube } from "react-icons/fa";
 import { LuLinkedin } from 'react-icons/lu';
 import { GrLocation } from 'react-icons/gr';
 
@@ -17,7 +17,7 @@ const Footer = () => {
       <div className='footer-info-links-container'>
         <div className='footer-info-container'>
           <Link to='/'>
-            <img src={companyLogo} alt='Billionaire Auctions' className='company-logo' />
+            <img src={companyLogo} alt='Billionaire Auctions' className='company-logo1' />
            </Link>
           <p className='footer-info-text'>
             The world's premier marketplace for luxury properties, rare
@@ -25,17 +25,45 @@ const Footer = () => {
           </p>
           <div className='footer-icons-container'>
             <div className='footer-icon-container'>
-              <FiFacebook />
-            </div>
-            <div className='footer-icon-container'>
-              <FaInstagram />
-            </div>
-            <div className='footer-icon-container'>
-              <TbBrandTwitter />
-            </div>
-            <div className='footer-icon-container'>
-              <LuLinkedin />
-            </div>
+  <a
+    href="https://www.facebook.com/share/17UNQ8YEaK/?mibextid=wwXIfr"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FiFacebook />
+  </a>
+</div>
+
+<div className='footer-icon-container'>
+  <a
+    href="https://www.instagram.com/billionaireauction"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FaInstagram />
+  </a>
+</div>
+
+<div className='footer-icon-container'>
+  <a
+    href="https://youtube.com/@billionaireauction"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FaYoutube />
+  </a>
+</div>
+
+<div className='footer-icon-container'>
+  <a
+    href="https://www.linkedin.com/company/billionaireauction/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <LuLinkedin />
+  </a>
+</div>
+
           </div>
         </div>
         <div className='footer-section-grid-container'>

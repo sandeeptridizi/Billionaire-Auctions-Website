@@ -60,7 +60,7 @@ const Recommendations = () => {
     <>
       <div className='mobile-featured-listings-container'>
         <h3 className='mobile-featured-heading'>
-          <FaRegStar className='mobile-crown-icon' /> Recommendations
+          <FaRegStar className='crown-icon' /> Recommendations
         </h3>
         <div className='mobile-featured-listings-grid-container'>
           {recommendationData.slice(0, 3).map((item) => (
@@ -105,7 +105,7 @@ const Recommendations = () => {
       <div className='recommendations-container'>
         <div className='featured-listings-header'>
           <div className='featured-listings-heading-container'>
-            <FaRegStar className='star-icon' />
+            <FaRegStar className='crown-icon' />
             <h3 className='featured-listings-heading'>Recommendations</h3>
           </div>
           <div className='featured-listings-arrow-btn-container'>

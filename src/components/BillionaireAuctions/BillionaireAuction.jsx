@@ -1,9 +1,10 @@
 import './BillionaireAuction.css';
+import { useNavigate } from "react-router-dom";
 
 import { LuCrown } from 'react-icons/lu';
 import { BsPatchCheck } from 'react-icons/bs';
 import { SlStar } from 'react-icons/sl';
-import { BsStars } from 'react-icons/bs';
+import companyLogo from '../../assets/Billionaire auction.png';
 
 const data = [
   {
@@ -27,11 +28,11 @@ const data = [
 ];
 
 const BillionaireAuction = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='auction-container'>
-      <h1 className='auction-heading'>
-        <LuCrown /> Billionaire Auction <LuCrown />
-      </h1>
+      <img src={companyLogo} alt='Billionaire Auctions' className='company-logo2' />
       <p className='auction-text'>
         Join India's Most Exclusive Luxury Marketplace
       </p>
@@ -54,10 +55,10 @@ const BillionaireAuction = () => {
           })}
         </div>
         <div className='auction-btn-container'>
-          <button className='start-buying-btn'>
+          <button className='start-buying-btn' onClick={() => navigate("/marketplace")}>
             <SlStar /> Start Buying Now
           </button>
-          <button className='list-your-item-btn'>
+          <button className='list-your-item-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
             <LuCrown /> List Your Item
           </button>
         </div>
