@@ -23,6 +23,8 @@ import { BsBoxSeam } from 'react-icons/bs';
 
 import { useEffect, useMemo, useState } from 'react';
 import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
+import luxuryLoading from "../../assets/luxury web.mp4";
+import classicLoading from "../../assets/classic web.mp4";
 import {
   categoryOrder,
   formatCategoryLabel,
@@ -122,6 +124,7 @@ const BuyNow = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextBtn, setNextBtn] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -138,6 +141,17 @@ const BuyNow = () => {
 
     fetchProducts();
   }, []);
+
+  const handleSwitch = (type) => {
+  if (type === selectedBtn) return;
+
+  if (type === "Luxury" || type === "Classic") {
+    setNextBtn(type);
+    setLoading(true);
+  } else {
+    setSelectedBtn(type);
+  }
+};
 
   const filteredProducts = useMemo(() => {
     const normalizedTier =
@@ -187,57 +201,68 @@ const BuyNow = () => {
 
   return (
     <div className='buy-now-container'>
-      <div className='buy-now-background-container'>
-        <h2 className='buy-now-heading'>
-          <LuShoppingBag /> Buy Now
-        </h2>
+      <div className='market-place-background-container'>
+        <div>
+        <h2 className='buy-now-heading'>Buy Now</h2>
         <p className='buy-now-text'>
-          Purchase luxury items instantly - No bidding, No waiting
-        </p>
-        <div className='buy-now-grid-container'>
-          {data.map((item) => {
-            const { id, icon, title, text } = item;
-            return (
-              <div className='buy-now-item-container' key={id}>
-                <span className='buy-now-icon'>{icon}</span>
-                <h3 className='buy-now-title'>{title}</h3>
-                <p className='buy-now-text'>{text}</p>
-              </div>
-            );
-          })}
-        </div>
+          Purchase Luxury Items Instantly with Confidence - No Bidding & Waiting
+        </p></div>
         <div className='buy-now-btns-container'>
-          <div
-            className={
-              selectedBtn === 'All'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('All')}
-          >
-            All
-          </div>
-          <div
-            className={
-              selectedBtn === 'Luxury'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('Luxury')}
-          >
-            <LuCrown /> Luxury
-          </div>
-          <div
-            className={
-              selectedBtn === 'Classic'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('Classic')}
-          >
-            <IoDiamondOutline /> Classic
-          </div>
-        </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'All'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('All')}
+                  >
+                    All
+                  </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'Luxury'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('Luxury')}
+                  >
+                    <LuCrown /> Luxury
+                  </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'Classic'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('Classic')}
+                  >
+                    <IoDiamondOutline /> Classic
+                  </div>
+                  {loading && (
+                    <div className="tier-loader-overlay">
+                      <video
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="auto"
+                        className="tier-loader-video"
+                        onEnded={() => {
+                          setSelectedBtn(nextBtn);
+                          setLoading(false);
+                        }}
+                      >
+                        <source
+                          src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  )}
+        
+                </div>
       </div>
       <div className='buy-now-categories-container'>
         <div className='buy-now-search-filter-container'>
@@ -259,10 +284,7 @@ const BuyNow = () => {
               <div className='buy-now-grid-icon-container'>
                 <BsGrid3X3 />
               </div>
-              <div className='buy-now-list-icon-container'>
-                <IoIosList />
-              </div>
-            </div>
+             </div>
           </div>
         </div>
         <div className='buy-now-category-btn-container'>

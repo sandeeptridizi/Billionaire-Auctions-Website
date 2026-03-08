@@ -20,6 +20,8 @@ import { LuCrown } from 'react-icons/lu';
 
 import apartment from '../../assets/apartment.jpg';
 import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionCardComponent';
+import luxuryLoading from "../../assets/luxury web.mp4";
+import classicLoading from "../../assets/classic web.mp4";
 import { getAuctionsProducts, mapProductToCard } from '../../lib/products';
 
 const btns = [
@@ -135,6 +137,7 @@ const Auctions = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextBtn, setNextBtn] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -168,6 +171,17 @@ const Auctions = () => {
     fetchProducts();
   }, []);
 
+  const handleSwitch = (type) => {
+  if (type === selectedBtn) return;
+
+  if (type === "Luxury" || type === "Classic") {
+    setNextBtn(type);
+    setLoading(true);
+  } else {
+    setSelectedBtn(type);
+  }
+};
+
   const filteredProducts = useMemo(() => {
     if (!search) return products;
     return products.filter((item) =>
@@ -177,57 +191,68 @@ const Auctions = () => {
 
   return (
     <div className='buy-now-container'>
-      <div className='auctions-background-container'>
-        <h2 className='buy-now-heading'>Offline Auctions</h2>
-        <p className='auction-text'>
-          Exclusive Offline Auction Events Across India
-        </p>
-        <p className='auction-desc'>
-          Participate in prestigious live auctions conducted at luxury venues
-        </p>
-        <div className='buy-now-grid-container'>
-          {data.map((item) => {
-            const { id, number, text } = item;
-            return (
-              <div className='auction-item-container' key={id}>
-                <h3 className='auction-number'>{number}</h3>
-                <p className='auction-text'>{text}</p>
-              </div>
-            );
-          })}
-        </div>
+      <div className='market-place-background-container'>
+        <div>
+        <h2 className='buy-now-heading'>Auctions</h2>
+        <p className='buy-now-text'>
+          Exclusive offline auctions accross indian cities. Register to participate
+        </p></div>
         <div className='buy-now-btns-container'>
-          <div
-            className={
-              selectedBtn === 'All'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('All')}
-          >
-            All
-          </div>
-          <div
-            className={
-              selectedBtn === 'Luxury'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('Luxury')}
-          >
-            <LuCrown /> Luxury
-          </div>
-          <div
-            className={
-              selectedBtn === 'Classic'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
-            }
-            onClick={() => setSelectedBtn('Classic')}
-          >
-            <IoDiamondOutline /> Classic
-          </div>
-        </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'All'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('All')}
+                  >
+                    All
+                  </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'Luxury'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('Luxury')}
+                  >
+                    <LuCrown /> Luxury
+                  </div>
+        
+                  <div
+                    className={
+                      selectedBtn === 'Classic'
+                        ? 'buy-now-btn-container active-btn'
+                        : 'buy-now-btn-container'
+                    }
+                    onClick={() => handleSwitch('Classic')}
+                  >
+                    <IoDiamondOutline /> Classic
+                  </div>
+                  {loading && (
+                    <div className="tier-loader-overlay">
+                      <video
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="auto"
+                        className="tier-loader-video"
+                        onEnded={() => {
+                          setSelectedBtn(nextBtn);
+                          setLoading(false);
+                        }}
+                      >
+                        <source
+                          src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  )}
+        
+                </div>
       </div>
       <div className='buy-now-categories-container'>
         <div className='buy-now-search-filter-container'>
@@ -241,6 +266,18 @@ const Auctions = () => {
             />
           </div>
         </div>
+      </div>
+      <div className='auctions-flex-container'>
+        {loading ? (
+          <p style={{ padding: '40px', textAlign: 'center' }}>Loading auctions...</p>
+        ) : filteredProducts.length === 0 ? (
+          <p style={{ padding: '40px', textAlign: 'center' }}>No auction events available.</p>
+        ) : (
+          <AuctionCardComponent
+            data={filteredProducts}
+            name='Auctions'
+          />
+        )}
       </div>
       <div className='auctions-steps-main-container'>
         <div className='auctions-steps-header'>
@@ -264,18 +301,6 @@ const Auctions = () => {
             );
           })}
         </div>
-      </div>
-      <div className='auctions-flex-container'>
-        {loading ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>Loading auctions...</p>
-        ) : filteredProducts.length === 0 ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>No auction events available.</p>
-        ) : (
-          <AuctionCardComponent
-            data={filteredProducts}
-            name='Auctions'
-          />
-        )}
       </div>
     </div>
   );

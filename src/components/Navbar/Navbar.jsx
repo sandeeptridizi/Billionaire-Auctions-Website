@@ -73,8 +73,8 @@ const Navbar = () => {
         <button className='country-btn'>
           <PiGlobeBold className='globe-icon' /> India
         </button>
-        <button className='list-btn'>List/Sell Item</button>
-        <button className='login-btn'>
+        <button className='list-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>List/Sell Item</button>
+        <button className='login-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
           <RxPerson /> Login
         </button>
       </div>

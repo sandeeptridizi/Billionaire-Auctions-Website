@@ -18,6 +18,9 @@ import { BsBoxSeam } from 'react-icons/bs';
 
 import { useEffect, useMemo, useState } from 'react';
 import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
+import luxuryLoading from "../../assets/luxury web.mp4";
+import classicLoading from "../../assets/classic web.mp4";
+
 import {
   categoryOrder,
   formatCategoryLabel,
@@ -88,6 +91,8 @@ const Marketplace = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextBtn, setNextBtn] = useState(null);
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -103,6 +108,17 @@ const Marketplace = () => {
 
     fetchProducts();
   }, []);
+
+  const handleSwitch = (type) => {
+  if (type === selectedBtn) return;
+
+  if (type === "Luxury" || type === "Classic") {
+    setNextBtn(type);
+    setLoading(true);
+  } else {
+    setSelectedBtn(type);
+  }
+};
 
   const filteredProducts = useMemo(() => {
     const normalizedTier =
@@ -153,41 +169,66 @@ const Marketplace = () => {
   return (
     <div className='buy-now-container'>
       <div className='market-place-background-container'>
-        <h2 className='buy-now-heading'>Luxury Market Place</h2>
+        <div>
+        <h2 className='buy-now-heading'>Market Place</h2>
         <p className='buy-now-text'>
           Discover exclusive premium items from verified sellers
-        </p>
+        </p></div>
         <div className='buy-now-btns-container'>
+
           <div
             className={
               selectedBtn === 'All'
                 ? 'buy-now-btn-container active-btn'
                 : 'buy-now-btn-container'
             }
-            onClick={() => setSelectedBtn('All')}
+            onClick={() => handleSwitch('All')}
           >
             All
           </div>
+
           <div
             className={
               selectedBtn === 'Luxury'
                 ? 'buy-now-btn-container active-btn'
                 : 'buy-now-btn-container'
             }
-            onClick={() => setSelectedBtn('Luxury')}
+            onClick={() => handleSwitch('Luxury')}
           >
             <LuCrown /> Luxury
           </div>
+
           <div
             className={
               selectedBtn === 'Classic'
                 ? 'buy-now-btn-container active-btn'
                 : 'buy-now-btn-container'
             }
-            onClick={() => setSelectedBtn('Classic')}
+            onClick={() => handleSwitch('Classic')}
           >
             <IoDiamondOutline /> Classic
           </div>
+          {loading && (
+            <div className="tier-loader-overlay">
+              <video
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                className="tier-loader-video"
+                onEnded={() => {
+                  setSelectedBtn(nextBtn);
+                  setLoading(false);
+                }}
+              >
+                <source
+                  src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          )}
+
         </div>
       </div>
       <div className='buy-now-categories-container'>
@@ -209,9 +250,6 @@ const Marketplace = () => {
             <div className='buy-now-icons-container'>
               <div className='buy-now-grid-icon-container'>
                 <BsGrid3X3 />
-              </div>
-              <div className='buy-now-list-icon-container'>
-                <IoIosList />
               </div>
             </div>
           </div>

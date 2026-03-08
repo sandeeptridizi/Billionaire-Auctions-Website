@@ -18,6 +18,7 @@ const RealEstateComponentCard = ({
   category,
 }) => {
   return (
+    <Link to={`/product/${id}`} className='productviewlink' >
     <div className="featured-listings-card-container">
       <div className="featured-listings-card-image-container">
         <img src={getFile(image)} alt={title} className="featured-img" />
@@ -45,19 +46,9 @@ const RealEstateComponentCard = ({
           </p>
           <p className="real-estate-component-name">{category}</p>
         </div>
-        <div className="real-estate-component-btn-container">
-          <Link
-            to={`/product/${id}`}
-            className="real-estate-component-enquire-btn"
-          >
-            View Details
-          </Link>
-          <div className="real-estate-component-favorite-btn">
-            <GrFavorite />
-          </div>
-        </div>
       </div>
     </div>
+    </Link>
   );
 };
 

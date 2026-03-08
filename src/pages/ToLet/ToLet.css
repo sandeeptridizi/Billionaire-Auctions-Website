@@ -2,13 +2,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .to-let-page-background {
   width: 100%;
   height: auto;
-  padding: 64px 68px;
+  padding: 18px 68px;
   background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
   display: flex;
   flex-direction: column;
@@ -43,7 +42,7 @@
 .to-let-page-category-container {
   width: 100%;
   height: auto;
-  padding: 32px 68px;
+  padding: 10px 68px;
   background: rgba(255, 255, 255, 1);
   border-bottom: 1.25px solid rgba(229, 231, 235, 1);
   display: flex;

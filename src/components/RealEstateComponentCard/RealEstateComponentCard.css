@@ -12,6 +12,10 @@
   color: rgba(212, 175, 55, 1);
 }
 
+.productviewlink{
+  text-decoration: none;
+}
+
 .real-estate-component-btn-container {
   width: 100%;
   display: flex;

@@ -64,22 +64,22 @@ const MobileFooter = () => {
         {/* FLOATING MENU */}
         {showLinks && (
           <div className="footer-links1">
-            <div className="menu-item market">
+            <div className="menu-item market" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               <img src={marketPlace} alt="" />
               <span>Marketplace</span>
             </div>
 
-            <div className="menu-item sell">
+            <div className="menu-item sell" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               <img src={sellNow} alt="" />
               <span>Sell Now</span>
             </div>
 
-            <div className="menu-item hammer">
+            <div className="menu-item hammer" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               <img src={hammer} alt="" />
               <span>Auctions</span>
             </div>
 
-            <div className="menu-item tolet">
+            <div className="menu-item tolet" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               <img src={tolet} alt="" />
               <span>To Let</span>
             </div>

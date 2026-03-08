@@ -27,18 +27,15 @@
 }
 
 .buy-now-heading {
-  margin-top: 48px;
   font-size: 48px;
   font-weight: 700;
-  line-height: 48px;
-  color: #fff;
+  color: #d4af37;
 }
 
 .buy-now-text {
   font-size: 20px;
   font-weight: 400;
-  line-height: 28px;
-  color: #fff;
+  color: #d4af37;
 }
 
 .buy-now-grid-container {
@@ -115,12 +112,10 @@
 
 .buy-now-categories-container {
   width: 100%;
-  padding: 24px;
   background: rgba(255, 255, 255, 1);
   border-bottom: 1.25px solid rgba(212, 175, 55, 1);
   display: flex;
   flex-direction: column;
-  gap: 26px;
 }
 
 .buy-now-search-filter-container {
@@ -159,7 +154,8 @@
 
 .buy-now-filter-container {
   display: flex;
-  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
   gap: 12px;
 }
 

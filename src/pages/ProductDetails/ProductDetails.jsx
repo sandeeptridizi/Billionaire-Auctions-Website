@@ -21,6 +21,7 @@ import { LuHouse } from 'react-icons/lu';
 import { TbSofa } from 'react-icons/tb';
 import { IoDiamondOutline } from 'react-icons/io5';
 import { RiBankLine } from 'react-icons/ri';
+import { FaPlayCircle } from "react-icons/fa";
 
 import cityApartment from "../../assets/city-apartment.jpg";
 import exclusiveVilla from "../../assets/exclusive-villa.jpg";
@@ -37,6 +38,7 @@ const ProductDetails = () => {
   const [enquirySuccess, setEnquirySuccess] = useState(false);
   const [enquiryError, setEnquiryError] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showShare, setShowShare] = useState(false);
 
   const images = product?.media?.slice(1, 5) || [];
 
@@ -131,7 +133,7 @@ const ProductDetails = () => {
       <div className="product-page-search-category-container">
         <div className="product-page-breadcrums-category-btns-container">
           <div className="product-page-bread-crums">
-            Home / <span className="product-category">{product.title}</span>
+            Home <span className="product-category">{product.title}</span>
           </div>
         </div>
       </div>
@@ -184,18 +186,15 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="product-info-price-container">
-            <p className="product-info-text">Asking Price</p>
-            <h2 className="product-info-price">₹{product.value}</h2>
-            <p className="product-info-text">
-              {product.negotiable ? "Negotiable" : "Not Negotiable"}
-            </p>
+            <p className="product-info-text">Price</p>
+            <h2 className="product-info-price">{product.value.toLocaleString("en-IN")}</h2>
           </div>
           <div className="product-info-btns-container">
             <button className="product-info-enquire-btn" onClick={() => setShowEnquiryForm(true)}>
-              <LuPhone /> Enquire now
+              <LuPhone /> Contact Seller
             </button>
             <button className="product-info-chat-btn">
-              <FiMessageCircle /> Chat Now
+              <FaPlayCircle  /> Watch Video
             </button>
           </div>
           {showEnquiryForm && (
@@ -224,9 +223,62 @@ const ProductDetails = () => {
             <div className="save-container">
               <MdFavoriteBorder /> Save
             </div>
-            <div className="save-container">
+            <div className="save-container" onClick={() => setShowShare(true)}>
               <SlShare /> Share
             </div>
+            {showShare && (
+              <div className="share-popup-overlay">
+                <div className="share-popup">
+
+                  <h3>Share</h3>
+
+                  <div className="share-options">
+
+                    <a
+                      href={`https://wa.me/?text=${window.location.href}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      WhatsApp
+                    </a>
+
+                    <a
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Facebook
+                    </a>
+
+                    <a
+                      href={`https://twitter.com/intent/tweet?url=${window.location.href}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Twitter
+                    </a>
+
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert("Link copied!");
+                      }}
+                    >
+                      Copy Link
+                    </button>
+
+                  </div>
+
+                  <button
+                    className="close-share"
+                    onClick={() => setShowShare(false)}
+                  >
+                    Close
+                  </button>
+
+                </div>
+              </div>
+            )}
             <div className="save-container">
               <FiFlag /> Report
             </div>
