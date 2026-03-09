@@ -21,6 +21,7 @@ import HowToBuyAndSell from './pages/HowToBuyAndSell/HowToBuyAndSell';
 import MobileNavbar from './components/MobileNavbar/MobileNavbar';
 import ProductPage from './pages/ProductPage/ProductPage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
+import Wishlist from './pages/Wishlist/Wishlist';
 import useAppContext from './context/AppContext';
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
           {/* <Route path='privacy-policy' element={<PrivacyPolicy />} /> */}
           <Route path='terms-conditions' element={<TermsConditions />} />
           <Route path='refund-policy' element={<RefundPolicy />} />
+          <Route path='wishlist' element={<Wishlist />} />
         </Route>
       </Routes>
       <Footer />

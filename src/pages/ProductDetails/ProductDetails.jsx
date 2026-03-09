@@ -9,7 +9,8 @@ import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
 import { FiMessageCircle } from "react-icons/fi";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import useAppContext from "../../context/AppContext";
 import { SlShare } from "react-icons/sl";
 import { FiFlag } from "react-icons/fi";
 import { CgFileDocument } from "react-icons/cg";
@@ -29,6 +30,7 @@ import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const { toggleWishlist, isWishlisted } = useAppContext();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState([]);
@@ -179,10 +181,18 @@ const ProductDetails = () => {
             <h3 className="product-info-heading">{product.title}</h3>
             <div className="product-location">
               <GrLocation className="product-location-icon" />{" "}
-              {product.location || "Unspecified"}
+              {product.meta?.city || product.meta?.location || "Unspecified"}
             </div>
             <div className="product-calender">
-              <MdOutlineCalendarToday /> Posted on {product.createdAt}
+              <MdOutlineCalendarToday /> Posted on{" "}
+              {new Date(product.createdAt).toLocaleString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })}
             </div>
           </div>
           <div className="product-info-price-container">
@@ -220,8 +230,13 @@ const ProductDetails = () => {
             </div>
           )}
           <div className="product-info-social-container">
-            <div className="save-container">
-              <MdFavoriteBorder /> Save
+            <div
+              className={`save-container${isWishlisted(id) ? ' save-container--active' : ''}`}
+              onClick={() => toggleWishlist(id)}
+              style={{ cursor: 'pointer' }}
+            >
+              {isWishlisted(id) ? <MdFavorite style={{ color: '#e53935' }} /> : <MdFavoriteBorder />}
+              {isWishlisted(id) ? 'Saved' : 'Save'}
             </div>
             <div className="save-container" onClick={() => setShowShare(true)}>
               <SlShare /> Share
@@ -306,7 +321,7 @@ const ProductDetails = () => {
               </h2>
               <div className="product-grid-item-container">
                 {Object.entries(product.meta)
-                  .filter(([key]) => key !== 'location' && key !== 'views')
+                  .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views')
                   .map(([key, value]) => (
                     <div className="product-grid-item" key={key}>
                       <p className="product-brand">
@@ -382,10 +397,13 @@ const ProductDetails = () => {
             <div className="quick-info-justify-container">
               <span className="quick-category">Posted On</span>
               <span className="category-name">
-                {new Date(product.createdAt).toLocaleDateString("en-US", {
+                {new Date(product.createdAt).toLocaleString("en-IN", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
                 })}
               </span>
             </div>
@@ -424,7 +442,7 @@ const ProductDetails = () => {
                   </p>
                   <p className="luxury-item-location">
                     <GrLocation />{" "}
-                    {item.meta?.location || item.location || "Location not specified"}
+                    {item.meta?.city || item.meta?.location || item.location || "Location not specified"}
                   </p>
                 </div>
               </div>

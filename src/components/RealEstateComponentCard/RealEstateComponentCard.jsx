@@ -3,10 +3,11 @@ import './RealEstateComponentCard.css';
 import { BsPatchCheck } from 'react-icons/bs';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
-import { GrFavorite } from 'react-icons/gr';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { LuCrown } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 import { getFile } from '../../lib/s3';
+import useAppContext from '../../context/AppContext';
 
 const RealEstateComponentCard = ({
   id,
@@ -17,6 +18,15 @@ const RealEstateComponentCard = ({
   views,
   category,
 }) => {
+  const { toggleWishlist, isWishlisted } = useAppContext();
+  const wishlisted = isWishlisted(id);
+
+  const handleWishlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWishlist(id);
+  };
+
   return (
     <Link to={`/product/${id}`} className='productviewlink' >
     <div className="featured-listings-card-container">
@@ -30,6 +40,13 @@ const RealEstateComponentCard = ({
             <LuCrown /> Luxury
           </div>
         </div>
+        <button
+          className={`card-wishlist-btn${wishlisted ? ' card-wishlist-btn--active' : ''}`}
+          onClick={handleWishlist}
+          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+        >
+          {wishlisted ? <MdFavorite /> : <MdFavoriteBorder />}
+        </button>
         <div className="featured-listings-card-footer">
           <h3 className="real-estate-component-cost">&#8377; {cost}</h3>
           <p className="location">

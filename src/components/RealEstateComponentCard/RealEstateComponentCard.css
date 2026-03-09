@@ -14,6 +14,8 @@
 
 .productviewlink{
   text-decoration: none;
+  display: block;
+  width: 100%;
 }
 
 .real-estate-component-btn-container {
@@ -46,6 +48,34 @@
   border-radius: 10px;
   cursor: pointer;
   color: rgba(212, 175, 55, 1);
+}
+
+.card-wishlist-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #aaa;
+  z-index: 2;
+  transition: color 0.2s, transform 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.card-wishlist-btn:hover {
+  transform: scale(1.15);
+}
+
+.card-wishlist-btn--active {
+  color: #e53935;
 }
 
 .real-estate-card-icon-container {
@@ -97,7 +127,7 @@
 
 @media screen and (max-width: 510px) {
   .featured-listings-card-container {
-    width: 95%;
+    width: 100%;
     margin-top: 0;
   }
 

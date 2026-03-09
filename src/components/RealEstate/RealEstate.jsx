@@ -25,8 +25,8 @@ const RealEstate = () => {
           cost: typeof product.value === 'number'
             ? product.value.toLocaleString('en-IN')
             : 'Price on request',
-          city: product.meta?.location || 'Location not specified',
-          location: product.meta?.location || 'Location not specified',
+          city: product.meta?.city || product.meta?.location || 'Location not specified',
+          location: product.meta?.city || product.meta?.location || 'Location not specified',
         }));
         setProperties(mapped);
       } catch {

@@ -91,6 +91,37 @@
   gap: 48px;
 }
 
+.nav-wishlist-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-wishlist-icon {
+  font-size: 24px;
+  color: #e53935;
+}
+
+.nav-wishlist-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #d4af37;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
 .country-btn {
   width: 120px;
   height: 100%;

@@ -39,7 +39,7 @@ const FeaturedListings = () => {
               ? product.value.toLocaleString('en-IN')
               : 'Price on request',
           category: formatCategoryLabel(product.category),
-          location: product.meta?.location || 'Location not specified',
+          location: product.meta?.city || product.meta?.location || 'Location not specified',
         }));
         setFeatured(mapped);
       } catch {

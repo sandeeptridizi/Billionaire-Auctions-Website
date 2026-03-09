@@ -4,6 +4,7 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { PiGlobeBold } from 'react-icons/pi';
 import { RxPerson } from 'react-icons/rx';
 import { CiMenuBurger } from 'react-icons/ci';
+import { MdFavorite } from 'react-icons/md';
 
 import companyLogo from '../../assets/company-logo.png';
 import marketplace from '../../assets/marketplace.png';
@@ -12,9 +13,11 @@ import sellNow from '../../assets/sell-now.png';
 import toLet from '../../assets/to-let.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import useAppContext from '../../context/AppContext';
 
 const Navbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
+  const { wishlist } = useAppContext();
 
   return (
     <div className='navbar-container'>
@@ -73,6 +76,12 @@ const Navbar = () => {
         <button className='country-btn'>
           <PiGlobeBold className='globe-icon' /> India
         </button>
+        <Link to='wishlist' className='nav-wishlist-btn'>
+          <MdFavorite className='nav-wishlist-icon' />
+          {wishlist.length > 0 && (
+            <span className='nav-wishlist-badge'>{wishlist.length}</span>
+          )}
+        </Link>
         <button className='list-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>List/Sell Item</button>
         <button className='login-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
           <RxPerson /> Login

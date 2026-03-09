@@ -30,7 +30,7 @@ export const mapProductToCard = (product) => ({
   title: product.title,
   image: product.media?.[0] || "",
   cost: product.value ?? "Price on request",
-  location: product.meta?.location || "Location not specified",
+  location: product.meta?.city || product.meta?.location || "Location not specified",
   views: "0 views",
   category: formatCategoryLabel(product.category),
   tier: product.tier || "GENERAL",

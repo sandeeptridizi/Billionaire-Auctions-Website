@@ -195,6 +195,36 @@
     cursor: pointer;
   }
 
+  .mobile-wishlist-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-wishlist-icon {
+    width: 20px;
+    height: 20px;
+    color: #e53935;
+    cursor: pointer;
+  }
+
+  .mobile-wishlist-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #d4af37;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
   .mobile-login-btn {
     width: fit-content;
     display: flex;

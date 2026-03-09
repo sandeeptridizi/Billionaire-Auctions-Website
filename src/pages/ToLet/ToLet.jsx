@@ -151,7 +151,7 @@ const ToLet = () => {
               typeof product.value === 'number'
                 ? `${product.value.toLocaleString('en-IN')} /month`
                 : 'Price on request',
-            location: product.meta?.location || 'Unspecified',
+            location: product.meta?.city || product.meta?.location || 'Unspecified',
             bhk: product.meta?.bhk || '',
             tubs: product.meta?.baths || '',
             squareFeet: product.meta?.area || '',

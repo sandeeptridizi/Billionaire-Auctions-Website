@@ -155,7 +155,7 @@ const ProductPage = () => {
                           : 'Price on request'}
                       </p>
                       <p className='luxury-item-location'>
-                        <GrLocation /> {product.meta?.location || 'Location not specified'}
+                        <GrLocation /> {product.meta?.city || product.meta?.location || 'Location not specified'}
                       </p>
                     </div>
                   </div>

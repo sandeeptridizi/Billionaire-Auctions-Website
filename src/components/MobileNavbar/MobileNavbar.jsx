@@ -11,12 +11,14 @@ import { FaStore } from "react-icons/fa";
 import { VscGlobe } from 'react-icons/vsc';
 import { SlMenu } from 'react-icons/sl';
 import { GrLocation } from 'react-icons/gr';
-import { GrFavorite } from 'react-icons/gr';
+import { MdFavorite } from 'react-icons/md';
 import { GoPerson } from 'react-icons/go';
 import { FiSearch } from 'react-icons/fi';
+import useAppContext from '../../context/AppContext';
 
 const MobileNavbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
+  const { wishlist } = useAppContext();
   return (
     <div className='mobile-navbar-container'>
       <div className='mobile-nav-logo-links-container'>
@@ -82,7 +84,12 @@ const MobileNavbar = () => {
         </div>
         <div className='mobile-icons-login-container'>
           <GrLocation className='mobile-location-icon' />
-          <GrFavorite className='mobile-location-icon' />
+          <Link to='wishlist' className='mobile-wishlist-link'>
+            <MdFavorite className='mobile-wishlist-icon' />
+            {wishlist.length > 0 && (
+              <span className='mobile-wishlist-badge'>{wishlist.length}</span>
+            )}
+          </Link>
           <button className='mobile-login-btn'>
             <GoPerson /> Login
           </button>
