@@ -14,13 +14,7 @@ import star from '../../assets/star.png';
 const OurPartners = () => {
   return (
     <div className='our-partners-container'>
-      <div className='our-partners-background'>
-        <GoPeople className='people-icon' />
-        <h1 className='our-partners-heading'>Our Advisory Committee</h1>
-        <p className='our-partners-text'>
-          Meet our team of experts dedicated to serving your NRI needs
-        </p>
-      </div>
+      <div className='our-partners-background'></div>
       <div className='our-partners-grid-container'>
         <div className='partners-grid-item-container'>
           <div className='partners-grid-item-header'>
@@ -82,6 +76,20 @@ const OurPartners = () => {
           </div>
         </div>
       </div>
+      <div className="video-showcase-container">
+
+          <div className="video-wrapper">
+            <iframe
+              width="100%"
+              height="450"
+              src="https://www.youtube.com/embed/7XDcsRTOwm8"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
       <div className='learn-more-about-partners-container'>
         <div className='learn-more-about-partners-child-container'>
           <img src={star} alt='star' className='star' />

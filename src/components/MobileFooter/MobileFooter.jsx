@@ -81,7 +81,7 @@ const MobileFooter = () => {
 
             <div className="menu-item tolet" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               <img src={tolet} alt="" />
-              <span>To Let</span>
+              <span>To-Let</span>
             </div>
           </div>
         )}

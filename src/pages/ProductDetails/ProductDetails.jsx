@@ -287,12 +287,6 @@ const ProductDetails = () => {
       </div>
       <div className="product-page-specifications-container">
         <div className="product-page-specifications">
-          <div className="product-description-container">
-            <h2 className="product-description">
-              <CgFileDocument className="product-document-icon" /> Description
-            </h2>
-            <p className="product-text">{product.description}</p>
-          </div>
           {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views').length > 0 && (
             <div className="product-description-container">
               <h2 className="product-description">
@@ -324,6 +318,12 @@ const ProductDetails = () => {
               </div>
             </div>
           )}
+          <div className="product-description-container">
+            <h2 className="product-description">
+              <CgFileDocument className="product-document-icon" /> Description
+            </h2>
+            <p className="product-text">{product.description}</p>
+          </div>
         </div>
         <div className="product-page-quick-info-container">
           <div className="product-page-safety-tips-container">

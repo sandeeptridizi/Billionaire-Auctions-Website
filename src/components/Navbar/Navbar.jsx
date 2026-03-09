@@ -37,7 +37,7 @@ const Navbar = () => {
             <Link to='auctions'>Auctions</Link>
           </li>
           <li>
-            <Link to='to-let'>To Let</Link>
+            <Link to='to-let'>To-Let</Link>
           </li>
           <li
             className='browse-link'

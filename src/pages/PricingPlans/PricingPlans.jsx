@@ -190,7 +190,7 @@ const PricingPlans = () => {
               <LuShield className='pricing-star-icon' />
               <h3 className='pricing-heading'>Enterprise</h3>
               <h3 className='plan-price'>
-                <BsCurrencyRupee /> 19,999
+                <BsCurrencyRupee /> 14,999
               </h3>
               <p className='pricing-text'>+ GST</p>
             </div>

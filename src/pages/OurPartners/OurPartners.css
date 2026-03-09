@@ -8,14 +8,39 @@
 
 .our-partners-background {
   width: 100%;
-  height: auto;
+  min-height: 400px;
   padding: 80px 68px;
-  background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+  background-image: url('../../assets/nribbanner.png');
+  background-size: cover;        
+  background-position: center;  
+  background-repeat: no-repeat;  
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center;
   align-items: center;
+}
+
+.video-showcase-container {
+  width: 100%;
+  padding: 10px 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.video-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  max-height: 500px;
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
 }
 
 .people-icon {
@@ -365,8 +390,10 @@
   }
 
   .our-partners-background {
-    width: 100%;
-    padding: 32px 18px;
+    min-height: 160px;
+    padding: 20px 12px;
+    background-size: contain;
+  
   }
 
   .people-icon {
@@ -376,6 +403,11 @@
 
   .our-partners-heading {
     font-size: 32px;
+  }
+
+  .video-showcase-container {
+    padding: 10px 14px;
+    gap: 18px;
   }
 
   .our-partners-text {
