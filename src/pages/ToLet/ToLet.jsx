@@ -15,8 +15,9 @@ import { BsBank } from 'react-icons/bs';
 import { GrLocation } from 'react-icons/gr';
 import { LuCrown } from 'react-icons/lu';
 
-import PropertyCard from '../../components/PropertyCard/PropertyCard';
-import { getToLetProducts, mapProductToCard } from '../../lib/products';
+import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
+import { getToLetProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
+import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 const categoryData = [
   {
@@ -137,31 +138,16 @@ const ToLet = () => {
   const [search, setSearch] = useState('');
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const list = await getToLetProducts();
-        const mapped = list.map((product) => {
-          const card = mapProductToCard(product);
-          return {
-            id: card.id,
-            image: card.image,
-            cost:
-              typeof product.value === 'number'
-                ? `${product.value.toLocaleString('en-IN')} /month`
-                : 'Price on request',
-            location: product.meta?.city || product.meta?.location || 'Unspecified',
-            bhk: product.meta?.bhk || '',
-            tubs: product.meta?.baths || '',
-            squareFeet: product.meta?.area || '',
-            deposit: product.meta?.deposit || '',
-            available: product.meta?.availableFrom || '',
-            category: product.meta?.furnishing || '',
-            views: '',
-            title: card.title,
-          };
-        });
+        const mapped = list.map((product) => ({
+          ...mapProductToCard(product),
+          rawCategory: product.category,
+        }));
         setProperties(mapped);
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -176,10 +162,35 @@ const ToLet = () => {
 
   const filteredProperties = useMemo(() => {
     if (!search) return properties;
+    const matchedCategory = categoryOrder.find((cat) =>
+      formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
+    );
+    if (matchedCategory) {
+      return properties.filter((item) => item.rawCategory === matchedCategory);
+    }
     return properties.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase()),
     );
   }, [properties, search]);
+
+  const groupedCategories = useMemo(() => {
+    const map = new Map();
+    filteredProperties.forEach((item) => {
+      const key = item.rawCategory || 'OTHERS';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(item);
+    });
+    const entries = Array.from(map.entries()).sort((a, b) => {
+      const aIdx = categoryOrder.indexOf(a[0]);
+      const bIdx = categoryOrder.indexOf(b[0]);
+      return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) - (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
+    });
+    if (selectedCategory !== 'all') {
+      const selected = entries.find(([catKey]) => catKey === selectedCategory);
+      return selected ? [selected] : [];
+    }
+    return entries;
+  }, [filteredProperties, selectedCategory]);
 
   return (
     <div className='to-let-page-container'>
@@ -244,19 +255,33 @@ const ToLet = () => {
           </div>
         ))}
       </div>
-      <div className='to-let-properties-container'>
-        <div className='property-header'>
-          <h2 className='property-heading'>Available Properties</h2>
-          <p className='property-text'>10 properties found</p>
-        </div>
-        <div className='property-grid-container'>
-          {(loading && properties.length === 0 ? propertiesData : filteredProperties).map(
-            (item) => (
-              <PropertyCard key={item.id} {...item} />
-            ),
-          )}
-        </div>
-      </div>
+      {loading ? (
+        <p style={{ padding: '40px', textAlign: 'center' }}>Loading properties...</p>
+      ) : groupedCategories.length === 0 ? (
+        <p style={{ padding: '40px', textAlign: 'center' }}>No properties found.</p>
+      ) : (
+        groupedCategories.map(([catKey, items]) => (
+          <div className='to-let-properties-container' key={catKey}>
+            <div className='property-header'>
+              <h2 className='property-heading'>{formatCategoryLabel(catKey)}</h2>
+              {selectedCategory === 'all' ? (
+                <div className='real-estate-component-view-btn' onClick={() => setSelectedCategory(catKey)} style={{ cursor: 'pointer' }}>
+                  View All ({items.length}) <HiOutlineArrowSmRight />
+                </div>
+              ) : (
+                <div className='real-estate-component-view-btn'>
+                  {items.length} {items.length === 1 ? 'Property' : 'Properties'} <HiOutlineArrowSmRight />
+                </div>
+              )}
+            </div>
+            <div className='real-estate-component-grid-container'>
+              {(selectedCategory === 'all' ? items.slice(0, 3) : items).map((item) => (
+                <RealEstateComponentCard key={item.id} {...item} />
+              ))}
+            </div>
+          </div>
+        ))
+      )}
       <div className='to-let-rent-us-container'>
         <h2 className='rent-us-heading'>Why Rent With Us?</h2>
         <p className='rent-us-text'>

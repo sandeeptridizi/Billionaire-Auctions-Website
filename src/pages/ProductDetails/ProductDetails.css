@@ -98,7 +98,7 @@
   width: 90%;
   margin: 0px auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(0, 45%) minmax(0, 55%);
   gap: 48px;
 }
 
@@ -131,15 +131,24 @@
   font-size: 12px;
 }
 
-.product-thumbnails {
+.product-thumbnails-wrapper {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 6px;
   margin-top: 10px;
 }
 
+.product-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
 .thumbnail {
-  width: 25%;
-  height: 80px;
+  width: 100%;
+  height: 72px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -149,6 +158,32 @@
 
 .thumbnail:hover {
   opacity: 1;
+}
+
+.thumb-nav {
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.thumb-nav:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.thumb-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
 }
 
 .active-thumb {
@@ -1247,16 +1282,20 @@
   gap: 12px;
 }
 .enquiry-form input,
-.enquiry-form textarea {
+.enquiry-form textarea,
+.report-reason-select {
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   outline: none;
+  background: #fff;
+  color: #333;
 }
 .enquiry-form input:focus,
-.enquiry-form textarea:focus {
+.enquiry-form textarea:focus,
+.report-reason-select:focus {
   border-color: #b8860b;
 }
 .enquiry-form-btns {

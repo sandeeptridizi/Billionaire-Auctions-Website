@@ -33,6 +33,17 @@ import {
 } from '../../lib/products';
 
 
+const categoryKeyToBtnName = {
+  REAL_ESTATE: 'realEstate',
+  CARS: 'cars',
+  BIKES: 'bikes',
+  FURNITURE: 'furniture',
+  JEWELLERY_AND_WATCHES: 'jewellery',
+  ARTS_AND_PAINTINGS: 'arts',
+  ANTIQUES: 'antiques',
+  COLLECTABLES: 'collectables',
+};
+
 const btns = [
   {
     id: 0,
@@ -161,10 +172,18 @@ const BuyNow = () => {
           ? 'CLASSIC'
           : null;
 
+    const matchedCategory = search
+      ? categoryOrder.find((cat) =>
+          formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
+        )
+      : null;
+
     return products.filter((product) => {
       const byTier = normalizedTier ? product.tier === normalizedTier : true;
       const bySearch = search
-        ? product.title.toLowerCase().includes(search.toLowerCase())
+        ? matchedCategory
+          ? product.category === matchedCategory
+          : product.title.toLowerCase().includes(search.toLowerCase())
         : true;
       return byTier && bySearch;
     });
@@ -313,11 +332,14 @@ const BuyNow = () => {
       ) : groupedCategories.length === 0 ? (
         <p style={{ padding: '40px', textAlign: 'center' }}>No products available.</p>
       ) : (
-        groupedCategories.map(([category, items]) => (
+        groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
-            key={category}
-            data={items}
-            name={formatCategoryLabel(category)}
+            key={catKey}
+            data={selectedCategory === 'all' ? items.slice(0, 3) : items}
+            name={formatCategoryLabel(catKey)}
+            totalCount={items.length}
+            showViewAll={selectedCategory === 'all'}
+            onViewAll={() => setSelectedCategory(categoryKeyToBtnName[catKey] || 'others')}
           />
         ))
       )}

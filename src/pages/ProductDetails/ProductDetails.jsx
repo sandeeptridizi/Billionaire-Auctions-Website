@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LuCrown } from "react-icons/lu";
 import { BsPatchCheck } from "react-icons/bs";
-import { getFeaturedProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
+import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
 import { GrLocation } from "react-icons/gr";
@@ -41,30 +41,26 @@ const ProductDetails = () => {
   const [enquiryError, setEnquiryError] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [showShare, setShowShare] = useState(false);
+  const [thumbStart, setThumbStart] = useState(0);
+  const THUMB_VISIBLE = 4;
 
-  const images = product?.media?.slice(1, 5) || [];
+  const prevThumbs = () => setThumbStart((s) => Math.max(0, s - 1));
+  const nextThumbs = (total) => setThumbStart((s) => Math.min(total - THUMB_VISIBLE, s + 1));
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [reportForm, setReportForm] = useState({ visitorName: "", visitorEmail: "", visitorPhone: "", reason: "", details: "" });
+  const [reportSubmitting, setReportSubmitting] = useState(false);
+  const [reportSuccess, setReportSuccess] = useState(false);
+  const [reportError, setReportError] = useState("");
+
+  const images = product?.media || [];
 
   useEffect(() => {
-  if (images.length < 4) {
-  images.push(...images.slice(0, 4 - images.length));
-}
-
-  const interval = setInterval(() => {
-    setActiveIndex((prev) => (prev + 1) % images.length);
-  }, 3000);
-
-  return () => clearInterval(interval);
-}, [images.length]);
-
-  const orderedImages =
-  images.length > 0
-    ? [
-        images[activeIndex],
-        images[(activeIndex + 1) % images.length],
-        images[(activeIndex + 2) % images.length],
-        images[(activeIndex + 3) % images.length],
-      ]
-    : [];
+    if (images.length === 0) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -79,6 +75,23 @@ const ProductDetails = () => {
       setEnquiryError(err.response?.data?.message || "Failed to submit enquiry");
     } finally {
       setEnquirySubmitting(false);
+    }
+  };
+
+  const handleReportSubmit = async (e) => {
+    e.preventDefault();
+    setReportSubmitting(true);
+    setReportError("");
+    try {
+      const message = `[REPORT] Reason: ${reportForm.reason}${reportForm.details ? `. Details: ${reportForm.details}` : ""}`;
+      await submitEnquiry({ productId: id, visitorName: reportForm.visitorName, visitorEmail: reportForm.visitorEmail, visitorPhone: reportForm.visitorPhone, message });
+      setReportSuccess(true);
+      setReportForm({ visitorName: "", visitorEmail: "", visitorPhone: "", reason: "", details: "" });
+      setTimeout(() => { setShowReportForm(false); setReportSuccess(false); }, 2000);
+    } catch (err) {
+      setReportError(err.response?.data?.message || "Failed to submit report");
+    } finally {
+      setReportSubmitting(false);
     }
   };
 
@@ -99,11 +112,11 @@ const ProductDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    if (!product?.category) return;
     const fetchFeatured = async () => {
       try {
-        const list = await getFeaturedProducts();
-        const filtered = list.filter((item) => item.id !== id);
-        setFeatured(filtered);
+        const list = await getPublicProducts({ category: product.category });
+        setFeatured(list.filter((item) => item.id !== id && item.category === product.category));
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("Failed to load featured products", error);
@@ -111,7 +124,7 @@ const ProductDetails = () => {
     };
 
     fetchFeatured();
-  }, [id]);
+  }, [id, product?.category]);
 
   if (loading) {
     return (
@@ -145,7 +158,7 @@ const ProductDetails = () => {
           {/* Main Image */}
           <div className="product-main-image-container">
             <img
-              src={orderedImages[0] ? getFile(orderedImages[0]) : ""}
+              src={images[activeIndex] ? getFile(images[activeIndex]) : ""}
               className="product-main-image"
               alt="product"
             />
@@ -155,16 +168,31 @@ const ProductDetails = () => {
           </div>
 
           {/* Thumbnails */}
-          <div className="product-thumbnails">
-            {images.map((img, index) => (
-              <img
-                key={index}
-                src={getFile(img)}
-                className={`thumbnail ${index === activeIndex ? "active-thumb" : ""}`}
-                onClick={() => setActiveIndex(index)}
-                alt="thumb"
-              />
-            ))}
+          <div className="product-thumbnails-wrapper">
+            <button
+              className="thumb-nav"
+              onClick={prevThumbs}
+              disabled={thumbStart === 0}
+            >&#8249;</button>
+            <div className="product-thumbnails">
+              {images.slice(thumbStart, thumbStart + THUMB_VISIBLE).map((img, i) => {
+                const index = thumbStart + i;
+                return (
+                  <img
+                    key={index}
+                    src={getFile(img)}
+                    className={`thumbnail ${index === activeIndex ? "active-thumb" : ""}`}
+                    onClick={() => setActiveIndex(index)}
+                    alt="thumb"
+                  />
+                );
+              })}
+            </div>
+            <button
+              className="thumb-nav"
+              onClick={() => nextThumbs(images.length)}
+              disabled={thumbStart >= images.length - THUMB_VISIBLE}
+            >&#8250;</button>
           </div>
 
         </div>
@@ -294,9 +322,40 @@ const ProductDetails = () => {
                 </div>
               </div>
             )}
-            <div className="save-container">
+            <div className="save-container" onClick={() => setShowReportForm(true)} style={{ cursor: "pointer" }}>
               <FiFlag /> Report
             </div>
+            {showReportForm && (
+              <div className="enquiry-modal-overlay" onClick={() => setShowReportForm(false)}>
+                <div className="enquiry-modal" onClick={(e) => e.stopPropagation()}>
+                  <h3>Report This Listing</h3>
+                  {reportSuccess ? (
+                    <p className="enquiry-success-msg">Thank you. Your report has been submitted.</p>
+                  ) : (
+                    <form onSubmit={handleReportSubmit} className="enquiry-form">
+                      <input type="text" placeholder="Your Name *" required value={reportForm.visitorName} onChange={(e) => setReportForm({ ...reportForm, visitorName: e.target.value })} />
+                      <input type="email" placeholder="Your Email *" required value={reportForm.visitorEmail} onChange={(e) => setReportForm({ ...reportForm, visitorEmail: e.target.value })} />
+                      <input type="tel" placeholder="Your Phone (optional)" value={reportForm.visitorPhone} onChange={(e) => setReportForm({ ...reportForm, visitorPhone: e.target.value })} />
+                      <select required value={reportForm.reason} onChange={(e) => setReportForm({ ...reportForm, reason: e.target.value })} className="report-reason-select">
+                        <option value="" disabled>Select a reason *</option>
+                        <option value="Fraudulent listing">Fraudulent listing</option>
+                        <option value="Misleading information">Misleading information</option>
+                        <option value="Prohibited item">Prohibited item</option>
+                        <option value="Duplicate listing">Duplicate listing</option>
+                        <option value="Spam">Spam</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <textarea placeholder="Additional details (optional)" rows={3} value={reportForm.details} onChange={(e) => setReportForm({ ...reportForm, details: e.target.value })} />
+                      {reportError && <p className="enquiry-error-msg">{reportError}</p>}
+                      <div className="enquiry-form-btns">
+                        <button type="button" onClick={() => setShowReportForm(false)} className="enquiry-cancel-btn">Cancel</button>
+                        <button type="submit" disabled={reportSubmitting} className="enquiry-submit-btn">{reportSubmitting ? "Submitting..." : "Submit Report"}</button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -412,10 +471,7 @@ const ProductDetails = () => {
       </div>
       <div className="similar-luxury-items-container">
         <div className="similar-luxury-items-header">
-          <h2 className="similar-luxury-items-heading">Similar Luxury Items</h2>
-          <button className="view-all-btn">
-            View All <LuSquareArrowOutUpRight />
-          </button>
+          <h2 className="similar-luxury-items-heading">Similar {formatCategoryLabel(product.category)} Items</h2>
         </div>
         <div className="similar-luxury-items-grid-container">
           {featured.slice(0, 3).map((item) => (

@@ -17,6 +17,7 @@ const RealEstateComponentCard = ({
   location,
   views,
   category,
+  tier,
 }) => {
   const { toggleWishlist, isWishlisted } = useAppContext();
   const wishlisted = isWishlisted(id);
@@ -37,7 +38,7 @@ const RealEstateComponentCard = ({
             <BsPatchCheck className="real-estate-component-icon" /> Verified
           </div>
           <div className="real-estate-luxury-container">
-            <LuCrown /> Luxury
+            <LuCrown /> {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
           </div>
         </div>
         <button

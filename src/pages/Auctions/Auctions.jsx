@@ -22,7 +22,18 @@ import apartment from '../../assets/apartment.jpg';
 import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionCardComponent';
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
-import { getAuctionsProducts, mapProductToCard } from '../../lib/products';
+import { getAuctionsProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
+
+const categoryKeyToBtnName = {
+  REAL_ESTATE: 'realEstate',
+  CARS: 'cars',
+  BIKES: 'bikes',
+  FURNITURE: 'furniture',
+  JEWELLERY_AND_WATCHES: 'jewellery',
+  ARTS_AND_PAINTINGS: 'arts',
+  ANTIQUES: 'antiques',
+  COLLECTABLES: 'collectables',
+};
 
 const btns = [
   {
@@ -134,6 +145,7 @@ const stepsData = [
 
 const Auctions = () => {
   const [selectedBtn, setSelectedBtn] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -157,6 +169,7 @@ const Auctions = () => {
             date: product.meta?.auctionDate || product.meta?.date || '',
             lots: product.meta?.lots || '',
             registered: product.meta?.registered || '',
+            rawCategory: product.category,
           };
         });
         setProducts(mapped);
@@ -184,10 +197,35 @@ const Auctions = () => {
 
   const filteredProducts = useMemo(() => {
     if (!search) return products;
+    const matchedCategory = categoryOrder.find((cat) =>
+      formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
+    );
+    if (matchedCategory) {
+      return products.filter((item) => item.rawCategory === matchedCategory);
+    }
     return products.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase()),
     );
   }, [products, search]);
+
+  const groupedCategories = useMemo(() => {
+    const map = new Map();
+    filteredProducts.forEach((product) => {
+      const key = product.rawCategory || 'OTHERS';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(product);
+    });
+    const entries = Array.from(map.entries()).sort((a, b) => {
+      const aIdx = categoryOrder.indexOf(a[0]);
+      const bIdx = categoryOrder.indexOf(b[0]);
+      return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) - (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
+    });
+    if (selectedCategory !== 'all') {
+      const selected = entries.find(([catKey]) => catKey === selectedCategory);
+      return selected ? [selected] : [];
+    }
+    return entries;
+  }, [filteredProducts, selectedCategory]);
 
   return (
     <div className='buy-now-container'>
@@ -270,13 +308,19 @@ const Auctions = () => {
       <div className='auctions-flex-container'>
         {loading ? (
           <p style={{ padding: '40px', textAlign: 'center' }}>Loading auctions...</p>
-        ) : filteredProducts.length === 0 ? (
+        ) : groupedCategories.length === 0 ? (
           <p style={{ padding: '40px', textAlign: 'center' }}>No auction events available.</p>
         ) : (
-          <AuctionCardComponent
-            data={filteredProducts}
-            name='Auctions'
-          />
+          groupedCategories.map(([catKey, items]) => (
+            <AuctionCardComponent
+              key={catKey}
+              data={selectedCategory === 'all' ? items.slice(0, 3) : items}
+              name={formatCategoryLabel(catKey)}
+              totalCount={items.length}
+              showViewAll={selectedCategory === 'all'}
+              onViewAll={() => setSelectedCategory(catKey)}
+            />
+          ))
         )}
       </div>
       <div className='auctions-steps-main-container'>

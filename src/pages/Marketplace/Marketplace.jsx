@@ -24,9 +24,20 @@ import classicLoading from "../../assets/classic web.mp4";
 import {
   categoryOrder,
   formatCategoryLabel,
-  getPublicProducts,
+  getMarketplaceProducts,
   mapProductToCard,
 } from '../../lib/products';
+
+const categoryKeyToBtnName = {
+  REAL_ESTATE: 'realEstate',
+  CARS: 'cars',
+  BIKES: 'bikes',
+  FURNITURE: 'furniture',
+  JEWELLERY_AND_WATCHES: 'jewellery',
+  ARTS_AND_PAINTINGS: 'arts',
+  ANTIQUES: 'antiques',
+  COLLECTABLES: 'collectables',
+};
 
 const btns = [
   {
@@ -97,7 +108,7 @@ const Marketplace = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const list = await getPublicProducts();
+        const list = await getMarketplaceProducts();
         setProducts(list);
       } catch (error) {
         console.error('Failed to load marketplace products', error);
@@ -128,10 +139,18 @@ const Marketplace = () => {
           ? 'CLASSIC'
           : null;
 
+    const matchedCategory = search
+      ? categoryOrder.find((cat) =>
+          formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
+        )
+      : null;
+
     return products.filter((product) => {
       const byTier = normalizedTier ? product.tier === normalizedTier : true;
       const bySearch = search
-        ? product.title.toLowerCase().includes(search.toLowerCase())
+        ? matchedCategory
+          ? product.category === matchedCategory
+          : product.title.toLowerCase().includes(search.toLowerCase())
         : true;
       return byTier && bySearch;
     });
@@ -276,11 +295,14 @@ const Marketplace = () => {
         </div>
       </div>
       {!loading &&
-        groupedCategories.map(([category, items]) => (
+        groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
-            key={category}
-            data={items}
-            name={formatCategoryLabel(category)}
+            key={catKey}
+            data={selectedCategory === 'all' ? items.slice(0, 3) : items}
+            name={formatCategoryLabel(catKey)}
+            totalCount={items.length}
+            showViewAll={selectedCategory === 'all'}
+            onViewAll={() => setSelectedCategory(categoryKeyToBtnName[catKey] || 'others')}
           />
         ))}
     </div>
