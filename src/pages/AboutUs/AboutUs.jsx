@@ -10,7 +10,10 @@ import { FaArrowTrendUp } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { FiShield } from 'react-icons/fi';
 import { TbHammer } from 'react-icons/tb';
-import { FiAward } from 'react-icons/fi';
+import { AiFillHome } from 'react-icons/ai';
+import { RiHandbagFill } from "react-icons/ri";
+import { RiAuctionFill } from "react-icons/ri";
+import { FaStore } from "react-icons/fa";
 import { BsBoxSeam } from 'react-icons/bs';
 import { FiHeadphones } from 'react-icons/fi';
 import { MdOutlineCalendarToday } from 'react-icons/md';
@@ -108,94 +111,99 @@ const AboutUs = () => {
   return (
     <div className='about-us-container'>
       <div className='about-us-background'>
-        <img src={starIcon} alt='star' className='about-star-icon' />
         <h1 className='about-us-heading'>About Billionaire Auction</h1>
         <p className='about-us-text'>
-          India's premier luxury marketplace connecting discerning buyers with
-          exclusive premium items
+          Billionaire Auction is an all-in-one luxury and classic platform designed to connect buyers and sellers for valuable assets and premium listings. <br></br>The platform brings together Marketplace, Buy Now, Offline Auctions, and To-Let listings in one trusted ecosystem where individuals, dealers, and businesses can list and discover assets with transparency and confidence. <br></br>Our goal is to provide a modern platform where premium assets such as real estate, luxury cars, watches, antiques, collectibles, art, furniture, and other valuable items can be listed, promoted, and connected with serious buyers.
         </p>
-      </div>
-      <div className='about-us-founder-info-container'>
-        <GoPerson className='person-icon' />
-        <h1 className='founder-heading'>Founder Story</h1>
-        <p className='founder-text'>The vision behind Billionaire Auction</p>
-        <div className='about-us-founder-info-grid-container'>
-          <div className='about-us-founder-info-grid-item-one-container'>
-            <div className='founder-background-container'>
-              <div className='founder-info-container'>
-                <h2 className='founder-name'>Sai Venkat Malempati</h2>
-                <p className='founder-desc'>Founder – Billionaire Auction</p>
-              </div>
-            </div>
-            <div className='founder-education-container'>
-              <RiGraduationCapLine className='graduate-icon' />
-              <div className='founder-education-details'>
-                <h3 className='education-heading'>Education</h3>
-                <p className='education-text'>
-                  Bachelor's degree in Computer Science & Engineering and a
-                  Master's degree with advanced research in Data Science and
-                  Analytics.
-                </p>
-              </div>
-            </div>
-            <div className='founder-education-container'>
-              <LuBriefcase className='graduate-icon' />
-              <div className='founder-education-details'>
-                <h3 className='education-heading'>International Experience</h3>
-                <p className='education-text'>
-                  Lived in the United Kingdom for nearly five years, where he
-                  studied, worked with multiple companies, and gained practical
-                  experience in technology, analytics, operations, and digital
-                  platforms.
-                </p>
-              </div>
-            </div>
+        <div className='aboutusherobanner'>
+          <div className='aboutusherocontainer'>
+            <FaStore className='aboutusnavlogo' />
+            <h2>Marketplace</h2>
+            <p>List your items and connect directly with interested buyers. Sellers receive enquiries and manage leads through the platform.</p>
           </div>
-          <div className='about-us-founder-info-grid-item-two-container'>
-            <div className='journey-container'>
-              <h3 className='journey-heading'>The Journey</h3>
-              <p className='journey-text'>
-                After working across different roles and industries, he decided
-                to build something of his own — a platform that combines
-                technology, trust, and exclusivity.
-              </p>
-            </div>
-            <div className='vision-container'>
-              <h3 className='vision-heading'>The Vision</h3>
-              <div className='vision-quote'>
-                "The motivation behind Billionaire Auction comes from a strong
-                belief that luxury and classic assets deserve a dedicated,
-                premium ecosystem, rather than being scattered across general
-                listing platforms."
-              </div>
-              <div className='vision-author'>— Sai Venkat Malempati</div>
-            </div>
-            <div className='building-container'>
-              <h3 className='building-heading'>Building Billionaire Auction</h3>
-              <p className='building-text'>
-                Founded in 2020, Billionaire Auction was born from a vision to
-                create India's most trusted platform for luxury transactions. We
-                recognized the need for a secure, transparent marketplace where
-                high-net-worth individuals could buy and sell premium items with
-                confidence.
-              </p>
-              <p className='building-desc'>
-                Today, we've grown to become the leading luxury marketplace in
-                India, facilitating transactions worth over ₹5000 Crores
-                annually and serving more than 50,000 satisfied clients across
-                the country.
-              </p>
-            </div>
+          <div className='aboutusherocontainer'>
+            <RiHandbagFill className='aboutusnavlogo' />
+            <h2>Buy Now</h2>
+            <p>Buyers submit enquiries through the platform, and Billionaire Auction assists in coordinating communication between buyers and sellers. Transactions are completed offline.</p>
+          </div>
+          <div className='aboutusherocontainer'>
+            <RiAuctionFill className='aboutusnavlogo' />
+            <h2>Auctions</h2>
+            <p>Showcase items for upcoming offline auctions. Bidders can register and participate in competitive bidding at scheduled auction events.</p>
+          </div>
+          <div className='aboutusherocontainer'>
+            <AiFillHome className='aboutusnavlogo' />
+            <h2>To-Let</h2>
+            <p>List residential or commercial properties for rent and receive enquiries from potential tenants through the platform.</p>
           </div>
         </div>
       </div>
+      <div className='about-us-founder-info-grid-container'>
+
+        {/* LEFT SIDE - STICKY */}
+        <div className='about-us-founder-left'>
+          <div className='founder-background-container'>
+            <div className='founder-info-container'>
+              <h2 className='founder-name'>Sai Venkat Malempati</h2>
+              <p className='founder-desc'>Founder – Billionaire Auction</p>
+            </div>
+          </div>
+        </div>
+
+        <div className='about-us-founder-right'>
+        <div className='about-us-founder-info-grid-item-two-container'>
+
+          <div className='founder-education-container'>
+            <RiGraduationCapLine className='graduate-icon' />
+            <div className='founder-education-details'>
+              <h3 className='education-heading'>Education</h3>
+              <p className='education-text'>
+                Bachelor's degree in Computer Science & Engineering and a
+                Master's degree with advanced research in Data Science and
+                Analytics.
+              </p>
+            </div>
+          </div>
+
+          <div className='founder-education-container'>
+            <LuBriefcase className='graduate-icon' />
+            <div className='founder-education-details'>
+              <h3 className='education-heading'>International Experience</h3>
+              <p className='education-text'>
+                Lived in the United Kingdom for nearly five years, where he
+                studied, worked with multiple companies, and gained practical
+                experience in technology, analytics, operations, and digital
+                platforms.
+              </p>
+            </div>
+          </div>
+
+          <div className='journey-container'>
+            <h3 className='journey-heading'>The Journey</h3>
+            <p className='journey-text'>
+              After working across different roles and industries, he decided
+              to build something of his own, a platform that combines
+              technology, trust, and exclusivity.
+            </p>
+          </div>
+
+          <div className='vision-container'>
+            <h3 className='vision-heading'>The Vision</h3>
+            <div className='vision-quote'>
+              "The motivation behind Billionaire Auction comes from a strong
+              belief that luxury and classic assets deserve a dedicated,
+              premium ecosystem."
+            </div>
+            <div className='vision-author'>— Sai Venkat Malempati</div>
+          </div>
+        </div>
+        </div>
+      </div>
+
       <div className='about-us-billionaire-auction-container'>
-        <div className='billionaire-auction-header'>
-          <img src={starIcon} alt='star icon' className='about-star-icon' />
           <h2 className='billionaire-heading'>
             Why the Name "Billionaire Auction"?
           </h2>
-        </div>
         <div className='billionaire-auction-container'>
           <p className='billionaire-auction-text'>
             The name <span>Billionaire Auction</span> was chosen intentionally.
@@ -227,21 +235,24 @@ const AboutUs = () => {
       </div>
       <div className='why-choose-section'>
         <div className='why-choose-header'>
-          <FiAward className='award-icon' />
           <h1 className='why-choose-heading'>Why Choose Billionaire Auction</h1>
           <p className='why-choose-text'>The advantages that set us apart</p>
         </div>
-        <div className='why-choose-grid-container'>
-          {data.map((item) => {
+        <div className="why-choose-slider">
+        <div className="why-choose-slider-track">
+
+          {[...data, ...data, ...data].map((item, index) => {
             const { id, icon, title, text } = item;
+
             return (
-              <div className='why-choose-grid-item-container' key={id}>
-                <div className='why-choose-item-icon-container'>{icon}</div>
-                <h3 className='why-choose-item-title'>{title}</h3>
-                <p className='why-choose-item-text'>{text}</p>
+              <div className="why-choose-grid-item-container" key={index}>
+                <div className="why-choose-item-icon-container">{icon}</div>
+                <h3 className="why-choose-item-title">{title}</h3>
+                <p className="why-choose-item-text">{text}</p>
               </div>
             );
           })}
+
         </div>
       </div>
       <div className='future-roadmap-container'>
@@ -282,7 +293,7 @@ const AboutUs = () => {
               <div className='location-icon-container'>
                 <GrLocation />
               </div>
-              <h3 className='location-name'>Mumbai</h3>
+              <h3 className='location-name'>Bangalore</h3>
             </div>
             <p className='offline-luxury-auctions-desc'>
               These auctions will be professionally curated and targeted at
@@ -341,23 +352,23 @@ const AboutUs = () => {
             </p>
             <div className='offline-location-container'>
               <FaArrowRight className='right-icon' />
-              <h3 className='location-name'>Hyderabad</h3>
+              <h3 className='location-name'>USA</h3>
             </div>
             <div className='offline-location-container'>
               <FaArrowRight className='right-icon' />
-              <h3 className='location-name'>Mumbai</h3>
+              <h3 className='location-name'>Canada</h3>
             </div>
             <div className='offline-location-container'>
               <FaArrowRight className='right-icon' />
-              <h3 className='location-name'>Mumbai</h3>
+              <h3 className='location-name'>Australia</h3>
             </div>
             <div className='offline-location-container'>
               <FaArrowRight className='right-icon' />
-              <h3 className='location-name'>Mumbai</h3>
+              <h3 className='location-name'>London</h3>
             </div>
             <div className='offline-location-container'>
               <FaArrowRight className='right-icon' />
-              <h3 className='location-name'>Mumbai</h3>
+              <h3 className='location-name'>Dubai</h3>
             </div>
             <div className='offline-luxury-auctions-desc-container'>
               global luxury auction and marketplace brand, starting from India
@@ -365,6 +376,7 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

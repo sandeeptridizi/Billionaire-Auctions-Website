@@ -1,6 +1,11 @@
 import './OurPartners.css';
 
-import { GoPeople } from 'react-icons/go';
+import { LuBuilding } from 'react-icons/lu';
+import { FiHome } from 'react-icons/fi';
+import { LuBanknote } from 'react-icons/lu';
+import { RiBankLine } from 'react-icons/ri';
+import { LiaBalanceScaleSolid } from 'react-icons/lia';
+import { GrPowerCycle } from 'react-icons/gr';
 import { FiCheckCircle } from 'react-icons/fi';
 import { FiGlobe } from 'react-icons/fi';
 import { FiAward } from 'react-icons/fi';
@@ -10,6 +15,81 @@ import { FaArrowRight } from 'react-icons/fa6';
 import justice from '../../assets/justice.png';
 import bank from '../../assets/bank.png';
 import star from '../../assets/star.png';
+
+const services = [
+  {
+    id: 1,
+    icon: <LuBuilding />,
+    title: 'Real Estate Investments',
+    text: 'Expert guidance on luxury real estate investment opportunities across India',
+    points: [
+      'Investment Advisory',
+      'Market Analysis',
+      'Portfolio Management',
+      'ROI Optimization',
+    ],
+  },
+  {
+    id: 2,
+    icon: <FiHome />,
+    title: 'Sale of Properties in India',
+    text: 'Complete support for buying and selling premium properties in India',
+    points: [
+      'Property Listings',
+      'Buyer Matching',
+      'Negotiation Support',
+      'Transaction Management',
+    ],
+  },
+  {
+    id: 3,
+    icon: <LuBanknote />,
+    title: 'Banking & Loans',
+    text: 'Comprehensive banking solutions and loan facilitation for property purchases',
+    points: [
+      'Home Loan Assistance',
+      'Competitive Interest Rates',
+      'Quick Approvals',
+      'Financial Planning',
+    ],
+  },
+  {
+    id: 4,
+    icon: <RiBankLine />,
+    title: 'NRI/NRO Accounts',
+    text: 'Specialized banking services for Non-Resident Indians',
+    points: [
+      'Account Opening Support',
+      'Repatriation Guidance',
+      'Tax Compliance',
+      'Investment Options',
+    ],
+  },
+  {
+    id: 5,
+    icon: <LiaBalanceScaleSolid />,
+    title: 'Legal Services',
+    text: 'Complete legal support for property transactions and compliance',
+    points: [
+      'Title Verification',
+      'Sale Deed Preparation',
+      'Legal Documentation',
+      'Dispute Resolution',
+    ],
+  },
+  {
+    id: 6,
+    icon: <GrPowerCycle />,
+    title: 'Funds Repatriation',
+    text: 'Seamless fund transfer and repatriation services for NRIs',
+    points: [
+      'FEMA Compliance',
+      'RBI Guidelines',
+      'Swift Transfers',
+      'Tax Documentation',
+    ],
+  },
+];
 
 const OurPartners = () => {
   return (
@@ -89,6 +169,28 @@ const OurPartners = () => {
               allowFullScreen
             ></iframe>
           </div>
+        </div>
+      <div className='our-services-offer-grid-container1'>
+          {services.map((item) => {
+            const { id, icon, title, text, points } = item;
+            return (
+              <div className='our-services-grid-item-container' key={id}>
+                <div className='our-services-grid-item-icon-container'>
+                  {icon}
+                </div>
+                <h3 className='our-services-grid-item-title'>{title}</h3>
+                <p className='our-services-grid-item-text'>{text}</p>
+                <div className='our-services-points-container'>
+                  {points.map((point, index) => (
+                    <div className='our-services-point-container' key={index}>
+                      <div className='our-services-circle'></div>
+                      {point}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       <div className='learn-more-about-partners-container'>
         <div className='learn-more-about-partners-child-container'>

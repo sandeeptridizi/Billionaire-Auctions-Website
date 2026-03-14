@@ -21,6 +21,14 @@
   align-items: center;
 }
 
+.our-services-offer-grid-container1 {
+  width: 100%;
+  display: grid;
+  padding: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
 .video-showcase-container {
   width: 100%;
   padding: 10px 68px;

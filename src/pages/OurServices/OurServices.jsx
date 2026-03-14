@@ -1,11 +1,13 @@
 import './OurServices.css';
 
 import { LuBuilding } from 'react-icons/lu';
-import { FiHome } from 'react-icons/fi';
+import { IoDocumentTextSharp } from "react-icons/io5";
 import { LuBanknote } from 'react-icons/lu';
-import { RiBankLine } from 'react-icons/ri';
-import { LiaBalanceScaleSolid } from 'react-icons/lia';
-import { GrPowerCycle } from 'react-icons/gr';
+import { MdCurtainsClosed } from "react-icons/md";
+import { BsFillBuildingsFill } from "react-icons/bs";
+import { RiAuctionFill } from "react-icons/ri";
+import { BsBuildingCheck } from "react-icons/bs";
+import { FaTruckMoving } from "react-icons/fa";
 import { GoPerson } from 'react-icons/go';
 import { LuBriefcase } from 'react-icons/lu';
 
@@ -13,75 +15,52 @@ const services = [
   {
     id: 1,
     icon: <LuBuilding />,
-    title: 'Real Estate Investments',
-    text: 'Expert guidance on luxury real estate investment opportunities across India',
-    points: [
-      'Investment Advisory',
-      'Market Analysis',
-      'Portfolio Management',
-      'ROI Optimization',
-    ],
+    title: 'Real Estate Advisory',
+    text: 'Strategic guidance for buying, selling, renting, and auctioning high-value properties and assets, including pricing and deal structuring.',
   },
   {
     id: 2,
-    icon: <FiHome />,
-    title: 'Sale of Properties in India',
-    text: 'Complete support for buying and selling premium properties in India',
-    points: [
-      'Property Listings',
-      'Buyer Matching',
-      'Negotiation Support',
-      'Transaction Management',
-    ],
+    icon: <LuBanknote />,
+    title: 'Banking & Financial Services',
+    text: 'Home loans, mortgage support, auction funding, escrow services, EMI assistance, and HNI banking coordination.',
   },
   {
     id: 3,
-    icon: <LuBanknote />,
-    title: 'Banking & Loans',
-    text: 'Comprehensive banking solutions and loan facilitation for property purchases',
-    points: [
-      'Home Loan Assistance',
-      'Competitive Interest Rates',
-      'Quick Approvals',
-      'Financial Planning',
-    ],
+    icon: <IoDocumentTextSharp />,
+    title: 'Legal & Documentation Services',
+    text: 'Title verification, agreements, due diligence, auction legal compliance, registrations, and dispute support.',
   },
   {
     id: 4,
-    icon: <RiBankLine />,
-    title: 'NRI/NRO Accounts',
-    text: 'Specialized banking services for Non-Resident Indians',
-    points: [
-      'Account Opening Support',
-      'Repatriation Guidance',
-      'Tax Compliance',
-      'Investment Options',
-    ],
+    icon: <MdCurtainsClosed />,
+    title: 'Interior Designing Services',
+    text: 'Luxury interiors, turnkey execution, villa & apartment interiors, staging services to increase asset value and buyer appeal.',
   },
   {
     id: 5,
-    icon: <LiaBalanceScaleSolid />,
-    title: 'Legal Services',
-    text: 'Complete legal support for property transactions and compliance',
-    points: [
-      'Title Verification',
-      'Sale Deed Preparation',
-      'Legal Documentation',
-      'Dispute Resolution',
-    ],
+    icon: <BsFillBuildingsFill />,
+    title: 'Property Management Services',
+    text: 'End-to-end property management including tenant handling, rent collection, maintenance, handover, and NRI property care.',
   },
   {
     id: 6,
-    icon: <GrPowerCycle />,
-    title: 'Funds Repatriation',
-    text: 'Seamless fund transfer and repatriation services for NRIs',
-    points: [
-      'FEMA Compliance',
-      'RBI Guidelines',
-      'Swift Transfers',
-      'Tax Documentation',
-    ],
+    icon: <RiAuctionFill />,
+    title: 'Auction Concierge Services',
+    text: 'White-glove support for auction buyers & sellers: onboarding, reserve pricing, bidder coordination, venue support, and post-auction closure.',
   },
+  {
+    id: 7,
+    icon: <FaTruckMoving />,
+    title: 'Logistics & Transportation Services',
+    text: 'Secure transport for luxury cars, art, antiques, furniture, collectibles, and relocation of high-value assets.',
+  },
+  {
+    id: 8,
+    icon: <BsBuildingCheck />,
+    title: 'Property Valuation & Appraisal',
+    text: 'Market valuation, auction reserve pricing, bank-approved valuation reports, and luxury asset appraisal.',
+  },
+
 ];
 
 const OurServices = () => {
@@ -103,7 +82,7 @@ const OurServices = () => {
         </div>
         <div className='our-services-offer-grid-container'>
           {services.map((item) => {
-            const { id, icon, title, text, points } = item;
+            const { id, icon, title, text } = item;
             return (
               <div className='our-services-grid-item-container' key={id}>
                 <div className='our-services-grid-item-icon-container'>
@@ -111,78 +90,9 @@ const OurServices = () => {
                 </div>
                 <h3 className='our-services-grid-item-title'>{title}</h3>
                 <p className='our-services-grid-item-text'>{text}</p>
-                <div className='our-services-points-container'>
-                  {points.map((point, index) => (
-                    <div className='our-services-point-container' key={index}>
-                      <div className='our-services-circle'></div>
-                      {point}
-                    </div>
-                  ))}
-                </div>
               </div>
             );
           })}
-        </div>
-      </div>
-      <div className='our-services-committe-container'>
-        <div className='committe-header'>
-          <h2 className='committe-heading'>Our Advisory Committee</h2>
-          <p className='committe-text'>
-            Experienced professionals dedicated to your success
-          </p>
-        </div>
-        <div className='committe-grid-container'>
-          <div className='committe-grid-item-container'>
-            <div className='committe-tag-container'>
-              Banking & Loan Advisory
-            </div>
-            <h3 className='committe-member'>Ramesh Seethala</h3>
-            <p className='committe-position'>Founder & CEO - NRI Bhooseva</p>
-            <p className='committe-text'>(Retired Chief Bank Manager)</p>
-            <div className='committe-list-container'>
-              <p className='committe-item-title'>Expert guidance on: </p>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Home loans
-              </div>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Property-related banking
-                support
-              </div>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Financial compliance for
-                NRI
-              </div>
-            </div>
-            <button className='committe-btn'>
-              <GoPerson /> Consult with Ramesh
-            </button>
-          </div>
-          <div className='committe-grid-item-container'>
-            <div className='committe-tag-container'>Legal Advisory</div>
-            <h3 className='committe-member'>Jaya Subba Reddy Konda</h3>
-            <p className='committe-position'>Head - Legal Team</p>
-            <p className='committe-text'>
-              Expert in property law and transactions
-            </p>
-            <div className='committe-list-container'>
-              <p className='committe-item-title'>Expert guidance on: </p>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Property title
-                verification
-              </div>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Sale deed & agreements
-                support
-              </div>
-              <div className='committe-list-item-container'>
-                <div className='committe-circle'></div> Legal compliance for
-                property transactions
-              </div>
-            </div>
-            <button className='committe-btn'>
-              <GoPerson /> Consult with Jaya
-            </button>
-          </div>
         </div>
       </div>
       <div className='our-services-personalized-container'>

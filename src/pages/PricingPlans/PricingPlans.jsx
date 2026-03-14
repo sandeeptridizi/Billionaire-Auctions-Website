@@ -1,4 +1,5 @@
 import './PricingPlans.css';
+import { useState, useEffect, useRef } from "react";
 
 import { LuStar } from 'react-icons/lu';
 import { LuCrown } from 'react-icons/lu';
@@ -34,7 +35,113 @@ const advertisementData = [
   },
 ];
 
+const packagesData = [
+  {
+    id: 1,
+    duration: "1 week",
+    price: "2,500",
+  },
+  {
+    id: 2,
+    duration: "2 weeks",
+    price: "4,500",
+  },
+  {
+    id: 3,
+    duration: "1 month",
+    price: "8,000",
+  },
+];
+
+const enterprisePlans = [
+  {
+    id: 1,
+    name: "Enterprise Starter",
+    price: "14,999",
+    listings: "Custom",
+    featured: "2 / Month",
+    recommended: "2 / Month",
+    leads: "40 Leads",
+    support: "Priority"
+  },
+  {
+    id: 2,
+    name: "Enterprise Growth",
+    price: "30,000",
+    listings: "35 Listings",
+    featured: "3 / Month",
+    recommended: "3 / Month",
+    leads: "60 Leads",
+    support: "Priority"
+  },
+  {
+    id: 3,
+    name: "Enterprise Pro",
+    price: "50,000",
+    listings: "60 Listings",
+    featured: "4 / Month",
+    recommended: "4 / Month",
+    leads: "70 Leads",
+    support: "Priority"
+  },
+  {
+    id: 4,
+    name: "Enterprise Elite",
+    price: "1,00,000",
+    listings: "Unlimited Listings",
+    featured: "5 / Month",
+    recommended: "5 / Month",
+    leads: "Unlimited Leads",
+    support: "Dedicated Support"
+  }
+];
+
+const leadsData = [
+  { id: 0, leads: "10", plan: "Basic", price: "Free", free: true },
+  { id: 1, leads: "20", plan: "Extra", price: "299" },
+  { id: 2, leads: "30", plan: "Plus", price: "499" },
+  { id: 3, leads: "50+", plan: "Premium", price: "999" }
+];
+
 const PricingPlans = () => {
+
+  const [selectedAd, setSelectedAd] = useState(advertisementData[0]);
+  const [selectedPackage, setSelectedPackage] = useState(packagesData[0]);
+  const [selectedEnterprise, setSelectedEnterprise] = useState(enterprisePlans[0]);
+  const [step, setStep] = useState(0);
+  const selectedPlan = leadsData[step];
+
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    const container = sliderRef.current;
+    const cards = container.querySelectorAll(
+      ".pricing-page-grid-item-container, .pricing-page-grid-item-two-container"
+    );
+
+    const handleScroll = () => {
+      const center = container.offsetWidth / 2;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(center - cardCenter);
+
+        if (distance < 120) {
+          card.style.transform = "scale(1)";
+        } else {
+          card.style.transform = "scale(0.9)";
+        }
+      });
+    };
+
+    container.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className='pricing-page-container'>
       <div className='pricing-page-background'>
@@ -48,7 +155,7 @@ const PricingPlans = () => {
         </p>
       </div>
       <div className='pricing-page-plans-container'>
-        <div className='pricing-page-grid-container'>
+        <div className='pricing-page-grid-container' ref={sliderRef}>
           <div className='pricing-page-grid-item-container'>
             <div className='pricing-page-header'>
               <LuStar className='pricing-star-icon' />
@@ -186,159 +293,174 @@ const PricingPlans = () => {
             <div className='most-poplular-container'>MOST POPULAR</div>
           </div>
           <div className='pricing-page-grid-item-container'>
+            <div className="enterprise-options">
+              {enterprisePlans.map((plan) => (
+                <label key={plan.id} className="enterprise-option">
+                  <input
+                    type="radio"
+                    name="enterprisePlan"
+                    checked={selectedEnterprise.id === plan.id}
+                    onChange={() => setSelectedEnterprise(plan)}
+                  />
+                  {plan.name}
+                </label>
+              ))}
+            </div>
             <div className='pricing-page-header'>
               <LuShield className='pricing-star-icon' />
-              <h3 className='pricing-heading'>Enterprise</h3>
+              <h3 className='pricing-heading'>
+                {selectedEnterprise.name}
+              </h3>
               <h3 className='plan-price'>
-                <BsCurrencyRupee /> 14,999
+                <BsCurrencyRupee /> {selectedEnterprise.price}
               </h3>
               <p className='pricing-text'>+ GST</p>
             </div>
             <div className='pricing-page-list-container'>
               <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>Till Sep 1, 2026</p>
-                <span className='pricing-time'>Unlimited</span>
-              </div>
-              <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>Till Mar 1, 2027</p>
-                <span className='pricing-time'>3 / Month</span>
-              </div>
-              <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>After Mar 1, 2027</p>
-                <span className='pricing-time'>20 / Month</span>
+                <p className='pricing-date'>Listings / Month</p>
+                <span className='pricing-time'>
+                  {selectedEnterprise.listings}
+                </span>
               </div>
               <div className='pricing-page-list-item-container'>
                 <p className='pricing-date'>Featured Listings</p>
-                <span className='pricing-time'>5 Listings</span>
+                <span className='pricing-time'>
+                  {selectedEnterprise.featured}
+                </span>
               </div>
               <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>Recommended</p>
-                <span className='pricing-time'>3 Listings</span>
+                <p className='pricing-date'>Recommended Listings</p>
+                <span className='pricing-time'>
+                  {selectedEnterprise.recommended}
+                </span>
               </div>
               <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>Search Visibility</p>
-                <span className='pricing-time'>Maximum</span>
-              </div>
-              <div className='pricing-page-list-item-container'>
-                <p className='pricing-date'>Leads</p>
-                <span className='pricing-time'>40 / listing</span>
+                <p className='pricing-date'>Leads Provided</p>
+                <span className='pricing-time'>
+                  {selectedEnterprise.leads}
+                </span>
               </div>
               <div className='pricing-page-list-item-container'>
                 <p className='pricing-date'>Support</p>
-                <span className='pricing-time'>Priority Line</span>
+                <span className='pricing-time'>
+                  {selectedEnterprise.support}
+                </span>
               </div>
             </div>
+
             <button className='pricing-btn'>Get Started</button>
+
           </div>
+
         </div>
       </div>
-      <div className='website-advertising-container'>
-        <div className='website-advertising-header'>
-          <HiOutlineSpeakerphone className='speaker-icon' />
-          <h2 className='website-advertising-heading'>
-            Website Advertising & Banners
-          </h2>
-          <p className='website-advertising-text'>
-            Maximize your brand visibility with premium advertising placements
-          </p>
-          <p className='website-advertising-desc'>
-            * 4 Ads for each category banner, uploadable through super admin
-            panel
-          </p>
-        </div>
-        <div className='website-advertising-grid-container'>
-          {advertisementData.map((item) => {
-            const { id, icon, title, cost } = item;
-            return (
-              <div className='website-grid-item-container' key={id}>
-                <div className='website-grid-item-icon-container'>{icon}</div>
-                <h3 className='website-grid-item-title'>{title}</h3>
-                <h2 className='website-grid-item-cost'>
-                  <MdCurrencyRupee />
-                  {cost}
-                </h2>
-                <p className='month'>/ month + GST</p>
-                <button className='book-now-btn'>Book Now</button>
+      <div className="pricing-options-flex">
+        <div className='website-advertising-container'>
+          <div className='website-advertising-header'>
+            <HiOutlineSpeakerphone className='speaker-icon' />
+            <h2 className='website-advertising-heading'>
+              Website Advertising & Banners
+            </h2>
+            <p className='website-advertising-text'>
+              Maximize your brand visibility with premium advertising placements
+            </p>
+            <p className='website-advertising-desc'>
+              * 4 Ads for each category banner, uploadable through super admin panel
+            </p>
+          </div>
+
+          <div className="website-advertising-selector">
+            <div className="ad-options">
+              {advertisementData.map((item) => (
+                <label key={item.id} className="ad-option">
+                  <input
+                    type="radio"
+                    name="advertisement"
+                    checked={selectedAd.id === item.id}
+                    onChange={() => setSelectedAd(item)}
+                  />
+                  {item.title}
+                </label>
+              ))}
+            </div>
+
+            <div className="website-grid-item-container">
+              <div className="website-grid-item-icon-container">
+                {selectedAd.icon}
               </div>
-            );
-          })}
+
+              <h3 className="website-grid-item-title">{selectedAd.title}</h3>
+
+              <h2 className="website-grid-item-cost">
+                <MdCurrencyRupee />
+                {selectedAd.cost}
+              </h2>
+
+              <p className="month">/ month + GST</p>
+
+              <button className="book-now-btn">Book Now</button>
+            </div>
+          </div>
         </div>
+
+
+        <div className='packages-container'>
+          <div className='packages-header'>
+            <FiAward className='packages-award-icon' />
+            <h2 className='packages-heading'>Featured Listing Packages</h2>
+            <p className='packages-text'>
+              Get 10x visibility and more leads with priority placement across
+              relevant sections
+            </p>
+          </div>
+
+          <div className="packages-selector">
+            <div className="package-options">
+              {packagesData.map((item) => (
+                <label key={item.id} className="package-option">
+                  <input
+                    type="radio"
+                    name="package"
+                    checked={selectedPackage.id === item.id}
+                    onChange={() => setSelectedPackage(item)}
+                  />
+                  {item.duration}
+                </label>
+              ))}
+            </div>
+
+            <div className="packages-grid-item-container">
+              <div className="number-container">{selectedPackage.id}</div>
+
+              <h3 className="package-item-heading">{selectedPackage.duration}</h3>
+
+              <h2 className="package-price">
+                <MdCurrencyRupee />
+                {selectedPackage.price}
+              </h2>
+
+              <p className="gst">+ GST</p>
+
+              <div className="package-list-container">
+                <div className="package-item-container">
+                  <FaCheck className="package-check-icon" /> Priority Placement
+                </div>
+                <div className="package-item-container">
+                  <FaCheck className="package-check-icon" /> 10x More Visibility
+                </div>
+                <div className="package-item-container">
+                  <FaCheck className="package-check-icon" /> More Leads
+                </div>
+              </div>
+
+              <button className="select-package-btn">Select Package</button>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div className='packages-container'>
-        <div className='packages-header'>
-          <FiAward className='packages-award-icon' />
-          <h2 className='packages-heading'>Featured Listing Packages</h2>
-          <p className='packages-text'>
-            Get 10x visibility and more leads with priority placement across
-            relevant sections
-          </p>
-        </div>
-        <div className='packages-grid-container'>
-          <div className='packages-grid-item-container'>
-            <div className='number-container'>1</div>
-            <h3 className='package-item-heading'>1 week</h3>
-            <h2 className='package-price'>
-              <MdCurrencyRupee />
-              2,500
-            </h2>
-            <p className='gst'>+ GST</p>
-            <div className='package-list-container'>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> Priority Placement
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> 10x More Visibility
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> More Leads
-              </div>
-            </div>
-            <button className='select-package-btn'>Select Package</button>
-          </div>
-          <div className='packages-grid-item-container'>
-            <div className='number-container'>2</div>
-            <h3 className='package-item-heading'>2 weeks</h3>
-            <h2 className='package-price'>
-              <MdCurrencyRupee />
-              4,500
-            </h2>
-            <p className='gst'>+ GST</p>
-            <div className='package-list-container'>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> Priority Placement
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> 10x More Visibility
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> More Leads
-              </div>
-            </div>
-            <button className='select-package-btn'>Select Package</button>
-          </div>
-          <div className='packages-grid-item-container'>
-            <div className='number-container'>3</div>
-            <h3 className='package-item-heading'>1 month</h3>
-            <h2 className='package-price'>
-              <MdCurrencyRupee />
-              8,000
-            </h2>
-            <p className='gst'>+ GST</p>
-            <div className='package-list-container'>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> Priority Placement
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> 10x More Visibility
-              </div>
-              <div className='package-item-container'>
-                <FaCheck className='package-check-icon' /> More Leads
-              </div>
-            </div>
-            <button className='select-package-btn'>Select Package</button>
-          </div>
-        </div>
-      </div>
+
       <div className='leads-container'>
         <div className='packages-header'>
           <GoPeople className='packages-award-icon' />
@@ -347,45 +469,61 @@ const PricingPlans = () => {
             Need more leads? Purchase additional contact unlocks
           </p>
         </div>
-        <div className='leads-grid-container'>
-          <div className='leads-grid-item-one-container'>
-            <div className='free-container'>FREE</div>
-            <p className='plan'>Basic</p>
-            <h3 className='leads-heading'>10 Leads</h3>
-            <h2 className='leads-cost'>Free</h2>
-            <button className='included-btn'>Included</button>
+        <div className="leads-selector-container">  
+          <div className="slider-wrapper">
+
+            <input
+              type="range"
+              min="0"
+              max="3"
+              step="1"
+              value={step}
+              onChange={(e) => setStep(Number(e.target.value))}
+              className="leads-slider"
+            />
+
+            <div className="slider-labels">
+              {leadsData.map((item, index) => (
+                <span
+                  key={item.id}
+                  className={index === step ? "slider-label active" : "slider-label"}
+                >
+                  {item.leads}
+                </span>
+              ))}
+            </div>
+
           </div>
-          <div className='leads-grid-item-container'>
-            <p className='plan'>Extra</p>
-            <h3 className='leads-heading'>10 Leads</h3>
-            <h2 className='leads-item-cost'>
-              <MdCurrencyRupee />
-              299
+
+          {/* Plan Card */}
+          <div className="leads-card">
+
+            {selectedPlan.free && (
+              <div className="free-container">FREE</div>
+            )}
+
+            <p className="plan">{selectedPlan.plan}</p>
+
+            <h3 className="leads-heading">
+              {selectedPlan.leads} Leads
+            </h3>
+
+            <h2 className="leads-cost">
+              {selectedPlan.price === "Free"
+                ? "Free"
+                : <>
+                    <MdCurrencyRupee /> {selectedPlan.price}
+                  </>
+              } {!selectedPlan.free && <p className="leads-gst">+ GST</p>}
             </h2>
-            <p className='leads-gst'>+ GST</p>
-            <button className='leads-purchase-btn'>Purchase</button>
+            <button className="leads-purchase-btn">
+              {selectedPlan.free ? "Included" : "Purchase"}
+            </button>
+
           </div>
-          <div className='leads-grid-item-container'>
-            <p className='plan'>Plus</p>
-            <h3 className='leads-heading'>29 Leads</h3>
-            <h2 className='leads-item-cost'>
-              <MdCurrencyRupee />
-              499
-            </h2>
-            <p className='leads-gst'>+ GST</p>
-            <button className='leads-purchase-btn'>Purchase</button>
-          </div>
-          <div className='leads-grid-item-container'>
-            <p className='plan'>Premium</p>
-            <h3 className='leads-heading'>50+ Leads</h3>
-            <h2 className='leads-item-cost'>
-              <MdCurrencyRupee />
-              999
-            </h2>
-            <p className='leads-gst'>+ GST</p>
-            <button className='leads-purchase-btn'>Purchase</button>
-          </div>
+
         </div>
+
       </div>
       <div className='digital-media-container'>
         <div className='digital-media-icon-content-container'>
