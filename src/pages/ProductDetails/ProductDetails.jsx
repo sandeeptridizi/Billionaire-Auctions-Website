@@ -294,11 +294,11 @@ const ProductDetails = () => {
                     </a>
 
                     <a
-                      href={`https://twitter.com/intent/tweet?url=${window.location.href}`}
+                      href="https://www.instagram.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Twitter
+                      Instagram
                     </a>
 
                     <button

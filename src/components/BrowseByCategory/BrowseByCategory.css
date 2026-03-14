@@ -46,6 +46,13 @@
   gap: 12px;
 }
 
+.browse-category-icon-container:hover {
+  transform: scale(1.15); 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background-color: none;
+}
+
 .browse-category-icon-container {
   width: 80px;
   height: 80px;
@@ -60,6 +67,7 @@
   font-size: 40px;
   color: rgba(74, 85, 101, 1);
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .category-active-btn {

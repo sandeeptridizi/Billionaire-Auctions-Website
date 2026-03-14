@@ -90,6 +90,7 @@ const OurServices = () => {
                 </div>
                 <h3 className='our-services-grid-item-title'>{title}</h3>
                 <p className='our-services-grid-item-text'>{text}</p>
+                <button className='our-services-grid-item-btn'>Enquire Now</button>
               </div>
             );
           })}

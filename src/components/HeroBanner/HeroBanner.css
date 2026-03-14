@@ -22,14 +22,7 @@
 
 /* BANNER IMAGE 1 */
 .hero-slide1 {
-  background:
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,0.8),
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.2)
-    ),
-    url("../../assets/ba-hero-banner.png");
+  background: url("../../assets/ba-hero-banner.png");
     background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,14 +30,7 @@
 
 /* BANNER IMAGE 2 */
 .hero-slide2 {
-  background:
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,0.8),
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.2)
-    ),
-    url("../../assets/ba-hero-banner-2.jpeg");
+  background:url("../../assets/ba-hero-banner-2.jpeg");
     background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
