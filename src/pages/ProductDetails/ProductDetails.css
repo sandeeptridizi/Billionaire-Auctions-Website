@@ -479,6 +479,16 @@
   font-weight: 400;
   line-height: 20px;
   color: rgba(74, 85, 101, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-field-icon {
+  width: 16px;
+  height: 16px;
+  color: rgba(212, 175, 55, 1);
+  flex-shrink: 0;
 }
 
 .brand-name {

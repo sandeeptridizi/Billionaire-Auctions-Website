@@ -16,6 +16,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .real-estate-component-grid-container {

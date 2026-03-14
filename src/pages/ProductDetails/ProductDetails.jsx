@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { LuCrown } from "react-icons/lu";
+import {
+  LuCrown, LuPhone, LuSquareArrowOutUpRight, LuHouse,
+  LuBedDouble, LuRuler, LuCalendar, LuArmchair, LuCompass,
+  LuCar, LuGauge, LuFuel, LuSettings2, LuUser, LuShieldCheck,
+  LuLayers, LuStar, LuUsers, LuClock, LuGem, LuWeight,
+  LuBadgeCheck, LuAward, LuWrench, LuBox, LuPuzzle,
+  LuPaintbrush, LuPalette, LuPenTool, LuGlobe, LuFileText,
+  LuHash, LuChartColumnIncreasing, LuIndianRupee, LuWallet, LuCalendarCheck,
+  LuSmartphone, LuTag, LuInfo, LuLandmark, LuWatch
+} from "react-icons/lu";
 import { BsPatchCheck } from "react-icons/bs";
 import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
-import { LuPhone } from "react-icons/lu";
 import { FiMessageCircle } from "react-icons/fi";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import useAppContext from "../../context/AppContext";
@@ -17,12 +25,89 @@ import { CgFileDocument } from "react-icons/cg";
 import { PiCarProfile } from "react-icons/pi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FiCheckCircle } from "react-icons/fi";
-import { LuSquareArrowOutUpRight } from "react-icons/lu";
-import { LuHouse } from 'react-icons/lu';
 import { TbSofa } from 'react-icons/tb';
 import { IoDiamondOutline } from 'react-icons/io5';
 import { RiBankLine } from 'react-icons/ri';
 import { FaPlayCircle } from "react-icons/fa";
+
+// Icon mapping for product meta field tiles
+const metaFieldIconMap = {
+  // Real Estate (Sale) & Rentals
+  bhk: LuBedDouble,
+  builtUpArea: LuRuler,
+  carpetArea: LuRuler,
+  propertyAge: LuCalendar,
+  furnishing: LuArmchair,
+  furnishingStatus: LuArmchair,
+  facing: LuCompass,
+  parking: LuCar,
+  monthlyRent: LuIndianRupee,
+  securityDeposit: LuWallet,
+  availableFrom: LuCalendarCheck,
+
+  // Cars & Bikes
+  brand: LuTag,
+  model: LuInfo,
+  year: LuCalendar,
+  yearOfManufacture: LuCalendar,
+  kmDriven: LuGauge,
+  fuelType: LuFuel,
+  transmission: LuSettings2,
+  ownership: LuUser,
+  insuranceStatus: LuShieldCheck,
+
+  // Furniture
+  furnitureType: LuArmchair,
+  material: LuLayers,
+  condition: LuStar,
+  dimensions: LuRuler,
+  seatingCapacity: LuUsers,
+  ageOfFurniture: LuClock,
+
+  // Jewellery
+  type: LuGem,
+  weight: LuWeight,
+  purity: LuBadgeCheck,
+  certification: LuAward,
+
+  // Watches
+  yearOfPurchase: LuCalendar,
+  workingCondition: LuWrench,
+  boxAndPapers: LuBox,
+  originalParts: LuPuzzle,
+
+  // Art & Paintings
+  artistName: LuPaintbrush,
+  medium: LuPalette,
+  size: LuRuler,
+  yearCreated: LuCalendar,
+  signed: LuPenTool,
+  certificate: LuAward,
+
+  // Antiques
+  antiqueType: LuLandmark,
+  approximateAge: LuClock,
+  origin: LuGlobe,
+  documentation: LuFileText,
+
+  // Collectibles
+  itemType: LuBox,
+  rarityLevel: LuStar,
+  limitedEdition: LuHash,
+  serialNumber: LuHash,
+  authentication: LuShieldCheck,
+  conditionGrade: LuChartColumnIncreasing,
+
+  // Electronics
+  purchaseYear: LuCalendar,
+  warranty: LuShieldCheck,
+  usageType: LuSmartphone,
+
+  // Others
+  category: LuTag,
+};
+
+const getMetaFieldIcon = (key) => metaFieldIconMap[key] || LuInfo;
 
 import cityApartment from "../../assets/city-apartment.jpg";
 import exclusiveVilla from "../../assets/exclusive-villa.jpg";
@@ -384,6 +469,7 @@ const ProductDetails = () => {
                   .map(([key, value]) => (
                     <div className="product-grid-item" key={key}>
                       <p className="product-brand">
+                        {(() => { const Icon = getMetaFieldIcon(key); return <Icon className="meta-field-icon" />; })()}
                         {key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}
                       </p>
                       <p className="brand-name">{String(value)}</p>

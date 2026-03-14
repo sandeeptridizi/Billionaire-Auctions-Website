@@ -1,11 +1,11 @@
 import './AuctionCardComponent.css';
 
+import { Link } from 'react-router-dom';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
-import RealEstateComponentCard from '../RealEstateComponentCard/RealEstateComponentCard';
 import AuctionCard from '../AuctionCard/AuctionCard';
 
-const AuctionCardComponent = ({ data, name, totalCount, showViewAll, onViewAll }) => {
+const AuctionCardComponent = ({ data, name, totalCount, showViewAll, viewAllLink }) => {
   return (
     <div className='real-estate-component-container'>
       <div className='featured-listings-header'>
@@ -15,10 +15,10 @@ const AuctionCardComponent = ({ data, name, totalCount, showViewAll, onViewAll }
           </div>
           <h3 className='featured-listings-heading'>{name} Auctions</h3>
         </div>
-        {showViewAll ? (
-          <div className='real-estate-component-view-btn' onClick={onViewAll} style={{ cursor: 'pointer' }}>
+        {showViewAll && viewAllLink ? (
+          <Link to={viewAllLink} className='real-estate-component-view-btn'>
             View All ({totalCount}) <HiOutlineArrowSmRight />
-          </div>
+          </Link>
         ) : totalCount != null ? (
           <div className='real-estate-component-view-btn'>
             {totalCount} {totalCount === 1 ? 'Item' : 'Items'} <HiOutlineArrowSmRight />

@@ -37,7 +37,7 @@ const ProductPage = () => {
         if (page && listingTypeMap[page.toLowerCase()]) {
           params.listingType = listingTypeMap[page.toLowerCase()];
         }
-        if (category) {
+        if (category && category.toLowerCase() !== 'all') {
           const catKey = category.toUpperCase().replace(/[- ]/g, '_').replace(/&/g, 'AND');
           params.category = catKey;
         }

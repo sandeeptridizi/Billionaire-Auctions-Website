@@ -1,27 +1,17 @@
 import './BuyNow.css';
 
-import { LuShoppingBag } from 'react-icons/lu';
 import { TiFlashOutline } from 'react-icons/ti';
 import { FiShield } from 'react-icons/fi';
 import { BsPatchCheck } from 'react-icons/bs';
 import { FiTruck } from 'react-icons/fi';
 import { IoSearch } from 'react-icons/io5';
-import { GrFilter } from 'react-icons/gr';
-import { BsGrid3X3 } from 'react-icons/bs';
-import { IoIosList } from 'react-icons/io';
+import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import { LuCrown } from 'react-icons/lu';
 import { IoDiamondOutline } from 'react-icons/io5';
 
-import { LuHouse } from 'react-icons/lu';
-import { LuCar } from 'react-icons/lu';
-import { TbSofa } from 'react-icons/tb';
-import { MdOutlinePalette } from 'react-icons/md';
-import { GoTrophy } from 'react-icons/go';
-import { RiBankLine } from 'react-icons/ri';
-import { BsBoxSeam } from 'react-icons/bs';
-
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
@@ -32,74 +22,7 @@ import {
   mapProductToCard,
 } from '../../lib/products';
 
-
-const categoryKeyToBtnName = {
-  REAL_ESTATE: 'realEstate',
-  CARS: 'cars',
-  BIKES: 'bikes',
-  FURNITURE: 'furniture',
-  JEWELLERY_AND_WATCHES: 'jewellery',
-  ARTS_AND_PAINTINGS: 'arts',
-  ANTIQUES: 'antiques',
-  COLLECTABLES: 'collectables',
-};
-
-const btns = [
-  {
-    id: 0,
-    icon: <BsBoxSeam />,
-    title: 'All',
-    name: 'all',
-  },
-  {
-    id: 1,
-    icon: <LuHouse />,
-    title: 'Real Estate',
-    name: 'realEstate',
-  },
-  {
-    id: 2,
-    icon: <LuCar />,
-    title: 'Cars',
-    name: 'cars',
-  },
-  {
-    id: 3,
-    icon: <TbSofa />,
-    title: 'Furniture',
-    name: 'furniture',
-  },
-  {
-    id: 4,
-    icon: <IoDiamondOutline />,
-    title: 'Jewellery & Watches',
-    name: 'jewellery',
-  },
-  {
-    id: 5,
-    icon: <MdOutlinePalette />,
-    title: 'Arts & Paintings',
-    name: 'arts',
-  },
-  {
-    id: 6,
-    icon: <RiBankLine />,
-    title: 'Antiques',
-    name: 'antiques',
-  },
-  {
-    id: 7,
-    icon: <GoTrophy />,
-    title: 'Collectables',
-    name: 'collectables',
-  },
-  {
-    id: 8,
-    icon: <IoIosList />,
-    title: 'Others',
-    name: 'others',
-  },
-];
+const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
 const data = [
   {
@@ -131,7 +54,6 @@ const data = [
 
 const BuyNow = () => {
   const [selectedBtn, setSelectedBtn] = useState('All');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -200,23 +122,13 @@ const BuyNow = () => {
       map.get(key).push(mapProductToCard(product));
     });
 
-    const entries = Array.from(map.entries()).sort((a, b) => {
+    return Array.from(map.entries()).sort((a, b) => {
       const aIdx = categoryOrder.indexOf(a[0]);
       const bIdx = categoryOrder.indexOf(b[0]);
       return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
         (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
     });
-
-    if (selectedCategory !== 'all') {
-      const selected = entries.find((entry) => {
-        const label = formatCategoryLabel(entry[0]).toLowerCase();
-        return label.replace(/[^a-z]/g, '').includes(selectedCategory.toLowerCase());
-      });
-      return selected ? [selected] : [];
-    }
-
-    return entries;
-  }, [filteredProducts, selectedCategory]);
+  }, [filteredProducts]);
 
   return (
     <div className='buy-now-container'>
@@ -227,7 +139,7 @@ const BuyNow = () => {
           Purchase Luxury Items Instantly with Confidence - No Bidding & Waiting
         </p></div>
         <div className='buy-now-btns-container'>
-        
+
                   <div
                     className={
                       selectedBtn === 'All'
@@ -238,7 +150,7 @@ const BuyNow = () => {
                   >
                     All
                   </div>
-        
+
                   <div
                     className={
                       selectedBtn === 'Luxury'
@@ -249,7 +161,7 @@ const BuyNow = () => {
                   >
                     <LuCrown /> Luxury
                   </div>
-        
+
                   <div
                     className={
                       selectedBtn === 'Classic'
@@ -280,7 +192,7 @@ const BuyNow = () => {
                       </video>
                     </div>
                   )}
-        
+
                 </div>
       </div>
       <div className='buy-now-categories-container'>
@@ -296,35 +208,10 @@ const BuyNow = () => {
             />
           </div>
           <div className='buy-now-filter-container'>
-            <button className='buy-now-filter-btn'>
-              <GrFilter /> Filters
-            </button>
-            <div className='buy-now-icons-container'>
-              <div className='buy-now-grid-icon-container'>
-                <BsGrid3X3 />
-              </div>
-             </div>
+            <Link to='/products/buy-now/all' className='buy-now-filter-btn'>
+              View All <HiOutlineArrowSmRight />
+            </Link>
           </div>
-        </div>
-        <div className='buy-now-category-btn-container'>
-          {btns.map((item) => {
-            const { id, icon, title, name } = item;
-            return (
-              <div className='buy-now-category-item-container' key={id}>
-                <div
-                  className={
-                    selectedCategory === name
-                      ? 'buy-now-category-item-icon-container active-category-btn'
-                      : 'buy-now-category-item-icon-container'
-                  }
-                  onClick={() => setSelectedCategory(name)}
-                >
-                  {icon}
-                </div>
-                <p className='buy-now-category-item-title'>{title}</p>
-              </div>
-            );
-          })}
         </div>
       </div>
       {loading ? (
@@ -335,11 +222,11 @@ const BuyNow = () => {
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
             key={catKey}
-            data={selectedCategory === 'all' ? items.slice(0, 3) : items}
+            data={items.slice(0, 3)}
             name={formatCategoryLabel(catKey)}
             totalCount={items.length}
-            showViewAll={selectedCategory === 'all'}
-            onViewAll={() => setSelectedCategory(categoryKeyToBtnName[catKey] || 'others')}
+            showViewAll={true}
+            viewAllLink={`/products/buy-now/${categoryToSlug(catKey)}`}
           />
         ))
       )}
