@@ -8,6 +8,38 @@
   justify-content: space-between;
 }
 
+.country-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.globe-icon {
+  font-size: 18px;
+}
+
+.country-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 180px;
+  background: white;
+  border: 2px solid rgba(212, 175, 55, 1);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.country-option {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.country-option:hover {
+  background: rgba(212, 175, 55, 1);
+}
+
+
 .navbar-logo-links-container {
   height: 46.46px;
   display: flex;
@@ -88,7 +120,7 @@
 .nav-btns-container {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 20px;
 }
 
 .nav-wishlist-btn {
@@ -123,7 +155,7 @@
 }
 
 .country-btn {
-  width: 120px;
+  width: auto;
   height: 100%;
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0);

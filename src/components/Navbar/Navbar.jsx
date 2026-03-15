@@ -1,16 +1,10 @@
 import './Navbar.css';
-
 import { FaAngleDown } from 'react-icons/fa6';
 import { PiGlobeBold } from 'react-icons/pi';
 import { RxPerson } from 'react-icons/rx';
-import { CiMenuBurger } from 'react-icons/ci';
 import { MdFavorite } from 'react-icons/md';
 
 import companyLogo from '../../assets/company-logo.png';
-import marketplace from '../../assets/marketplace.png';
-import hammer from '../../assets/hammer.png';
-import sellNow from '../../assets/sell-now.png';
-import toLet from '../../assets/to-let.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import useAppContext from '../../context/AppContext';
@@ -18,6 +12,16 @@ import useAppContext from '../../context/AppContext';
 const Navbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
   const { wishlist } = useAppContext();
+
+  const countries = ["India", "United States", "United Kingdom", "Canada", "Australia", "Singapore", "Dubai", "Malaysia", "Qatar", "Saudi Arabia", "Switzerland", "Kuwait"];
+
+  const [selectedCountry, setSelectedCountry] = useState("India");
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = (country) => {
+    setSelectedCountry(country);
+    setOpen(false);
+  };
 
   return (
     <div className='navbar-container'>
@@ -73,9 +77,20 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='nav-btns-container'>
-        <button className='country-btn'>
-          <PiGlobeBold className='globe-icon' /> India
-        </button>
+        <div className="country-selector"><button className="country-btn" onClick={() => setOpen(!open)} > <PiGlobeBold className="globe-icon" /> {selectedCountry} </button>
+        {open && (
+          <div className="country-dropdown">
+            {countries.map((country, index) => (
+              <div
+                key={index}
+                className="country-option"
+                onClick={() => handleSelect(country)}
+              >
+                {country}
+              </div>
+            ))}
+          </div>
+        )}</div>
         <Link to='wishlist' className='nav-wishlist-btn'>
           <MdFavorite className='nav-wishlist-icon' />
           {wishlist.length > 0 && (
