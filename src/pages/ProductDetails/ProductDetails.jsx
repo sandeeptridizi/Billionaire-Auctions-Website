@@ -115,7 +115,7 @@ import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { toggleWishlist, isWishlisted } = useAppContext();
+  const { toggleWishlist, isWishlisted, selectedCountry } = useAppContext();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState([]);
@@ -200,7 +200,7 @@ const ProductDetails = () => {
     if (!product?.category) return;
     const fetchFeatured = async () => {
       try {
-        const list = await getPublicProducts({ category: product.category });
+        const list = await getPublicProducts({ category: product.category, country: selectedCountry });
         setFeatured(list.filter((item) => item.id !== id && item.category === product.category));
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -209,7 +209,7 @@ const ProductDetails = () => {
     };
 
     fetchFeatured();
-  }, [id, product?.category]);
+  }, [id, product?.category, selectedCountry]);
 
   if (loading) {
     return (

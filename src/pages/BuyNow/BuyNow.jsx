@@ -21,6 +21,7 @@ import {
   getBuyNowProducts,
   mapProductToCard,
 } from '../../lib/products';
+import useAppContext from '../../context/AppContext';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
@@ -58,11 +59,13 @@ const BuyNow = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const list = await getBuyNowProducts();
+        setLoading(true);
+        const list = await getBuyNowProducts({ country: selectedCountry });
         setProducts(list);
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -73,7 +76,7 @@ const BuyNow = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedCountry]);
 
   const handleSwitch = (type) => {
   if (type === selectedBtn) return;

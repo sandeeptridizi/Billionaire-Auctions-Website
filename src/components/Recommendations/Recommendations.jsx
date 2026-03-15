@@ -15,16 +15,18 @@ import home from '../../assets/home.jpg';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
 import { formatCategoryLabel, getRecommendedProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
+import useAppContext from '../../context/AppContext';
 
 
 const Recommendations = () => {
   const [recommended, setRecommended] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchRecommended = async () => {
       try {
-        const list = await getRecommendedProducts();
+        const list = await getRecommendedProducts({ country: selectedCountry });
         const mapped = list.map((product) => ({
           id: product.id,
           title: product.title,
@@ -52,7 +54,7 @@ const Recommendations = () => {
     };
 
     fetchRecommended();
-  }, []);
+  }, [selectedCountry]);
 
   const recommendationData = recommended;
 

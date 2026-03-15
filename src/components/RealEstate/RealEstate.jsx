@@ -9,15 +9,17 @@ import { RxCross2 } from 'react-icons/rx';
 import RealEstateCard from '../RealEstateCard/RealEstateCard';
 import { getPublicProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
+import useAppContext from '../../context/AppContext';
 
 const RealEstate = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchRealEstate = async () => {
       try {
-        const list = await getPublicProducts({ category: 'REAL_ESTATE' });
+        const list = await getPublicProducts({ category: 'REAL_ESTATE', country: selectedCountry });
         const mapped = list.slice(0, 4).map((product) => ({
           id: product.id,
           title: product.title,
@@ -37,7 +39,7 @@ const RealEstate = () => {
     };
 
     fetchRealEstate();
-  }, []);
+  }, [selectedCountry]);
 
   if (!loading && properties.length === 0) return null;
 

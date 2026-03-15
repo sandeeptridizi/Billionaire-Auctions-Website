@@ -117,6 +117,16 @@
     gap: 10px;
   }
 
+  .mobile-country-selector {
+    position: relative;
+    display: inline-block;
+  }
+
+  .mobile-country-selector .country-dropdown {
+    right: 0;
+    left: auto;
+  }
+
   .mobile-country-btn {
     width: fit-content;
     padding: 4px 6px;

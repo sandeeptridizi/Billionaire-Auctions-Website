@@ -17,6 +17,7 @@ import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionC
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 import { getAuctionsProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
+import useAppContext from '../../context/AppContext';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
@@ -77,11 +78,13 @@ const Auctions = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const list = await getAuctionsProducts();
+        setLoading(true);
+        const list = await getAuctionsProducts({ country: selectedCountry });
         const mapped = list.map((product) => {
           const card = mapProductToCard(product);
           return {
@@ -109,7 +112,7 @@ const Auctions = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedCountry]);
 
   const handleSwitch = (type) => {
   if (type === selectedBtn) return;

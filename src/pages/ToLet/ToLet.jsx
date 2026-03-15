@@ -11,6 +11,7 @@ import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
 import { getToLetProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
+import useAppContext from '../../context/AppContext';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
@@ -45,11 +46,13 @@ const ToLet = () => {
   const [search, setSearch] = useState('');
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const list = await getToLetProducts();
+        setLoading(true);
+        const list = await getToLetProducts({ country: selectedCountry });
         const mapped = list.map((product) => ({
           ...mapProductToCard(product),
           rawCategory: product.category,
@@ -64,7 +67,7 @@ const ToLet = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedCountry]);
 
   const filteredProperties = useMemo(() => {
     if (!search) return properties;

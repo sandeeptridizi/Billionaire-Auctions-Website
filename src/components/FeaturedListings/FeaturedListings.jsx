@@ -14,16 +14,18 @@ import home from '../../assets/home.jpg';
 import FeaturedListingsCard from '../FeaturedListingsCard/FeaturedListingsCard';
 import { formatCategoryLabel, getFeaturedProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
+import useAppContext from '../../context/AppContext';
 
 
 const FeaturedListings = () => {
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const list = await getFeaturedProducts();
+        const list = await getFeaturedProducts({ country: selectedCountry });
         const mapped = list.map((product) => ({
           id: product.id,
           title: product.title,
@@ -50,7 +52,7 @@ const FeaturedListings = () => {
     };
 
     fetchFeatured();
-  }, []);
+  }, [selectedCountry]);
 
   const featuredData = featured;
 

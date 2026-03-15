@@ -7,19 +7,15 @@ import { MdFavorite } from 'react-icons/md';
 import companyLogo from '../../assets/company-logo.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import useAppContext from '../../context/AppContext';
+import useAppContext, { COUNTRIES } from '../../context/AppContext';
 
 const Navbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
-  const { wishlist } = useAppContext();
-
-  const countries = ["India", "United States", "United Kingdom", "Canada", "Australia", "Singapore", "Dubai", "Malaysia", "Qatar", "Saudi Arabia", "Switzerland", "Kuwait"];
-
-  const [selectedCountry, setSelectedCountry] = useState("India");
   const [open, setOpen] = useState(false);
+  const { wishlist, selectedCountry, setSelectedCountry, countryLabel } = useAppContext();
 
-  const handleSelect = (country) => {
-    setSelectedCountry(country);
+  const handleSelect = (value) => {
+    setSelectedCountry(value);
     setOpen(false);
   };
 
@@ -77,16 +73,16 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='nav-btns-container'>
-        <div className="country-selector"><button className="country-btn" onClick={() => setOpen(!open)} > <PiGlobeBold className="globe-icon" /> {selectedCountry} </button>
+        <div className="country-selector"><button className="country-btn" onClick={() => setOpen(!open)} > <PiGlobeBold className="globe-icon" /> {countryLabel} </button>
         {open && (
           <div className="country-dropdown">
-            {countries.map((country, index) => (
+            {COUNTRIES.map((c) => (
               <div
-                key={index}
-                className="country-option"
-                onClick={() => handleSelect(country)}
+                key={c.value}
+                className={`country-option${c.value === selectedCountry ? ' selected' : ''}`}
+                onClick={() => handleSelect(c.value)}
               >
-                {country}
+                {c.label}
               </div>
             ))}
           </div>

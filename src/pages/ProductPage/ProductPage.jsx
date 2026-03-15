@@ -14,6 +14,7 @@ import exclusivePenthouse from '../../assets/exclusive-penthouse.jpg';
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
 import { getPublicProducts, formatCategoryLabel, mapProductToCard } from '../../lib/products';
 import { getFile } from '../../lib/s3';
+import useAppContext from '../../context/AppContext';
 
 const listingTypeMap = {
   marketplace: 'MARKETPLACE',
@@ -27,13 +28,15 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const { selectedCountry } = useAppContext();
 
   const { page, category } = useParams();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const params = {};
+        setLoading(true);
+        const params = { country: selectedCountry };
         if (page && listingTypeMap[page.toLowerCase()]) {
           params.listingType = listingTypeMap[page.toLowerCase()];
         }
@@ -51,7 +54,7 @@ const ProductPage = () => {
     };
 
     fetchProducts();
-  }, [page, category]);
+  }, [page, category, selectedCountry]);
 
   const filteredProducts = products.filter((product) => {
     const byTier =

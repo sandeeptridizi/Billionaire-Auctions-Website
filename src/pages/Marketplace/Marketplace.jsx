@@ -17,6 +17,7 @@ import {
   getMarketplaceProducts,
   mapProductToCard,
 } from '../../lib/products';
+import useAppContext from '../../context/AppContext';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
@@ -26,11 +27,13 @@ const Marketplace = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const list = await getMarketplaceProducts();
+        setLoading(true);
+        const list = await getMarketplaceProducts({ country: selectedCountry });
         setProducts(list);
       } catch (error) {
         console.error('Failed to load marketplace products', error);
@@ -40,7 +43,7 @@ const Marketplace = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedCountry]);
 
   const handleSwitch = (type) => {
   if (type === selectedBtn) return;
