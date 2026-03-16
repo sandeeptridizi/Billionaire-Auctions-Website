@@ -23,7 +23,7 @@ const buyData = [
     id: 3,
     icon: <LuShoppingCart />,
     title: 'Purchase',
-    text: 'Buy instantly or participate in auctions. Secure payment & delivery guaranteed',
+    text: 'Buy instantly or participate in auctions. Verified Sellers for a seamless experience.',
   },
 ];
 
@@ -43,8 +43,8 @@ const sellData = [
   {
     id: 3,
     icon: <LuCircleCheckBig />,
-    title: 'Sell & Ship',
-    text: 'Receive inquiries, close deals, and ship with our white glove delivery service',
+    title: 'Sell your Product',
+    text: 'Receive inquiries and Close Deals through our secure platform.',
   },
 ];
 

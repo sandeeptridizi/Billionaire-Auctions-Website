@@ -1,4 +1,6 @@
 import './OurServices.css';
+import React, { useState } from "react";
+import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
 
 import { LuBuilding } from 'react-icons/lu';
 import { IoDocumentTextSharp } from "react-icons/io5";
@@ -8,7 +10,6 @@ import { BsFillBuildingsFill } from "react-icons/bs";
 import { RiAuctionFill } from "react-icons/ri";
 import { BsBuildingCheck } from "react-icons/bs";
 import { FaTruckMoving } from "react-icons/fa";
-import { GoPerson } from 'react-icons/go';
 import { LuBriefcase } from 'react-icons/lu';
 
 const services = [
@@ -64,6 +65,8 @@ const services = [
 ];
 
 const OurServices = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className='our-services-container'>
       <div className='our-services-background'>
@@ -90,7 +93,7 @@ const OurServices = () => {
                 </div>
                 <h3 className='our-services-grid-item-title'>{title}</h3>
                 <p className='our-services-grid-item-text'>{text}</p>
-                <button className='our-services-grid-item-btn'>Enquire Now</button>
+                <a href="tel:+917842201879" className="our-services-grid-item-btn">+91 78422 01879</a>
               </div>
             );
           })}
@@ -106,10 +109,10 @@ const OurServices = () => {
             your unique requirements
           </p>
           <div className='personalized-btn-container'>
-            <button className='schedule-btn'>
-              <LuBriefcase /> Schedule Consultation
+            <button className='schedule-btn' onClick={() => setShowModal(true)}>
+              <LuBriefcase /> Get Consultation
             </button>
-            <button className='services-btn'>Download Services Brochure</button>
+            {showModal && ( <EnquiryModal onClose={() => setShowModal(false)} />)}
           </div>
         </div>
       </div>

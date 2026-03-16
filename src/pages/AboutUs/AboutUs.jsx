@@ -138,9 +138,9 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      <h3 className='founderheading'>About Founder</h3>
       <div className='about-us-founder-info-grid-container'>
 
-        {/* LEFT SIDE - STICKY */}
         <div className='about-us-founder-left'>
           <div className='founder-background-container'>
             <div className='founder-info-container'>

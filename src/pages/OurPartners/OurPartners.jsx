@@ -106,7 +106,7 @@ const OurPartners = () => {
           <div className='partners-item-content-container'>
             <h3 className='partner-name'>Ramesh Seethala</h3>
             <p className='partner-role'>Founder & CEO - NRI Bhooseva</p>
-            <button className='partner-number'>📞 +91 98333 52066</button>
+            <button className='partner-number'  onClick={() => window.location.href = "tel:+919833352066"}>📞 +91 98333 52066</button>
             <div className='partners-info-container'>
               <h3 className='partner-sub-heading'>Expert guidance on:</h3>
               <div className='partners-info-list-container'>
@@ -135,7 +135,7 @@ const OurPartners = () => {
           <div className='partners-item-content-container'>
             <h3 className='partner-name'>Jaya Subba Reddy Konda</h3>
             <p className='partner-role'>Head - Legal Team</p>
-            <button className='partner-number'>📞 +91 96422 45442</button>
+            <button className='partner-number'  onClick={() => window.location.href = "tel:+919642245442"} >📞 +91 96422 45442</button>
             <div className='partners-info-container'>
               <h3 className='partner-sub-heading'>Support includes:</h3>
               <div className='partners-info-list-container'>

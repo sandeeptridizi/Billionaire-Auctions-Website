@@ -102,18 +102,18 @@ const Footer = () => {
           </div>
         </div>
         <div className='footer-link-container'>
-          <h3 className='footer-link-heading'>Contact Us</h3>
-          <div className='footer-contact-info-container'>
-            <div className='footer-icon-info-container'>
-              <GrLocation className='footer-icons' /> Izzath Nagar, Kondapur, Hyderabad, Telangana 500084
-            </div>
-          </div>
+          <h3 className='footer-link-heading'>Customer Care</h3>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
               <FiPhone className='footer-icons' /> +91 78422 01879
             </div>
             <div className='footer-icon-info-container'>
               <FiPhone className='footer-icons' /> +91 78425 01879
+            </div>
+          </div>
+          <div className='footer-contact-info-container'>
+            <div className='footer-icon-info-container'>
+              <GrLocation className='footer-icons' /> Izzath Nagar, Kondapur, Hyderabad, Telangana 500084
             </div>
           </div>
           <div className='footer-contact-info-container'>
