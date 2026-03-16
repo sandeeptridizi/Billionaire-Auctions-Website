@@ -125,3 +125,72 @@
   line-height: 16px;
   color: rgba(106, 114, 130, 1);
 }
+
+@media screen and (max-width: 510px) {
+  .property-card-header {
+    top: 4px;
+    left: 4px;
+    right: 4px;
+  }
+
+  .property-available-container {
+    padding: 3px 5px;
+    font-size: 6px;
+    line-height: 8px;
+  }
+
+  .property-card-footer {
+    padding: 4px;
+  }
+
+  .property-rent {
+    font-size: 5px;
+    line-height: 8px;
+  }
+
+  .property-card-cost {
+    font-size: 7px;
+    line-height: 10px;
+  }
+
+  .property-card-square-container {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .property-card-icon-container {
+    font-size: 7px;
+    line-height: 10px;
+    gap: 2px;
+  }
+
+  .property-icon {
+    width: 8px;
+    height: 8px;
+  }
+
+  .deposit-heading {
+    font-size: 6px;
+    line-height: 8px;
+  }
+
+  .deposit {
+    font-size: 7px;
+    line-height: 10px;
+  }
+
+  .property-furnished-views-container {
+    gap: 4px;
+  }
+
+  .property-furnished-container {
+    padding: 3px 5px;
+    font-size: 6px;
+    line-height: 8px;
+  }
+
+  .property-views-container {
+    font-size: 6px;
+    gap: 2px;
+  }
+}

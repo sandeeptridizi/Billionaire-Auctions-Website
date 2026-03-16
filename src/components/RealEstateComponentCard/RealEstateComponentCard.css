@@ -128,14 +128,85 @@
 @media screen and (max-width: 510px) {
   .featured-listings-card-container {
     width: 100%;
+    min-width: 0;
+    overflow: hidden;
     margin-top: 0;
   }
 
   .featured-listings-card-image-container {
     width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .real-estate-component-cost {
-    font-size: 16px;
+    font-size: 7px;
+    line-height: 10px;
+  }
+
+  .real-estate-component-name {
+    font-size: 8px;
+    line-height: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .real-estate-component-justify-container {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .real-estate-card-icon-container {
+    height: 18px;
+    padding: 4px;
+    border-radius: 16px;
+    font-size: 8px;
+    line-height: 10px;
+    gap: 3px;
+  }
+
+  .real-estate-luxury-container {
+    height: 18px;
+    padding: 4px;
+    border-radius: 16px;
+    font-size: 8px;
+    line-height: 10px;
+    gap: 3px;
+  }
+
+  .card-wishlist-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    top: 5px;
+    left: 5px;
+  }
+
+  .real-estate-component-btn-container {
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .real-estate-component-enquire-btn {
+    padding: 4px 6px;
+    font-size: 8px;
+    line-height: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .real-estate-component-favorite-btn {
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 10px;
   }
 }

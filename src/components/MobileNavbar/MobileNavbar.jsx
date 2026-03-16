@@ -105,7 +105,7 @@ const MobileNavbar = () => {
           </div>
         )}
         <div className='mobile-icons-login-container'>
-          <GrLocation className='mobile-location-icon' />
+          {/* <GrLocation className='mobile-location-icon' /> */}
           <Link to='wishlist' className='mobile-wishlist-link'>
             <MdFavorite className='mobile-wishlist-icon' />
             {wishlist.length > 0 && (

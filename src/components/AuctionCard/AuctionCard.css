@@ -85,3 +85,59 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 510px) {
+  .auction-card-open-container {
+    padding: 3px 5px;
+    font-size: 6px;
+    line-height: 8px;
+    gap: 2px;
+  }
+
+  .auction-card-circle {
+    width: 4px;
+    height: 4px;
+  }
+
+  .auction-card-footer {
+    padding: 4px;
+  }
+
+  .auction-card-value {
+    font-size: 6px;
+    line-height: 8px;
+  }
+
+  .auction-card-cost {
+    font-size: 7px;
+    line-height: 10px;
+  }
+
+  .auction-card-info-container {
+    gap: 3px;
+  }
+
+  .auction-card-info {
+    font-size: 7px;
+    line-height: 10px;
+    gap: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .auction-card-icon {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+  }
+
+  .register-now-btn {
+    padding: 4px 6px;
+    font-size: 7px;
+    line-height: 12px;
+    border-radius: 6px;
+    gap: 2px;
+    margin: 0 auto 6px auto;
+  }
+}
