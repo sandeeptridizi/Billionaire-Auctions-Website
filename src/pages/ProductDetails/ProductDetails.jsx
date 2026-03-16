@@ -181,6 +181,7 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchProduct = async () => {
       if (!id) return;
       try {
@@ -310,7 +311,7 @@ const ProductDetails = () => {
           </div>
           <div className="product-info-price-container">
             <p className="product-info-text">Price</p>
-            <h2 className="product-info-price">{product.value.toLocaleString("en-IN")}</h2>
+            <h2 className="product-info-price">₹{product.value.toLocaleString("en-IN")}</h2>
           </div>
           <div className="product-info-btns-container">
             <button className="product-info-enquire-btn" onClick={() => setShowEnquiryForm(true)}>

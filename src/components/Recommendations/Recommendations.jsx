@@ -2,6 +2,7 @@ import './Recommendations.css';
 
 import { useEffect, useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import { FaRegStar } from 'react-icons/fa6';
 
 import { FaAngleLeft } from 'react-icons/fa6';
@@ -66,41 +67,43 @@ const Recommendations = () => {
         </h3>
         <div className='mobile-featured-listings-grid-container'>
           {recommendationData.slice(0, 3).map((item) => (
-            <div className='mobile-featured-grid-item-one-container' key={item.id}>
-              <div className='mobile-featured-grid-item-image-container'>
-                <img src={item.image} alt={item.title} className='mobile-apartment-img' />
-                <div className='mobile-featured-grid-item-header'>
-                  {item.icon1 && (
-                    <div className='mobile-grid-item-check-icon-container'>
-                      {item.icon1}
+            <Link to={`/product/${item.id}`} className='mobile-recommendation-card-link' key={item.id}>
+              <div className='mobile-featured-grid-item-one-container'>
+                <div className='mobile-featured-grid-item-image-container'>
+                  <img src={item.image} alt={item.title} className='mobile-apartment-img' />
+                  <div className='mobile-featured-grid-item-header'>
+                    {item.icon1 && (
+                      <div className='mobile-grid-item-check-icon-container'>
+                        {item.icon1}
+                      </div>
+                    )}
+                    <div className='mobile-item-recommendation-container'>
+                      Luxury
                     </div>
-                  )}
-                  <div className='mobile-item-recommendation-container'>
-                    Luxury
+                    {item.icon2 && (
+                      <div className='mobile-grid-item-growth-icon-container'>
+                        {item.icon2}
+                      </div>
+                    )}
                   </div>
-                  {item.icon2 && (
-                    <div className='mobile-grid-item-growth-icon-container'>
-                      {item.icon2}
-                    </div>
-                  )}
+                  <div className='mobile-featured-item-footer'>
+                    <p className='mobile-item-recommendation-cost'>₹{item.cost}</p>
+                    <p className='mobile-item-location'>
+                      <GrLocation /> {item.location}
+                    </p>
+                  </div>
                 </div>
-                <div className='mobile-featured-item-footer'>
-                  <p className='mobile-item-recommendation-cost'>₹{item.cost}</p>
-                  <p className='mobile-item-location'>
-                    <GrLocation /> {item.location}
-                  </p>
-                </div>
-              </div>
-              <div className='mobile-featured-item-content-container'>
-                <p className='mobile-item-title'>{item.title}</p>
-                <div className='mobile-recommendation-footer-container'>
-                  <p className='mobile-time'>
-                    <IoMdTime /> {item.time}
-                  </p>
-                  <p className='mobile-category'>{item.category}</p>
+                <div className='mobile-featured-item-content-container'>
+                  <p className='mobile-item-title'>{item.title}</p>
+                  <div className='mobile-recommendation-footer-container'>
+                    <p className='mobile-time'>
+                      <IoMdTime /> {item.time}
+                    </p>
+                    <p className='mobile-category'>{item.category}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

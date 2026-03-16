@@ -2,6 +2,7 @@ import './FeaturedListings.css';
 
 import { useEffect, useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import { LuCrown } from 'react-icons/lu';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
@@ -64,38 +65,40 @@ const FeaturedListings = () => {
         </h3>
         <div className='mobile-featured-listings-grid-container'>
           {featuredData.slice(0, 3).map((item) => (
-            <div className='mobile-featured-grid-item-one-container' key={item.id}>
-              <div className='mobile-featured-grid-item-image-container'>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className='mobile-apartment-img'
-                />
-                <div className='mobile-featured-grid-item-header'>
-                  <div className='mobile-grid-item-check-icon-container'>
-                    <BsPatchCheck className='mobile-check-icon' />
+            <Link to={`/product/${item.id}`} className='mobile-featured-card-link' key={item.id}>
+              <div className='mobile-featured-grid-item-one-container'>
+                <div className='mobile-featured-grid-item-image-container'>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className='mobile-apartment-img'
+                  />
+                  <div className='mobile-featured-grid-item-header'>
+                    <div className='mobile-grid-item-check-icon-container'>
+                      <BsPatchCheck className='mobile-check-icon' />
+                    </div>
+                    <div className='mobile-item-luxury-container'>Luxury</div>
                   </div>
-                  <div className='mobile-item-luxury-container'>Luxury</div>
+                  <div className='mobile-featured-item-footer'>
+                    <p className='mobile-item-cost'>₹{item.cost}</p>
+                    <p className='mobile-item-location'>
+                      <GrLocation /> {item.location}
+                    </p>
+                  </div>
                 </div>
-                <div className='mobile-featured-item-footer'>
-                  <p className='mobile-item-cost'>₹{item.cost}</p>
-                  <p className='mobile-item-location'>
-                    <GrLocation /> {item.location}
-                  </p>
+                <div className='mobile-featured-item-content-container'>
+                  <p className='mobile-item-title'>{item.title}</p>
+                  <div className='mobile-content-footer'>
+                    <p className='mobile-year'>
+                      Year: <span className='mobile-year-number'>{item.year}</span>
+                    </p>
+                    <p className='mobile-time'>
+                      <IoMdTime /> {item.time}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className='mobile-featured-item-content-container'>
-                <p className='mobile-item-title'>{item.title}</p>
-                <div className='mobile-content-footer'>
-                  <p className='mobile-year'>
-                    Year: <span className='mobile-year-number'>{item.year}</span>
-                  </p>
-                  <p className='mobile-time'>
-                    <IoMdTime /> {item.time}
-                  </p>
-                </div>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

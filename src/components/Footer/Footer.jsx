@@ -110,7 +110,10 @@ const Footer = () => {
           </div>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
-              <FiPhone className='footer-icons' /> +91 77310 01879
+              <FiPhone className='footer-icons' /> +91 78422 01879
+            </div>
+            <div className='footer-icon-info-container'>
+              <FiPhone className='footer-icons' /> +91 78425 01879
             </div>
           </div>
           <div className='footer-contact-info-container'>

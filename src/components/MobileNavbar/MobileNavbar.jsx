@@ -2,7 +2,7 @@ import './MobileNavbar.css';
 
 import companyLogo from '../../assets/company-logo.png';
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { AiFillHome } from 'react-icons/ai';
 import { RiHandbagFill } from "react-icons/ri";
@@ -21,6 +21,25 @@ const MobileNavbar = () => {
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const { wishlist, selectedCountry, setSelectedCountry, countryLabel } = useAppContext();
   const location = useLocation();
+  const browseMenuRef = useRef(null);
+  const countryMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (browseMenuRef.current && !browseMenuRef.current.contains(e.target)) {
+        setIsBrowseLinksOpen(false);
+      }
+      if (countryMenuRef.current && !countryMenuRef.current.contains(e.target)) {
+        setIsCountryOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, []);
   const hasPageSearch = ['/marketplace', '/buy-now', '/auctions', '/to-let'].some(
     (path) => location.pathname.startsWith(path)
   );
@@ -54,7 +73,7 @@ const MobileNavbar = () => {
 
         </div>
         <div className='mobile-nav-login-burger-container'>
-          <div className="mobile-country-selector">
+          <div className="mobile-country-selector" ref={countryMenuRef}>
             <button className='mobile-country-btn' onClick={() => setIsCountryOpen(!isCountryOpen)}>
               <VscGlobe className='mobile-globe-icon' /> {countryLabel}
             </button>
@@ -72,29 +91,31 @@ const MobileNavbar = () => {
               </div>
             )}
           </div>
-          <SlMenu className='mobile-menu-icon' onClick={() => setIsBrowseLinksOpen(!isBrowseLinksOpen)} />
+          <div ref={browseMenuRef}>
+            <SlMenu className='mobile-menu-icon' onClick={() => setIsBrowseLinksOpen(!isBrowseLinksOpen)} />
             {isBrowseLinksOpen && (
               <div className='browse-links-container1'>
-                <Link to='browse/our-partners'>
+                <Link to='browse/our-partners' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Our Partners</span>
                 </Link>
-                <Link to='browse/our-services'>
+                <Link to='browse/our-services' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Services</span>
                 </Link>
-                <Link to='browse/about-us'>
+                <Link to='browse/about-us' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>About Us</span>
                 </Link>
-                <Link to='browse/pricing-plans'>
+                <Link to='browse/pricing-plans' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Pricing</span>
                 </Link>
-                <Link to='browse/buy-sell'>
+                <Link to='browse/buy-sell' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>How to buy and sell</span>
                 </Link>
-                <Link to='browse/advertise'>
+                <Link to='browse/advertise' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Advertise</span>
                 </Link>
               </div>
             )}
+          </div>
         </div>
       </div>
       <div className='mobile-nav-search-container'>
@@ -112,9 +133,9 @@ const MobileNavbar = () => {
               <span className='mobile-wishlist-badge'>{wishlist.length}</span>
             )}
           </Link>
-          <button className='mobile-login-btn'>
+          <Link to='https://user.billionaireauction.com' className='mobile-login-btn'>
             <GoPerson /> Login
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -150,7 +150,10 @@
 @media screen and (max-width: 510px) {
   .featured-listings-card-container {
     width: 100%;
-    border-radius: 4.62px;
+    min-width: 0;
+    border-radius: 6px;
+    gap: 0;
+    overflow: hidden;
   }
 
   .featured-listings-card-image-container {
@@ -160,45 +163,52 @@
   }
 
   .featured-img {
-    border-top-right-radius: 4.62px;
-    border-top-left-radius: 4.62px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+
+  .featured-listings-card-header {
+    top: 4px;
+    right: 4px;
+    gap: 2px;
   }
 
   .card-icon-container {
-    width: 18.46px;
-    height: 11.08px;
-    padding: 1.85px 5.54px;
-    border-radius: 3.69px;
+    width: auto;
+    height: auto;
+    padding: 2px 5px;
+    border-radius: 16px;
+    font-size: 8px;
   }
 
   .check-icon {
-    width: 7.39px;
-    height: 7.39px;
+    width: 8px;
+    height: 8px;
   }
 
   .luxury-container {
     width: fit-content;
     height: auto;
-    border-radius: 3.69px;
-    padding: 1.85px 5.54px;
-    font-size: 5.54px;
-    line-height: 7.39px;
+    border-radius: 16px;
+    padding: 2px 5px;
+    font-size: 6px;
+    line-height: 9px;
   }
 
   .featured-listings-card-footer {
-    padding: 3px 4px;
+    padding: 3px 5px;
   }
 
   .cost {
-    font-size: 7px;
-    line-height: 9.23px;
+    font-size: 9px;
+    line-height: 13px;
     font-weight: 700;
     color: #fff;
   }
 
   .location {
-    font-size: 5px;
-    line-height: 8px;
+    font-size: 6px;
+    line-height: 9px;
     gap: 2px;
   }
 
@@ -211,20 +221,20 @@
 
   .featured-listings-title {
     font-size: 9px;
-    line-height: 12px;
+    line-height: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .featured-listings-year {
-    font-size: 6.46px;
-    line-height: 9.23px;
+    font-size: 7px;
+    line-height: 10px;
   }
 
   .year {
-    font-size: 6.46px;
-    line-height: 9.23px;
+    font-size: 7px;
+    line-height: 10px;
   }
 
   .featured-listings-time-category-container {
@@ -236,6 +246,6 @@
   .featured-listings-time,
   .featured-listings-category {
     font-size: 7px;
-    line-height: 9.23px;
+    line-height: 10px;
   }
 }

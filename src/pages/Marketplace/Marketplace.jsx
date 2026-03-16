@@ -2,8 +2,11 @@ import './Marketplace.css';
 
 import { IoSearch } from 'react-icons/io5';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
-import { LuCrown } from 'react-icons/lu';
+import { LuCrown, LuHouse, LuCar } from 'react-icons/lu';
 import { IoDiamondOutline } from 'react-icons/io5';
+import { TbSofa } from 'react-icons/tb';
+import { MdOutlinePalette } from 'react-icons/md';
+import { BsBoxSeam, BsStars } from 'react-icons/bs';
 
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,9 +24,21 @@ import useAppContext from '../../context/AppContext';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
+const categoryBtns = [
+  { icon: <LuHouse />, title: 'Real Estate', key: 'REAL_ESTATE' },
+  { icon: <LuCar />, title: 'Cars', key: 'CARS' },
+  { icon: <TbSofa />, title: 'Furniture', key: 'FURNITURE' },
+  { icon: <IoDiamondOutline />, title: 'Jewellery', key: 'JEWELLERY_AND_WATCHES' },
+  { icon: <MdOutlinePalette />, title: 'Arts', key: 'ARTS_AND_PAINTINGS' },
+  { icon: <LuCrown />, title: 'Antiques', key: 'ANTIQUES' },
+  { icon: <BsBoxSeam />, title: 'Collectables', key: 'COLLECTABLES' },
+  { icon: <BsStars />, title: 'Others', key: 'OTHERS' },
+];
+
 const Marketplace = () => {
   const [selectedBtn, setSelectedBtn] = useState('All');
   const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -77,9 +92,14 @@ const Marketplace = () => {
           ? product.category === matchedCategory
           : product.title.toLowerCase().includes(search.toLowerCase())
         : true;
-      return byTier && bySearch;
+      const byCategory = selectedCategory
+        ? selectedCategory === 'OTHERS'
+          ? !categoryOrder.includes(product.category)
+          : product.category === selectedCategory
+        : true;
+      return byTier && bySearch && byCategory;
     });
-  }, [products, search, selectedBtn]);
+  }, [products, search, selectedBtn, selectedCategory]);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
@@ -182,6 +202,26 @@ const Marketplace = () => {
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
+        </div>
+        <div className='marketplace-category-icons-row'>
+          {categoryBtns.map((btn) => (
+            <div
+              className='marketplace-category-icon-item'
+              key={btn.key}
+              onClick={() => setSelectedCategory(selectedCategory === btn.key ? null : btn.key)}
+            >
+              <div
+                className={
+                  selectedCategory === btn.key
+                    ? 'marketplace-category-icon-circle marketplace-category-active'
+                    : 'marketplace-category-icon-circle'
+                }
+              >
+                {btn.icon}
+              </div>
+              <span className='marketplace-category-icon-label'>{btn.title}</span>
+            </div>
+          ))}
         </div>
       </div>
       {loading ? (

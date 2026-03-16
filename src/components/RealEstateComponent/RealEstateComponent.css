@@ -29,6 +29,9 @@
 @media screen and (max-width: 510px) {
   .real-estate-component-container {
     width: 100%;
+    margin: 8px auto;
+    padding: 10px;
+    gap: 10px;
   }
 
   .real-estate-component-view-btn {

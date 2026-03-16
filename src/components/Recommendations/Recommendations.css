@@ -1,3 +1,9 @@
+.mobile-recommendation-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .recommendations-container {
   width: 90%;
   margin: 0 auto;

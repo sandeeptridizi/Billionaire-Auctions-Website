@@ -61,8 +61,14 @@
 .featured-listings-grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.mobile-featured-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .mobile-featured-listings-container {

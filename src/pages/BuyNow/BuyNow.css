@@ -42,7 +42,7 @@
   width: 90%;
   margin: 32px auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -257,11 +257,12 @@
 @media screen and (max-width: 510px) {
   .buy-now-container {
     width: 100%;
+    gap: 6px;
   }
 
   .buy-now-background-container {
     width: 100%;
-    gap: 16px;
+    gap: 8px;
   }
 
   .buy-now-heading {
@@ -275,8 +276,8 @@
 
   .buy-now-grid-container {
     width: 100%;
-    gap: 16px;
-    grid-template-columns: 1fr;
+    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .buy-now-item-container {
@@ -311,10 +312,12 @@
 
   .buy-now-search-filter-container {
     width: 100%;
+    margin: 10px auto;
   }
 
   .buy-now-search-container {
     width: 60%;
+    padding: 8px 12px;
   }
 
   .buy-now-filter-container {
