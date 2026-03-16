@@ -4,8 +4,6 @@ import './ProductPage.css';
 
 import { LuCrown } from 'react-icons/lu';
 import { IoDiamondOutline } from 'react-icons/io5';
-import { BsPatchCheck } from 'react-icons/bs';
-import { GrLocation } from 'react-icons/gr';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 
 import exclusiveVilla from '../../assets/exclusive-villa.jpg';
@@ -13,7 +11,6 @@ import exclusivePenthouse from '../../assets/exclusive-penthouse.jpg';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
 import { getPublicProducts, formatCategoryLabel, mapProductToCard } from '../../lib/products';
-import { getFile } from '../../lib/s3';
 import useAppContext from '../../context/AppContext';
 
 const listingTypeMap = {
@@ -136,39 +133,7 @@ const ProductPage = () => {
             {filteredProducts.map((product) => {
               const card = mapProductToCard(product);
               return (
-                <div className='similar-luxury-item-container' key={product.id}>
-                  <div className='luxury-item-img-container'>
-                    <img
-                      src={product.media?.[0] ? getFile(product.media[0]) : ''}
-                      alt={product.title}
-                      className='luxury-item-img'
-                    />
-                    <div className='luxury-item-header'>
-                      <div className='luxury-item-verified-container'>
-                        <BsPatchCheck className='verified-icon' /> Verified
-                      </div>
-                      <div className='luxury-item-luxury-container'>
-                        <LuCrown /> {product.tier || 'GENERAL'}
-                      </div>
-                    </div>
-                    <div className='luxury-item-footer'>
-                      <p className='luxury-item-cost'>
-                        {typeof product.value === 'number'
-                          ? `₹${product.value.toLocaleString('en-IN')}`
-                          : 'Price on request'}
-                      </p>
-                      <p className='luxury-item-location'>
-                        <GrLocation /> {product.meta?.city || product.meta?.location || 'Location not specified'}
-                      </p>
-                    </div>
-                  </div>
-                  <div className='luxury-item-content-container'>
-                    <h3 className='luxury-item-title'>{product.title}</h3>
-                    <Link to={`/product/${product.id}`} className='luxury-item-btn'>
-                      View Details
-                    </Link>
-                  </div>
-                </div>
+                <RealEstateComponentCard key={product.id} {...card} />
               );
             })}
           </div>

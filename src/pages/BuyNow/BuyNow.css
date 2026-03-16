@@ -257,7 +257,7 @@
 @media screen and (max-width: 510px) {
   .buy-now-container {
     width: 100%;
-    gap: 6px;
+    gap: 2px;
   }
 
   .buy-now-background-container {
@@ -312,12 +312,18 @@
 
   .buy-now-search-filter-container {
     width: 100%;
-    margin: 10px auto;
+    margin: 4px auto;
+    gap: 6px;
   }
 
   .buy-now-search-container {
     width: 60%;
-    padding: 8px 12px;
+    padding: 6px 10px;
+  }
+
+  .buy-now-search-icon {
+    width: 14px;
+    height: 14px;
   }
 
   .buy-now-filter-container {
@@ -326,7 +332,7 @@
 
   .buy-now-filter-btn {
     width: fit-content;
-    padding: 6px 10px;
+    padding: 4px 8px;
     font-size: 10px;
   }
 
