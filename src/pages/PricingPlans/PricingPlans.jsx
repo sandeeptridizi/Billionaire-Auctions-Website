@@ -1,5 +1,6 @@
 import './PricingPlans.css';
 import { useState, useEffect, useRef } from "react";
+import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
 
 import { LuStar } from 'react-icons/lu';
 import { LuCrown } from 'react-icons/lu';
@@ -110,7 +111,19 @@ const PricingPlans = () => {
   const [selectedEnterprise, setSelectedEnterprise] = useState(enterprisePlans[0]);
   const [step, setStep] = useState(0);
   const selectedPlan = leadsData[step];
+  const scrollLeft = () => {
+  sliderRef.current.scrollBy({
+    left: -300,
+    behavior: "smooth",
+  });
+};
 
+const scrollRight = () => {
+  sliderRef.current.scrollBy({
+    left: 300,
+    behavior: "smooth",
+  });
+};
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -142,7 +155,11 @@ const PricingPlans = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
+
   return (
+    
     <div className='pricing-page-container'>
       <div className='pricing-page-background'>
         <h1 className='pricing-page-heading'>Flexible Pricing Plans</h1>
@@ -155,6 +172,10 @@ const PricingPlans = () => {
         </p>
       </div>
       <div className='pricing-page-plans-container'>
+        <div className="pricing-arrows">
+          <button className="arrow-btn left" onClick={scrollLeft}> &#8592; </button>
+          <button className="arrow-btn right" onClick={scrollRight}> &#8594; </button>
+        </div>
         <div className='pricing-page-grid-container' ref={sliderRef}>
           <div className='pricing-page-grid-item-container'>
             <div className='pricing-page-header'>
@@ -199,7 +220,7 @@ const PricingPlans = () => {
                 <span className='pricing-time'>Email</span>
               </div>
             </div>
-            <button className='pricing-btn'>Get Started</button>
+            <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
           </div>
           <div className='pricing-page-grid-item-container'>
             <div className='pricing-page-header'>
@@ -244,7 +265,7 @@ const PricingPlans = () => {
                 <span className='pricing-time'>Email</span>
               </div>
             </div>
-            <button className='pricing-btn'>Get Started</button>
+            <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
           </div>
           <div className='pricing-page-grid-item-two-container'>
             <div className='pricing-page-header'>
@@ -289,7 +310,7 @@ const PricingPlans = () => {
                 <span className='pricing-time'>Priority Line</span>
               </div>
             </div>
-            <button className='pricing-popular-btn'>Get Started</button>
+            <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
             <div className='most-poplular-container'>MOST POPULAR</div>
           </div>
           <div className='pricing-page-grid-item-container'>
@@ -349,7 +370,7 @@ const PricingPlans = () => {
               </div>
             </div>
 
-            <button className='pricing-btn'>Get Started</button>
+            <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
 
           </div>
 
@@ -399,8 +420,9 @@ const PricingPlans = () => {
 
               <p className="month">/ month + GST</p>
 
-              <button className="book-now-btn">Book Now</button>
+              <button className="book-now-btn" onClick={() => setIsEnquiryOpen(true)}>Book Now</button>
             </div>
+            {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
           </div>
         </div>
 
@@ -454,7 +476,7 @@ const PricingPlans = () => {
                 </div>
               </div>
 
-              <button className="select-package-btn">Select Package</button>
+              <button className="pricing-popular-btn" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Select Package</button>
             </div>
           </div>
         </div>
@@ -516,7 +538,7 @@ const PricingPlans = () => {
                   </>
               } {!selectedPlan.free && <p className="leads-gst">+ GST</p>}
             </h2>
-            <button className="leads-purchase-btn">
+            <button className="leads-purchase-btn" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
               {selectedPlan.free ? "Included" : "Purchase"}
             </button>
 
@@ -563,10 +585,11 @@ const PricingPlans = () => {
                 </div>
               </div>
             </div>
-            <button className='digital-media-btn'>
+            <button className='digital-media-btn' onClick={() => setIsEnquiryOpen(true)}>
               Book Digital Media Package
             </button>
           </div>
+          {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
         </div>
       </div>
       <div className='pricing-page-footer-container'>
@@ -576,10 +599,7 @@ const PricingPlans = () => {
           marketplace
         </p>
         <div className='pricing-page-footer-btn-container'>
-          <button className='pricing-footer-contact-btn'>Contact Sales</button>
-          <button className='pricing-footer-features-btn'>
-            View All Features
-          </button>
+          <button className='pricing-footer-contact-btn' onClick={() => window.location.href = "tel:+917842201879"}>Contact Sales</button>
         </div>
       </div>
     </div>

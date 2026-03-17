@@ -599,69 +599,25 @@ const ProductDetails = () => {
           ))}
         </div>
       </div>
-      <div className="exclusive-collection-container">
-        <div className="featured-container">
-          <div className="featured-image-container">
-            <img
-              src={exclusiveVilla}
-              alt="exclusive villa"
-              className="featured-img"
-            />
-            <div className="featured-tag-container">FEATURED</div>
-          </div>
-          <div className="featured-content-container">
-            <h2 className="featured-heading">Exclusive Luxury Collection</h2>
-            <p className="featured-text">
-              Discover handpicked premium items from India's most trusted luxury
-              marketplace.
-            </p>
-            <div className="featured-footer-container">
-              <p className="featured-footer-title">Starting from ₹50 Lac</p>
-              <button className="featured-footer-btn">
-                Explore Now <LuSquareArrowOutUpRight />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="featured-container">
-          <div className="featured-image-container">
-            <img
-              src={exclusivePenthouse}
-              alt="exclusive villa"
-              className="featured-img"
-            />
-            <div className="special-tag-container">SPECIAL OFFER</div>
-          </div>
-          <div className="featured-content-container">
-            <h2 className="featured-heading">List Your Item Free</h2>
-            <p className="featured-text">
-              Join thousands of sellers. Zero listing fees until Jan 2027!
-            </p>
-            <div className="featured-footer-container">
-              <p className="featured-footer-desc">No Commission*</p>
-              <button className="featured-footer-btn">
-                List Now <LuSquareArrowOutUpRight />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="product-page-footer-container">
         <h2 className="product-page-footer-heading">
-          <LuCrown className="product-footer-icon" /> Join Billionaire Auction
-          Premium
+          <LuCrown className="product-footer-icon" /> Join Billionaire Auction Platform
         </h2>
         <p className="product-footer-text">
           Get exclusive access to luxury offline auctions, verified elite items,
           and personalized concierge services.
         </p>
         <div className="product-footer-btn-container">
-          <button className="featured-footer-btn">
-            Explore Now <LuSquareArrowOutUpRight />
-          </button>
-          <button className="product-footer-btn">
-            View Premium Plans <LuSquareArrowOutUpRight />
-          </button>
+          <Link to="/browse/about-us" className="no-underline-link">
+            <button className="featured-footer-btn">
+              Explore Now <LuSquareArrowOutUpRight />
+            </button>
+          </Link>
+          <Link to="/browse/pricing-plans" className="no-underline-link">
+            <button className="product-footer-btn">
+              View Premium Plans <LuSquareArrowOutUpRight />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

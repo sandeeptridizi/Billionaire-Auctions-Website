@@ -77,7 +77,7 @@ const Recommendations = () => {
                         {item.icon1}
                       </div>
                     )}
-                    <div className='mobile-item-recommendation-container'>
+                    <div className='mobile-item-luxury-container'>
                       Luxury
                     </div>
                     {item.icon2 && (

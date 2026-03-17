@@ -94,6 +94,12 @@
     color: rgba(212, 175, 55, 1);
   }
 
+  .crown-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(212, 175, 55, 1);
+  }
+
   .mobile-featured-heading {
     font-size: 13.29px;
     font-weight: 700;

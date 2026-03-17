@@ -1,4 +1,6 @@
 import './Advertise.css';
+import { useState } from "react";
+import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
 
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { MdCurrencyRupee } from 'react-icons/md';
@@ -42,13 +44,14 @@ const advertiseData = [
 ];
 
 const Advertise = () => {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   return (
     <div className='advertise-container'>
       <div className='advertise-background'>
         <h1 className='advertise-heading'>
           <HiOutlineSpeakerphone className='speaker-icon' /> Advertise With Us
         </h1>
-        <p className='advertise-text'>Digital Media Package</p>
         <p className='advertise-desc'>
           Our comprehensive digital media package to maximize your listing's
           visibility and reach
@@ -61,8 +64,9 @@ const Advertise = () => {
             <MdCurrencyRupee />
             5,999<span>+GST</span>
           </h2>
-          <button className='package-btn'>Get Started</button>
+          <button className='package-btn' onClick={() => setIsEnquiryOpen(true)} >Get Started</button>
         </div>
+        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
         <div className='package-grid-container'>
           <div className='package-grid-item-container'>
             <LuCircleCheckBig className='package-item-icon' /> On-site visit for
@@ -179,7 +183,7 @@ const Advertise = () => {
               For website banner ads and other advertising placements, please
               contact us for pricing.
             </p>
-            <button className='banners-btn'>Contact for Pricing</button>
+            <button className='banners-btn' onClick={() => window.location.href = "tel:+917842201879"} >Contact for Pricing</button>
           </div>
         </div>
       </div>
@@ -234,9 +238,10 @@ const Advertise = () => {
           visibility
         </p>
         <div className='advertise-footer-btn-container'>
-          <button className='purchase-btn'>Purchase Package</button>
-          <button className='contact-team-btn'>Contact Our Team</button>
+          <button className='purchase-btn' onClick={() => setIsEnquiryOpen(true)}  >Purchase Package</button>
+          <button className='contact-team-btn' onClick={() => window.location.href = "tel:+917842201879"}>Contact Our Team</button>
         </div>
+        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
       </div>
     </div>
   );

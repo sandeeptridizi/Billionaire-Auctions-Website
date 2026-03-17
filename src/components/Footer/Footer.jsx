@@ -73,7 +73,9 @@ const Footer = () => {
               <Link to='browse/about-us'>
                 <span>About Us</span>
               </Link>
-              <span>How It Works</span>
+              <Link to='browse/buy-sell'>
+                <span>How to buy and Sell</span>
+              </Link>
               <Link to='browse/our-services'>
                 <span>Our Services</span>
               </Link>

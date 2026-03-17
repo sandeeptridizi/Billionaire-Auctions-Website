@@ -1,5 +1,6 @@
 import './OurPartners.css';
-
+import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
+import { useState } from "react";
 import { LuBuilding } from 'react-icons/lu';
 import { FiHome } from 'react-icons/fi';
 import { LuBanknote } from 'react-icons/lu';
@@ -92,6 +93,8 @@ const services = [
 ];
 
 const OurPartners = () => {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   return (
     <div className='our-partners-container'>
       <div className='our-partners-background'></div>
@@ -203,10 +206,7 @@ const OurPartners = () => {
             with real estate, banking, and legal services.
           </p>
           <div className='learn-more-partners-btn-container'>
-            <button className='partner-video-btn'>
-              ▶️ Watch Partner Video
-            </button>
-            <button className='partner-website-btn'>
+            <button className='partner-website-btn' onClick={() => window.open('https://nribhooseva.com/', '_blank')}>
               <FiGlobe /> Visit Partner Website
             </button>
           </div>
@@ -273,10 +273,11 @@ const OurPartners = () => {
           Connect with our advisory committee for professional banking and legal
           support for your luxury property transactions
         </p>
-        <button className='our-partners-footer-btn'>
+        <button className='our-partners-footer-btn' onClick={() => setIsEnquiryOpen(true)}>
           <FaArrowRight /> Get In Touch
         </button>
       </div>
+      {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} />)}
     </div>
   );
 };

@@ -371,7 +371,7 @@ const AboutUs = () => {
               <h3 className='location-name'>Dubai</h3>
             </div>
             <div className='offline-luxury-auctions-desc-container'>
-              global luxury auction and marketplace brand, starting from India
+              Global luxury auction and marketplace brand, starting from India
               and scaling internationally.
             </div>
           </div>

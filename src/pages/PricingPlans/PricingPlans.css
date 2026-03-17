@@ -8,7 +8,7 @@
 
 .pricing-page-background {
   width: 100%;
-  padding: 80px 68px;
+  padding: 16px 68px;
   background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
   display: flex;
   flex-direction: column;
@@ -169,6 +169,10 @@
   flex-direction: column;
   position: relative;
 }
+.pricing-arrows {
+  display: none;
+}
+
 
 .most-poplular-container {
   width: fit-content;
@@ -941,6 +945,7 @@
   .pricing-page-plans-container {
     width: 100%;
     padding: 40px 16px;
+    position: relative;
     background: rgba(249, 250, 251, 1);
   }
 
@@ -959,6 +964,43 @@
     transform: scale(0.92);
     transition: transform 0.35s ease;
 
+  }
+
+.pricing-arrows {
+    display: block;
+  }
+
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 45px;
+    height: 45px;
+    
+    border-radius: 50%;
+    border: none;
+    
+    background: rgba(212, 175, 55, 0.6); /* 🔥 transparent gold */
+    backdrop-filter: blur(6px); /* 🔥 glass effect */
+    
+    color: #fff;
+    font-size: 18px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .arrow-btn.left {
+    left: 5px;
+  }
+
+  .arrow-btn.right {
+    right: 5px;
   }
 
   .pricing-page-grid-container:active 
@@ -1156,6 +1198,7 @@
     width: 100%;
     padding: 28px 18px;
   }
+
   .pricing-page-grid-item-container {
     padding: 18px;
   }

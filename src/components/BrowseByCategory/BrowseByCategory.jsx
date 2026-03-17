@@ -59,9 +59,6 @@ const BrowseByCategory = () => {
     <div className='browse-category-container'>
       <div className='browse-category-header'>
         <h2 className='browse-category-heading'>Browse by Category</h2>
-        <p className='browse-category-text'>
-          Click on a category icon to explore premium products
-        </p>
       </div>
       <div className='browse-category-btns-container'>
         {btns.map((btn) => {
