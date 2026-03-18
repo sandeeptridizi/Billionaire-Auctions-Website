@@ -93,9 +93,6 @@ const FeaturedListings = () => {
                   <p className='mobile-item-title card-title-single-line'>{item.title}</p>
                   <CardMetaGrid categoryKey={item.categoryKey} meta={item.meta} />
                   <div className='mobile-content-footer'>
-                    <p className='mobile-year'>
-                      Year: <span className='mobile-year-number'>{item.year}</span>
-                    </p>
                     <p className='mobile-time'>
                       <IoMdTime /> {item.time}
                     </p>

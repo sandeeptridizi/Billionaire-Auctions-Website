@@ -1,14 +1,9 @@
 import "./MobileFooter.css";
 import { FaCrown } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaStore, FaTag, FaGavel, FaBuilding } from "react-icons/fa";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-
-import marketPlace from "../../assets/marketplace.png";
-import sellNow from "../../assets/sell-now.png";
-import hammer from "../../assets/hammer.png";
-import tolet from "../../assets/to-let.png";
 
 import luxuryLoading from "../../assets/luxury-loading.mp4";
 import classicLoading from "../../assets/classic-loading.mp4";
@@ -72,22 +67,22 @@ const MobileFooter = () => {
         {showLinks && (
           <div className="footer-links1">
             <div className="menu-item market" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-              <img src={marketPlace} alt="" />
+              <FaStore style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Marketplace</span>
             </div>
 
             <div className="menu-item sell" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-              <img src={sellNow} alt="" />
+              <FaTag style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Sell Now</span>
             </div>
 
             <div className="menu-item hammer" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-              <img src={hammer} alt="" />
+              <FaGavel style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Auctions</span>
             </div>
 
             <div className="menu-item tolet" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-              <img src={tolet} alt="" />
+              <FaBuilding style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>To-Let</span>
             </div>
           </div>

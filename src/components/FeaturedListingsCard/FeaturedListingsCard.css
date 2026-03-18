@@ -79,6 +79,10 @@
   font-weight: 700;
   line-height: 24px;
   color: rgba(44, 44, 44, 1);
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-title-single-line {

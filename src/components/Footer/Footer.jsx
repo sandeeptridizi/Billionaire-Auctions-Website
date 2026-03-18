@@ -16,7 +16,7 @@ const Footer = () => {
     <div className='footer-container'>
       <div className='footer-info-links-container'>
         <div className='footer-info-container'>
-          <Link to='/'>
+          <Link to='/' onClick={() => window.scrollTo(0, 0)}>
             <img src={companyLogo} alt='Billionaire Auctions' className='company-logo1' />
            </Link>
           <p className='footer-info-text'>
@@ -70,22 +70,22 @@ const Footer = () => {
           <div className='footer-link-container'>
             <h3 className='footer-link-heading'>Quick Links</h3>
             <div className='footer-links'>
-              <Link to='browse/about-us'>
+              <Link to='browse/about-us' onClick={() => window.scrollTo(0, 0)}>
                 <span>About Us</span>
               </Link>
-              <Link to='browse/buy-sell'>
+              <Link to='browse/buy-sell' onClick={() => window.scrollTo(0, 0)}>
                 <span>How to buy and Sell</span>
               </Link>
-              <Link to='browse/our-services'>
+              <Link to='browse/our-services' onClick={() => window.scrollTo(0, 0)}>
                 <span>Our Services</span>
               </Link>
-              <Link to='browse/pricing-plans'>
+              <Link to='browse/pricing-plans' onClick={() => window.scrollTo(0, 0)}>
                 <span>Pricing Plans</span>
               </Link>
-              <Link to='browse/advertise'>
+              <Link to='browse/advertise' onClick={() => window.scrollTo(0, 0)}>
                 <span>Advertise</span>
               </Link>
-              <Link to='contact-us'>
+              <Link to='contact-us' onClick={() => window.scrollTo(0, 0)}>
                 <span>Contact Us</span>
               </Link>
             </div>
@@ -131,13 +131,13 @@ const Footer = () => {
           &copy; 2026 Billionaire Auction Pvt Ltd. All rights reserved.
         </p>
         <div className='footer-section-links-container'>
-          <Link to='privacy-policy'>
+          <Link to='privacy-policy' onClick={() => window.scrollTo(0, 0)}>
             <span>Privacy Policy</span>
           </Link>
-          <Link to='terms-conditions'>
+          <Link to='terms-conditions' onClick={() => window.scrollTo(0, 0)}>
             <span>Terms & Conditions</span>
           </Link>
-          <Link to='refund-policy'>
+          <Link to='refund-policy' onClick={() => window.scrollTo(0, 0)}>
             <span>Refund & Cancellation Policy</span>
           </Link>
         </div>
