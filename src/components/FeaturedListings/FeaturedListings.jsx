@@ -13,6 +13,7 @@ import { IoMdTime } from 'react-icons/io';
 import home from '../../assets/home.jpg';
 
 import FeaturedListingsCard from '../FeaturedListingsCard/FeaturedListingsCard';
+import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 import { formatCategoryLabel, getFeaturedProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
 import useAppContext from '../../context/AppContext';
@@ -43,6 +44,8 @@ const FeaturedListings = () => {
               : 'Price on request',
           category: formatCategoryLabel(product.category),
           location: product.meta?.city || product.meta?.location || 'Location not specified',
+          meta: product.meta || {},
+          categoryKey: product.category || '',
         }));
         setFeatured(mapped);
       } catch {
@@ -87,7 +90,8 @@ const FeaturedListings = () => {
                   </div>
                 </div>
                 <div className='mobile-featured-item-content-container'>
-                  <p className='mobile-item-title'>{item.title}</p>
+                  <p className='mobile-item-title card-title-single-line'>{item.title}</p>
+                  <CardMetaGrid categoryKey={item.categoryKey} meta={item.meta} />
                   <div className='mobile-content-footer'>
                     <p className='mobile-year'>
                       Year: <span className='mobile-year-number'>{item.year}</span>

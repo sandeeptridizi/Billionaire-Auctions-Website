@@ -6,6 +6,7 @@ import { FaCrown } from 'react-icons/fa6';
 import { MdVerified } from 'react-icons/md';
 import useAppContext from '../../context/AppContext';
 import { getFile } from '../../lib/s3';
+import CardMetaGrid from '../../components/CardMetaGrid/CardMetaGrid';
 
 const Wishlist = () => {
   const { products, wishlist, toggleWishlist } = useAppContext();
@@ -59,7 +60,8 @@ const Wishlist = () => {
                 </div>
               </Link>
               <div className="wishlist-card-body">
-                <h3 className="wishlist-card-title">{product.title}</h3>
+                <h3 className="wishlist-card-title card-title-single-line">{product.title}</h3>
+                <CardMetaGrid categoryKey={product.category} meta={product.meta || {}} />
                 <div className="wishlist-card-footer">
                   <Link to={`/product/${product.id}`} className="wishlist-view-btn">
                     View Details

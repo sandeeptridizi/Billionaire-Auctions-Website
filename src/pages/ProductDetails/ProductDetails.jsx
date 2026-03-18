@@ -33,6 +33,7 @@ import { TbSofa } from 'react-icons/tb';
 import { IoDiamond } from 'react-icons/io5';
 import { RiBankLine } from 'react-icons/ri';
 import { FaPlayCircle } from "react-icons/fa";
+import CardMetaGrid from "../../components/CardMetaGrid/CardMetaGrid";
 
 // Icon mapping for product meta field tiles
 const metaFieldIconMap = {
@@ -633,7 +634,8 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="luxury-item-content-container">
-                <h3 className="luxury-item-title">{item.title}</h3>
+                <h3 className="luxury-item-title card-title-single-line">{item.title}</h3>
+                <CardMetaGrid categoryKey={item.category} meta={item.meta || {}} />
                 <Link to={`/product/${item.id}`} className="luxury-item-btn">
                   View Details
                 </Link>

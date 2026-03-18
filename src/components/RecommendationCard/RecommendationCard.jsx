@@ -3,6 +3,7 @@ import './RecommendationCard.css';
 import { Link } from 'react-router-dom';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
+import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
 const RecommendationCard = ({
   id,
@@ -15,6 +16,8 @@ const RecommendationCard = ({
   icon1,
   icon2,
   isStatic,
+  meta = {},
+  categoryKey = '',
 }) => {
   const content = (
     <div className='featured-listings-card-container'>
@@ -33,7 +36,8 @@ const RecommendationCard = ({
         </div>
       </div>
       <div className='featured-listings-content-container'>
-        <h3 className='featured-listings-title'>{title}</h3>
+        <h3 className='featured-listings-title card-title-single-line'>{title}</h3>
+        <CardMetaGrid categoryKey={categoryKey} meta={meta} />
         <div className='featured-listings-time-category-container'>
           <p className='featured-listings-time'>
             <MdAccessTime /> {time}

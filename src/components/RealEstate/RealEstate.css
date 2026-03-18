@@ -58,7 +58,8 @@
 
 .real-estate-grid-container {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -87,19 +88,16 @@
   }
 
   .real-estate-grid-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .real-estate-grid-container::-webkit-scrollbar {
-  display: none; 
-}
-
-.real-estate-grid-container > * {
-  flex: 0 0 33.33%;
+  display: none;
 }
 }

@@ -14,6 +14,7 @@ import { IoMdTime } from 'react-icons/io';
 
 import home from '../../assets/home.jpg';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
+import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 import { formatCategoryLabel, getRecommendedProducts } from '../../lib/products';
 import { getFile } from '../../lib/s3';
 import useAppContext from '../../context/AppContext';
@@ -45,6 +46,8 @@ const Recommendations = () => {
           location: product.meta?.city || product.meta?.location || 'Location not specified',
           icon1: product.isFeatured ? <MdVerified /> : '',
           icon2: product.isRecommended ? <FaFireFlameSimple /> : '',
+          meta: product.meta || {},
+          categoryKey: product.category || '',
         }));
         setRecommended(mapped);
       } catch {
@@ -94,7 +97,8 @@ const Recommendations = () => {
                   </div>
                 </div>
                 <div className='mobile-featured-item-content-container'>
-                  <p className='mobile-item-title'>{item.title}</p>
+                  <p className='mobile-item-title card-title-single-line'>{item.title}</p>
+                  <CardMetaGrid categoryKey={item.categoryKey} meta={item.meta} />
                   <div className='mobile-recommendation-footer-container'>
                     <p className='mobile-time'>
                       <IoMdTime /> {item.time}

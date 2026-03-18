@@ -29,6 +29,8 @@ const RealEstate = () => {
             : 'Price on request',
           city: product.meta?.city || product.meta?.location || 'Location not specified',
           location: product.meta?.city || product.meta?.location || 'Location not specified',
+          meta: product.meta || {},
+          categoryKey: product.category || '',
         }));
         setProperties(mapped);
       } catch {

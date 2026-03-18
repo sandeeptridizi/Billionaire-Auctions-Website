@@ -36,6 +36,8 @@ export const mapProductToCard = (product) => ({
   views: "0 views",
   category: formatCategoryLabel(product.category),
   tier: product.tier || "GENERAL",
+  meta: product.meta || {},
+  categoryKey: product.category || "",
 });
 
 export const getPublicProducts = async (params = {}) => {

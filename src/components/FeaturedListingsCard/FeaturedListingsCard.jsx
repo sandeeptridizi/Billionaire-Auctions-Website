@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
+import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
 const FeaturedListingsCard = ({
   id,
@@ -15,6 +16,8 @@ const FeaturedListingsCard = ({
   category,
   location,
   isStatic,
+  meta = {},
+  categoryKey = '',
 }) => {
   const content = (
     <div className='featured-listings-card-container'>
@@ -34,10 +37,8 @@ const FeaturedListingsCard = ({
         </div>
       </div>
       <div className='featured-listings-content-container'>
-        <h3 className='featured-listings-title'>{title}</h3>
-        <p className='featured-listings-year'>
-          Year: <span className='year'>{year}</span>
-        </p>
+        <h3 className='featured-listings-title card-title-single-line'>{title}</h3>
+        <CardMetaGrid categoryKey={categoryKey} meta={meta} />
         <div className='featured-listings-time-category-container'>
           <p className='featured-listings-time'>
             <MdAccessTime /> {time}

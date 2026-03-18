@@ -8,6 +8,7 @@ import { FaCrown } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { getFile } from '../../lib/s3';
 import useAppContext from '../../context/AppContext';
+import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
 const RealEstateComponentCard = ({
   id,
@@ -18,6 +19,8 @@ const RealEstateComponentCard = ({
   views,
   category,
   tier,
+  meta = {},
+  categoryKey = '',
 }) => {
   const { toggleWishlist, isWishlisted } = useAppContext();
   const wishlisted = isWishlisted(id);
@@ -56,7 +59,8 @@ const RealEstateComponentCard = ({
         </div>
       </div>
       <div className="featured-listings-content-container">
-        <h3 className="featured-listings-title">{title}</h3>
+        <h3 className="featured-listings-title card-title-single-line">{title}</h3>
+        <CardMetaGrid categoryKey={categoryKey} meta={meta} />
         <div className="real-estate-component-justify-container">
           <p className="featured-listings-time">
             <MdOutlineRemoveRedEye />
