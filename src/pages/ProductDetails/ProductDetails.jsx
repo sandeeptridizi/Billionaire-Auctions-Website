@@ -509,6 +509,22 @@ const ProductDetails = () => {
               </div>
             </div>
           )}
+          {product.video && (
+            <div className="product-description-container">
+              <h2 className="product-description">
+                <FaPlayCircle className="product-document-icon" /> Product Video
+              </h2>
+              <div className="product-video-wrapper">
+                <video
+                  src={getFile(product.video)}
+                  controls
+                  className="product-video-player"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          )}
           <div className="product-description-container">
             <h2 className="product-description">
               <CgFileDocument className="product-document-icon" /> Description

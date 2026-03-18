@@ -465,6 +465,17 @@
   color: rgba(54, 65, 83, 1);
 }
 
+.product-video-wrapper {
+  width: 100%;
+}
+
+.product-video-player {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 12px;
+  background: #000;
+}
+
 .product-grid-item-container {
   width: 100%;
   display: grid;
