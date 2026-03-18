@@ -106,12 +106,12 @@ const Footer = () => {
         <div className='footer-link-container'>
           <h3 className='footer-link-heading'>Customer Care</h3>
           <div className='footer-contact-info-container'>
-            <div className='footer-icon-info-container'>
+            <a href="tel:+917842201879" className='footer-icon-info-container'>
               <FiPhone className='footer-icons' /> +91 78422 01879
-            </div>
-            <div className='footer-icon-info-container'>
+            </a>
+            <a href="tel:+917842501879" className='footer-icon-info-container'>
               <FiPhone className='footer-icons' /> +91 78425 01879
-            </div>
+            </a>
           </div>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
@@ -119,10 +119,10 @@ const Footer = () => {
             </div>
           </div>
           <div className='footer-contact-info-container'>
-            <div className='footer-icon-info-container'>
-              <MdMailOutline className='footer-icons' />{' '}
+            <a href="mailto:Elite@billionaireauction.com" className='footer-icon-info-container'>
+              <MdMailOutline className='footer-icons' />
               Elite@billionaireauction.com
-            </div>
+            </a>
           </div>
         </div>
       </div>

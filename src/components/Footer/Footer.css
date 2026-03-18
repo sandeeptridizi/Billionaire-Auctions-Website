@@ -107,6 +107,21 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer;
+}
+
+.footer-contact-info-container a {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-icon-info-container:hover {
+  opacity: 0.8;
 }
 
 .footer-icon-info-container {
