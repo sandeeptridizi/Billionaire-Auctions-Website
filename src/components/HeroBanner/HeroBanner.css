@@ -126,4 +126,21 @@
     display: none;
   }
 
+  .banner-arrow {
+    width: 26px;
+    height: 26px;
+  }
+
+  .banner-arrow svg {
+    font-size: 12px;
+  }
+
+  .left-arrow {
+    left: 8px;
+  }
+
+  .right-arrow {
+    right: 8px;
+  }
+
 }

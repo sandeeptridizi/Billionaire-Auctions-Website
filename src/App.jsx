@@ -23,12 +23,14 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Wishlist from './pages/Wishlist/Wishlist';
 import useAppContext from './context/AppContext';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const { products } = useAppContext();
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <MobileNavbar />
       <Navbar />
       <Routes>
