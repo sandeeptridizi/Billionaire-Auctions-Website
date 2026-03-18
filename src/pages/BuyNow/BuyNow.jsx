@@ -2,13 +2,13 @@ import './BuyNow.css';
 
 import { TiFlashOutline } from 'react-icons/ti';
 import { FiShield } from 'react-icons/fi';
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { FiTruck } from 'react-icons/fi';
 import { IoSearch } from 'react-icons/io5';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
-import { LuCrown } from 'react-icons/lu';
-import { IoDiamondOutline } from 'react-icons/io5';
+import { FaCrown } from 'react-icons/fa6';
+import { IoDiamond } from 'react-icons/io5';
 
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -40,7 +40,7 @@ const data = [
   },
   {
     id: 3,
-    icon: <BsPatchCheck />,
+    icon: <MdVerified />,
     title: 'Verified Items',
     text: 'Authenticated',
   },
@@ -162,7 +162,7 @@ const BuyNow = () => {
                     }
                     onClick={() => handleSwitch('Luxury')}
                   >
-                    <LuCrown /> Luxury
+                    <FaCrown /> Luxury
                   </div>
 
                   <div
@@ -173,7 +173,7 @@ const BuyNow = () => {
                     }
                     onClick={() => handleSwitch('Classic')}
                   >
-                    <IoDiamondOutline /> Classic
+                    <IoDiamond /> Classic
                   </div>
                   {loading && (
                     <div className="tier-loader-overlay">

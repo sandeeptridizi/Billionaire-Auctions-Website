@@ -6,26 +6,26 @@ import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { MdCurrencyRupee } from 'react-icons/md';
 import { LuCircleCheckBig } from 'react-icons/lu';
 import { RiErrorWarningLine } from 'react-icons/ri';
-import { FaRegStar } from 'react-icons/fa6';
+import { FaStar } from 'react-icons/fa6';
 import { FiCamera } from 'react-icons/fi';
 import { BiGitBranch } from 'react-icons/bi';
-import { FaArrowTrendUp } from 'react-icons/fa6';
+import { FaFireFlameSimple } from 'react-icons/fa6';
 import { BsWindowSidebar } from 'react-icons/bs';
 import { BsCameraVideo } from 'react-icons/bs';
-import { LuCrown } from 'react-icons/lu';
-import { BsPatchCheck } from 'react-icons/bs';
+import { FaCrown } from 'react-icons/fa6';
+import { MdVerified } from 'react-icons/md';
 import { LuGlobe } from 'react-icons/lu';
 
 const advertiseData = [
   {
     id: 1,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'High-Net-Worth Audience',
     text: 'Connect with affluent collectors and luxury buyers',
   },
   {
     id: 2,
-    icon: <BsPatchCheck />,
+    icon: <MdVerified />,
     title: 'Verified Community',
     text: 'Trusted network of serious buyers and sellers',
   },
@@ -37,7 +37,7 @@ const advertiseData = [
   },
   {
     id: 4,
-    icon: <FaRegStar />,
+    icon: <FaStar />,
     title: 'Elite Positioning',
     text: 'Align with luxury and exclusivity',
   },
@@ -66,7 +66,7 @@ const Advertise = () => {
           </h2>
           <button className='package-btn' onClick={() => setIsEnquiryOpen(true)} >Get Started</button>
         </div>
-        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
+        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} source="Advertise - Digital Media Package" /> )}
         <div className='package-grid-container'>
           <div className='package-grid-item-container'>
             <LuCircleCheckBig className='package-item-icon' /> On-site visit for
@@ -100,7 +100,7 @@ const Advertise = () => {
           </div>
         </div>
         <div className='package-tag-container'>
-          <FaRegStar className='package-star-icon' /> Most Popular
+          <FaStar className='package-star-icon' /> Most Popular
         </div>
       </div>
       <div className='media-promotion-container'>
@@ -134,7 +134,7 @@ const Advertise = () => {
             </div>
             <div className='media-promotions-grid-item-container'>
               <div className='media-promotions-icon-container'>
-                <FaArrowTrendUp />
+                <FaFireFlameSimple />
               </div>
               <p>Paid promotion through Meta Ads (Facebook & Instagram)</p>
             </div>
@@ -241,7 +241,7 @@ const Advertise = () => {
           <button className='purchase-btn' onClick={() => setIsEnquiryOpen(true)}  >Purchase Package</button>
           <button className='contact-team-btn' onClick={() => window.location.href = "tel:+917842201879"}>Contact Our Team</button>
         </div>
-        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
+        {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} source="Advertise - Purchase Package" /> )}
       </div>
     </div>
   );

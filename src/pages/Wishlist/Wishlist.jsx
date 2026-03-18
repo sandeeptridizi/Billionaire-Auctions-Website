@@ -2,8 +2,8 @@ import './Wishlist.css';
 import { Link } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { LuCrown } from 'react-icons/lu';
-import { BsPatchCheck } from 'react-icons/bs';
+import { FaCrown } from 'react-icons/fa6';
+import { MdVerified } from 'react-icons/md';
 import useAppContext from '../../context/AppContext';
 import { getFile } from '../../lib/s3';
 
@@ -40,10 +40,10 @@ const Wishlist = () => {
                   />
                   <div className="wishlist-card-badges">
                     <div className="wishlist-verified-badge">
-                      <BsPatchCheck /> Verified
+                      <MdVerified /> Verified
                     </div>
                     <div className="wishlist-luxury-badge">
-                      <LuCrown /> {product.tier || 'Luxury'}
+                      <FaCrown /> {product.tier || 'Luxury'}
                     </div>
                   </div>
                   <div className="wishlist-card-price-bar">

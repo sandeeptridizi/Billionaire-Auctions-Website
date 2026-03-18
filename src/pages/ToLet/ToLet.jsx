@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiHome } from 'react-icons/fi';
 import { IoSearch } from 'react-icons/io5';
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { TbCurrencyRupee } from 'react-icons/tb';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
@@ -18,13 +18,13 @@ const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 const rentsData = [
   {
     id: 1,
-    icon: <BsPatchCheck />,
+    icon: <MdVerified />,
     title: 'Verified Properties',
     text: 'All properties are verified and authentic',
   },
   {
     id: 2,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'Luxury Collection',
     text: 'Exclusive premium properties only',
   },

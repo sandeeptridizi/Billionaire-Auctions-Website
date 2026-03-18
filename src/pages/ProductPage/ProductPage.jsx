@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './ProductPage.css';
 
-import { LuCrown } from 'react-icons/lu';
-import { IoDiamondOutline } from 'react-icons/io5';
+import { FaCrown } from 'react-icons/fa6';
+import { IoDiamond } from 'react-icons/io5';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 
 import exclusiveVilla from '../../assets/exclusive-villa.jpg';
@@ -103,7 +103,7 @@ const ProductPage = () => {
               }
               onClick={() => setSelectedBtn('Luxury')}
             >
-              <LuCrown /> Luxury
+              <FaCrown /> Luxury
             </div>
             <div
               className={
@@ -113,7 +113,7 @@ const ProductPage = () => {
               }
               onClick={() => setSelectedBtn('Classic')}
             >
-              <IoDiamondOutline /> Classic
+              <IoDiamond /> Classic
             </div>
           </div>
         </div>
@@ -188,7 +188,7 @@ const ProductPage = () => {
       </div>
       <div className='product-page-footer-container'>
         <h2 className='product-page-footer-heading'>
-          <LuCrown className='product-footer-icon' /> Join Billionaire Auction
+          <FaCrown className='product-footer-icon' /> Join Billionaire Auction
           Premium
         </h2>
         <p className='product-footer-text'>

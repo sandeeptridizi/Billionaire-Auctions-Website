@@ -6,7 +6,7 @@ import { GoPerson } from 'react-icons/go';
 import { RiGraduationCapLine } from 'react-icons/ri';
 import { LuBriefcase } from 'react-icons/lu';
 
-import { FaArrowTrendUp } from 'react-icons/fa6';
+import { FaFireFlameSimple } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { FiShield } from 'react-icons/fi';
 import { TbHammer } from 'react-icons/tb';
@@ -17,7 +17,7 @@ import { FaStore } from "react-icons/fa";
 import { BsBoxSeam } from 'react-icons/bs';
 import { FiHeadphones } from 'react-icons/fi';
 import { MdOutlineCalendarToday } from 'react-icons/md';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 import { BsGlobe } from 'react-icons/bs';
 import { LuHotel } from 'react-icons/lu';
 import { GrLocation } from 'react-icons/gr';
@@ -27,7 +27,7 @@ import { LuCircleCheckBig } from 'react-icons/lu';
 const aboutData = [
   {
     id: 1,
-    icon: <FaArrowTrendUp />,
+    icon: <FaFireFlameSimple />,
     title: 'High-value assets',
   },
   {
@@ -80,7 +80,7 @@ const data = [
   },
   {
     id: 6,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'Elite Community',
     text: 'Exclusive membership for high-net-worth individuals.',
   },
@@ -95,7 +95,7 @@ const futureData = [
   },
   {
     id: 2,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'Elite Membership',
     text: 'Every elite buyer gets exclusive access to high-value auctions.',
   },
@@ -302,7 +302,7 @@ const AboutUs = () => {
           </div>
           <div className='community-membership-container'>
             <div className='community-membership-header'>
-              <LuCrown className='community-icon' />
+              <FaCrown className='community-icon' />
               <h2 className='community-heading'>
                 Elite Community & Membership
               </h2>

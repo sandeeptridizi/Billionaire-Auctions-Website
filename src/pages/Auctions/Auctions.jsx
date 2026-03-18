@@ -1,6 +1,6 @@
 import './Auctions.css';
 
-import { IoDiamondOutline } from 'react-icons/io5';
+import { IoDiamond } from 'react-icons/io5';
 import { IoSearch } from 'react-icons/io5';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { GoPeople } from 'react-icons/go';
 import { BsBoxSeam } from 'react-icons/bs';
 import { TbHammer } from 'react-icons/tb';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 
 import apartment from '../../assets/apartment.jpg';
 import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionCardComponent';
@@ -65,7 +65,7 @@ const stepsData = [
   },
   {
     id: 4,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'Win & Collect',
     text: 'Highest bidder wins and collects the item',
   },
@@ -181,7 +181,7 @@ const Auctions = () => {
                     }
                     onClick={() => handleSwitch('Luxury')}
                   >
-                    <LuCrown /> Luxury
+                    <FaCrown /> Luxury
                   </div>
 
                   <div
@@ -192,7 +192,7 @@ const Auctions = () => {
                     }
                     onClick={() => handleSwitch('Classic')}
                   >
-                    <IoDiamondOutline /> Classic
+                    <IoDiamond /> Classic
                   </div>
                   {loading && (
                     <div className="tier-loader-overlay">

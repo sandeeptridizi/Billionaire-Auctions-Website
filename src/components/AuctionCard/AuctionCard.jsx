@@ -4,7 +4,7 @@ import { LuCalendar } from 'react-icons/lu';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsBoxSeam } from 'react-icons/bs';
 import { GoPeople } from 'react-icons/go';
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 
 const AuctionCard = ({
   title,
@@ -47,7 +47,7 @@ const AuctionCard = ({
         </div>
       </div>
       <button className='register-now-btn'>
-        <BsPatchCheck /> Register Now
+        <MdVerified /> Register Now
       </button>
     </div>
   );

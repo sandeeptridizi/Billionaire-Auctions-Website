@@ -1,15 +1,16 @@
 import './Marketplace.css';
 
 import { IoSearch } from 'react-icons/io5';
-import { HiOutlineArrowSmRight } from 'react-icons/hi';
-import { LuCrown, LuHouse, LuCar } from 'react-icons/lu';
-import { IoDiamondOutline } from 'react-icons/io5';
+
+import { LuHouse, LuCar } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
+import { IoDiamond } from 'react-icons/io5';
 import { TbSofa } from 'react-icons/tb';
 import { MdOutlinePalette } from 'react-icons/md';
 import { BsBoxSeam, BsStars } from 'react-icons/bs';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
@@ -28,9 +29,9 @@ const categoryBtns = [
   { icon: <LuHouse />, title: 'Real Estate', key: 'REAL_ESTATE' },
   { icon: <LuCar />, title: 'Cars', key: 'CARS' },
   { icon: <TbSofa />, title: 'Furniture', key: 'FURNITURE' },
-  { icon: <IoDiamondOutline />, title: 'Jewellery', key: 'JEWELLERY_AND_WATCHES' },
+  { icon: <IoDiamond />, title: 'Jewellery', key: 'JEWELLERY_AND_WATCHES' },
   { icon: <MdOutlinePalette />, title: 'Arts', key: 'ARTS_AND_PAINTINGS' },
-  { icon: <LuCrown />, title: 'Antiques', key: 'ANTIQUES' },
+  { icon: <FaCrown />, title: 'Antiques', key: 'ANTIQUES' },
   { icon: <BsBoxSeam />, title: 'Collectables', key: 'COLLECTABLES' },
   { icon: <BsStars />, title: 'Others', key: 'OTHERS' },
 ];
@@ -149,7 +150,7 @@ const Marketplace = () => {
             }
             onClick={() => handleSwitch('Luxury')}
           >
-            <LuCrown /> Luxury
+            <FaCrown /> Luxury
           </div>
 
           <div
@@ -160,7 +161,7 @@ const Marketplace = () => {
             }
             onClick={() => handleSwitch('Classic')}
           >
-            <IoDiamondOutline /> Classic
+            <IoDiamond /> Classic
           </div>
           {loading && (
             <div className="tier-loader-overlay">
@@ -197,11 +198,17 @@ const Marketplace = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className='buy-now-filter-container'>
-            <Link to='/products/marketplace/all' className='buy-now-filter-btn'>
-              View All <HiOutlineArrowSmRight />
-            </Link>
-          </div>
+          {selectedCategory && (
+            <div className='buy-now-filter-container'>
+              <div
+                className='buy-now-filter-btn'
+                style={{ cursor: 'pointer' }}
+                onClick={() => setSelectedCategory(null)}
+              >
+                Clear Filter
+              </div>
+            </div>
+          )}
         </div>
         <div className='marketplace-category-icons-row'>
           {categoryBtns.map((btn) => (
@@ -232,11 +239,12 @@ const Marketplace = () => {
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
             key={catKey}
-            data={items.slice(0, 3)}
+            data={selectedCategory ? items : items.slice(0, 3)}
             name={formatCategoryLabel(catKey)}
             totalCount={items.length}
-            showViewAll={true}
-            viewAllLink={`/products/marketplace/${categoryToSlug(catKey)}`}
+            showViewAll={!selectedCategory && items.length > 3}
+            viewAllLink={null}
+            onViewAll={() => setSelectedCategory(catKey)}
           />
         ))
       )}

@@ -1,6 +1,6 @@
 import './PropertyCard.css';
 
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { GrFavorite } from 'react-icons/gr';
@@ -29,7 +29,7 @@ const PropertyCard = ({
         <div className='property-card-header'>
           <div className='property-available-container'>AVAILABLE</div>
           <div className='real-estate-card-icon-container'>
-            <BsPatchCheck className='real-estate-component-icon' /> Verified
+            <MdVerified className='real-estate-component-icon' /> Verified
           </div>
         </div>
         <div className='property-card-footer'>

@@ -3,12 +3,12 @@ import './Recommendations.css';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import { FaRegStar } from 'react-icons/fa6';
+import { FaStar } from 'react-icons/fa6';
 
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
-import { BsPatchCheck } from 'react-icons/bs';
-import { FaArrowTrendUp } from 'react-icons/fa6';
+import { MdVerified } from 'react-icons/md';
+import { FaFireFlameSimple } from 'react-icons/fa6';
 import { GrLocation } from 'react-icons/gr';
 import { IoMdTime } from 'react-icons/io';
 
@@ -43,8 +43,8 @@ const Recommendations = () => {
               : 'Price on request',
           category: formatCategoryLabel(product.category),
           location: product.meta?.city || product.meta?.location || 'Location not specified',
-          icon1: product.isFeatured ? <BsPatchCheck /> : '',
-          icon2: product.isRecommended ? <FaArrowTrendUp /> : '',
+          icon1: product.isFeatured ? <MdVerified /> : '',
+          icon2: product.isRecommended ? <FaFireFlameSimple /> : '',
         }));
         setRecommended(mapped);
       } catch {
@@ -63,7 +63,7 @@ const Recommendations = () => {
     <>
       <div className='mobile-featured-listings-container'>
         <h3 className='mobile-featured-heading'>
-          <FaRegStar className='crown-icon' /> Recommendations
+          <FaStar className='crown-icon' /> Recommendations
         </h3>
         <div className='mobile-featured-listings-grid-container'>
           {recommendationData.slice(0, 3).map((item) => (
@@ -110,7 +110,7 @@ const Recommendations = () => {
       <div className='recommendations-container'>
         <div className='featured-listings-header'>
           <div className='featured-listings-heading-container'>
-            <FaRegStar className='crown-icon' />
+            <FaStar className='crown-icon' />
             <h3 className='featured-listings-heading'>Recommendations</h3>
           </div>
           <div className='featured-listings-arrow-btn-container'>

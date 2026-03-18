@@ -112,7 +112,7 @@ const OurServices = () => {
             <button className='schedule-btn' onClick={() => setShowModal(true)}>
               <LuBriefcase /> Get Consultation
             </button>
-            {showModal && ( <EnquiryModal onClose={() => setShowModal(false)} />)}
+            {showModal && ( <EnquiryModal onClose={() => setShowModal(false)} source="Our Services - Consultation" />)}
           </div>
         </div>
       </div>

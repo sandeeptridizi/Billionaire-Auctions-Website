@@ -3,10 +3,10 @@ import './FeaturedListings.css';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { GrLocation } from 'react-icons/gr';
 import { IoMdTime } from 'react-icons/io';
 
@@ -61,7 +61,7 @@ const FeaturedListings = () => {
     <>
       <div className='mobile-featured-listings-container'>
         <h3 className='mobile-featured-heading'>
-          <LuCrown className='mobile-crown-icon' /> Featured Listings
+          <FaCrown className='mobile-crown-icon' /> Featured Listings
         </h3>
         <div className='mobile-featured-listings-grid-container'>
           {featuredData.slice(0, 3).map((item) => (
@@ -75,7 +75,7 @@ const FeaturedListings = () => {
                   />
                   <div className='mobile-featured-grid-item-header'>
                     <div className='mobile-grid-item-check-icon-container'>
-                      <BsPatchCheck className='mobile-check-icon' />
+                      <MdVerified className='mobile-check-icon' />
                     </div>
                     <div className='mobile-item-luxury-container'>Luxury</div>
                   </div>
@@ -105,7 +105,7 @@ const FeaturedListings = () => {
       <div className='featured-listings-container'>
         <div className='featured-listings-header'>
           <div className='featured-listings-heading-container'>
-            <LuCrown className='crown-icon' />
+            <FaCrown className='crown-icon' />
             <h3 className='featured-listings-heading'>Featured Listings</h3>
           </div>
           <div className='featured-listings-arrow-btn-container'>

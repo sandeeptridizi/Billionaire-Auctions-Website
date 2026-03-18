@@ -1,8 +1,9 @@
 import "./MobileFooter.css";
-import { LuCrown } from "react-icons/lu";
-import { IoDiamondOutline } from "react-icons/io5";
+import { FaCrown } from "react-icons/fa6";
+import { IoDiamond } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import marketPlace from "../../assets/marketplace.png";
 import sellNow from "../../assets/sell-now.png";
@@ -12,13 +13,19 @@ import tolet from "../../assets/to-let.png";
 import luxuryLoading from "../../assets/luxury-loading.mp4";
 import classicLoading from "../../assets/classic-loading.mp4";
 
+const allowedPaths = ["/", "/marketplace", "/auctions", "/buy-now"];
+
 const MobileFooter = () => {
+  const { pathname } = useLocation();
+  const isAllowed = allowedPaths.includes(pathname);
   const [showLinks, setShowLinks] = useState(false);
   const [active, setActive] = useState("luxury");
   const [loading, setLoading] = useState(false);
   const [nextMode, setNextMode] = useState(null);
   const [videoReady, setVideoReady] = useState(false);
 
+
+  if (!isAllowed) return null;
 
   const handleSwitch = (type) => {
   if (type === active) return;
@@ -37,7 +44,7 @@ const MobileFooter = () => {
           className={`footer-side luxury ${active === "luxury" ? "active" : ""}`}
           onClick={() => handleSwitch("luxury")}
         >
-          <LuCrown />
+          <FaCrown />
           <span>LUXURY</span>
         </div>
 
@@ -57,7 +64,7 @@ const MobileFooter = () => {
           className={`footer-side classic ${active === "classic" ? "active" : ""}`}
           onClick={() => handleSwitch("classic")}
         >
-          <IoDiamondOutline />
+          <IoDiamond />
           <span>CLASSIC</span>
         </div>
 

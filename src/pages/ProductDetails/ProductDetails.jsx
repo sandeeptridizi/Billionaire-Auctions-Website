@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
-  LuCrown, LuPhone, LuSquareArrowOutUpRight, LuHouse,
+  LuPhone, LuSquareArrowOutUpRight, LuHouse,
   LuBedDouble, LuRuler, LuCalendar, LuArmchair, LuCompass,
   LuCar, LuGauge, LuFuel, LuSettings2, LuUser, LuShieldCheck,
   LuLayers, LuStar, LuUsers, LuClock, LuGem, LuWeight,
   LuBadgeCheck, LuAward, LuWrench, LuBox, LuPuzzle,
   LuPaintbrush, LuPalette, LuPenTool, LuGlobe, LuFileText,
   LuHash, LuChartColumnIncreasing, LuIndianRupee, LuWallet, LuCalendarCheck,
-  LuSmartphone, LuTag, LuInfo, LuLandmark, LuWatch
+  LuSmartphone, LuTag, LuInfo, LuLandmark, LuWatch,
+  LuMapPin, LuBuilding, LuKeyRound, LuCircleCheckBig, LuSquareParking, LuMapPinned, LuHourglass,
+  LuCircleDot, LuKey, LuFileCheck, LuHandshake, LuUserCheck, LuScrollText, LuCarFront, LuShieldAlert, LuHistory, LuThumbsUp, LuMapPinHouse,
+  LuStore, LuPackageCheck, LuHammer, LuMessageSquareText, LuReceipt, LuSparkles, LuScroll
 } from "react-icons/lu";
-import { BsPatchCheck } from "react-icons/bs";
+import { MdVerified } from "react-icons/md";
+import { FaCrown } from "react-icons/fa6";
 import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import { getFile } from "../../lib/s3";
@@ -26,7 +30,7 @@ import { PiCarProfile } from "react-icons/pi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FiCheckCircle } from "react-icons/fi";
 import { TbSofa } from 'react-icons/tb';
-import { IoDiamondOutline } from 'react-icons/io5';
+import { IoDiamond } from 'react-icons/io5';
 import { RiBankLine } from 'react-icons/ri';
 import { FaPlayCircle } from "react-icons/fa";
 
@@ -44,10 +48,19 @@ const metaFieldIconMap = {
   monthlyRent: LuIndianRupee,
   securityDeposit: LuWallet,
   availableFrom: LuCalendarCheck,
+  city: LuMapPin,
+  landmark: LuMapPinned,
+  areaLocality: LuBuilding,
+  availability: LuCalendarCheck,
+  propertyType: LuHouse,
+  ownershipType: LuKeyRound,
+  approvalStatus: LuCircleCheckBig,
+  noOfCarParking: LuSquareParking,
+  ageOfPropertyYears: LuHourglass,
 
   // Cars & Bikes
   brand: LuTag,
-  model: LuInfo,
+  model: LuCarFront,
   year: LuCalendar,
   yearOfManufacture: LuCalendar,
   kmDriven: LuGauge,
@@ -55,14 +68,31 @@ const metaFieldIconMap = {
   transmission: LuSettings2,
   ownership: LuUser,
   insuranceStatus: LuShieldCheck,
+  color: LuPalette,
+  tyres: LuCircleDot,
+  negotiable: LuHandshake,
+  noOfOwners: LuUserCheck,
+  rcAvailable: LuFileCheck,
+  numberOfKeys: LuKey,
+  serviceHistory: LuHistory,
+  accidentHistory: LuShieldAlert,
+  registrationState: LuMapPinHouse,
 
   // Furniture
   furnitureType: LuArmchair,
   material: LuLayers,
-  condition: LuStar,
+  condition: LuThumbsUp,
   dimensions: LuRuler,
+  dimensionsLWH: LuRuler,
   seatingCapacity: LuUsers,
+  seatingCapacityIfApplicable: LuUsers,
   ageOfFurniture: LuClock,
+  sellerType: LuStore,
+  colorFinish: LuPalette,
+  usageCondition: LuSparkles,
+  assemblyRequired: LuHammer,
+  reasonForSelling: LuMessageSquareText,
+  originalPurchasePriceOptional: LuReceipt,
 
   // Jewellery
   type: LuGem,
@@ -87,8 +117,11 @@ const metaFieldIconMap = {
   // Antiques
   antiqueType: LuLandmark,
   approximateAge: LuClock,
+  approximateAgeYears: LuHourglass,
   origin: LuGlobe,
   documentation: LuFileText,
+  restoration: LuWrench,
+  historicalPeriod: LuScroll,
 
   // Collectibles
   itemType: LuBox,
@@ -286,10 +319,10 @@ const ProductDetails = () => {
           <div className="product-info-header">
             <div className="product-info-tags-container">
               <div className="product-verified-container">
-                <BsPatchCheck className="product-check-icon" /> Verified
+                <MdVerified className="product-check-icon" /> Verified
               </div>
               <div className="product-luxury-container">
-                <LuCrown className="product-crown-icon" /> {product.tier}
+                <FaCrown className="product-crown-icon" /> {product.tier}
               </div>
             </div>
             <h3 className="product-info-heading">{product.title}</h3>
@@ -299,13 +332,10 @@ const ProductDetails = () => {
             </div>
             <div className="product-calender">
               <MdOutlineCalendarToday /> Posted on{" "}
-              {new Date(product.createdAt).toLocaleString("en-IN", {
+              {new Date(product.createdAt).toLocaleDateString("en-IN", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
               })}
             </div>
           </div>
@@ -457,7 +487,7 @@ const ProductDetails = () => {
                 ) : product.category === "FURNITURE" ? (
                   <><TbSofa className="product-document-icon" /> Furniture Details</>
                 ) : product.category === "JEWELLERY_AND_WATCHES" ? (
-                  <><IoDiamondOutline className="product-document-icon" /> Jewellery &amp; Watches Details</>
+                  <><IoDiamond className="product-document-icon" /> Jewellery &amp; Watches Details</>
                 ) : product.category === "ANTIQUES" ? (
                   <><RiBankLine className="product-document-icon" /> Antiques Details</>
                 ) : (
@@ -543,13 +573,10 @@ const ProductDetails = () => {
             <div className="quick-info-justify-container">
               <span className="quick-category">Posted On</span>
               <span className="category-name">
-                {new Date(product.createdAt).toLocaleString("en-IN", {
+                {new Date(product.createdAt).toLocaleDateString("en-IN", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
-                  hour: "numeric",
-                  minute: "2-digit",
-                  hour12: true,
                 })}
               </span>
             </div>
@@ -571,10 +598,10 @@ const ProductDetails = () => {
                 />
                 <div className="luxury-item-header">
                   <div className="luxury-item-verified-container">
-                    <BsPatchCheck className="verified-icon" /> Verified
+                    <MdVerified className="verified-icon" /> Verified
                   </div>
                   <div className="luxury-item-luxury-container">
-                    <LuCrown /> {item.tier || "LUXURY"}
+                    <FaCrown /> {item.tier || "LUXURY"}
                   </div>
                 </div>
                 <div className="luxury-item-footer">
@@ -601,7 +628,7 @@ const ProductDetails = () => {
       </div>
       <div className="product-page-footer-container">
         <h2 className="product-page-footer-heading">
-          <LuCrown className="product-footer-icon" /> Join Billionaire Auction Platform
+          <FaCrown className="product-footer-icon" /> Join Billionaire Auction Platform
         </h2>
         <p className="product-footer-text">
           Get exclusive access to luxury offline auctions, verified elite items,

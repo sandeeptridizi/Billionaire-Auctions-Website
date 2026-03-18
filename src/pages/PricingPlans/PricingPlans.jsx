@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
 
 import { LuStar } from 'react-icons/lu';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 import { TiFlashOutline } from 'react-icons/ti';
 import { BsCurrencyRupee } from 'react-icons/bs';
 import { LuShield } from 'react-icons/lu';
@@ -224,7 +224,7 @@ const scrollRight = () => {
           </div>
           <div className='pricing-page-grid-item-container'>
             <div className='pricing-page-header'>
-              <LuCrown className='pricing-star-icon' />
+              <FaCrown className='pricing-star-icon' />
               <h3 className='pricing-heading'>Premium</h3>
               <h3 className='plan-price'>
                 <BsCurrencyRupee /> 4,999
@@ -422,7 +422,7 @@ const scrollRight = () => {
 
               <button className="book-now-btn" onClick={() => setIsEnquiryOpen(true)}>Book Now</button>
             </div>
-            {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
+            {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} source="Pricing Plans - Book Now" /> )}
           </div>
         </div>
 
@@ -589,7 +589,7 @@ const scrollRight = () => {
               Book Digital Media Package
             </button>
           </div>
-          {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} /> )}
+          {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} source="Pricing Plans - Digital Media Package" /> )}
         </div>
       </div>
       <div className='pricing-page-footer-container'>

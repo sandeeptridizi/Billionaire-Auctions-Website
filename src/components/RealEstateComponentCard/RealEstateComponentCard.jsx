@@ -1,10 +1,10 @@
 import './RealEstateComponentCard.css';
 
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { LuCrown } from 'react-icons/lu';
+import { FaCrown } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { getFile } from '../../lib/s3';
 import useAppContext from '../../context/AppContext';
@@ -35,10 +35,10 @@ const RealEstateComponentCard = ({
         <img src={getFile(image)} alt={title} className="featured-img" />
         <div className="featured-listings-card-header">
           <div className="real-estate-card-icon-container">
-            <BsPatchCheck className="real-estate-component-icon" /> Verified
+            <MdVerified className="real-estate-component-icon" /> Verified
           </div>
           <div className="real-estate-luxury-container">
-            <LuCrown /> {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
+            <FaCrown /> {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
           </div>
         </div>
         <button

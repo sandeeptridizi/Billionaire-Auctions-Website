@@ -1,27 +1,27 @@
 import './BillionaireAuction.css';
 import { useNavigate } from "react-router-dom";
 
-import { LuCrown } from 'react-icons/lu';
-import { BsPatchCheck } from 'react-icons/bs';
-import { SlStar } from 'react-icons/sl';
+import { FaCrown } from 'react-icons/fa6';
+import { MdVerified } from 'react-icons/md';
+import { HiSparkles } from 'react-icons/hi2';
 import companyLogo from '../../assets/Billionaire auction.png';
 
 const data = [
   {
     id: 1,
-    icon: <BsPatchCheck />,
+    icon: <MdVerified />,
     title: '100% Verified',
     text: 'All listings authenticated',
   },
   {
     id: 2,
-    icon: <LuCrown />,
+    icon: <FaCrown />,
     title: 'Exclusive Access',
     text: 'Premium collections',
   },
   {
     id: 3,
-    icon: <SlStar />,
+    icon: <HiSparkles />,
     title: 'VIP Service',
     text: 'Dedicated support team',
   },
@@ -56,10 +56,10 @@ const BillionaireAuction = () => {
         </div>
         <div className='auction-btn-container'>
           <button className='start-buying-btn' onClick={() => navigate("/marketplace")}>
-            <SlStar /> Start Buying Now
+            <HiSparkles /> Start Buying Now
           </button>
           <button className='list-your-item-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-            <LuCrown /> List Your Item
+            <FaCrown /> List Your Item
           </button>
         </div>
         <p className='auction-footer'>

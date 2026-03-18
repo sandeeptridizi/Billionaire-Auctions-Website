@@ -277,7 +277,7 @@ const OurPartners = () => {
           <FaArrowRight /> Get In Touch
         </button>
       </div>
-      {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} />)}
+      {isEnquiryOpen && ( <EnquiryModal onClose={() => setIsEnquiryOpen(false)} source="Our Partners" />)}
     </div>
   );
 };

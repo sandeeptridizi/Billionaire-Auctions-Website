@@ -1,7 +1,7 @@
 import './FeaturedListingsCard.css';
 
 import { Link } from 'react-router-dom';
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
 
@@ -22,7 +22,7 @@ const FeaturedListingsCard = ({
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           <div className='card-icon-container'>
-            <BsPatchCheck className='check-icon' />
+            <MdVerified className='check-icon' />
           </div>
           <div className='luxury-container'>Luxury</div>
         </div>

@@ -29,7 +29,9 @@ export const mapProductToCard = (product) => ({
   id: product.id,
   title: product.title,
   image: product.media?.[0] || "",
-  cost: product.value ?? "Price on request",
+  cost: typeof product.value === "number"
+    ? product.value.toLocaleString("en-IN")
+    : "Price on request",
   location: product.meta?.city || product.meta?.location || "Location not specified",
   views: "0 views",
   category: formatCategoryLabel(product.category),
@@ -76,13 +78,10 @@ export const getRecommendedProducts = async (params = {}) => {
   return response.data?.data || [];
 };
 
-export const submitEnquiry = async ({ productId, visitorName, visitorEmail, visitorPhone, message }) => {
-  const response = await api.post("/api/enquiry", {
-    productId,
-    visitorName,
-    visitorEmail,
-    visitorPhone,
-    message,
-  });
+export const submitEnquiry = async ({ productId, visitorName, visitorEmail, visitorPhone, message, source }) => {
+  const payload = { visitorName, visitorEmail, visitorPhone, message };
+  if (productId) payload.productId = productId;
+  if (source) payload.source = source;
+  const response = await api.post("/api/enquiry", payload);
   return response.data;
 };

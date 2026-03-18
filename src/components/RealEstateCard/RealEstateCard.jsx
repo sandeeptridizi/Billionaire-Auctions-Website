@@ -1,6 +1,6 @@
 import './RealEstateCard.css';
 
-import { BsPatchCheck } from 'react-icons/bs';
+import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 const RealEstateCard = ({ title, image, cost, city, location }) => {
@@ -10,7 +10,7 @@ const RealEstateCard = ({ title, image, cost, city, location }) => {
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           <div className='card-icon-container'>
-            <BsPatchCheck />
+            <MdVerified />
           </div>
           <div className='luxury-container'>Luxury</div>
         </div>
