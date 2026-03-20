@@ -1,7 +1,7 @@
 import './MobileNavbar.css';
 
 import companyLogo from '../../assets/company-logo.png';
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 
 import { AiFillHome } from 'react-icons/ai';
@@ -14,13 +14,16 @@ import { GrLocation } from 'react-icons/gr';
 import { MdFavorite } from 'react-icons/md';
 import { GoPerson } from 'react-icons/go';
 import { FiSearch } from 'react-icons/fi';
+import { GoHomeFill } from 'react-icons/go';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
 
 const MobileNavbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [mobileSearch, setMobileSearch] = useState('');
   const { wishlist, selectedCountry, setSelectedCountry, countryLabel } = useAppContext();
   const location = useLocation();
+  const navigate = useNavigate();
   const browseMenuRef = useRef(null);
   const countryMenuRef = useRef(null);
 
@@ -120,9 +123,27 @@ const MobileNavbar = () => {
       </div>
       <div className='mobile-nav-search-container'>
         {!hasPageSearch && (
-          <div className='mobile-search-container'>
-            <FiSearch className='mobile-search-icon' />
-            <input type='text' placeholder='Search...' className='mobile-input' />
+          <div className='mobile-search-row'>
+            {location.pathname === '/' && (
+              <Link to="/" className="mobile-home-link">
+                <GoHomeFill className="mobile-home-icon" />
+              </Link>
+            )}
+            <div className='mobile-search-container'>
+              <FiSearch className='mobile-search-icon' />
+              <input
+                type='text'
+                placeholder='Search...'
+                className='mobile-input'
+                value={mobileSearch}
+                onChange={(e) => setMobileSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && mobileSearch.trim()) {
+                    navigate(`/marketplace?q=${encodeURIComponent(mobileSearch.trim())}`);
+                  }
+                }}
+              />
+            </div>
           </div>
         )}
         <div className='mobile-icons-login-container'>

@@ -167,8 +167,25 @@
     gap: 10px;
   }
 
-  .mobile-search-container {
+  .mobile-search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 75%;
+  }
+
+  .mobile-home-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-home-icon {
+    color: #d4af37;
+    font-size: 22px;
+  }
+
+  .mobile-search-container {
+    flex: 1;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -252,7 +269,8 @@
     box-shadow: 0px 2.02px 3.03px -0.51px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 8px;
-    font-weight: 400;
+    font-weight: 600;
     padding: 4px 8px;
+    text-decoration: none;
   }
 }

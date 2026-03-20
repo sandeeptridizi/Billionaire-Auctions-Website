@@ -10,6 +10,7 @@ import { MdOutlinePalette } from 'react-icons/md';
 import { BsBoxSeam, BsStars } from 'react-icons/bs';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
 import luxuryLoading from "../../assets/luxury web.mp4";
@@ -37,8 +38,9 @@ const categoryBtns = [
 ];
 
 const Marketplace = () => {
+  const [searchParams] = useSearchParams();
   const [selectedBtn, setSelectedBtn] = useState('All');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(searchParams.get('q') || '');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

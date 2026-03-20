@@ -173,13 +173,6 @@ const ProductDetails = () => {
 
   const images = product?.media || [];
 
-  useEffect(() => {
-    if (images.length === 0) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [images.length]);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();

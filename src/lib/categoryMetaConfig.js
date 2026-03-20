@@ -203,7 +203,7 @@ export const getMetaFieldsForCategory = (categoryKey, meta) => {
     if (value) {
       result.push({ key: field.key, label: field.label, value });
     }
-    if (result.length >= 6) break;
+    if (result.length >= 4) break;
   }
   return result;
 };
