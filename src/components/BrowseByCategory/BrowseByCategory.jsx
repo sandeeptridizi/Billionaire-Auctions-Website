@@ -31,7 +31,7 @@ const CATEGORY_MAP = {
 
 const btns = [
   { id: 1, icon: <LuHouse />, title: 'Real Estate', name: 'realEstate' },
-  { id: 2, icon: <LuCar />, title: 'Cars', name: 'cars' },
+  { id: 2, icon: <LuCar />, title: 'Cars & Bikes', name: 'cars' },
   { id: 3, icon: <TbSofa />, title: 'Furniture', name: 'furniture' },
   { id: 4, icon: <IoDiamond />, title: 'Jewellery & Watches', name: 'jewellery' },
   { id: 5, icon: <MdOutlinePalette />, title: 'Arts & Paintings', name: 'arts' },

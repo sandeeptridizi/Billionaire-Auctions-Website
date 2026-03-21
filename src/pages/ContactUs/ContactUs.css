@@ -214,11 +214,29 @@
 }
 
 .contact-us-faqs-accordion-container {
-  width: 90%;
+  width: 55%;
   margin: 48px auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+.faq-section {
+  margin-top: 10px;
+}
+
+.faq-section ul {
+  padding-left: 18px;
+  margin-top: 5px;
+}
+
+.faq-section li {
+  margin-bottom: 5px;
+}
+
+.faq-note {
+  margin-top: 8px;
+  font-weight: 500;
 }
 
 .accordion-container {
@@ -239,9 +257,23 @@
   border-bottom: 1.25px solid rgba(212, 175, 55, 1);
   padding-bottom: 16px;
   font-size: 24px;
+  text-align: center;
   font-weight: 700;
   line-height: 32px;
   color: rgba(44, 44, 44, 1);
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.accordion-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .accordion-items-container {
@@ -266,6 +298,24 @@
   width: 20px;
   height: 20px;
   color: rgba(212, 175, 55, 0.9);
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.accordion-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.accordion-answer.open {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 10px;
 }
 
 .contact-us-footer-container {

@@ -71,8 +71,8 @@ const Recommendations = () => {
         <div className='mobile-featured-listings-grid-container'>
           {recommendationData.slice(0, 3).map((item) => (
             <Link to={`/product/${item.id}`} className='mobile-recommendation-card-link' key={item.id}>
-              <div className='mobile-featured-grid-item-one-container'>
-                <div className='mobile-featured-grid-item-image-container'>
+              <div className='featured-listings-card-container1'>
+                <div className='featured-listings-card-image-container'>
                   <img src={item.image} alt={item.title} className='mobile-apartment-img' />
                   <div className='mobile-featured-grid-item-header'>
                     {item.icon1 && (
@@ -89,15 +89,15 @@ const Recommendations = () => {
                       </div>
                     )}
                   </div>
-                  <div className='mobile-featured-item-footer'>
+                  <div className='featured-listings-card-footer'>
                     <p className='mobile-item-recommendation-cost'>₹{item.cost}</p>
                     <p className='mobile-item-location'>
                       <GrLocation /> {item.location}
                     </p>
                   </div>
                 </div>
-                <div className='mobile-featured-item-content-container'>
-                  <p className='mobile-item-title card-title-single-line'>{item.title}</p>
+                <div className='featured-listings-content-container1'>
+                  <p className='featured-listings-title card-title-single-line'>{item.title}</p>
                   <CardMetaGrid categoryKey={item.categoryKey} meta={item.meta} />
                   <div className='mobile-recommendation-footer-container'>
                     <p className='mobile-time'>

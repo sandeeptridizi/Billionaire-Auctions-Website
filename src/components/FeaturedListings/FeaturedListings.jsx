@@ -69,8 +69,8 @@ const FeaturedListings = () => {
         <div className='mobile-featured-listings-grid-container'>
           {featuredData.slice(0, 3).map((item) => (
             <Link to={`/product/${item.id}`} className='mobile-featured-card-link' key={item.id}>
-              <div className='mobile-featured-grid-item-one-container'>
-                <div className='mobile-featured-grid-item-image-container'>
+              <div className='featured-listings-card-container1'>
+                <div className='featured-listings-card-image-container'>
                   <img
                     src={item.image}
                     alt={item.title}
@@ -82,15 +82,15 @@ const FeaturedListings = () => {
                     </div>
                     <div className='mobile-item-luxury-container'>Luxury</div>
                   </div>
-                  <div className='mobile-featured-item-footer'>
+                  <div className='featured-listings-card-footer'>
                     <p className='mobile-item-cost'>₹{item.cost}</p>
                     <p className='mobile-item-location'>
                       <GrLocation /> {item.location}
                     </p>
                   </div>
                 </div>
-                <div className='mobile-featured-item-content-container'>
-                  <p className='mobile-item-title card-title-single-line'>{item.title}</p>
+                <div className='featured-listings-content-container1'>
+                  <p className='featured-listings-title card-title-single-line'>{item.title}</p>
                   <CardMetaGrid categoryKey={item.categoryKey} meta={item.meta} />
                   <div className='mobile-content-footer'>
                     <p className='mobile-time'>

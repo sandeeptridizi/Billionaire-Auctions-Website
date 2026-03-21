@@ -29,6 +29,17 @@
   color: rgba(212, 175, 55, 1);
 }
 
+.featured-listings-content-container1 {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  max-height: 120px;
+}
+
 .featured-listings-heading {
   font-size: 24px;
   font-weight: 700;
@@ -135,15 +146,25 @@
     width: 100%;
     height: 90px;
     flex-shrink: 0;
+    object-fit: cover;
     position: relative;
   }
 
   .mobile-apartment-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+  }
+
+  .featured-listings-card-container1{
+    width: 100%;
+    min-width: 0;
+    border-radius: 6px;
+    gap: 0;
+    height: 215px;
+    overflow: hidden;
   }
 
   .mobile-featured-grid-item-header {
@@ -330,17 +351,10 @@
     flex-direction: column;
   }
 
-  .mobile-featured-grid-item-image-container {
-    width: 100%;
-    height: 90px;
-    flex-shrink: 0;
-    position: relative;
-  }
-
   .mobile-apartment-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover ;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
   }

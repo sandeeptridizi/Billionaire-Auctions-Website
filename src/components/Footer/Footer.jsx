@@ -94,7 +94,7 @@ const Footer = () => {
             <h3 className='footer-link-heading'>Categories</h3>
             <div className='footer-links'>
               <span>Real Estate</span>
-              <span>Cars</span>
+              <span>Cars & Bikes</span>
               <span>Furniture</span>
               <span>Jewellery & Watches</span>
               <span>Arts & Paintings</span>

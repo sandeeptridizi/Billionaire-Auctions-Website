@@ -46,6 +46,7 @@
   }
   .mobile-nav-link-container span {
   font-size: 10px;
+  font-weight: 700;
   }
 
   .mobile-nav-link-container.active {

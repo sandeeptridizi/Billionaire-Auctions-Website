@@ -2,7 +2,7 @@ import api from "./api";
 
 const categoryLabelMap = {
   REAL_ESTATE: "Real Estate",
-  CARS: "Cars",
+  CARS: "Cars & Bikes",
   BIKES: "Bikes",
   FURNITURE: "Furniture",
   JEWELLERY_AND_WATCHES: "Jewellery & Watches",

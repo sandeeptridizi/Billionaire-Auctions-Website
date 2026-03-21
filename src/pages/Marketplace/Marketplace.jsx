@@ -28,7 +28,7 @@ const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
 const categoryBtns = [
   { icon: <LuHouse />, title: 'Real Estate', key: 'REAL_ESTATE' },
-  { icon: <LuCar />, title: 'Cars', key: 'CARS' },
+  { icon: <LuCar />, title: 'Cars & Bikes', key: 'CARS' },
   { icon: <TbSofa />, title: 'Furniture', key: 'FURNITURE' },
   { icon: <IoDiamond />, title: 'Jewellery', key: 'JEWELLERY_AND_WATCHES' },
   { icon: <MdOutlinePalette />, title: 'Arts', key: 'ARTS_AND_PAINTINGS' },

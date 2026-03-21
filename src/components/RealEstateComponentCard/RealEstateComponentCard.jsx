@@ -33,7 +33,7 @@ const RealEstateComponentCard = ({
 
   return (
     <Link to={`/product/${id}`} className='productviewlink' >
-    <div className="featured-listings-card-container">
+    <div className="featured-listings-card-container1">
       <div className="featured-listings-card-image-container">
         <img src={getFile(image)} alt={title} className="featured-img" />
         <div className="featured-listings-card-header">
@@ -58,7 +58,7 @@ const RealEstateComponentCard = ({
           </p>
         </div>
       </div>
-      <div className="featured-listings-content-container">
+      <div className="featured-listings-content-container1">
         <h3 className="featured-listings-title card-title-single-line">{title}</h3>
         <CardMetaGrid categoryKey={categoryKey} meta={meta} />
         <div className="real-estate-component-justify-container">

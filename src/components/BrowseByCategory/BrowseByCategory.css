@@ -1,6 +1,6 @@
 .browse-category-container {
   width: 90%;
-  margin: 16px auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,7 +32,7 @@
 
 .browse-category-btns-container {
   width: 63%;
-  margin: 48px auto;
+  margin: 16px auto;
   display: flex;
   justify-content: center; 
   align-items: flex-start; 
@@ -152,6 +152,6 @@
 
   .browse-category-products-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
+    gap: 4px;
   }
 }
