@@ -20,10 +20,7 @@ const PrivacyPolicy = () => {
           <FiShield className='shield-icon' /> Privacy Policy
         </h1>
         <p className='privacy-policy-text'>
-          At Billionaire Auction, we are committed to protecting your privacy
-          and ensuring the secure handling of your personal data. We recognise
-          the importance of transparency in how personal information is
-          collected, used, stored, and shared.
+          At Billionaire Auction (“Billionaire Auction”, “we”, “our”, or “us”), we are committed to protecting your privacy and ensuring the secure handling of your personal data.
         </p>
         <p className='last-updated'>Last Updated: 19/01/2026</p>
       </div>
@@ -33,13 +30,10 @@ const PrivacyPolicy = () => {
             <MdOutlineRemoveRedEye className='eye-icon' /> Introduction
           </h2>
           <p className='introduction-text'>
-            The Privacy Policy , mobile applications (if any), and related
-            services (collectively, the "Platform").
+            This Privacy Policy (“Policy”) governs your use of www.billionaireauction.com, mobile applications (if any), and related services (collectively, the “Platform”).
           </p>
           <p className='introduction-desc'>
-            This Policy applies to all users, including buyers, sellers,
-            advertisers, service partners, and visitors accessing the Platform
-            or availing services offered by Billionaire Auction.
+            This Policy applies to all users including buyers, sellers, tenants, advertisers, partners, and visitors.
           </p>
         </div>
         <div className='introduction-container'>
@@ -50,31 +44,24 @@ const PrivacyPolicy = () => {
             <div className='introduction-item-container'>
               <div className='introduction-circle'></div>
               <p>
-                <span>"Personal Data"</span>means any data relating to an
-                identifiable individual.
+                <span>"Personal Data"</span>Any data relating to an identifiable individual
               </p>
             </div>
             <div className='introduction-item-container'>
               <div className='introduction-circle'></div>
               <p>
-                <span>"User"</span>includes buyers, sellers, advertisers,
-                partners, or visitors.
+                <span>"User"</span>Buyers, sellers, tenants, advertisers, or visitors
               </p>
             </div>
             <div className='introduction-item-container'>
               <div className='introduction-circle'></div>
               <p>
-                <span>"Services"</span>include Marketplace listings, Buy Now
-                listings, Auction listings, verification services, advertising
-                services, and other related offerings.
+                <span>"Services"</span>Marketplace, Buy Now, Auctions, To-Let, digital media, advertising, and platform services
               </p>
             </div>
           </div>
           <div className='introduction-footer-container'>
-            By accessing or using the Platform or Services, or by providing your
-            consent through the Platform or other means, you agree to the
-            collection and processing of your Personal Data in accordance with
-            this Policy.
+            By using the Platform, you agree to the collection and processing of your data as per this Policy.
           </div>
         </div>
         <div className='personal-data-container'>
@@ -85,20 +72,13 @@ const PrivacyPolicy = () => {
             A. Information You Provide to Us
           </h3>
           <p className='personal-data-text'>
-            We collect Personal Data that you voluntarily provide when you:
+            We collect data when you:
           </p>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>Register or create an account</p>
-            <p className='personal-data-point'>Post or manage listings</p>
-            <p className='personal-data-point'>
-              Apply for verification or advertising services
-            </p>
-            <p className='personal-data-point'>
-              Contact us via phone calls, emails, chats, or forms
-            </p>
-            <p className='personal-data-point'>
-              Participate in surveys, promotions, or feedback activities
-            </p>
+            <p className='personal-data-point'>Post listings (Marketplace, Buy Now, Auctions, To-Let)</p>
+            <p className='personal-data-point'>Opt for Digital Media Package</p>
+            <p className='personal-data-point'>Contact us or submit enquiries</p>
           </div>
           <p className='includes-text'>This may include:</p>
           <div className='personal-details-container'>
@@ -115,44 +95,37 @@ const PrivacyPolicy = () => {
             <h3 className='personal-details-heading'>
               ii. Listing & Asset Information
             </h3>
-            <p>
-              Details of assets listed such as real estate, vehicles, jewellery,
-              watches, art, antiques, furniture, collectibles, or other items
-            </p>
             <div className='personal-details-points-container'>
-              <span>Descriptions, pricing, reserve price (if applicable)</span>
-              <span>Images and videos of listed items</span>
-              <span>Location of the asset</span>
+              <span>Property, vehicle, product, or rental details</span>
+              <span>Price, reserve price (if applicable)</span>
+              <span>Images and videos</span>
+              <span>Asset location</span>
             </div>
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>
-              iii. Verification Information
+              iii. Digital Media & Verification Data
             </h3>
-            <p>To ensure trust and prevent fake listings, we may collect:</p>
+            <p>We may collect:</p>
             <div className='personal-details-points-container'>
               <span>Mobile number verification</span>
               <span>Location confirmation</span>
-              <span>Video or in-person verification details</span>
+              <span>Basic identity details</span>
               <span>Any other information necessary for platform safety</span>
             </div>
-            <p className='note'>
-              Note: We do not mandate document uploads unless required by law.
-            </p>
+            <p className='note'>Note: This is collected only when opting for Digital Media Package</p>
+            <p className='note'>No mandatory document upload unless required by law</p>
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>
               iv. Payment Information
             </h3>
-            <p>
-              Payments are processed through third-party payment gateways such
-              as Razorpay.
-            </p>
-            <h4 className='sub-heading'>
-              We do not store your card details, bank details, or UPI
-              credentials.
-            </h4>
-            <p>We may receive limited transaction details such as:</p>
+            <p>Payments are processed via Razorpay</p>
+            <p>We do NOT store</p>
+            <p>Card details</p>
+            <p>Bank details</p>
+            <p>UPI credentials</p>
+            <h4 className='sub-heading'>We may receive: </h4>
             <div className='personal-details-points-container'>
               <span>Payment confirmation</span>
               <span>Transaction ID</span>
@@ -161,103 +134,88 @@ const PrivacyPolicy = () => {
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>
-              v. Communication Records
+              v. Communication Data
             </h3>
             <div className='personal-details-points-container'>
-              <span>Calls, emails, chats, or messages exchanged with us</span>
+              <span>Calls, chats, emails</span>
               <span>Customer support interactions</span>
-              <span>Feedback, complaints, or queries</span>
+              <span>Feedback and complaints</span>
             </div>
           </div>
           <h3 className='personal-data-sub-heading'>
-            B. Information Collected Automatically
+            B. Automatically Collected Data
           </h3>
-          <p className='personal-data-text'>
-            When you use the Platform, we may automatically collect:
-          </p>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>i. Usage Data</h3>
             <div className='personal-details-points-container'>
-              <span>Pages viewed</span>
-              <span>Searches and filters applied</span>
-              <span>Listings viewed or saved</span>
-              <span>Time spent on the Platform</span>
+              <span>Pages visited</span>
+              <span>Searches and filters</span>
+              <span>Listings viewed/saved</span>
             </div>
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>ii. Technical Data</h3>
             <div className='personal-details-points-container'>
               <span>IP address</span>
-              <span>Browser type</span>
-              <span>Device type</span>
-              <span>Operating system</span>
-              <span>Language preference</span>
+              <span>Device and browser</span>
+              <span>OS and language</span>
             </div>
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>iii. Location Data</h3>
             <div className='personal-details-points-container'>
               <span>
-                Approximate location (city/state) derived from IP address
+                Approximate location derived from IP address
               </span>
             </div>
           </div>
           <div className='personal-details-container'>
             <h3 className='personal-details-heading'>
-              iv. Cookies & Tracking Technologies
+              iv. Cookies Used for:
             </h3>
-            <p>We use cookies and similar technologies to:</p>
             <div className='personal-details-points-container'>
-              <span>Improve user experience</span>
-              <span>Remember preferences</span>
-              <span>Analyse traffic and usage patterns</span>
+              <span>User experience</span>
+              <span>Preferences</span>
+              <span>Analytics</span>
             </div>
-            <p className='note'>
-              You may manage cookies through your browser settings. Disabling
-              cookies may affect Platform functionality.
-            </p>
           </div>
           <h3 className='personal-data-sub-heading'>
-            C. Information from Third Parties
+            C. Third-Party Data
           </h3>
-          <p className='sub-text'>We may receive information from:</p>
+          <p className='sub-text'>We may receive data from:</p>
           <div className='personal-details-container'>
             <div className='personal-details-points-container'>
-              <span>Advertising and marketing partners</span>
+              <span>Marketing partners</span>
               <span>Analytics providers</span>
-              <span>
-                Social media platforms (if you interact with our pages)
-              </span>
-              <span>Publicly available sources</span>
+              <span>Social media platforms</span>
             </div>
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
-            <GoPerson className='eye-icon' /> 3. How We Use Your Personal Data
+            <GoPerson className='eye-icon' /> 3. How We Use Your Data
           </h2>
           <p className='sub-text'>
             We process Personal Data for the following purposes:
           </p>
           <h3 className='personal-data-sub-heading'>
-            A. Information You Provide to Us
+            A. Platform Services
           </h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Creating and managing user accounts
+              Account Creation
             </p>
             <p className='personal-data-point'>
-              Publishing and managing listings
+              Listing management
             </p>
             <p className='personal-data-point'>
-              Enabling buyer–seller communication
+              Buyer–seller/tenant communication
             </p>
             <p className='personal-data-point'>
-              Providing verification and advertising services
+              Buy Now coordination
             </p>
             <p className='personal-data-point'>
-              Coordinating Buy Now and Auction services (including offline
-              auctions)
+              Auction coordination (offline)
             </p>
           </div>
           <h3 className='personal-data-sub-heading'>
@@ -265,142 +223,131 @@ const PrivacyPolicy = () => {
           </h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Informing users about offers, updates, and new services
+              Offers and updates
             </p>
             <p className='personal-data-point'>
-              Promotional communications (subject to user consent)
+              Campaign communications (with consent)
             </p>
           </div>
-          <h3 className='personal-data-sub-heading'>C. Advertising Services</h3>
+          <h3 className='personal-data-sub-heading'>C. Advertising</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Displaying banner advertisements
+              Banner Ads
             </p>
             <p className='personal-data-point'>
-              Promoting advertiser listings or businesses
+              Listing promotions
             </p>
             <p className='personal-data-point'>
-              Managing paid visibility services
+              Paid visibility services
             </p>
           </div>
           <h3 className='personal-data-sub-heading'>D. Trust & Safety</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Preventing fraud, misuse, and fake listings
+              Prevent fraud
             </p>
-            <p className='personal-data-point'>Verifying users and listings</p>
-            <p className='personal-data-point'>Enforcing platform policies</p>
+            <p className='personal-data-point'>Detect fake listings</p>
+            <p className='personal-data-point'>Platform monitoring</p>
           </div>
           <h3 className='personal-data-sub-heading'>
-            E. Platform Improvement & Analytics
+            E. Analytics & Improvement
           </h3>
           <div className='personal-data-points-container'>
-            <p className='personal-data-point'>Analysing usage patterns</p>
+            <p className='personal-data-point'>Improve user experience</p>
             <p className='personal-data-point'>
-              Improving features and user experience
+              Develop features
             </p>
-            <p className='personal-data-point'>Developing new services</p>
           </div>
-          <h3 className='personal-data-sub-heading'>F. Legal & Compliance</h3>
+          <h3 className='personal-data-sub-heading'>F. Legal Compliance</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Complying with applicable laws and regulations
+              Legal obligations
             </p>
-            <p className='personal-data-point'>Responding to legal requests</p>
+            <p className='personal-data-point'>Fraud prevention</p>
             <p className='personal-data-point'>
-              Protecting the rights, safety, and property of users and the
-              Platform
+              Dispute handling
             </p>
           </div>
           <h3 className='personal-data-sub-heading'>G. Communication</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Responding to user queries and complaints
+              Customer support
             </p>
             <p className='personal-data-point'>
-              Customer support and service-related communications
+              Notifications and updates
             </p>
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
-            <GoPeople className='eye-icon' /> 4. Who We Share Your Personal Data
-            With
+            <GoPeople className='eye-icon' /> 4. Data Sharing
           </h2>
           <p className='sub-text'>
-            We may share Personal Data only as necessary with:
+            We may share data with:
           </p>
           <h3 className='personal-data-sub-heading'>A. Service Providers</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Technology and hosting providers (including AWS)
+              AWS / cloud hosting
             </p>
             <p className='personal-data-point'>
-              Verification and customer support partners
+              Analytics tools
             </p>
             <p className='personal-data-point'>
-              Analytics and communication service providers
-            </p>
-          </div>
-          <h3 className='personal-data-sub-heading'>B. Other Platform Users</h3>
-          <div className='personal-data-points-container'>
-            <p className='personal-data-point'>
-              Limited contact details may be shared between buyers and sellers
-              to facilitate transactions
+              Communication services
             </p>
           </div>
-          <h3 className='personal-data-sub-heading'>C. Payment Processors</h3>
+          <h3 className='personal-data-sub-heading'>B. Other Users</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Third-party payment gateways such as Razorpay
+              Contact details shared to enable
+            </p>
+            <p className='personal-data-point'>
+              Buyer–seller interaction
+            </p>
+            <p className='personal-data-point'>
+              Tenant–owner communication
+            </p>
+          </div>
+          <h3 className='personal-data-sub-heading'>C. Payment Gateways</h3>
+          <div className='personal-data-points-container'>
+            <p className='personal-data-point'>
+              Razorpay
             </p>
           </div>
           <h3 className='personal-data-sub-heading'>D. Legal Authorities</h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              When required by law, regulation, court order, or governmental
-              request
+              If required by law
             </p>
           </div>
           <h3 className='personal-data-sub-heading'>
-            E. Corporate Transactions
+            E. Business Transfers
           </h3>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              In case of merger, acquisition, or restructuring of the business
+              Mergers or acquisitions
             </p>
           </div>
           <div className='personal-data-footer-container'>
-            We do not sell your Personal Data to third parties.
+            We do not sell your Personal Data.
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
             <LuDatabase className='eye-icon' /> 5. Data Storage & Retention
           </h2>
-          <div className='database-container'>
-            <div className='database-circle'></div>
-            Personal Data is stored on secure cloud infrastructure, primarily
-            hosted in India, with appropriate safeguards.
-          </div>
-          <div className='database-container'>
-            <div className='database-circle'></div>
-            Data is retained only as long as necessary to:
-          </div>
           <div className='personal-data-points-container'>
-            <p className='personal-data-point'>Provide services</p>
-            <p className='personal-data-point'>Comply with legal obligations</p>
-            <p className='personal-data-point'>Prevent fraud and misuse</p>
-          </div>
-          <div className='database-container'>
-            <div className='database-circle'></div>
-            Aggregated and anonymised data may be retained for analytics and
-            research purposes.
+            <p className='personal-data-point'>Data stored securely on cloud (primarily India-based infrastructure)</p>
+            <p className='personal-data-point'>Retained only as long as required for:</p>
+            <p className='personal-data-point'>Services</p>
+            <p className='personal-data-point'>Legal compliance</p>
+            <p className='personal-data-point'>Fraud prevention</p>
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
-            <BiLockAlt className='eye-icon' /> 6. Data Security Practices
+            <BiLockAlt className='eye-icon' /> 6. Data Security
           </h2>
           <p className='sub-text'>
             We implement reasonable security measures including:
@@ -409,28 +356,29 @@ const PrivacyPolicy = () => {
             <p className='personal-data-point'>Encryption</p>
             <p className='personal-data-point'>Access controls</p>
             <p className='personal-data-point'>Secure servers</p>
-            <p className='personal-data-point'>Monitoring and logging</p>
+            <p className='personal-data-point'>Monitoring systems</p>
           </div>
           <p className='note'>
-            While we strive to protect your Personal Data, no system can be
-            completely secure.
+            No system is 100% secure
           </p>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
             <GoPerson className='eye-icon' /> 7. Your Rights
           </h2>
-          <p className='sub-text'>You have the right to:</p>
+          <p className='sub-text'>You Can:</p>
           <div className='personal-data-points-container'>
             <p className='personal-data-point'>
-              Access, correct, or update your Personal Data
+              Access your data
             </p>
             <p className='personal-data-point'>
-              Request deletion of your Personal Data (subject to legal
-              obligations)
+              Update or correct it
             </p>
             <p className='personal-data-point'>
-              Withdraw consent for marketing communications
+              Request deletion
+            </p>
+            <p className='personal-data-point'>
+              Opt out of marketing
             </p>
           </div>
           <p className='sub-text'>
@@ -443,11 +391,7 @@ const PrivacyPolicy = () => {
             <FiGlobe className='eye-icon' /> 8. Third-Party Links
           </h2>
           <p className='sub-text'>
-            The Platform may contain links to third-party websites or services.
-          </p>
-          <p className='sub-text'>
-            We are not responsible for the privacy practices of such third
-            parties.
+            We are not responsible for third-party websites or services linked on our Platform.
           </p>
         </div>
         <div className='personal-data-container'>
@@ -455,33 +399,71 @@ const PrivacyPolicy = () => {
             <RiErrorWarningLine className='eye-icon' /> 9. Children's Privacy
           </h2>
           <p className='sub-text'>
-            The Platform is not intended for individuals under 18 years of age.
+            Platform is only for users 18+
           </p>
           <p className='sub-text'>
-            We do not knowingly collect Personal Data from minors.
+            We do not knowingly collect Data from minors.
           </p>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
-            <CgFileDocument className='eye-icon' /> 10. Changes to This Privacy
-            Policy
+            <CgFileDocument className='eye-icon' /> 10. POLICY UPDATES
           </h2>
           <p className='sub-text'>
-            We reserve the right to update or modify this Policy at any time.
+            We may update this Policy anytime
           </p>
           <p className='sub-text'>
-            Changes will be effective upon posting on the Platform.
+            Changes will be posted on the Platform
           </p>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
-            <MdOutlineMail className='eye-icon' /> 11. Grievance Redressal
+            <CgFileDocument className='eye-icon' /> 11. NO TRANSACTION LIABILITY (IMPORTANT)
           </h2>
           <p className='sub-text'>
-            In accordance with applicable laws, Billionaire Auction has
-            appointed a Grievance Officer to address concerns related to
-            Personal Data processing.
+            Platform does NOT handle payments for:
           </p>
+          <p className='sub-text'>
+            Property
+          </p>
+          <p className='sub-text'>
+            Products
+          </p>
+          <p className='sub-text'>
+            Rentals
+          </p>
+          <span className='privacy-footer-name'>All transactions happen directly between users</span>
+        </div>
+        <div className='personal-data-container'>
+          <h2 className='personal-data-heading'>
+            <CgFileDocument className='eye-icon' /> 12. LISTING CLASSIFICATION
+          </h2>
+          <span className='privacy-footer-name'>We may classify listings as:</span>
+          <p className='sub-text'>
+            Luxury
+          </p>
+          <p className='sub-text'>
+            Classic
+          </p>
+          <p className='sub-text'>
+            General
+          </p>
+
+          <span className='privacy-footer-name'>Based on:</span>
+          <p className='sub-text'>
+            Price
+          </p>
+          <p className='sub-text'>
+            Location
+          </p>
+          <p className='sub-text'>
+            Value
+          </p>
+        </div>
+        <div className='personal-data-container'>
+          <h2 className='personal-data-heading'>
+            <MdOutlineMail className='eye-icon' /> 13. Grievance Redressal
+          </h2>
         </div>
       </div>
       <div className='privacy-policy-footer-container'>
@@ -491,6 +473,7 @@ const PrivacyPolicy = () => {
             Name:{' '}
             <span className='privacy-footer-name'>Sai Venkat Malempati</span>
           </h3>
+          <span className='privacy-footer-name'>Founder & Managing Director</span>
           <h3 className='privacy-footer-info-name'>
             Organization:{' '}
             <span className='privacy-footer-name'>Billionaire Auction</span>

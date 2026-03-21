@@ -18,10 +18,7 @@ const RefundPolicy = () => {
           <LuRefreshCcw className='shield-icon' /> Refund & Cancellation Policy
         </h1>
         <p className='privacy-policy-text'>
-          Billionaire Auction is a digital platform providing online services
-          such as listings, verification, advertising, and promotional services.
-          No physical sales, transactions, or asset exchanges take place at the
-          Company's registered or operational address.
+          Billionaire Auction is a digital platform providing online services such as listings, To-Let services, advertising, and promotional services. No physical sales, transactions, or asset exchanges take place at the Company’s registered or operational address.
         </p>
         <p className='last-updated'>Last updated: January 2026</p>
       </div>
@@ -35,11 +32,16 @@ const RefundPolicy = () => {
             non-refundable, except in limited cases explicitly mentioned in this
             policy.
           </p>
-          <p className='refund-policy-desc'>
-            Payments are collected strictly for digital services, platform
-            access, visibility, verification, advertising, and facilitation
-            services.
+          <p className='refund-policy-text'>
+            Payments are collected strictly for:
           </p>
+          <div className='promotions-list-container'>
+            <span>Digital listing services</span>
+            <span>To-Let listing services</span>
+            <span>Advertising and promotions</span>
+            <span>Digital media and marketing services</span>
+            <span>Platform visibility and lead generation</span>
+          </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
@@ -47,31 +49,34 @@ const RefundPolicy = () => {
             2. Non-Refundable Services
           </h2>
           <p className='sub-text'>
-            once payment is successfully processed, regardless of usage or
-            outcome:
+            The following services are strictly non-refundable once payment is successfully processed, regardless of usage or outcome:
           </p>
           <div className='promotions-list-container'>
-            <span>Video Verification</span>
-            <span>Direct Verification</span>
+            <span>Digital Media Package (includes verification & promotion)</span>
             <span>Featured Listings</span>
             <span>Advertising & Promotional Services</span>
             <span>Homepage / Banner Advertisements</span>
-            <span>
-              Digital Marketing Services (including shooting, posting, ads)
-            </span>
-            <span>Subscription fees (once activated)</span>
+            <span>To-Let Paid Listings</span>
+            <span>Digital Marketing Services (shooting, posting, ads, promotions)</span>
+            <span>Subscription plans (once activated)</span>
             <span>Buy Now facilitation or commission fees</span>
             <span>Any service already delivered or initiated</span>
           </div>
           <div className='non-refundable-container'>
-            👉 No refunds will be issued for dissatisfaction with responses,
-            views, leads, bids, or sales outcomes.
+            👉 No refunds will be issued for dissatisfaction with:
+             <div className='promotions-list-container'>
+            <span>Leads</span>
+            <span>Views</span>
+            <span>Enquiries</span>
+            <span>Engagement</span>
+            <span>Sales outcomes</span>
+          </div>
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
             <IoWarningOutline className='circle-icon' />
-            3. Marketplace & Transaction Disclaimer
+            3. MARKETPLACE, BUY NOW & TO-LET DISCLAIMER
           </h2>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
@@ -79,25 +84,32 @@ const RefundPolicy = () => {
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            The Company does not receive payments on behalf of buyers or sellers
-            for asset purchases.
+            The platform acts only as a listing, promotion, and facilitation service
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            All buying, selling, bidding, and payments for assets happen
-            directly between buyers and sellers, outside the Platform.
+            For:
+            </div>
+            <div className='promotions-list-container'>
+            <span>Marketplace</span>
+            <span>Buy Now</span>
+            <span>Auctions</span>
+            <span>To-Let</span>
+          </div>
+          
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            All transactions, negotiations, and payments happen directly between buyers, tenants, owners, or sellers
           </div>
           <div className='market-footer-container'>
             <h3 className='market-footer-heading'>Therefore:</h3>
             <div className='user-eligibility-container'>
               <div className='user-eligibility-circle'></div>
-              The Company is not responsible for refunds related to asset
-              purchases.
+              The Company is not responsible for refunds related to any deal, rental agreement, or purchase
             </div>
             <div className='user-eligibility-container'>
               <div className='user-eligibility-circle'></div>
-              Disputes between buyers and sellers must be resolved between
-              themselves.
+              Any disputes must be resolved between the respective parties
             </div>
           </div>
         </div>
@@ -108,21 +120,19 @@ const RefundPolicy = () => {
           </h2>
           <p className='sub-text'>A refund may be considered only if:</p>
           <div className='promotions-list-container'>
-            <span>Payment was debited, but</span>
-            <span>The service was not activated or delivered, and</span>
-            <span>
-              The failure is verified by our payment gateway (Razorpay)
-            </span>
+            <span>Payment was successfully debited</span>
+            <span>Service was not activated or delivered</span>
+            <span>Issue is verified by the payment gateway (Razorpay)</span>
           </div>
           <div className='duplicate-transactions-tag-container'>
             <h3 className='duplicate-transactions-heading'>Timeline:</h3>
             <div className='duplicate-transaction-container'>
               <div className='duplicate-transaction-circle'></div>
-              Refunds (if approved) will be processed within 7–10 working days
+              Approved refunds: 7–10 working days
             </div>
             <div className='duplicate-transaction-container'>
               <div className='duplicate-transaction-circle'></div>
-              Actual credit time depends on the user's bank or payment provider
+              Credit time depends on bank/payment provider
             </div>
           </div>
         </div>
@@ -133,42 +143,44 @@ const RefundPolicy = () => {
           </h2>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Any bidder deposit (if applicable) is governed by auction-specific
-            terms.
+            Auctions are conducted offline
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Deposits may be refundable or adjustable as per auction rules
-            announced separately.
+            Platform is used only for listing and promotion
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Listing fees, verification fees, or promotional fees for auctions
-            are non-refundable.
+            If any bidder deposit is applicable:
+          </div>
+          <div className='promotions-list-container'>
+            <span>It will be governed by auction-specific rules</span>
+            <span>Refundability depends on auction terms announced separately</span>
+          </div>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            Listing, promotion, or service fees related to auctions are non-refundable
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
             <RxCircleBackslash className='circle-icon' />
-            6. Advertising & Digital Marketing Services
+            6. Advertising & Digital Media Services
           </h2>
-          <p className='sub-text'>For "Advertise With Us" services:</p>
+          <p className='sub-text'>For "Advertise With Us" and Digital Media Packages:</p>
           <div className='promotions-list-container'>
             <span>
-              Charges cover content creation, promotions, ad setup, and
-              visibility
+              Charges include content creation, video shoot, ads, and promotions
             </span>
             <span>
-              Performance, reach, engagement, or sales are not guaranteed
+              Performance, reach, leads, or sales are not guaranteed
             </span>
             <span>
-              Once the service is scheduled or initiated, no refunds or
-              cancellations are permitted
+              Once service is booked or started, cancellation or refund is not allowed
             </span>
           </div>
           <p className='note'>
-            Travel-related costs (outside Telangana & Andhra Pradesh) are
-            additional and non-refundable.
+            Travel charges (outside Telangana & Andhra Pradesh) are additional and non-refundable
           </p>
         </div>
         <div className='personal-data-container'>
@@ -177,19 +189,16 @@ const RefundPolicy = () => {
             7. Company Address Disclaimer
           </h2>
           <p className='disclaimer-heading'>
-            Billionaire Auction's registered or operational address is not a
-            showroom, office for sales, or transaction location.
+            Billionaire Auction’s registered or operational address is not a showroom or transaction point.
           </p>
           <div className='disclaimer-tag-container'>
             <div className='user-eligibility-container'>
               <div className='user-eligibility-circle'></div>
-              No buying, selling, delivery, inspection, or payment collection
-              occurs at the Company address.
+              No buying, selling, rental agreements, delivery, or payments occur at this address
             </div>
             <div className='user-eligibility-container'>
               <div className='user-eligibility-circle'></div>
-              The address is used strictly for business registration and
-              administration purposes.
+              Address is used only for business and administrative purposes
             </div>
           </div>
         </div>
@@ -199,12 +208,13 @@ const RefundPolicy = () => {
             8. Discretionary Refunds
           </h2>
           <p className='sub-text'>
-            Any exception to this policy is at the sole discretion of
-            Billionaire Auction and will be evaluated case-by-case.
+            Any exception to this policy is at the sole discretion of Billionaire Auction
           </p>
           <p className='sub-text'>
-            The Company reserves the right to approve or deny refund requests
-            without obligation to provide justification.
+            Requests are reviewed case-by-case
+          </p>
+          <p className='sub-text'>
+            The Company reserves full rights to approve or reject without obligation
           </p>
         </div>
         <div className='personal-data-container'>
@@ -214,16 +224,15 @@ const RefundPolicy = () => {
           </h2>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Payments are processed via Razorpay
+            Payments are processed securely via Razorpay
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Billionaire Auction does not store credit/debit card details, UPI
-            IDs, or bank credentials
+            We do not store card details, UPI IDs, or bank credentials
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Payment processing is subject to Razorpay's policies and terms
+            Payment handling follows Razorpay’s security and compliance policies
           </div>
         </div>
         <div className='personal-data-container'>
@@ -232,17 +241,17 @@ const RefundPolicy = () => {
             10. Contact for Refund Queries
           </h2>
           <p className='sub-text'>
-            For refund-related queries (eligible cases only):
+            For eligible refund requests only:
           </p>
           <div className='queries-container'>
             <p className='queries-text'>
               ✉️ Email: <span>Elite@billionaireauction.com</span>
             </p>
             <p className='queries-desc'>
-              📌 Subject Line: <span>Refund Request - Order ID</span>
+              📌 Subject: <span>Refund Request - Order ID</span>
             </p>
             <p className='queries-footer-text'>
-              Incomplete or ineligible requests may not receive a response.
+              Incomplete, invalid, or ineligible requests may not receive a response.
             </p>
           </div>
         </div>

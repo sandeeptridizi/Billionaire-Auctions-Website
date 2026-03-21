@@ -68,15 +68,15 @@ const TermsConditions = () => {
             <div className='terms-conditions-list-item-container'>
               <div className='terms-conditions-circle'></div>
               <p className='terms-conditions-text'>
-                <span className='terms-conditions-heading'>Seller:</span>A User
-                who lists assets on the Platform.
+                <span className='terms-conditions-heading'>Seller/Owner:</span>A User
+                who lists assets or rental properties.
               </p>
             </div>
             <div className='terms-conditions-list-item-container'>
               <div className='terms-conditions-circle'></div>
               <p className='terms-conditions-text'>
-                <span className='terms-conditions-heading'>Buyer:</span>A User
-                interested in purchasing or bidding on assets.
+                <span className='terms-conditions-heading'>Buyer/Tenant:</span>A User
+                interested in purchasing or renting.
               </p>
             </div>
             <div className='terms-conditions-list-item-container'>
@@ -90,24 +90,28 @@ const TermsConditions = () => {
               <div className='terms-conditions-circle'></div>
               <p className='terms-conditions-text'>
                 <span className='terms-conditions-heading'>Auctions:</span>
-                Offline or hybrid auction listings facilitated by the Company.
+                Offline auction listings facilitated by the Company.
               </p>
             </div>
             <div className='terms-conditions-list-item-container'>
               <div className='terms-conditions-circle'></div>
               <p className='terms-conditions-text'>
                 <span className='terms-conditions-heading'>Buy Now:</span>
-                Commission-based service where the Company assists in selling
-                assets.
+                Managed selling service handled by the Company
+              </p>
+            </div>
+            <div className='terms-conditions-list-item-container'>
+              <div className='terms-conditions-circle'></div>
+              <p className='terms-conditions-text'>
+                <span className='terms-conditions-heading'>To-Let:</span>
+                Rental listing service connecting owners and tenants
               </p>
             </div>
             <div className='terms-conditions-list-item-container'>
               <div className='terms-conditions-circle'></div>
               <p className='terms-conditions-text'>
                 <span className='terms-conditions-heading'>Services:</span>
-                All services offered by the Platform including listings,
-                verification, promotions, advertising, auctions, and digital
-                marketing.
+                Listings, advertising, digital media, promotions, and facilitation services
               </p>
             </div>
           </div>
@@ -130,30 +134,28 @@ const TermsConditions = () => {
                 <span></span> Buyers contact sellers directly.
               </div>
               <div className='market-place-text-container'>
-                <span></span> No buyer fees.
+                <span></span> No buyer fees till March 1st, 2027
               </div>
               <div className='market-place-text-container'>
-                <span></span> The Company does not participate in negotiations
-                or payments.
+                <span></span> Company does not participate in negotiations or payments.
               </div>
             </div>
             <div className='auctions-container'>
               <h3 className='market-place-heading'>B. Auctions</h3>
               <div className='market-place-text-container'>
-                <span></span> Auctions are conducted offline or hybrid.
+                <span></span> Auctions are conducted offline only.
               </div>
               <div className='market-place-text-container'>
                 <span></span> No real-time online bidding unless announced.
               </div>
               <div className='market-place-text-container'>
-                <span></span> Auction date & venue will be announced separately.
+                <span></span> Auction date, time, and venue will be announced separately.
               </div>
               <div className='market-place-text-container'>
-                <span></span> Reserve price protection applies.
+                <span></span> Sellers may set starting bid and reserve price.
               </div>
               <div className='market-place-text-container'>
-                <span></span> Bidders may be required to pay a 10% refundable
-                deposit.
+                <span></span> Bidders may be required to pay a 10% refundable deposit.
               </div>
               <div className='market-place-text-container'>
                 <span></span> The Company facilitates auctions but does not
@@ -166,21 +168,40 @@ const TermsConditions = () => {
                 <span></span> Commission-based service.
               </div>
               <div className='market-place-text-container'>
-                <span></span> The Company assists with:
+                <span></span> Buyers contact the Company (not sellers directly)
+              </div>
+              <div className='market-place-text-container'>
+                <span></span> Company handles:
               </div>
               <div className='buynow-points-container'>
                 <p>-Advertising</p>
                 <p>-Buyer sourcing</p>
-                <p>-Property visits / coordination</p>
+                <p>-Site visits / coordination</p>
               </div>
-              <div className='market-place-text-container'>
-                <span></span> Final ownership transfer and documentation remain
-                between buyer and seller.
-              </div>
+              <div className='terms-conditions-footer-link-container'>
+              👉 Final ownership transfer and payments happen offline between buyer and seller
             </div>
             <div className='terms-conditions-footer-link-container'>
-              👉 The Company is not a broker, agent, or owner of listed assets
-              unless explicitly stated in writing.
+              👉 Company does not process transactions on the platform
+            </div>
+            </div>
+            <div className='market-place-container'>
+              <h3 className='market-place-heading'>D. To-Let</h3>
+              <div className='market-place-text-container'>
+                <span></span> Rental listing service
+              </div>
+              <div className='market-place-text-container'>
+                <span></span> Tenants contact owners/agents directly
+              </div>
+              <div className='market-place-text-container'>
+                <span></span> No commission charged by the platform
+              </div>
+              <div className='market-place-text-container'>
+                <span></span> Company only provides listing and lead generation
+              </div>
+              <div className='terms-conditions-footer-link-container'>
+              👉 The Company is not a broker, agent, or owner of listed assets unless explicitly stated in writing.
+            </div>
             </div>
           </div>
         </div>
@@ -194,8 +215,7 @@ const TermsConditions = () => {
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            By using the Platform, you confirm that all information provided is
-            accurate and lawful.
+            Users confirm that all information provided is accurate, lawful, and genuine
           </div>
         </div>
         <div className='personal-data-container'>
@@ -205,7 +225,7 @@ const TermsConditions = () => {
           </h2>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Sellers must have legal rights to list the asset.
+            Sellers must have legal rights to list assets.
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
@@ -217,28 +237,28 @@ const TermsConditions = () => {
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            The Company may remove listings without notice if violations are
-            found.
+            Company reserves the right to remove listings without notice
           </div>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
             <GoShieldCheck className='eye-icon' />
-            6. Verification Services
+            6. DIGITAL MEDIA & VERIFICATION SERVICES
           </h2>
           <p className='sub-text'>
-            Verification services are optional and paid:
+            Verification is provided only through Digital Media Package
+          </p>
+          <p className='sub-text'>
+            Includes:
           </p>
           <div className='terms-conditions-flex-container'>
-            <p>Video Verification</p>
-            <p>Direct Verification</p>
+            <p>Identity verification</p>
+            <p>Mobile verification</p>
+            <p>Location verification</p>
+            <p>Basic authenticity checks</p>
           </div>
-          <p className='sub-text'>
-            Verification includes identity checks, location confirmation, and
-            basic authenticity checks.
-          </p>
           <p className='verification-footer'>
-            Verification does NOT guarantee ownership, valuation, or sale.
+            👉 This does not guarantee ownership, valuation, or sale
           </p>
         </div>
         <div className='personal-data-container'>
@@ -255,13 +275,14 @@ const TermsConditions = () => {
             Fees may apply for:
           </div>
           <div className='buynow-points-container'>
-            <p>-Verifications</p>
-            <p>-Featured Listings</p>
+            <p>-Digital Media Package</p>
+            <p>-Featured listings</p>
             <p>-Advertising</p>
+            <p>-Subscription plans</p>
             <p>-Buy Now commissions</p>
           </div>
           <div className='user-eligibility-footer-container'>
-            Buyers pay no fees for Marketplace usage until 11 January 2027.
+            Buyers do not pay any platform fees till March 1st, 2027.
           </div>
         </div>
         <div className='personal-data-container'>
@@ -269,14 +290,14 @@ const TermsConditions = () => {
             <FiGlobe className='eye-icon' />
             8. Advertising & Promotions
           </h2>
-          <p className='sub-text'>The Company may offer:</p>
+          <p className='sub-text'>Services include:</p>
           <div className='promotions-list-container'>
             <span>Featured listings</span>
             <span>Homepage banners</span>
             <span>Digital marketing services</span>
             <span>Social media promotions</span>
           </div>
-          <p className='note'>Advertising results are not guaranteed.</p>
+          <p className='note'>Results such as leads, reach, or sales are not guaranteed.</p>
         </div>
         <div className='personal-data-container'>
           <h2 className='personal-data-heading'>
@@ -287,9 +308,9 @@ const TermsConditions = () => {
           <div className='promotions-list-container'>
             <span>Post fake or illegal listings</span>
             <span>Misrepresent ownership</span>
-            <span>Spam, scrape, or misuse data</span>
-            <span>Violate Indian laws</span>
-            <span>Use the Platform for unlawful purposes</span>
+            <span>Spam, or misuse data</span>
+            <span>Violate any applicable laws</span>
+            <span>Use the Platform for fraudulent activities</span>
           </div>
         </div>
         <div className='personal-data-container'>
@@ -299,7 +320,7 @@ const TermsConditions = () => {
           </h2>
           <p className='sub-text'>
             All logos, content, trademarks, and designs belong to Billionaire
-            Auction.
+            Auction. 
           </p>
           <p className='property-footer-text'>
             Unauthorized use is strictly prohibited.
@@ -311,10 +332,10 @@ const TermsConditions = () => {
             11. Third-Party Links & Services
           </h2>
           <p className='sub-text'>
-            The Platform may link to third-party services.
+            Platform may include third-party integrations.
           </p>
           <p className='sub-text'>
-            The Company is not responsible for third-party content or actions.
+            Company is not responsible for third-party services or actions.
           </p>
         </div>
         <div className='personal-data-container'>
@@ -328,7 +349,7 @@ const TermsConditions = () => {
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            No guarantee of sale, price, response, or uptime.
+            No guarantee of sale, price, leads, response, or platform uptime.
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
@@ -342,9 +363,9 @@ const TermsConditions = () => {
           </h2>
           <p className='sub-text'>The Company shall not be liable for:</p>
           <div className='promotions-list-container'>
-            <span>Losses between buyers and sellers</span>
+            <span>Losses between buyers, sellers or tenants</span>
             <span>Misrepresentation by users</span>
-            <span>Indirect or consequential damages</span>
+            <span>Any indirect, incidental, or consequential damages</span>
           </div>
         </div>
         <div className='personal-data-container'>
@@ -353,8 +374,7 @@ const TermsConditions = () => {
             14. Termination
           </h2>
           <p className='sub-text'>
-            The Company may suspend or terminate accounts for violations without
-            notice.
+            The Company may suspend or terminate accounts without notice for violations of these Terms
           </p>
         </div>
         <div className='personal-data-container'>
@@ -363,8 +383,7 @@ const TermsConditions = () => {
             15. Indemnification
           </h2>
           <p className='sub-text'>
-            Users agree to indemnify the Company against claims arising from
-            misuse of the Platform.
+            Users agree to indemnify and hold the Company harmless from any claims arising due to misuse of the Platform.
           </p>
         </div>
         <div className='personal-data-container'>
@@ -374,11 +393,43 @@ const TermsConditions = () => {
           </h2>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
-            Governed by Indian law
+            Governed by laws of India
           </div>
           <div className='user-eligibility-container'>
             <div className='user-eligibility-circle'></div>
             Courts of Hyderabad, Telangana shall have exclusive jurisdiction.
+          </div>
+        </div>
+        <div className='personal-data-container'>
+          <h2 className='personal-data-heading'>
+            <LiaBalanceScaleSolid className='eye-icon' />
+            17. NO TRANSACTION LIABILITY (IMPORTANT)
+          </h2>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            Company does not handle payments for assets or rentals
+          </div>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            No responsibility for: Delivery, Ownership disputes, Rental agreements, and Payment disputes.
+          </div>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            All transactions are strictly between users.
+          </div>
+        </div>
+        <div className='personal-data-container'>
+          <h2 className='personal-data-heading'>
+            <LiaBalanceScaleSolid className='eye-icon' />
+            18. LISTING CLASSIFICATION
+          </h2>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            The Company reserves the right to classify listings as: Luxury, Classic and General
+          </div>
+          <div className='user-eligibility-container'>
+            <div className='user-eligibility-circle'></div>
+            Based on: Price, Location, Category, and Value
           </div>
         </div>
       </div>

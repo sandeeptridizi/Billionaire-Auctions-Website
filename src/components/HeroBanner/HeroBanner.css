@@ -106,13 +106,7 @@
 }
 
 .search-home-icon {
-  color: #d4af37;
-  font-size: 22px;
-  transition: color 0.2s ease;
-}
-
-.search-home-icon:hover {
-  color: #f0c850;
+ display: none;
 }
 
 /* SEARCH ICON */
@@ -152,6 +146,16 @@
     width: 26px;
     height: 26px;
   }
+
+  .search-home-icon {
+  color: #d4af37;
+  font-size: 22px;
+  transition: color 0.2s ease;
+}
+
+.search-home-icon:hover {
+  color: #f0c850;
+}
 
   .banner-arrow svg {
     font-size: 12px;
