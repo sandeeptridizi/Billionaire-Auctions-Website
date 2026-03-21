@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   LuPhone, LuSquareArrowOutUpRight, LuHouse,
@@ -172,7 +172,32 @@ const ProductDetails = () => {
   const [reportError, setReportError] = useState("");
 
   const images = product?.media || [];
+  const [paused, setPaused] = useState(false);
+  const intervalRef = useRef(null);
 
+  // Auto-scroll images every 5 seconds
+  useEffect(() => {
+    if (paused || images.length <= 1) {
+      clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % images.length;
+        // Adjust thumbnail window so active thumb stays visible
+        setThumbStart((ts) => {
+          if (next < ts) return next;
+          if (next >= ts + THUMB_VISIBLE) return Math.min(next, images.length - THUMB_VISIBLE);
+          return ts;
+        });
+        return next;
+      });
+    }, 5000);
+    return () => clearInterval(intervalRef.current);
+  }, [paused, images.length]);
+
+  const handlePointerDown = useCallback(() => setPaused(true), []);
+  const handlePointerUp = useCallback(() => setPaused(false), []);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -269,7 +294,14 @@ const ProductDetails = () => {
         <div className="product-gallery">
 
           {/* Main Image */}
-          <div className="product-main-image-container">
+          <div
+            className="product-main-image-container"
+            onMouseDown={handlePointerDown}
+            onMouseUp={handlePointerUp}
+            onMouseLeave={handlePointerUp}
+            onTouchStart={handlePointerDown}
+            onTouchEnd={handlePointerUp}
+          >
             <img
               src={images[activeIndex] ? getFile(images[activeIndex]) : ""}
               className="product-main-image"
