@@ -196,6 +196,7 @@ const ProductDetails = () => {
     return () => clearInterval(intervalRef.current);
   }, [paused, images.length]);
 
+  
   const handlePointerDown = useCallback(() => setPaused(true), []);
   const handlePointerUp = useCallback(() => setPaused(false), []);
 
@@ -214,7 +215,7 @@ const ProductDetails = () => {
       setEnquirySubmitting(false);
     }
   };
-
+  
   const handleReportSubmit = async (e) => {
     e.preventDefault();
     setReportSubmitting(true);
@@ -631,41 +632,37 @@ const ProductDetails = () => {
         </div>
         <div className="similar-luxury-items-grid-container">
           {featured.slice(0, 3).map((item) => (
-            <div className="similar-luxury-item-container" key={item.id}>
-              <div className="luxury-item-img-container">
+            <Link to={`/product/${item.id}`} className="similarproduct">
+            <div className="featured-listings-card-container2" key={item.id}>
+              <div className="featured-listings-card-image-container">
                 <img
                   src={item.media?.[0] ? getFile(item.media[0]) : cityApartment}
                   alt={item.title}
-                  className="luxury-item-img"
+                  className="featured-img"
                 />
                 <div className="luxury-item-header">
-                  <div className="luxury-item-verified-container">
-                    <MdVerified className="verified-icon" /> Verified
-                  </div>
-                  <div className="luxury-item-luxury-container">
+                  <div className="luxury-container">
                     <FaCrown /> {item.tier || "LUXURY"}
                   </div>
                 </div>
-                <div className="luxury-item-footer">
-                  <p className="luxury-item-cost">
+                <div className="featured-listings-card-footer">
+                  <p className="mobile-item-cost">
                     {typeof item.value === "number"
                       ? `₹${item.value.toLocaleString("en-IN")}`
                       : "Price on request"}
                   </p>
-                  <p className="luxury-item-location">
+                  <p className="mobile-item-location">
                     <GrLocation />{" "}
                     {item.meta?.city || item.meta?.location || item.location || "Location not specified"}
                   </p>
                 </div>
               </div>
-              <div className="luxury-item-content-container">
-                <h3 className="luxury-item-title card-title-single-line">{item.title}</h3>
+              <div className="featured-listings-content-container1">
+                <h3 className="featured-listings-title card-title-single-line">{item.title}</h3>
                 <CardMetaGrid categoryKey={item.category} meta={item.meta || {}} />
-                <Link to={`/product/${item.id}`} className="luxury-item-btn">
-                  View Details
-                </Link>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

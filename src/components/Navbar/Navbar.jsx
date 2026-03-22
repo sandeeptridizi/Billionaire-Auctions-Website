@@ -2,7 +2,7 @@ import './Navbar.css';
 import { FaAngleDown } from 'react-icons/fa6';
 import { PiGlobeBold } from 'react-icons/pi';
 import { RxPerson } from 'react-icons/rx';
-import { MdFavorite } from 'react-icons/md';
+import { FaRegHeart } from "react-icons/fa";
 
 import companyLogo from '../../assets/company-logo.png';
 import { Link } from 'react-router-dom';
@@ -67,6 +67,9 @@ const Navbar = () => {
                 <Link to='browse/advertise'>
                   <span>Advertise</span>
                 </Link>
+                <Link to='/contact-us'>
+                  <span>Contact Us</span>
+                </Link>
               </div>
             )}
           </li>
@@ -88,7 +91,7 @@ const Navbar = () => {
           </div>
         )}</div>
         <Link to='wishlist' className='nav-wishlist-btn'>
-          <MdFavorite className='nav-wishlist-icon' />
+          <FaRegHeart className='nav-wishlist-icon' />
           {wishlist.length > 0 && (
             <span className='nav-wishlist-badge'>{wishlist.length}</span>
           )}

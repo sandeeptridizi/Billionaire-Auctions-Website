@@ -188,7 +188,7 @@
   .footer-container {
     width: 100%;
     background: linear-gradient(180deg, #fdfdfd 0%, #f5efef 100%);
-    padding: 24px 16px;
+    padding: 0 16px;
     display: flex;
     flex-direction: column;
     gap: 48px;
@@ -224,6 +224,13 @@
     width: 32px;
     height: 32px;
   }
+
+  .company-logo1{
+  width: 280px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
   .footer-info-text {
     width: 414px;

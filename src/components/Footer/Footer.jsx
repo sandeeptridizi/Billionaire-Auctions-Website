@@ -25,44 +25,44 @@ const Footer = () => {
           </p>
           <div className='footer-icons-container'>
             <div className='footer-icon-container'>
-  <a
-    href="https://www.facebook.com/share/17UNQ8YEaK/?mibextid=wwXIfr"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FiFacebook />
-  </a>
-</div>
+            <a
+              href="https://www.facebook.com/share/17UNQ8YEaK/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiFacebook />
+            </a>
+          </div>
 
-<div className='footer-icon-container'>
-  <a
-    href="https://www.instagram.com/billionaireauction"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaInstagram />
-  </a>
-</div>
+          <div className='footer-icon-container'>
+            <a
+              href="https://www.instagram.com/billionaireauction"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+          </div>
 
-<div className='footer-icon-container'>
-  <a
-    href="https://youtube.com/@billionaireauction"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaYoutube />
-  </a>
-</div>
+          <div className='footer-icon-container'>
+            <a
+              href="https://youtube.com/@billionaireauction"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube />
+            </a>
+          </div>
 
-<div className='footer-icon-container'>
-  <a
-    href="https://www.linkedin.com/company/billionaireauction/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <LuLinkedin />
-  </a>
-</div>
+          <div className='footer-icon-container'>
+            <a
+              href="https://www.linkedin.com/company/billionaireauction/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LuLinkedin />
+            </a>
+          </div>
 
           </div>
         </div>

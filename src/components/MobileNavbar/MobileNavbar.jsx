@@ -11,7 +11,7 @@ import { FaStore } from "react-icons/fa";
 import { VscGlobe } from 'react-icons/vsc';
 import { SlMenu } from 'react-icons/sl';
 import { GrLocation } from 'react-icons/gr';
-import { MdFavorite } from 'react-icons/md';
+import { FaRegHeart } from "react-icons/fa";
 import { GoPerson } from 'react-icons/go';
 import { FiSearch } from 'react-icons/fi';
 import { GoHomeFill } from 'react-icons/go';
@@ -116,6 +116,9 @@ const MobileNavbar = () => {
                 <Link to='browse/advertise' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Advertise</span>
                 </Link>
+                <Link to='contact-us' onClick={() => setIsBrowseLinksOpen(false)}>
+                  <span>Contact Us</span>
+                </Link>
               </div>
             )}
           </div>
@@ -149,7 +152,7 @@ const MobileNavbar = () => {
         <div className='mobile-icons-login-container'>
           {/* <GrLocation className='mobile-location-icon' /> */}
           <Link to='wishlist' className='mobile-wishlist-link'>
-            <MdFavorite className='mobile-wishlist-icon' />
+            <FaRegHeart className='mobile-wishlist-icon' />
             {wishlist.length > 0 && (
               <span className='mobile-wishlist-badge'>{wishlist.length}</span>
             )}
