@@ -1,0 +1,58 @@
+.fe-sign-up-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #faf7f0 0%, #f5eedc 50%, #ede4cc 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+.fe-sign-up-main {
+  width: 520px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fe-sign-up-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.fe-sign-up-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(82, 82, 92, 1);
+}
+
+.fe-password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(159, 159, 159, 1);
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .fe-sign-up-container {
+    padding: 20px 12px;
+  }
+
+  .fe-sign-up-main {
+    width: 100%;
+    padding: 24px 16px;
+  }
+}

@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import api from '../lib/api';
+import { getToken } from '../lib/auth';
 
 const AppContext = createContext();
 
@@ -59,15 +60,57 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem(COUNTRY_KEY, selectedCountry);
   }, [selectedCountry]);
 
+  // Sync wishlist from server on login / app load
+  useEffect(() => {
+    const token = getToken();
+    if (!token) return;
+
+    const syncFromServer = async () => {
+      try {
+        const localWishlist = JSON.parse(localStorage.getItem(WISHLIST_KEY) || '[]');
+
+        // If there are local items, sync them to server first
+        if (localWishlist.length > 0) {
+          const res = await api.put('/api/wishlist/sync', { productIds: localWishlist });
+          const serverIds = res?.data?.data || [];
+          setWishlist(serverIds);
+        } else {
+          // Just fetch from server
+          const res = await api.get('/api/wishlist');
+          setWishlist(res?.data?.data || []);
+        }
+      } catch {
+        // If API fails, keep using localStorage wishlist
+      }
+    };
+
+    syncFromServer();
+  }, []);
+
+  // Persist to localStorage whenever wishlist changes
   useEffect(() => {
     localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
   }, [wishlist]);
 
-  const toggleWishlist = (id) => {
-    setWishlist((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
+  const toggleWishlist = useCallback((id) => {
+    const token = getToken();
+
+    setWishlist((prev) => {
+      const isCurrentlyWishlisted = prev.includes(id);
+      const next = isCurrentlyWishlisted ? prev.filter((item) => item !== id) : [...prev, id];
+
+      // Sync with backend if logged in (fire-and-forget)
+      if (token) {
+        if (isCurrentlyWishlisted) {
+          api.delete(`/api/wishlist/${id}`).catch(() => {});
+        } else {
+          api.post(`/api/wishlist/${id}`).catch(() => {});
+        }
+      }
+
+      return next;
+    });
+  }, []);
 
   const isWishlisted = (id) => wishlist.includes(id);
 

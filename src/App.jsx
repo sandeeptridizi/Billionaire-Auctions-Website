@@ -22,11 +22,18 @@ import MobileNavbar from './components/MobileNavbar/MobileNavbar';
 import ProductPage from './pages/ProductPage/ProductPage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Wishlist from './pages/Wishlist/Wishlist';
+import SignIn from './pages/SignIn/SignIn';
+import SignUp from './pages/SignUp/SignUp';
+import MyAccount from './pages/MyAccount/MyAccount';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import AuthenticationModal from './components/AuthenticationModal/AuthenticationModal';
 import useAppContext from './context/AppContext';
+import useAuthContext from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const { products } = useAppContext();
+  const { openAuthenticationModal } = useAuthContext();
 
   return (
     <BrowserRouter>
@@ -53,10 +60,21 @@ const App = () => {
           <Route path='terms-conditions' element={<TermsConditions />} />
           <Route path='refund-policy' element={<RefundPolicy />} />
           <Route path='wishlist' element={<Wishlist />} />
+          <Route
+            path='my-account'
+            element={
+              <ProtectedRoute>
+                <MyAccount />
+              </ProtectedRoute>
+            }
+          />
         </Route>
+        <Route path='sign-in' element={<SignIn />} />
+        <Route path='sign-up' element={<SignUp />} />
       </Routes>
       <Footer />
       <MobileFooter />
+      {openAuthenticationModal && <AuthenticationModal />}
     </BrowserRouter>
   );
 };

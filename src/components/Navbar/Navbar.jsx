@@ -3,16 +3,64 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { PiGlobeBold } from 'react-icons/pi';
 import { RxPerson } from 'react-icons/rx';
 import { FaRegHeart } from "react-icons/fa";
+import { LuLayoutDashboard } from 'react-icons/lu';
+import { FiShoppingBag, FiTarget, FiMessageSquare } from 'react-icons/fi';
+import { IoSettingsOutline } from 'react-icons/io5';
+import { MdLogout } from 'react-icons/md';
 
 import companyLogo from '../../assets/company-logo.png';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
+import { getToken, getUser, logout as doLogout } from '../../lib/auth';
+
+const USER_APP_URL = import.meta.env.VITE_USER_APP_URL || 'https://user.billionaireauction.com';
+
+const avatarMenuItems = [
+  { id: 1, icon: <LuLayoutDashboard />, title: 'Dashboard', path: '/' },
+  { id: 2, icon: <FiShoppingBag />, title: 'Products', path: '/products' },
+  { id: 3, icon: <FiTarget />, title: 'My Leads', path: '/myleads' },
+  { id: 4, icon: <FiMessageSquare />, title: 'Enquiry', path: '/enquiry' },
+  { id: 5, icon: <IoSettingsOutline />, title: 'Settings', path: '/settings' },
+];
+
+const getInitials = (name) => {
+  if (!name || typeof name !== 'string') return 'U';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+};
 
 const Navbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [avatarOpen, setAvatarOpen] = useState(false);
+  const avatarRef = useRef(null);
+  const navigate = useNavigate();
   const { wishlist, selectedCountry, setSelectedCountry, countryLabel } = useAppContext();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (avatarRef.current && !avatarRef.current.contains(e.target)) {
+        setAvatarOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const handleMenuClick = (path) => {
+    const token = getToken();
+    const url = `${USER_APP_URL}${path}?authtoken=${encodeURIComponent(token)}`;
+    window.open(url, '_blank');
+    setAvatarOpen(false);
+  };
+
+  const handleLogout = () => {
+    doLogout();
+    setAvatarOpen(false);
+    navigate('/');
+  };
 
   const handleSelect = (value) => {
     setSelectedCountry(value);
@@ -96,10 +144,42 @@ const Navbar = () => {
             <span className='nav-wishlist-badge'>{wishlist.length}</span>
           )}
         </Link>
-        <button className='list-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>List/Sell Item</button>
-        <button className='login-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-          <RxPerson /> Login
-        </button>
+        {getToken() ? (
+          <div className='nav-avatar-wrapper' ref={avatarRef}>
+            <div className='nav-avatar' onClick={() => setAvatarOpen(!avatarOpen)}>
+              {getInitials(getUser()?.name)}
+            </div>
+            {avatarOpen && (
+              <div className='nav-avatar-dropdown'>
+                <div className='nav-avatar-dropdown-header'>
+                  <p className='nav-avatar-dropdown-name'>{getUser()?.name || 'User'}</p>
+                  <p className='nav-avatar-dropdown-email'>{getUser()?.email || ''}</p>
+                </div>
+                <div className='nav-avatar-dropdown-divider' />
+                {avatarMenuItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className='nav-avatar-dropdown-item'
+                    onClick={() => handleMenuClick(item.path)}
+                  >
+                    {item.icon} {item.title}
+                  </div>
+                ))}
+                <div className='nav-avatar-dropdown-divider' />
+                <div className='nav-avatar-dropdown-item nav-avatar-logout' onClick={handleLogout}>
+                  <MdLogout /> Logout
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <Link to='/sign-up' className='list-btn'>List/Sell Item</Link>
+            <Link to='/sign-in' className='login-btn'>
+              <RxPerson /> Login
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
