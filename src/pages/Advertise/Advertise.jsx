@@ -1,6 +1,7 @@
 import './Advertise.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
+import api from '../../lib/api';
 
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { MdCurrencyRupee } from 'react-icons/md';
@@ -45,6 +46,16 @@ const advertiseData = [
 
 const Advertise = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [digitalMedia, setDigitalMedia] = useState(null);
+
+  useEffect(() => {
+    api.get('/api/package/public?category=DIGITAL_MEDIA')
+      .then(res => {
+        const dm = res.data.data;
+        if (dm && dm.length > 0) setDigitalMedia(dm[0]);
+      })
+      .catch(err => console.error('Failed to fetch digital media package:', err));
+  }, []);
 
   return (
     <div className='advertise-container'>
@@ -62,7 +73,7 @@ const Advertise = () => {
           <h2 className='package-heading'>Digital Media Package</h2>
           <h2 className='package-cost'>
             <MdCurrencyRupee />
-            5,999<span>+GST</span>
+            {digitalMedia ? digitalMedia.price.toLocaleString('en-IN') : '5,999'}<span>+GST</span>
           </h2>
           <button className='package-btn' onClick={() => setIsEnquiryOpen(true)} >Get Started</button>
         </div>
