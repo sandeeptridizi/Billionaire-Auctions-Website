@@ -144,8 +144,6 @@ const metaFieldIconMap = {
 const getMetaFieldIcon = (key) => metaFieldIconMap[key] || LuInfo;
 
 import cityApartment from "../../assets/city-apartment.jpg";
-import exclusiveVilla from "../../assets/exclusive-villa.jpg";
-import exclusivePenthouse from "../../assets/exclusive-penthouse.jpg";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -175,7 +173,7 @@ const ProductDetails = () => {
   const [paused, setPaused] = useState(false);
   const intervalRef = useRef(null);
 
-  // Auto-scroll images every 5 seconds
+  useEffect(() => { setActiveIndex(0); setThumbStart(0); }, [id]);
   useEffect(() => {
     if (paused || images.length <= 1) {
       clearInterval(intervalRef.current);
@@ -196,7 +194,6 @@ const ProductDetails = () => {
     return () => clearInterval(intervalRef.current);
   }, [paused, images.length]);
 
-  
   const handlePointerDown = useCallback(() => setPaused(true), []);
   const handlePointerUp = useCallback(() => setPaused(false), []);
 

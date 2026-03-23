@@ -177,6 +177,11 @@
 
   .mobile-home-link {
     display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #d4af37;
     align-items: center;
   }
 

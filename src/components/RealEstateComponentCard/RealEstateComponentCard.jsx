@@ -2,7 +2,6 @@ import './RealEstateComponentCard.css';
 
 import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { FaCrown } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
@@ -16,7 +15,6 @@ const RealEstateComponentCard = ({
   image,
   cost,
   location,
-  views,
   category,
   tier,
   meta = {},
@@ -62,10 +60,6 @@ const RealEstateComponentCard = ({
         <h3 className="featured-listings-title card-title-single-line">{title}</h3>
         <CardMetaGrid categoryKey={categoryKey} meta={meta} />
         <div className="real-estate-component-justify-container">
-          <p className="featured-listings-time">
-            <MdOutlineRemoveRedEye />
-            {views}
-          </p>
           <p className="real-estate-component-name">{category}</p>
         </div>
       </div>

@@ -8,13 +8,14 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .real-estate-component-name {
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
+  justify-content: left;
   color: rgba(212, 175, 55, 1);
 }
 

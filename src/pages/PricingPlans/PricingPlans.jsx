@@ -8,6 +8,7 @@ import { TiFlashOutline } from 'react-icons/ti';
 import { BsCurrencyRupee } from 'react-icons/bs';
 import { LuShield } from 'react-icons/lu';
 import { RxCross2 } from 'react-icons/rx';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { MdCurrencyRupee } from 'react-icons/md';
 import { FiAward } from 'react-icons/fi';
@@ -163,18 +164,14 @@ const scrollRight = () => {
     <div className='pricing-page-container'>
       <div className='pricing-page-background'>
         <h1 className='pricing-page-heading'>Flexible Pricing Plans</h1>
-        <p className='pricing-page-text'>
-          Choose the perfect plan for your luxury marketplace needs
-        </p>
-        <p className='pricing-page-text'>
-          * Plans applicable for Marketplace, Buy Now, and Auctions. For To-Let:
-          Unlimited listings as of now
-        </p>
       </div>
       <div className='pricing-page-plans-container'>
         <div className="pricing-arrows">
-          <button className="arrow-btn left" onClick={scrollLeft}> &#8592; </button>
+          {/* <button className="arrow-btn left" onClick={scrollLeft}> &#8592; </button>
           <button className="arrow-btn right" onClick={scrollRight}> &#8594; </button>
+           */}
+      <button className="banner-arrow left-arrow" onClick={scrollLeft}><FaChevronLeft /> </button>
+      <button className="banner-arrow right-arrow" onClick={scrollRight}><FaChevronRight /> </button>
         </div>
         <div className='pricing-page-grid-container' ref={sliderRef}>
           <div className='pricing-page-grid-item-container'>
@@ -307,7 +304,7 @@ const scrollRight = () => {
               </div>
               <div className='pricing-page-list-item-container'>
                 <p className='pricing-date'>Support</p>
-                <span className='pricing-time'>Priority Line</span>
+                <span className='pricing-time'>Priority</span>
               </div>
             </div>
             <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>

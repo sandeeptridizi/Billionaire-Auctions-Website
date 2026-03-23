@@ -139,7 +139,7 @@ const BuyNow = () => {
         <div>
         <h2 className='buy-now-heading'>Buy Now</h2>
         <p className='buy-now-text'>
-          Purchase Luxury Items Instantly with Confidence - No Bidding & Waiting
+          We manage the sale for you, end-to-end.
         </p></div>
         <div className='buy-now-btns-container'>
 

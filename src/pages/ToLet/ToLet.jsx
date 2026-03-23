@@ -100,10 +100,10 @@ const ToLet = () => {
     <div className='to-let-page-container'>
       <div className='to-let-page-background'>
         <h1 className='to-let-heading'>
-          <FiHome className='to-let-home-icon' /> Premium Properties To-Let
+          <FiHome className='to-let-home-icon' /> To-Let
         </h1>
         <p className='to-let-text'>
-          Find your perfect luxury rental property in India's top cities
+          List your property and find tenants easily
         </p>
       </div>
       <div className='buy-now-categories-container'>

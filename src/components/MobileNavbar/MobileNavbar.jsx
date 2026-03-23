@@ -129,7 +129,7 @@ const MobileNavbar = () => {
           <div className='mobile-search-row'>
             {location.pathname === '/' && (
               <Link to="/" className="mobile-home-link">
-                <GoHomeFill className="mobile-home-icon" />
+                <GoHomeFill className="mobile-home-icon" /> Home
               </Link>
             )}
             <div className='mobile-search-container'>

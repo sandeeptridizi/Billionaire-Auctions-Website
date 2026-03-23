@@ -158,7 +158,7 @@ const Auctions = () => {
         <div>
         <h2 className='buy-now-heading'>Auctions</h2>
         <p className='buy-now-text'>
-          Exclusive offline auctions accross indian cities. Register to participate
+          List items for competitive offline bidding.
         </p></div>
         <div className='buy-now-btns-container'>
 

@@ -129,7 +129,7 @@ const Marketplace = () => {
         <div>
         <h2 className='buy-now-heading'>Market Place</h2>
         <p className='buy-now-text'>
-          Discover exclusive premium items from verified sellers
+          List and connect directly with buyers.
         </p></div>
         <div className='buy-now-btns-container'>
 
