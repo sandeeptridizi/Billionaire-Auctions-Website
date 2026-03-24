@@ -158,8 +158,8 @@
   }
 
   .banner-arrow {
-    width: 26px;
-    height: 26px;
+    width: 16px;
+    height: 16px;
   }
 
   .search-home-icon {
@@ -177,7 +177,7 @@
   }
 
   .left-arrow {
-    left: 8px;
+    left: 8px important ;
   }
 
   .right-arrow {

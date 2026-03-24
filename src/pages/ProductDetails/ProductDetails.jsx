@@ -17,6 +17,7 @@ import { MdVerified } from "react-icons/md";
 import { FaCrown } from "react-icons/fa6";
 import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
+import EMICalculator from "../../components/EMICalculator/EMICalculator";
 import { getFile } from "../../lib/s3";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
@@ -557,6 +558,7 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="product-page-quick-info-container">
+          <EMICalculator price={Number(product.value)} />
           <div className="product-page-safety-tips-container">
             <h3 className="tips-heading">
               <RiErrorWarningLine className="error-icon" /> Safety Tips

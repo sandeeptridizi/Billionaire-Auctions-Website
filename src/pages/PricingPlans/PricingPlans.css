@@ -976,26 +976,20 @@
   .banner-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  
-  width: 42px;
-  height: 42px;
-
+  transform: translateY(-50%); 
+  width: 21px;
+  height: 21px;
   background: rgba(233, 193, 62, 0.5); /* softer glass */
   border: 1px solid rgba(255, 255, 255, 0.25);
-
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1 !important;
   visibility: visible !important;
   cursor: pointer;
-
   backdrop-filter: blur(10px); /* stronger blur */
   -webkit-backdrop-filter: blur(10px);
-
   transition: all 0.3s ease;
   z-index: 9999;
 }
@@ -1003,7 +997,7 @@
 /* Icon */
 .banner-arrow svg {
   color: white;
-  font-size: 16px;
+  font-size: 8px;
   opacity: 0.9;
 }
 
