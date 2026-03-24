@@ -24,6 +24,7 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Wishlist from './pages/Wishlist/Wishlist';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import MyAccount from './pages/MyAccount/MyAccount';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import AuthenticationModal from './components/AuthenticationModal/AuthenticationModal';
@@ -71,6 +72,7 @@ const App = () => {
         </Route>
         <Route path='sign-in' element={<SignIn />} />
         <Route path='sign-up' element={<SignUp />} />
+        <Route path='forgot-password' element={<ForgotPassword />} />
       </Routes>
       <Footer />
       <MobileFooter />

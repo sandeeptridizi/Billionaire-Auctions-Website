@@ -161,6 +161,22 @@
   margin: -8px 0 0;
 }
 
+.fe-forgot-password {
+  text-align: right;
+  margin: -12px 0 0;
+}
+
+.fe-forgot-password span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d4af37;
+  cursor: pointer;
+}
+
+.fe-forgot-password span:hover {
+  text-decoration: underline;
+}
+
 .fe-auth-btn {
   width: 100%;
   background: linear-gradient(90deg, #b8962e, #d4af37, #f1d77a, #d4af37, #b8962e);

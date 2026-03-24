@@ -14,7 +14,7 @@ import { setToken, setUser } from '../../lib/auth';
 const SignIn = () => {
   const navigate = useNavigate();
 
-  const [tab, setTab] = useState('phone');
+  const [tab, setTab] = useState('email');
   const [phoneDigits, setPhoneDigits] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,18 +72,18 @@ const SignIn = () => {
 
         <div className='fe-auth-tabs'>
           <button
-            className={`fe-auth-tab ${tab === 'phone' ? 'fe-auth-tab-active' : ''}`}
-            onClick={() => { setTab('phone'); setError(''); }}
-            type='button'
-          >
-            <TbDeviceMobile /> With Phone
-          </button>
-          <button
             className={`fe-auth-tab ${tab === 'email' ? 'fe-auth-tab-active' : ''}`}
             onClick={() => { setTab('email'); setError(''); }}
             type='button'
           >
             <MdOutlineEmail /> With Email
+          </button>
+          <button
+            className={`fe-auth-tab ${tab === 'phone' ? 'fe-auth-tab-active' : ''}`}
+            onClick={() => { setTab('phone'); setError(''); }}
+            type='button'
+          >
+            <TbDeviceMobile /> With Phone
           </button>
         </div>
 
@@ -144,6 +144,9 @@ const SignIn = () => {
           </div>
 
           {error && <p className='fe-auth-error'>{error}</p>}
+          <p className='fe-forgot-password'>
+            <span onClick={() => navigate('/forgot-password')}>Forgot Password?</span>
+          </p>
           <button type='submit' className='fe-auth-btn' disabled={loading}>
             {loading ? 'Logging in...' : 'Log In'} <FaArrowRight />
           </button>

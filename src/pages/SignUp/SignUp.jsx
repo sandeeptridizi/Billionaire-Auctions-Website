@@ -24,7 +24,7 @@ const SignUp = () => {
     setPendingOtpPayload,
   } = useAuthContext();
 
-  const [tab, setTab] = useState('phone');
+  const [tab, setTab] = useState('email');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -130,18 +130,18 @@ const SignUp = () => {
 
         <div className='fe-auth-tabs'>
           <button
-            className={`fe-auth-tab ${tab === 'phone' ? 'fe-auth-tab-active' : ''}`}
-            onClick={() => { setTab('phone'); setError(''); }}
-            type='button'
-          >
-            <TbDeviceMobile /> With Phone
-          </button>
-          <button
             className={`fe-auth-tab ${tab === 'email' ? 'fe-auth-tab-active' : ''}`}
             onClick={() => { setTab('email'); setError(''); }}
             type='button'
           >
             <MdOutlineEmail /> With Email
+          </button>
+          <button
+            className={`fe-auth-tab ${tab === 'phone' ? 'fe-auth-tab-active' : ''}`}
+            onClick={() => { setTab('phone'); setError(''); }}
+            type='button'
+          >
+            <TbDeviceMobile /> With Phone
           </button>
         </div>
 
