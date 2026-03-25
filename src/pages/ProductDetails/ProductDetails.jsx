@@ -19,6 +19,7 @@ import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnq
 import "./ProductDetails.css";
 import EMICalculator from "../../components/EMICalculator/EMICalculator";
 import { getFile } from "../../lib/s3";
+import api from "../../lib/api";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { FiMessageCircle } from "react-icons/fi";
@@ -170,6 +171,7 @@ const ProductDetails = () => {
   const [reportSuccess, setReportSuccess] = useState(false);
   const [reportError, setReportError] = useState("");
 
+  const [productAds, setProductAds] = useState([]);
   const images = product?.media || [];
   const [paused, setPaused] = useState(false);
   const intervalRef = useRef(null);
@@ -230,6 +232,16 @@ const ProductDetails = () => {
       setReportSubmitting(false);
     }
   };
+
+  // Fetch product page advertisements
+  useEffect(() => {
+    api.get("/api/advertisement/public", { params: { placement: "product_listing" } })
+      .then((res) => {
+        const ads = (res.data?.data || []).filter((ad) => ad.media);
+        setProductAds(ads);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -586,6 +598,27 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+          {productAds.length > 0 && (
+            <div className="product-page-ad-container">
+              {productAds.map((ad) => (
+                <a
+                  key={ad.id}
+                  href={ad.ctaUrl || undefined}
+                  target={ad.ctaUrl ? "_blank" : undefined}
+                  rel={ad.ctaUrl ? "noopener noreferrer" : undefined}
+                  className={`product-page-ad${ad.ctaUrl ? " product-page-ad-clickable" : ""}`}
+                >
+                  <img src={getFile(ad.media)} alt={ad.title || "Advertisement"} className="product-page-ad-image" />
+                  <div className="product-page-ad-overlay">
+                    {ad.title && <h4 className="product-page-ad-title">{ad.title}</h4>}
+                    {ad.ctaText && (
+                      <span className="product-page-ad-cta">{ad.ctaText}</span>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
           <div className="product-quick-information-container">
             <h3 className="quick-info-heading">Quick Information</h3>
             <div className="quick-info-justify-container">

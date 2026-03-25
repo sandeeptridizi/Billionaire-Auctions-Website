@@ -15,22 +15,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { GoPerson } from 'react-icons/go';
 import { FiSearch } from 'react-icons/fi';
 import { GoHomeFill } from 'react-icons/go';
-import { LuLayoutDashboard } from 'react-icons/lu';
-import { FiShoppingBag, FiTarget, FiMessageSquare } from 'react-icons/fi';
-import { IoSettingsOutline } from 'react-icons/io5';
-import { MdLogout } from 'react-icons/md';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
-import { getToken, getUser, logout as doLogout } from '../../lib/auth';
-
-const USER_APP_URL = import.meta.env.VITE_USER_APP_URL || 'https://user.billionaireauction.com';
-
-const mobileAvatarMenuItems = [
-  { id: 1, icon: <LuLayoutDashboard />, title: 'Dashboard', path: '/' },
-  { id: 2, icon: <FiShoppingBag />, title: 'Products', path: '/products' },
-  { id: 3, icon: <FiTarget />, title: 'My Leads', path: '/myleads' },
-  { id: 4, icon: <FiMessageSquare />, title: 'Enquiry', path: '/enquiry' },
-  { id: 5, icon: <IoSettingsOutline />, title: 'Settings', path: '/settings' },
-];
+import { getToken, getUser } from '../../lib/auth';
 
 const getInitials = (name) => {
   if (!name || typeof name !== 'string') return 'U';
@@ -42,14 +28,12 @@ const getInitials = (name) => {
 const MobileNavbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
-  const [mobileAvatarOpen, setMobileAvatarOpen] = useState(false);
   const [mobileSearch, setMobileSearch] = useState('');
   const { wishlist, selectedCountry, setSelectedCountry, countryLabel } = useAppContext();
   const location = useLocation();
   const navigate = useNavigate();
   const browseMenuRef = useRef(null);
   const countryMenuRef = useRef(null);
-  const mobileAvatarRef = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -58,9 +42,6 @@ const MobileNavbar = () => {
       }
       if (countryMenuRef.current && !countryMenuRef.current.contains(e.target)) {
         setIsCountryOpen(false);
-      }
-      if (mobileAvatarRef.current && !mobileAvatarRef.current.contains(e.target)) {
-        setMobileAvatarOpen(false);
       }
     };
     document.addEventListener('mousedown', handleOutsideClick);
@@ -71,18 +52,6 @@ const MobileNavbar = () => {
     };
   }, []);
 
-  const handleMobileMenuClick = (path) => {
-    const token = getToken();
-    const url = `${USER_APP_URL}${path}?authtoken=${encodeURIComponent(token)}`;
-    window.open(url, '_blank');
-    setMobileAvatarOpen(false);
-  };
-
-  const handleMobileLogout = () => {
-    doLogout();
-    setMobileAvatarOpen(false);
-    navigate('/');
-  };
   const hasPageSearch = ['/marketplace', '/buy-now', '/auctions', '/to-let'].some(
     (path) => location.pathname.startsWith(path)
   );
@@ -198,32 +167,10 @@ const MobileNavbar = () => {
             )}
           </Link>
           {getToken() ? (
-            <div className='mobile-avatar-wrapper' ref={mobileAvatarRef}>
-              <div className='mobile-avatar' onClick={() => setMobileAvatarOpen(!mobileAvatarOpen)}>
+            <div className='mobile-avatar-wrapper'>
+              <div className='mobile-avatar' onClick={() => navigate('/my-account')}>
                 {getInitials(getUser()?.name)}
               </div>
-              {mobileAvatarOpen && (
-                <div className='mobile-avatar-dropdown'>
-                  <div className='mobile-avatar-dropdown-header'>
-                    <p className='mobile-avatar-dropdown-name'>{getUser()?.name || 'User'}</p>
-                    <p className='mobile-avatar-dropdown-email'>{getUser()?.email || ''}</p>
-                  </div>
-                  <div className='mobile-avatar-dropdown-divider' />
-                  {mobileAvatarMenuItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className='mobile-avatar-dropdown-item'
-                      onClick={() => handleMobileMenuClick(item.path)}
-                    >
-                      {item.icon} {item.title}
-                    </div>
-                  ))}
-                  <div className='mobile-avatar-dropdown-divider' />
-                  <div className='mobile-avatar-dropdown-item mobile-avatar-logout' onClick={handleMobileLogout}>
-                    <MdLogout /> Logout
-                  </div>
-                </div>
-              )}
             </div>
           ) : (
             <Link to='/sign-in' className='mobile-login-btn'>

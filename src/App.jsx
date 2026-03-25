@@ -28,6 +28,7 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import MyAccount from './pages/MyAccount/MyAccount';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import AuthenticationModal from './components/AuthenticationModal/AuthenticationModal';
+import PopupAd from './components/PopupAd/PopupAd';
 import useAppContext from './context/AppContext';
 import useAuthContext from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
@@ -77,6 +78,7 @@ const App = () => {
       <Footer />
       <MobileFooter />
       {openAuthenticationModal && <AuthenticationModal />}
+      <PopupAd />
     </BrowserRouter>
   );
 };

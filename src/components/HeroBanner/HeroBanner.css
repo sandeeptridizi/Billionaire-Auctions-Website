@@ -20,18 +20,29 @@
   flex-shrink: 0;           /* prevents shrinking */
 }
 
-/* BANNER IMAGE 1 */
-.hero-slide1 {
-  background: url("../../assets/ba-hero-banner.png");
-    background-size: contain;
+/* DYNAMIC BANNER (from API) */
+.hero-slide-dynamic {
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* BANNER IMAGE 2 */
+.hero-slide-clickable {
+  cursor: pointer;
+}
+
+/* STATIC BANNER IMAGE 1 (fallback) */
+.hero-slide1 {
+  background: url("../../assets/ba-hero-banner.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* STATIC BANNER IMAGE 2 (fallback) */
 .hero-slide2 {
-  background:url("../../assets/ba-hero-banner-2.jpeg");
-    background-size: contain;
+  background: url("../../assets/ba-hero-banner-2.jpeg");
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;

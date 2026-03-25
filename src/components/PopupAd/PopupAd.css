@@ -1,0 +1,130 @@
+.popup-ad-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popupFadeIn 0.3s ease;
+}
+
+@keyframes popupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popupSlideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.popup-ad-card {
+  position: relative;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: popupSlideUp 0.35s ease 0.05s both;
+}
+
+.popup-ad-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.popup-ad-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.popup-ad-image-wrap {
+  cursor: pointer;
+  line-height: 0;
+}
+
+.popup-ad-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.popup-ad-footer {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(229, 231, 235, 1);
+}
+
+.popup-ad-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popup-ad-cta {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, #d4af37 0%, #f0d060 100%);
+  padding: 8px 20px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.popup-ad-cta:hover {
+  background: linear-gradient(135deg, #f0d060 0%, #d4af37 100%);
+  transform: scale(1.03);
+}
+
+@media screen and (max-width: 510px) {
+  .popup-ad-card {
+    max-width: 92%;
+    border-radius: 12px;
+  }
+
+  .popup-ad-footer {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .popup-ad-title {
+    white-space: normal;
+  }
+
+  .popup-ad-cta {
+    width: 100%;
+    text-align: center;
+  }
+}
