@@ -1,15 +1,12 @@
 import './Wishlist.css';
 import { Link } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
-import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { FaCrown } from 'react-icons/fa6';
-import { MdVerified } from 'react-icons/md';
 import useAppContext from '../../context/AppContext';
-import { getFile } from '../../lib/s3';
-import CardMetaGrid from '../../components/CardMetaGrid/CardMetaGrid';
+import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
+import { mapProductToCard } from '../../lib/products';
 
 const Wishlist = () => {
-  const { products, wishlist, toggleWishlist } = useAppContext();
+  const { products, wishlist } = useAppContext();
   const wishlisted = products.filter((p) => wishlist.includes(p.id));
 
   return (
@@ -30,53 +27,10 @@ const Wishlist = () => {
         </div>
       ) : (
         <div className="wishlist-grid">
-          {wishlisted.map((product) => (
-            <div key={product.id} className="wishlist-card">
-              <Link to={`/product/${product.id}`} className="wishlist-card-link">
-                <div className="wishlist-card-image-container">
-                  <img
-                    src={product.media?.[0] ? getFile(product.media[0]) : ''}
-                    alt={product.title}
-                    className="wishlist-card-img"
-                  />
-                  <div className="wishlist-card-badges">
-                    <div className="wishlist-verified-badge">
-                      <MdVerified /> Verified
-                    </div>
-                    <div className="wishlist-luxury-badge">
-                      <FaCrown /> {product.tier || 'Luxury'}
-                    </div>
-                  </div>
-                  <div className="wishlist-card-price-bar">
-                    <span className="wishlist-price">
-                      {typeof product.value === 'number'
-                        ? `₹${product.value.toLocaleString('en-IN')}`
-                        : 'Price on request'}
-                    </span>
-                    <span className="wishlist-location">
-                      <HiOutlineLocationMarker /> {product.meta?.city || product.meta?.location || 'N/A'}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-              <div className="wishlist-card-body">
-                <h3 className="wishlist-card-title card-title-single-line">{product.title}</h3>
-                <CardMetaGrid categoryKey={product.category} meta={product.meta || {}} />
-                <div className="wishlist-card-footer">
-                  <Link to={`/product/${product.id}`} className="wishlist-view-btn">
-                    View Details
-                  </Link>
-                  <button
-                    className="wishlist-remove-btn"
-                    onClick={() => toggleWishlist(product.id)}
-                    aria-label="Remove from wishlist"
-                  >
-                    <MdFavorite /> Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+          {wishlisted.map((product) => {
+            const card = mapProductToCard(product);
+            return <RealEstateComponentCard key={card.id} {...card} />;
+          })}
         </div>
       )}
     </div>

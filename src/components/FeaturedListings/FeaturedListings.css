@@ -71,9 +71,23 @@
 
 .featured-listings-grid-container {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.featured-listings-grid-container::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-listings-grid-container > * {
+  min-width: calc((100% - 48px) / 3);
+  max-width: calc((100% - 48px) / 3);
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 .mobile-featured-card-link {
@@ -123,11 +137,52 @@
     gap: 5px;
   }
 
+  .mobile-featured-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-scroll-btn-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mobile-scroll-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: rgba(212, 175, 55, 1);
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
   .mobile-featured-listings-grid-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 3px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-featured-listings-grid-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-featured-listings-grid-container > * {
+    min-width: calc((100% - 6px) / 3);
+    max-width: calc((100% - 6px) / 3);
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 
   .mobile-featured-grid-item-one-container {
@@ -180,7 +235,6 @@
     width: 19px;
     height: 11px;
     border-radius: 3.69px;
-    padding: 1.85px 5.54px;
     background: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
@@ -334,9 +388,23 @@
 
   .mobile-featured-listings-grid-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 3px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-featured-listings-grid-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-featured-listings-grid-container > * {
+    min-width: calc((100% - 6px) / 3);
+    max-width: calc((100% - 6px) / 3);
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 
   .mobile-featured-grid-item-one-container {

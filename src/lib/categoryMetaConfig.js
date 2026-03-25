@@ -5,7 +5,7 @@ import {
   LuBadgeCheck, LuAward, LuWrench, LuBox, LuPuzzle,
   LuPaintbrush, LuPalette, LuPenTool, LuGlobe, LuFileText,
   LuHash, LuChartColumnIncreasing, LuIndianRupee, LuWallet, LuCalendarCheck,
-  LuSmartphone, LuTag, LuInfo, LuLandmark,
+  LuSmartphone, LuTag, LuInfo, LuLandmark, LuMapPin,
 } from "react-icons/lu";
 
 export const metaFieldIconMap = {
@@ -64,6 +64,7 @@ export const metaFieldIconMap = {
   usageType: LuSmartphone,
   category: LuTag,
   brandModel: LuTag,
+  areaLocality: LuMapPin,
 };
 
 export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
@@ -71,7 +72,8 @@ export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
 const categoryMetaFields = {
   REAL_ESTATE: [
     { key: 'bhk', label: 'BHK' },
-    { key: 'builtUpArea', label: 'Built-up Area' },
+    { key: 'builtUpArea', label: 'Built-up Area', compose: (meta) => meta.builtUpArea ? `${meta.builtUpArea} sq. yards` : null },
+    { key: 'areaLocality', label: 'Area Locality', fallbacks: ['locality', 'area'] },
     { key: 'propertyAge', label: 'Property Age' },
     { key: 'furnishing', label: 'Furnishing' },
     { key: 'facing', label: 'Facing' },
@@ -103,19 +105,21 @@ const categoryMetaFields = {
   ],
   JEWELLERY: [
     { key: 'type', label: 'Type' },
+    { key: 'itemType', label: 'Item Type', fallbacks: ['type'] },
+    { key: 'condition', label: 'Condition' },
     { key: 'material', label: 'Material' },
     { key: 'weight', label: 'Weight' },
     { key: 'purity', label: 'Purity' },
     { key: 'certification', label: 'Certification' },
-    { key: 'condition', label: 'Condition' },
   ],
   JEWELLERY_AND_WATCHES: [
     { key: 'type', label: 'Type' },
+    { key: 'itemType', label: 'Item Type', fallbacks: ['type'] },
+    { key: 'condition', label: 'Condition' },
     { key: 'material', label: 'Material' },
     { key: 'weight', label: 'Weight' },
     { key: 'purity', label: 'Purity' },
     { key: 'certification', label: 'Certification' },
-    { key: 'condition', label: 'Condition' },
   ],
   WATCHES: [
     { key: 'brand', label: 'Brand' },

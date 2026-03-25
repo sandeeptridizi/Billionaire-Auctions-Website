@@ -1,6 +1,6 @@
 import './FeaturedListings.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 import { FaCrown } from 'react-icons/fa6';
@@ -23,6 +23,17 @@ const FeaturedListings = () => {
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState(true);
   const { selectedCountry } = useAppContext();
+  const gridRef = useRef(null);
+  const mobileGridRef = useRef(null);
+
+  const scroll = (ref, direction) => {
+    if (!ref.current) return;
+    const card = ref.current.querySelector(':scope > *');
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(ref.current).gap) || 0;
+    const scrollAmount = card.offsetWidth + gap;
+    ref.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -63,11 +74,23 @@ const FeaturedListings = () => {
   return (
     <>
       <div className='mobile-featured-listings-container'>
-        <h3 className='mobile-featured-heading'>
-          <FaCrown className='mobile-crown-icon' /> Featured Listings
-        </h3>
-        <div className='mobile-featured-listings-grid-container'>
-          {featuredData.slice(0, 3).map((item) => (
+        <div className='mobile-featured-header-row'>
+          <h3 className='mobile-featured-heading'>
+            <FaCrown className='mobile-crown-icon' /> Featured Listings
+          </h3>
+          {featuredData.length > 3 && (
+            <div className='mobile-scroll-btn-container'>
+              <button className='mobile-scroll-btn' onClick={() => scroll(mobileGridRef, 'left')}>
+                <FaAngleLeft />
+              </button>
+              <button className='mobile-scroll-btn' onClick={() => scroll(mobileGridRef, 'right')}>
+                <FaAngleRight />
+              </button>
+            </div>
+          )}
+        </div>
+        <div className='mobile-featured-listings-grid-container' ref={mobileGridRef}>
+          {featuredData.map((item) => (
             <Link to={`/product/${item.id}`} className='mobile-featured-card-link' key={item.id}>
               <div className='featured-listings-card-container1'>
                 <div className='featured-listings-card-image-container'>
@@ -109,16 +132,18 @@ const FeaturedListings = () => {
             <FaCrown className='crown-icon' />
             <h3 className='featured-listings-heading'>Featured Listings</h3>
           </div>
-          <div className='featured-listings-arrow-btn-container'>
-            <button className='arrow-btn'>
-              <FaAngleLeft />
-            </button>
-            <button className='arrow-btn'>
-              <FaAngleRight />
-            </button>
-          </div>
+          {featuredData.length > 3 && (
+            <div className='featured-listings-arrow-btn-container'>
+              <button className='arrow-btn' onClick={() => scroll(gridRef, 'left')}>
+                <FaAngleLeft />
+              </button>
+              <button className='arrow-btn' onClick={() => scroll(gridRef, 'right')}>
+                <FaAngleRight />
+              </button>
+            </div>
+          )}
         </div>
-        <div className='featured-listings-grid-container'>
+        <div className='featured-listings-grid-container' ref={gridRef}>
           {loading ? (
             <p>Loading featured listings...</p>
           ) : featuredData.length === 0 ? (
