@@ -102,7 +102,7 @@ const OTPVerificationModal = () => {
       setPendingOtpPhone(null);
       setPendingOtpEmail(null);
       setPendingOtpChannel('phone');
-      navigate('/my-account');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid or expired OTP');
     } finally {

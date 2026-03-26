@@ -28,6 +28,7 @@ import useAppContext from "../../context/AppContext";
 import { SlShare } from "react-icons/sl";
 import { FiFlag } from "react-icons/fi";
 import { CgFileDocument } from "react-icons/cg";
+import { getUser, getToken } from "../../lib/auth";
 import { PiCarProfile } from "react-icons/pi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FiCheckCircle } from "react-icons/fi";
@@ -381,7 +382,20 @@ const ProductDetails = () => {
             <h2 className="product-info-price">₹{product.value.toLocaleString("en-IN")}</h2>
           </div>
           <div className="product-info-btns-container">
-            <button className="product-info-enquire-btn" onClick={() => setShowEnquiryForm(true)}>
+            <button className="product-info-enquire-btn" onClick={() => {
+              if (getToken()) {
+                const user = getUser();
+                if (user) {
+                  setEnquiryForm((prev) => ({
+                    ...prev,
+                    visitorName: user.name || prev.visitorName,
+                    visitorEmail: user.email || prev.visitorEmail,
+                    visitorPhone: user.phone || prev.visitorPhone,
+                  }));
+                }
+              }
+              setShowEnquiryForm(true);
+            }}>
               <LuPhone /> Contact Seller
             </button>
             <button className="product-info-chat-btn">
@@ -475,7 +489,20 @@ const ProductDetails = () => {
                 </div>
               </div>
             )}
-            <div className="save-container" onClick={() => setShowReportForm(true)} style={{ cursor: "pointer" }}>
+            <div className="save-container" onClick={() => {
+              if (getToken()) {
+                const user = getUser();
+                if (user) {
+                  setReportForm((prev) => ({
+                    ...prev,
+                    visitorName: user.name || prev.visitorName,
+                    visitorEmail: user.email || prev.visitorEmail,
+                    visitorPhone: user.phone || prev.visitorPhone,
+                  }));
+                }
+              }
+              setShowReportForm(true);
+            }} style={{ cursor: "pointer" }}>
               <FiFlag /> Report
             </div>
             {showReportForm && (

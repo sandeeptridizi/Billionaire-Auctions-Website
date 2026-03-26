@@ -52,7 +52,7 @@ const SignIn = () => {
       const { data } = await api.post('/api/user/login', payload);
       setToken(data.token);
       setUser(data.user);
-      navigate('/my-account');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid credentials');
     } finally {
