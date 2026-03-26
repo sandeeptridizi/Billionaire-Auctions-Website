@@ -60,6 +60,10 @@ const Recommendations = () => {
           meta: product.meta || {},
           categoryKey: product.category || '',
         }));
+        for (let i = mapped.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [mapped[i], mapped[j]] = [mapped[j], mapped[i]];
+        }
         setRecommended(mapped);
       } catch {
         // ignore and fall back to static data
