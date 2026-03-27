@@ -1,18 +1,18 @@
-import './Marketplace.css';
+import "./Marketplace.css";
 
-import { IoSearch } from 'react-icons/io5';
+import { IoSearch } from "react-icons/io5";
 
-import { LuHouse, LuCar } from 'react-icons/lu';
-import { FaCrown } from 'react-icons/fa6';
-import { IoDiamond } from 'react-icons/io5';
-import { TbSofa } from 'react-icons/tb';
-import { MdOutlinePalette } from 'react-icons/md';
-import { BsBoxSeam, BsStars } from 'react-icons/bs';
+import { LuHouse, LuCar } from "react-icons/lu";
+import { FaCrown } from "react-icons/fa6";
+import { IoDiamond } from "react-icons/io5";
+import { TbSofa } from "react-icons/tb";
+import { MdOutlinePalette } from "react-icons/md";
+import { BsBoxSeam, BsStars } from "react-icons/bs";
 
-import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
+import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 
@@ -21,26 +21,24 @@ import {
   formatCategoryLabel,
   getMarketplaceProducts,
   mapProductToCard,
-} from '../../lib/products';
-import useAppContext from '../../context/AppContext';
-
-const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
+} from "../../lib/products";
+import useAppContext from "../../context/AppContext";
 
 const categoryBtns = [
-  { icon: <LuHouse />, title: 'Real Estate', key: 'REAL_ESTATE' },
-  { icon: <LuCar />, title: 'Cars & Bikes', key: 'CARS' },
-  { icon: <TbSofa />, title: 'Furniture', key: 'FURNITURE' },
-  { icon: <IoDiamond />, title: 'Jewellery', key: 'JEWELLERY_AND_WATCHES' },
-  { icon: <MdOutlinePalette />, title: 'Arts', key: 'ARTS_AND_PAINTINGS' },
-  { icon: <FaCrown />, title: 'Antiques', key: 'ANTIQUES' },
-  { icon: <BsBoxSeam />, title: 'Collectables', key: 'COLLECTABLES' },
-  { icon: <BsStars />, title: 'Others', key: 'OTHERS' },
+  { icon: <LuHouse />, title: "Real Estate", key: "REAL_ESTATE" },
+  { icon: <LuCar />, title: "Cars & Bikes", key: "CARS" },
+  { icon: <TbSofa />, title: "Furniture", key: "FURNITURE" },
+  { icon: <IoDiamond />, title: "Jewellery", key: "JEWELLERY_AND_WATCHES" },
+  { icon: <MdOutlinePalette />, title: "Arts", key: "ARTS_AND_PAINTINGS" },
+  { icon: <FaCrown />, title: "Antiques", key: "ANTIQUES" },
+  { icon: <BsBoxSeam />, title: "Collectables", key: "COLLECTABLES" },
+  { icon: <BsStars />, title: "Others", key: "OTHERS" },
 ];
 
 const Marketplace = () => {
   const [searchParams] = useSearchParams();
-  const [selectedBtn, setSelectedBtn] = useState('All');
-  const [search, setSearch] = useState(searchParams.get('q') || '');
+  const [selectedBtn, setSelectedBtn] = useState("All");
+  const [search, setSearch] = useState(searchParams.get("q") || "");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +52,7 @@ const Marketplace = () => {
         const list = await getMarketplaceProducts({ country: selectedCountry });
         setProducts(list);
       } catch (error) {
-        console.error('Failed to load marketplace products', error);
+        console.error("Failed to load marketplace products", error);
       } finally {
         setLoading(false);
       }
@@ -64,22 +62,22 @@ const Marketplace = () => {
   }, [selectedCountry]);
 
   const handleSwitch = (type) => {
-  if (type === selectedBtn) return;
+    if (type === selectedBtn) return;
 
-  if (type === "Luxury" || type === "Classic") {
-    setNextBtn(type);
-    setLoading(true);
-  } else {
-    setSelectedBtn(type);
-  }
-};
+    if (type === "Luxury" || type === "Classic") {
+      setNextBtn(type);
+      setLoading(true);
+    } else {
+      setSelectedBtn(type);
+    }
+  };
 
   const filteredProducts = useMemo(() => {
     const normalizedTier =
-      selectedBtn === 'Luxury'
-        ? 'LUXURY'
-        : selectedBtn === 'Classic'
-          ? 'CLASSIC'
+      selectedBtn === "Luxury"
+        ? "LUXURY"
+        : selectedBtn === "Classic"
+          ? "CLASSIC"
           : null;
 
     const matchedCategory = search
@@ -96,7 +94,7 @@ const Marketplace = () => {
           : product.title.toLowerCase().includes(search.toLowerCase())
         : true;
       const byCategory = selectedCategory
-        ? selectedCategory === 'OTHERS'
+        ? selectedCategory === "OTHERS"
           ? !categoryOrder.includes(product.category)
           : product.category === selectedCategory
         : true;
@@ -118,50 +116,50 @@ const Marketplace = () => {
     return Array.from(map.entries()).sort((a, b) => {
       const aIdx = categoryOrder.indexOf(a[0]);
       const bIdx = categoryOrder.indexOf(b[0]);
-      return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
-        (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
+      return (
+        (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
+        (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx)
+      );
     });
   }, [filteredProducts]);
 
   return (
-    <div className='buy-now-container'>
-      <div className='market-place-background-container'>
+    <div className="buy-now-container">
+      <div className="market-place-background-container">
         <div>
-        <h2 className='buy-now-heading'>Market Place</h2>
-        <p className='buy-now-text'>
-          List and connect directly with buyers.
-        </p></div>
-        <div className='buy-now-btns-container'>
-
+          <h2 className="buy-now-heading">Market Place</h2>
+          <p className="buy-now-text">List and connect directly with buyers.</p>
+        </div>
+        <div className="buy-now-btns-container">
           <div
             className={
-              selectedBtn === 'All'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
+              selectedBtn === "All"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
             }
-            onClick={() => handleSwitch('All')}
+            onClick={() => handleSwitch("All")}
           >
             All
           </div>
 
           <div
             className={
-              selectedBtn === 'Luxury'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
+              selectedBtn === "Luxury"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
             }
-            onClick={() => handleSwitch('Luxury')}
+            onClick={() => handleSwitch("Luxury")}
           >
             <FaCrown /> Luxury
           </div>
 
           <div
             className={
-              selectedBtn === 'Classic'
-                ? 'buy-now-btn-container active-btn'
-                : 'buy-now-btn-container'
+              selectedBtn === "Classic"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
             }
-            onClick={() => handleSwitch('Classic')}
+            onClick={() => handleSwitch("Classic")}
           >
             <IoDiamond /> Classic
           </div>
@@ -185,26 +183,25 @@ const Marketplace = () => {
               </video>
             </div>
           )}
-
         </div>
       </div>
-      <div className='buy-now-categories-container'>
-        <div className='buy-now-search-filter-container'>
-          <div className='buy-now-search-container'>
-            <IoSearch className='buy-now-search-icon' />
+      <div className="buy-now-categories-container">
+        <div className="buy-now-search-filter-container">
+          <div className="buy-now-search-container">
+            <IoSearch className="buy-now-search-icon" />
             <input
-              type='text'
-              placeholder='Search for luxury items...'
-              className='buy-now-input'
+              type="text"
+              placeholder="Search for luxury items..."
+              className="buy-now-input"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           {selectedCategory && (
-            <div className='buy-now-filter-container'>
+            <div className="buy-now-filter-container">
               <div
-                className='buy-now-filter-btn'
-                style={{ cursor: 'pointer' }}
+                className="buy-now-filter-btn"
+                style={{ cursor: "pointer" }}
                 onClick={() => setSelectedCategory(null)}
               >
                 Clear Filter
@@ -212,31 +209,41 @@ const Marketplace = () => {
             </div>
           )}
         </div>
-        <div className='marketplace-category-icons-row'>
+        <div className="marketplace-category-icons-row">
           {categoryBtns.map((btn) => (
             <div
-              className='marketplace-category-icon-item'
+              className="marketplace-category-icon-item"
               key={btn.key}
-              onClick={() => setSelectedCategory(selectedCategory === btn.key ? null : btn.key)}
+              onClick={() =>
+                setSelectedCategory(
+                  selectedCategory === btn.key ? null : btn.key,
+                )
+              }
             >
               <div
                 className={
                   selectedCategory === btn.key
-                    ? 'marketplace-category-icon-circle marketplace-category-active'
-                    : 'marketplace-category-icon-circle'
+                    ? "marketplace-category-icon-circle marketplace-category-active"
+                    : "marketplace-category-icon-circle"
                 }
               >
                 {btn.icon}
               </div>
-              <span className='marketplace-category-icon-label'>{btn.title}</span>
+              <span className="marketplace-category-icon-label">
+                {btn.title}
+              </span>
             </div>
           ))}
         </div>
       </div>
       {loading ? (
-        <p style={{ padding: '40px', textAlign: 'center' }}>Loading products...</p>
+        <p style={{ padding: "40px", textAlign: "center" }}>
+          Loading products...
+        </p>
       ) : groupedCategories.length === 0 ? (
-        <p style={{ padding: '40px', textAlign: 'center' }}>No products available.</p>
+        <p style={{ padding: "40px", textAlign: "center" }}>
+          No products available.
+        </p>
       ) : (
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent

@@ -15,9 +15,9 @@
 
 /* SLIDES */
 .hero-slide {
-  width: 100%;              /* instead of min-width */
+  width: 100%; /* instead of min-width */
   height: 100%;
-  flex-shrink: 0;           /* prevents shrinking */
+  flex-shrink: 0; /* prevents shrinking */
 }
 
 /* DYNAMIC BANNER (from API) */
@@ -33,7 +33,7 @@
 
 /* STATIC BANNER IMAGE 1 (fallback) */
 .hero-slide1 {
-  background: url("../../assets/ba-hero-banner.png");
+  background: url("https://bauctionprod.s3.ap-south-1.amazonaws.com/ba/static/ba-hero-banner.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@
 
 /* STATIC BANNER IMAGE 2 (fallback) */
 .hero-slide2 {
-  background: url("../../assets/ba-hero-banner-2.jpeg");
+  background: url("https://bauctionprod.s3.ap-south-1.amazonaws.com/ba/static/ba-hero-banner-2.jpeg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +52,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  
+
   width: 42px;
   height: 42px;
 
@@ -97,9 +97,6 @@
   right: 20px;
 }
 
-
-
-
 .search-row {
   position: absolute;
   top: 10%;
@@ -119,7 +116,7 @@
   width: 420px;
   padding: 14px 20px;
 
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(6px);
 
   border-radius: 40px;
@@ -132,7 +129,7 @@
 }
 
 .search-home-icon {
- display: none;
+  display: none;
 }
 
 /* SEARCH ICON */
@@ -154,12 +151,11 @@
 
 /* PLACEHOLDER */
 .search-input::placeholder {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* MOBILE */
 @media screen and (max-width: 510px) {
-
   .hero-banner-container {
     height: 138px;
   }
@@ -174,25 +170,24 @@
   }
 
   .search-home-icon {
-  color: #d4af37;
-  font-size: 22px;
-  transition: color 0.2s ease;
-}
+    color: #d4af37;
+    font-size: 22px;
+    transition: color 0.2s ease;
+  }
 
-.search-home-icon:hover {
-  color: #f0c850;
-}
+  .search-home-icon:hover {
+    color: #f0c850;
+  }
 
   .banner-arrow svg {
     font-size: 12px;
   }
 
   .left-arrow {
-    left: 8px important ;
+    left: 8px important;
   }
 
   .right-arrow {
     right: 8px;
   }
-
 }

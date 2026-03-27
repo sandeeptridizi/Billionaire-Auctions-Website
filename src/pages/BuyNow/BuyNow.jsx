@@ -1,18 +1,18 @@
-import './BuyNow.css';
+import "./BuyNow.css";
 
-import { TiFlashOutline } from 'react-icons/ti';
-import { FiShield } from 'react-icons/fi';
-import { MdVerified } from 'react-icons/md';
-import { FiTruck } from 'react-icons/fi';
-import { IoSearch } from 'react-icons/io5';
-import { HiOutlineArrowSmRight } from 'react-icons/hi';
+import { TiFlashOutline } from "react-icons/ti";
+import { FiShield } from "react-icons/fi";
+import { MdVerified } from "react-icons/md";
+import { FiTruck } from "react-icons/fi";
+import { IoSearch } from "react-icons/io5";
+import { HiOutlineArrowSmRight } from "react-icons/hi";
 
-import { FaCrown } from 'react-icons/fa6';
-import { IoDiamond } from 'react-icons/io5';
+import { FaCrown } from "react-icons/fa6";
+import { IoDiamond } from "react-icons/io5";
 
-import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import RealEstateComponent from '../../components/RealEstateComponent/RealEstateComponent';
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 import {
@@ -20,42 +20,41 @@ import {
   formatCategoryLabel,
   getBuyNowProducts,
   mapProductToCard,
-} from '../../lib/products';
-import useAppContext from '../../context/AppContext';
+} from "../../lib/products";
+import useAppContext from "../../context/AppContext";
 
-const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
+const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
 
 const data = [
   {
     id: 1,
     icon: <TiFlashOutline />,
-    title: 'Instant Purchase',
-    text: 'Buy immediately',
+    title: "Instant Purchase",
+    text: "Buy immediately",
   },
   {
     id: 2,
     icon: <FiShield />,
-    title: 'Secure Payment',
-    text: '100% protected',
+    title: "Secure Payment",
+    text: "100% protected",
   },
   {
     id: 3,
     icon: <MdVerified />,
-    title: 'Verified Items',
-    text: 'Authenticated',
+    title: "Verified Items",
+    text: "Authenticated",
   },
   {
     id: 4,
     icon: <FiTruck />,
-    title: 'Fast Delivery',
-    text: 'White glove service',
+    title: "Fast Delivery",
+    text: "White glove service",
   },
 ];
 
-
 const BuyNow = () => {
-  const [selectedBtn, setSelectedBtn] = useState('All');
-  const [search, setSearch] = useState('');
+  const [selectedBtn, setSelectedBtn] = useState("All");
+  const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -69,7 +68,7 @@ const BuyNow = () => {
         setProducts(list);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error('Failed to load buy now products', error);
+        console.error("Failed to load buy now products", error);
       } finally {
         setLoading(false);
       }
@@ -79,22 +78,22 @@ const BuyNow = () => {
   }, [selectedCountry]);
 
   const handleSwitch = (type) => {
-  if (type === selectedBtn) return;
+    if (type === selectedBtn) return;
 
-  if (type === "Luxury" || type === "Classic") {
-    setNextBtn(type);
-    setLoading(true);
-  } else {
-    setSelectedBtn(type);
-  }
-};
+    if (type === "Luxury" || type === "Classic") {
+      setNextBtn(type);
+      setLoading(true);
+    } else {
+      setSelectedBtn(type);
+    }
+  };
 
   const filteredProducts = useMemo(() => {
     const normalizedTier =
-      selectedBtn === 'Luxury'
-        ? 'LUXURY'
-        : selectedBtn === 'Classic'
-          ? 'CLASSIC'
+      selectedBtn === "Luxury"
+        ? "LUXURY"
+        : selectedBtn === "Classic"
+          ? "CLASSIC"
           : null;
 
     const matchedCategory = search
@@ -128,99 +127,104 @@ const BuyNow = () => {
     return Array.from(map.entries()).sort((a, b) => {
       const aIdx = categoryOrder.indexOf(a[0]);
       const bIdx = categoryOrder.indexOf(b[0]);
-      return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
-        (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
+      return (
+        (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
+        (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx)
+      );
     });
   }, [filteredProducts]);
 
   return (
-    <div className='buy-now-container'>
-      <div className='market-place-background-container'>
+    <div className="buy-now-container">
+      <div className="market-place-background-container">
         <div>
-        <h2 className='buy-now-heading'>Buy Now</h2>
-        <p className='buy-now-text'>
-          We manage the sale for you, end-to-end.
-        </p></div>
-        <div className='buy-now-btns-container'>
+          <h2 className="buy-now-heading">Buy Now</h2>
+          <p className="buy-now-text">
+            We manage the sale for you, end-to-end.
+          </p>
+        </div>
+        <div className="buy-now-btns-container">
+          <div
+            className={
+              selectedBtn === "All"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("All")}
+          >
+            All
+          </div>
 
-                  <div
-                    className={
-                      selectedBtn === 'All'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('All')}
-                  >
-                    All
-                  </div>
+          <div
+            className={
+              selectedBtn === "Luxury"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("Luxury")}
+          >
+            <FaCrown /> Luxury
+          </div>
 
-                  <div
-                    className={
-                      selectedBtn === 'Luxury'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('Luxury')}
-                  >
-                    <FaCrown /> Luxury
-                  </div>
-
-                  <div
-                    className={
-                      selectedBtn === 'Classic'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('Classic')}
-                  >
-                    <IoDiamond /> Classic
-                  </div>
-                  {loading && (
-                    <div className="tier-loader-overlay">
-                      <video
-                        autoPlay
-                        muted
-                        playsInline
-                        preload="auto"
-                        className="tier-loader-video"
-                        onEnded={() => {
-                          setSelectedBtn(nextBtn);
-                          setLoading(false);
-                        }}
-                      >
-                        <source
-                          src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
-                          type="video/mp4"
-                        />
-                      </video>
-                    </div>
-                  )}
-
-                </div>
+          <div
+            className={
+              selectedBtn === "Classic"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("Classic")}
+          >
+            <IoDiamond /> Classic
+          </div>
+          {loading && (
+            <div className="tier-loader-overlay">
+              <video
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                className="tier-loader-video"
+                onEnded={() => {
+                  setSelectedBtn(nextBtn);
+                  setLoading(false);
+                }}
+              >
+                <source
+                  src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          )}
+        </div>
       </div>
-      <div className='buy-now-categories-container'>
-        <div className='buy-now-search-filter-container'>
-          <div className='buy-now-search-container'>
-            <IoSearch className='buy-now-search-icon' />
+      <div className="buy-now-categories-container">
+        <div className="buy-now-search-filter-container">
+          <div className="buy-now-search-container">
+            <IoSearch className="buy-now-search-icon" />
             <input
-              type='text'
-              placeholder='Search for luxury items...'
-              className='buy-now-input'
+              type="text"
+              placeholder="Search for luxury items..."
+              className="buy-now-input"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className='buy-now-filter-container'>
-            <Link to='/products/buy-now/all' className='buy-now-filter-btn'>
+          <div className="buy-now-filter-container">
+            <Link to="/products/buy-now/all" className="buy-now-filter-btn">
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
         </div>
       </div>
       {loading ? (
-        <p style={{ padding: '40px', textAlign: 'center' }}>Loading products...</p>
+        <p style={{ padding: "40px", textAlign: "center" }}>
+          Loading products...
+        </p>
       ) : groupedCategories.length === 0 ? (
-        <p style={{ padding: '40px', textAlign: 'center' }}>No products available.</p>
+        <p style={{ padding: "40px", textAlign: "center" }}>
+          No products available.
+        </p>
       ) : (
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent

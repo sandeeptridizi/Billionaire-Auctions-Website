@@ -1,80 +1,61 @@
-import './Auctions.css';
+import "./Auctions.css";
 
-import { IoDiamond } from 'react-icons/io5';
-import { IoSearch } from 'react-icons/io5';
-import { HiOutlineArrowSmRight } from 'react-icons/hi';
+import { IoDiamond } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
+import { HiOutlineArrowSmRight } from "react-icons/hi";
 
-import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { GoPeople } from 'react-icons/go';
-import { BsBoxSeam } from 'react-icons/bs';
-import { TbHammer } from 'react-icons/tb';
-import { FaCrown } from 'react-icons/fa6';
+import { GoPeople } from "react-icons/go";
+import { BsBoxSeam } from "react-icons/bs";
+import { TbHammer } from "react-icons/tb";
+import { FaCrown } from "react-icons/fa6";
 
-import apartment from '../../assets/apartment.jpg';
-import AuctionCardComponent from '../../components/AuctionCardComponent/AuctionCardComponent';
+import apartment from "../../assets/apartment.jpg";
+import AuctionCardComponent from "../../components/AuctionCardComponent/AuctionCardComponent";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
-import { getAuctionsProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
-import useAppContext from '../../context/AppContext';
+import {
+  getAuctionsProducts,
+  mapProductToCard,
+  categoryOrder,
+  formatCategoryLabel,
+} from "../../lib/products";
+import useAppContext from "../../context/AppContext";
 
-const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
-
-const data = [
-  {
-    id: 1,
-    number: '24',
-    text: 'Upcoming Auctions',
-  },
-  {
-    id: 2,
-    number: '4,159',
-    text: 'Registered Bidders',
-  },
-  {
-    id: 3,
-    number: '3,775Cr+',
-    text: 'Estimated Value',
-  },
-  {
-    id: 4,
-    number: '857',
-    text: 'Total Lots',
-  },
-];
+const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
 
 const stepsData = [
   {
     id: 1,
     icon: <GoPeople />,
-    title: 'Register Online',
-    text: 'Sign up for the auction event and get verified',
+    title: "Register Online",
+    text: "Sign up for the auction event and get verified",
   },
   {
     id: 2,
     icon: <BsBoxSeam />,
-    title: 'Preview Items',
-    text: 'Visit venue to inspect items before auction day',
+    title: "Preview Items",
+    text: "Visit venue to inspect items before auction day",
   },
   {
     id: 3,
     icon: <TbHammer />,
-    title: 'Attend Auction',
-    text: 'Participate in live bidding at the venue',
+    title: "Attend Auction",
+    text: "Participate in live bidding at the venue",
   },
   {
     id: 4,
     icon: <FaCrown />,
-    title: 'Win & Collect',
-    text: 'Highest bidder wins and collects the item',
+    title: "Win & Collect",
+    text: "Highest bidder wins and collects the item",
   },
 ];
 
-
 const Auctions = () => {
-  const [selectedBtn, setSelectedBtn] = useState('All');
-  const [search, setSearch] = useState('');
+  const [selectedBtn, setSelectedBtn] = useState("All");
+  const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -92,20 +73,23 @@ const Auctions = () => {
             title: card.title,
             image: card.image || apartment,
             cost:
-              typeof product.value === 'number'
-                ? `${product.value.toLocaleString('en-IN')}+`
-                : 'Price on request',
-            location: product.meta?.auctionVenue || product.meta?.location || 'Unspecified',
-            date: product.meta?.auctionDate || product.meta?.date || '',
-            lots: product.meta?.lots || '',
-            registered: product.meta?.registered || '',
+              typeof product.value === "number"
+                ? `${product.value.toLocaleString("en-IN")}+`
+                : "Price on request",
+            location:
+              product.meta?.auctionVenue ||
+              product.meta?.location ||
+              "Unspecified",
+            date: product.meta?.auctionDate || product.meta?.date || "",
+            lots: product.meta?.lots || "",
+            registered: product.meta?.registered || "",
             rawCategory: product.category,
           };
         });
         setProducts(mapped);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error('Failed to load auction products', error);
+        console.error("Failed to load auction products", error);
       } finally {
         setLoading(false);
       }
@@ -115,15 +99,15 @@ const Auctions = () => {
   }, [selectedCountry]);
 
   const handleSwitch = (type) => {
-  if (type === selectedBtn) return;
+    if (type === selectedBtn) return;
 
-  if (type === "Luxury" || type === "Classic") {
-    setNextBtn(type);
-    setLoading(true);
-  } else {
-    setSelectedBtn(type);
-  }
-};
+    if (type === "Luxury" || type === "Classic") {
+      setNextBtn(type);
+      setLoading(true);
+    } else {
+      setSelectedBtn(type);
+    }
+  };
 
   const filteredProducts = useMemo(() => {
     if (!search) return products;
@@ -141,106 +125,112 @@ const Auctions = () => {
   const groupedCategories = useMemo(() => {
     const map = new Map();
     filteredProducts.forEach((product) => {
-      const key = product.rawCategory || 'OTHERS';
+      const key = product.rawCategory || "OTHERS";
       if (!map.has(key)) map.set(key, []);
       map.get(key).push(product);
     });
     return Array.from(map.entries()).sort((a, b) => {
       const aIdx = categoryOrder.indexOf(a[0]);
       const bIdx = categoryOrder.indexOf(b[0]);
-      return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) - (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
+      return (
+        (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) -
+        (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx)
+      );
     });
   }, [filteredProducts]);
 
   return (
-    <div className='buy-now-container'>
-      <div className='market-place-background-container'>
+    <div className="buy-now-container">
+      <div className="market-place-background-container">
         <div>
-        <h2 className='buy-now-heading'>Auctions</h2>
-        <p className='buy-now-text'>
-          List items for competitive offline bidding.
-        </p></div>
-        <div className='buy-now-btns-container'>
+          <h2 className="buy-now-heading">Auctions</h2>
+          <p className="buy-now-text">
+            List items for competitive offline bidding.
+          </p>
+        </div>
+        <div className="buy-now-btns-container">
+          <div
+            className={
+              selectedBtn === "All"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("All")}
+          >
+            All
+          </div>
 
-                  <div
-                    className={
-                      selectedBtn === 'All'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('All')}
-                  >
-                    All
-                  </div>
+          <div
+            className={
+              selectedBtn === "Luxury"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("Luxury")}
+          >
+            <FaCrown /> Luxury
+          </div>
 
-                  <div
-                    className={
-                      selectedBtn === 'Luxury'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('Luxury')}
-                  >
-                    <FaCrown /> Luxury
-                  </div>
-
-                  <div
-                    className={
-                      selectedBtn === 'Classic'
-                        ? 'buy-now-btn-container active-btn'
-                        : 'buy-now-btn-container'
-                    }
-                    onClick={() => handleSwitch('Classic')}
-                  >
-                    <IoDiamond /> Classic
-                  </div>
-                  {loading && (
-                    <div className="tier-loader-overlay">
-                      <video
-                        autoPlay
-                        muted
-                        playsInline
-                        preload="auto"
-                        className="tier-loader-video"
-                        onEnded={() => {
-                          setSelectedBtn(nextBtn);
-                          setLoading(false);
-                        }}
-                      >
-                        <source
-                          src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
-                          type="video/mp4"
-                        />
-                      </video>
-                    </div>
-                  )}
-
-                </div>
+          <div
+            className={
+              selectedBtn === "Classic"
+                ? "buy-now-btn-container active-btn"
+                : "buy-now-btn-container"
+            }
+            onClick={() => handleSwitch("Classic")}
+          >
+            <IoDiamond /> Classic
+          </div>
+          {loading && (
+            <div className="tier-loader-overlay">
+              <video
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                className="tier-loader-video"
+                onEnded={() => {
+                  setSelectedBtn(nextBtn);
+                  setLoading(false);
+                }}
+              >
+                <source
+                  src={nextBtn === "Luxury" ? luxuryLoading : classicLoading}
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          )}
+        </div>
       </div>
-      <div className='buy-now-categories-container'>
-        <div className='buy-now-search-filter-container'>
-          <div className='buy-now-search-container'>
-            <IoSearch className='buy-now-search-icon' />
+      <div className="buy-now-categories-container">
+        <div className="buy-now-search-filter-container">
+          <div className="buy-now-search-container">
+            <IoSearch className="buy-now-search-icon" />
             <input
-              type='text'
-              placeholder='Search auction events...'
-              className='buy-now-input'
+              type="text"
+              placeholder="Search auction events..."
+              className="buy-now-input"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className='buy-now-filter-container'>
-            <Link to='/products/auctions/all' className='buy-now-filter-btn'>
+          <div className="buy-now-filter-container">
+            <Link to="/products/auctions/all" className="buy-now-filter-btn">
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
         </div>
       </div>
-      <div className='auctions-flex-container'>
+      <div className="auctions-flex-container">
         {loading ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>Loading auctions...</p>
+          <p style={{ padding: "40px", textAlign: "center" }}>
+            Loading auctions...
+          </p>
         ) : groupedCategories.length === 0 ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>No auction events available.</p>
+          <p style={{ padding: "40px", textAlign: "center" }}>
+            No auction events available.
+          </p>
         ) : (
           groupedCategories.map(([catKey, items]) => (
             <AuctionCardComponent
@@ -254,24 +244,24 @@ const Auctions = () => {
           ))
         )}
       </div>
-      <div className='auctions-steps-main-container'>
-        <div className='auctions-steps-header'>
-          <h1 className='auctions-step-heading'>
+      <div className="auctions-steps-main-container">
+        <div className="auctions-steps-header">
+          <h1 className="auctions-step-heading">
             How Our Offline Auctions Work
           </h1>
-          <p className='auctions-step-text'>
+          <p className="auctions-step-text">
             Experience the thrill of live bidding at prestigious venues
           </p>
         </div>
-        <div className='auctions-step-grid-container'>
+        <div className="auctions-step-grid-container">
           {stepsData.map((item) => {
             const { id, icon, title, text } = item;
             return (
-              <div className='auctions-step-item-container' key={id}>
-                <div className='auctions-step-item-icon-container'>{icon}</div>
-                <h2 className='auctions-step-item-heading'>Step {id}</h2>
-                <h3 className='auctions-step-item-title'>{title}</h3>
-                <p className='auctions-step-item-text'>{text}</p>
+              <div className="auctions-step-item-container" key={id}>
+                <div className="auctions-step-item-icon-container">{icon}</div>
+                <h2 className="auctions-step-item-heading">Step {id}</h2>
+                <h3 className="auctions-step-item-title">{title}</h3>
+                <p className="auctions-step-item-text">{text}</p>
               </div>
             );
           })}

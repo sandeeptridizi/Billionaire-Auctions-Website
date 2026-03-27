@@ -10,10 +10,10 @@
   width: 100%;
   min-height: 400px;
   padding: 80px 68px;
-  background-image: url('../../assets/nribbanner.png');
-  background-size: cover;        
-  background-position: center;  
-  background-repeat: no-repeat;  
+  background-image: url("https://bauctionprod.s3.ap-south-1.amazonaws.com/ba/static/nribbanner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -401,7 +401,6 @@
     min-height: 160px;
     padding: 20px 12px;
     background-size: contain;
-  
   }
 
   .people-icon {
