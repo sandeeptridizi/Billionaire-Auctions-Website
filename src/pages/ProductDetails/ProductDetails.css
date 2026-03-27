@@ -94,9 +94,34 @@
 
 .product-category {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px;
   color: rgba(212, 175, 55, 1);
+}
+
+.breadcrumb-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(74, 85, 101, 1);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.breadcrumb-link:hover {
+  color: rgba(212, 175, 55, 1);
+}
+
+.breadcrumb-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.breadcrumb-separator {
+  width: 14px;
+  height: 14px;
+  color: rgba(153, 161, 175, 1);
 }
 
 .product-page-image-info-container {

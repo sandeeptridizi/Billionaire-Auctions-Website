@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
-  LuPhone, LuSquareArrowOutUpRight, LuHouse,
+  LuPhone, LuSquareArrowOutUpRight, LuHouse, LuChevronRight,
   LuBedDouble, LuRuler, LuCalendar, LuArmchair, LuCompass,
   LuCar, LuGauge, LuFuel, LuSettings2, LuUser, LuShieldCheck,
   LuLayers, LuStar, LuUsers, LuClock, LuGem, LuWeight,
@@ -174,32 +174,7 @@ const ProductDetails = () => {
 
   const [productAds, setProductAds] = useState([]);
   const images = product?.media || [];
-  const [paused, setPaused] = useState(false);
-  const intervalRef = useRef(null);
-
   useEffect(() => { setActiveIndex(0); setThumbStart(0); }, [id]);
-  useEffect(() => {
-    if (paused || images.length <= 1) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % images.length;
-        // Adjust thumbnail window so active thumb stays visible
-        setThumbStart((ts) => {
-          if (next < ts) return next;
-          if (next >= ts + THUMB_VISIBLE) return Math.min(next, images.length - THUMB_VISIBLE);
-          return ts;
-        });
-        return next;
-      });
-    }, 5000);
-    return () => clearInterval(intervalRef.current);
-  }, [paused, images.length]);
-
-  const handlePointerDown = useCallback(() => setPaused(true), []);
-  const handlePointerUp = useCallback(() => setPaused(false), []);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -298,7 +273,11 @@ const ProductDetails = () => {
       <div className="product-page-search-category-container">
         <div className="product-page-breadcrums-category-btns-container">
           <div className="product-page-bread-crums">
-            Home <span className="product-category">{product.title}</span>
+            <Link to="/" className="breadcrumb-link"><LuHouse className="breadcrumb-icon" /> Home</Link>
+            <LuChevronRight className="breadcrumb-separator" />
+            <Link to="/marketplace" className="breadcrumb-link">Marketplace</Link>
+            <LuChevronRight className="breadcrumb-separator" />
+            <span className="product-category">{product.title}</span>
           </div>
         </div>
       </div>
@@ -308,11 +287,6 @@ const ProductDetails = () => {
           {/* Main Image */}
           <div
             className="product-main-image-container"
-            onMouseDown={handlePointerDown}
-            onMouseUp={handlePointerUp}
-            onMouseLeave={handlePointerUp}
-            onTouchStart={handlePointerDown}
-            onTouchEnd={handlePointerUp}
           >
             <img
               src={images[activeIndex] ? getFile(images[activeIndex]) : ""}
@@ -734,7 +708,7 @@ const ProductDetails = () => {
           and personalized concierge services.
         </p>
         <div className="product-footer-btn-container">
-          <Link to="/browse/about-us" className="no-underline-link">
+          <Link to="/" className="no-underline-link">
             <button className="featured-footer-btn">
               Explore Now <LuSquareArrowOutUpRight />
             </button>

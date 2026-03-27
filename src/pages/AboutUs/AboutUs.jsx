@@ -143,10 +143,10 @@ const AboutUs = () => {
 
         <div className='about-us-founder-left'>
           <div className='founder-background-container'>
-            <div className='founder-info-container'>
-              <h2 className='founder-name'>Sai Venkat Malempati</h2>
-              <p className='founder-desc'>Founder – Billionaire Auction</p>
-            </div>
+          </div>
+          <div className='founder-info-container'>
+            <h2 className='founder-name'>Sai Venkat Malempati</h2>
+            <p className='founder-desc'>Founder – Billionaire Auction</p>
           </div>
         </div>
 
