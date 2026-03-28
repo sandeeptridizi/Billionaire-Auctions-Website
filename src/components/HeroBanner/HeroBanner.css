@@ -3,6 +3,8 @@
   height: 428px;
   position: relative;
   overflow: hidden;
+  transform: translateZ(0); 
+  will-change: transform;
 }
 
 /* SLIDER */
@@ -71,7 +73,7 @@
   -webkit-backdrop-filter: blur(10px);
 
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 20;
 }
 
 /* Icon */
@@ -158,6 +160,7 @@
 @media screen and (max-width: 510px) {
   .hero-banner-container {
     height: 138px;
+    position: relative;
   }
 
   .search-row {
@@ -165,8 +168,11 @@
   }
 
   .banner-arrow {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 20;
+
   }
 
   .search-home-icon {

@@ -15,6 +15,7 @@ import {
 } from "react-icons/lu";
 import { MdVerified } from "react-icons/md";
 import { FaCrown } from "react-icons/fa6";
+import { GoHomeFill } from 'react-icons/go';
 import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import EMICalculator from "../../components/EMICalculator/EMICalculator";

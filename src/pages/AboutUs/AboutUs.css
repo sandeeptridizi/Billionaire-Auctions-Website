@@ -124,6 +124,9 @@
   position: sticky;
   top: 120px;
   margin-left: 20px;
+  display: flex;          
+  flex-direction: column;
+  gap: 12px;
   height: fit-content;
 }
 
@@ -826,7 +829,6 @@
   .founder-background-container {
     height: 280px;
     align-items: center;
-    width:400px;
   }
 
   .about-us-founder-right {
@@ -1163,3 +1165,72 @@
     height: 20px;
   }
 }
+
+@media screen and (max-width: 360px) {
+
+  .about-us-heading {
+    font-size: 20px;
+  }
+
+  .about-us-text {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .about-us-founder-info-container {
+    padding: 24px 12px;
+  }
+
+  .founder-heading {
+    font-size: 24px;
+  }
+
+  .founder-text {
+    font-size: 14px;
+  }
+
+  .about-us-founder-left {
+    top: 60px;   /* less sticky offset */
+  }
+
+  /* 🔥 FIX OVERFLOW */
+  .founder-background-container {
+    width: 90%;        /* ✅ instead of 400px */
+    height: 220px;      /* smaller image */
+  }
+
+  .about-us-founder-right {
+    height: 300px;
+    gap: 16px;
+  }
+
+  .billionaire-heading {
+    font-size: 20px;
+  }
+
+  .why-choose-heading {
+    font-size: 20px;
+  }
+
+  .future-roadmap-heading {
+    font-size: 20px;
+  }
+
+  .why-choose-item-title,
+  .future-roadmap-item-title {
+    font-size: 16px;
+  }
+
+  .why-choose-item-text,
+  .future-roadmap-item-text {
+    font-size: 13px;
+  }
+
+  .person-icon,
+  .award-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+}
+

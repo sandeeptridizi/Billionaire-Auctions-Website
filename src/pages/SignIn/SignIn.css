@@ -4,7 +4,7 @@
   background: linear-gradient(135deg, #faf7f0 0%, #f5eedc 50%, #ede4cc 100%);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 32px;
 }
 
@@ -238,5 +238,33 @@
 
   .fe-auth-logo {
     width: 200px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .fe-sign-in-container {
+    padding: 16px 10px;
+  }
+
+  .fe-sign-in-main {
+    padding: 20px 14px;
+  }
+
+  .fe-auth-logo {
+    width: 170px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .fe-sign-in-container {
+    padding: 14px 8px;
+  }
+
+  .fe-sign-in-main {
+    padding: 16px 12px;
+  }
+
+  .fe-auth-logo {
+    width: 150px;
   }
 }

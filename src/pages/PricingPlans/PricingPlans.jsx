@@ -127,8 +127,8 @@ const PricingPlans = () => {
   const selectedLead = leadUnlocks[step] || null;
 
   const planIcons = {
-    'Basic': <LuStar className='pricing-star-icon' />,
-    'Premium': <FaCrown className='pricing-star-icon' />,
+    'Basic': <LuStar className='pricing-crown-icon' />,
+    'Premium': <FaCrown className='pricing-crown-icon' />,
     'PRO': <TiFlashOutline className='pricing-crown-icon' />,
   };
 
@@ -155,8 +155,8 @@ const PricingPlans = () => {
       </div>
       <div className='pricing-page-plans-container'>
         <div className="pricing-arrows">
-          <button className="banner-arrow left-arrow" onClick={scrollLeft}><FaChevronLeft /> </button>
-          <button className="banner-arrow right-arrow" onClick={scrollRight}><FaChevronRight /> </button>
+          <button className="banner-arrow1 left-arrow" onClick={scrollLeft}><FaChevronLeft /> </button>
+          <button className="banner-arrow1 right-arrow" onClick={scrollRight}><FaChevronRight /> </button>
         </div>
         <div className='pricing-page-grid-container' ref={sliderRef}>
 
@@ -169,12 +169,11 @@ const PricingPlans = () => {
                 className={isPro ? 'pricing-page-grid-item-two-container' : 'pricing-page-grid-item-container'}
               >
                 <div className='pricing-page-header'>
-                  {planIcons[plan.title] || <LuStar className='pricing-star-icon' />}
+                  {planIcons[plan.title] || <LuStar className='pricing-crown-icon' />}
                   <h3 className='pricing-heading'>{plan.title}</h3>
                   <h3 className='plan-price'>
-                    <BsCurrencyRupee /> {formatPrice(plan.price)}
+                    <BsCurrencyRupee /> {formatPrice(plan.price)} <p className='pricing-text'>{plan.price === 0 ? 'Free' : '+ GST'}</p>
                   </h3>
-                  <p className='pricing-text'>{plan.price === 0 ? 'Free' : '+ GST'}</p>
                 </div>
                 <div className='pricing-page-list-container'>
                   {plan.features.map((f, i) => {
@@ -194,7 +193,7 @@ const PricingPlans = () => {
                   })}
                 </div>
                 <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
-                {isPro && <div className='most-poplular-container'>MOST POPULAR</div>}
+                {/* {isPro && <div className='most-poplular-container'>MOST POPULAR</div>} */}
               </div>
             );
           })}
@@ -216,7 +215,7 @@ const PricingPlans = () => {
                 ))}
               </div>
               <div className='pricing-page-header'>
-                <LuShield className='pricing-star-icon' />
+                <LuShield className='pricing-crown-icon' />
                 <h3 className='pricing-heading'>{selectedEnterprise.title}</h3>
                 <h3 className='plan-price'>
                   <BsCurrencyRupee /> {formatPrice(selectedEnterprise.price)}

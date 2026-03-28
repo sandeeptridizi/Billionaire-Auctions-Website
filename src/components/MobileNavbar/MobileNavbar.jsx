@@ -120,7 +120,7 @@ const MobileNavbar = () => {
                   <span>Pricing</span>
                 </Link>
                 <Link to='browse/buy-sell' onClick={() => setIsBrowseLinksOpen(false)}>
-                  <span>How to buy and sell</span>
+                  <span>FAQ's</span>
                 </Link>
                 <Link to='browse/advertise' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Advertise</span>

@@ -403,32 +403,40 @@ const ContactUs = () => {
                     />
                   </div>
 
-                  <div
-                    className={`accordion-answer ${
-                      activeIndex === index ? "open" : ""
-                    }`}
-                  >
-                    {item.answer.intro && <p>{item.answer.intro}</p>}
-                    {item.answer.bulletPoints && (
-                      <ul>
-                        {item.answer.bulletPoints.map((point, i) => (
-                          <li key={i}>{point}</li>
+                  <div className={`accordion-answer ${activeIndex === index ? "open" : ""}`}>
+                    
+                    {/* ✅ Handle string answers */}
+                    {typeof item.answer === "string" && <p>{item.answer}</p>}
+
+                    {/* ✅ Handle object answers */}
+                    {typeof item.answer === "object" && (
+                      <>
+                        {item.answer.intro && <p>{item.answer.intro}</p>}
+
+                        {item.answer.bulletPoints && (
+                          <ul>
+                            {item.answer.bulletPoints.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {item.answer.sections?.map((section, i) => (
+                          <div key={i} className="faq-section">
+                            {section.title && <strong>{section.title}</strong>}
+                            <ul>
+                              {section.points.map((point, j) => (
+                                <li key={j}>{point}</li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
-                      </ul>
+
+                        {item.answer.notes?.map((note, i) => (
+                          <p key={i} className="faq-note">👉 {note}</p>
+                        ))}
+                      </>
                     )}
-                    {item.answer.sections?.map((section, i) => (
-                      <div key={i} className="faq-section">
-                        <strong>{section.title}</strong>
-                        <ul>
-                          {section.points.map((point, j) => (
-                            <li key={j}>{point}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                    {item.answer.notes?.map((note, i) => (
-                      <p key={i} className="faq-note">👉 {note}</p>
-                    ))}
                   </div>
 
                 </div>

@@ -33,6 +33,27 @@ const getInitials = (name) => {
 
 const Navbar = () => {
   const [isBrowseLinksOpen, setIsBrowseLinksOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  
+  useEffect(() => {
+  const handleClick = (e) => {
+
+    // ✅ Avatar dropdown close
+    if (avatarRef.current && !avatarRef.current.contains(e.target)) {
+      setAvatarOpen(false);
+    }
+
+    // ✅ Browse dropdown close
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setIsBrowseLinksOpen(false);
+    }
+
+  };
+
+  document.addEventListener('mousedown', handleClick);
+  return () => document.removeEventListener('mousedown', handleClick);
+}, []);
+
   const [open, setOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
   const avatarRef = useRef(null);
@@ -90,11 +111,8 @@ const Navbar = () => {
           <li>
             <Link to='to-let'>To-Let</Link>
           </li>
-          <li
-            className='browse-link'
-            onClick={() => setIsBrowseLinksOpen(!isBrowseLinksOpen)}
-          >
-            Browse <FaAngleDown />
+          <li className='browse-link' ref={dropdownRef}>
+            <div onClick={() => setIsBrowseLinksOpen(prev => !prev)}> Browse <FaAngleDown /></div>
             {isBrowseLinksOpen && (
               <div className='browse-links-container'>
                 <Link to='browse/our-partners'>
@@ -110,7 +128,7 @@ const Navbar = () => {
                   <span>Pricing</span>
                 </Link>
                 <Link to='browse/buy-sell'>
-                  <span>How to buy and sell</span>
+                  <span>FAQ's</span>
                 </Link>
                 <Link to='browse/advertise'>
                   <span>Advertise</span>
