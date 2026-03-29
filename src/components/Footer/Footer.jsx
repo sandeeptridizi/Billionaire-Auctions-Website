@@ -93,13 +93,27 @@ const Footer = () => {
           <div className='footer-link-container'>
             <h3 className='footer-link-heading'>Categories</h3>
             <div className='footer-links'>
-              <span>Real Estate</span>
-              <span>Cars & Bikes</span>
-              <span>Furniture</span>
-              <span>Jewellery & Watches</span>
-              <span>Arts & Paintings</span>
-              <span>Collectables</span>
-              <span>Others</span>
+              <Link to='/marketplace?category=REAL_ESTATE' onClick={() => window.scrollTo(0, 0)}>
+                <span>Real Estate</span>
+              </Link>
+              <Link to='/marketplace?category=CARS' onClick={() => window.scrollTo(0, 0)}>
+                <span>Cars & Bikes</span>
+              </Link>
+              <Link to='/marketplace?category=FURNITURE' onClick={() => window.scrollTo(0, 0)}>
+                <span>Furniture</span>
+              </Link>
+              <Link to='/marketplace?category=JEWELLERY_AND_WATCHES' onClick={() => window.scrollTo(0, 0)}>
+                <span>Jewellery & Watches</span>
+              </Link>
+              <Link to='/marketplace?category=ARTS_AND_PAINTINGS' onClick={() => window.scrollTo(0, 0)}>
+                <span>Arts & Paintings</span>
+              </Link>
+              <Link to='/marketplace?category=COLLECTABLES' onClick={() => window.scrollTo(0, 0)}>
+                <span>Collectables</span>
+              </Link>
+              <Link to='/marketplace?category=OTHERS' onClick={() => window.scrollTo(0, 0)}>
+                <span>Others</span>
+              </Link>
             </div>
           </div>
         </div>

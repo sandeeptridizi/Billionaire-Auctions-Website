@@ -420,6 +420,7 @@
   font-weight: 700;
   line-height: 24px;
   color: rgba(212, 175, 55, 1);
+  text-decoration: none;
 }
 
 .product-info-social-container {

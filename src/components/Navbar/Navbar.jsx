@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
 import { getToken, getUser, logout as doLogout } from '../../lib/auth';
+import { getFile } from '../../lib/s3';
 
 const USER_APP_URL = import.meta.env.VITE_USER_APP_URL || 'https://user.billionaireauction.com';
 
@@ -164,8 +165,12 @@ const Navbar = () => {
         </Link>
         {getToken() ? (
           <div className='nav-avatar-wrapper' ref={avatarRef}>
-            <div className='nav-avatar' onClick={() => setAvatarOpen(!avatarOpen)}>
-              {getInitials(getUser()?.name)}
+            <div className={`nav-avatar ${getUser()?.profilePic ? 'nav-avatar-has-pic' : ''}`} onClick={() => setAvatarOpen(!avatarOpen)}>
+              {getUser()?.profilePic ? (
+                <img src={getFile(getUser().profilePic)} alt='Profile' className='nav-avatar-img' />
+              ) : (
+                getInitials(getUser()?.name)
+              )}
             </div>
             {avatarOpen && (
               <div className='nav-avatar-dropdown'>

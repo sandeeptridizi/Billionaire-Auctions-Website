@@ -245,6 +245,25 @@
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4);
 }
 
+.nav-avatar-has-pic {
+  background: none;
+  border: 2.5px solid #d4af37;
+  box-shadow: 0 0 0 1.5px rgba(212, 175, 55, 0.3);
+  overflow: hidden;
+  padding: 0;
+}
+
+.nav-avatar-has-pic:hover {
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.5);
+}
+
+.nav-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .nav-avatar-dropdown {
   position: absolute;
   top: 50px;

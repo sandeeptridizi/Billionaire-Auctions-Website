@@ -6,6 +6,7 @@ import { FiShoppingBag, FiTarget, FiMessageSquare } from 'react-icons/fi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
 import { getToken, getUser, logout as doLogout } from '../../lib/auth';
+import { getFile } from '../../lib/s3';
 
 const USER_APP_URL = import.meta.env.VITE_USER_APP_URL || 'https://user.billionaireauction.com';
 
@@ -73,8 +74,12 @@ const MyAccount = () => {
     <div className='my-account-container'>
       <div className='my-account-main'>
         <div className='my-account-header'>
-          <div className='my-account-avatar'>
-            {getInitials(user?.name)}
+          <div className={`my-account-avatar ${user?.profilePic ? 'my-account-avatar-has-pic' : ''}`}>
+            {user?.profilePic ? (
+              <img src={getFile(user.profilePic)} alt='Profile' className='my-account-avatar-img' />
+            ) : (
+              getInitials(user?.name)
+            )}
           </div>
           <div className='my-account-info'>
             <h2 className='my-account-name'>{user?.name || 'Welcome'}</h2>

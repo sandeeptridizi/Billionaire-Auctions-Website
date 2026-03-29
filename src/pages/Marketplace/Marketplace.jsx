@@ -39,7 +39,7 @@ const Marketplace = () => {
   const [searchParams] = useSearchParams();
   const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState(searchParams.get("q") || "");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -96,7 +96,9 @@ const Marketplace = () => {
       const byCategory = selectedCategory
         ? selectedCategory === "OTHERS"
           ? !categoryOrder.includes(product.category)
-          : product.category === selectedCategory
+          : selectedCategory === "CARS"
+            ? product.category === "CARS" || product.category === "BIKES"
+            : product.category === selectedCategory
         : true;
       return byTier && bySearch && byCategory;
     });

@@ -1,7 +1,7 @@
 import './SignIn.css';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { LuShield } from 'react-icons/lu';
 import { TbDeviceMobile } from 'react-icons/tb';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -13,6 +13,7 @@ import { setToken, setUser } from '../../lib/auth';
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [tab, setTab] = useState('email');
   const [phoneDigits, setPhoneDigits] = useState('');
@@ -52,7 +53,7 @@ const SignIn = () => {
       const { data } = await api.post('/api/user/login', payload);
       setToken(data.token);
       setUser(data.user);
-      navigate('/');
+      navigate(location.state?.from || '/');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid credentials');
     } finally {

@@ -1,7 +1,9 @@
 import './PricingPlans.css';
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import EnquiryModal from "../../components/EnquiryModel/EnquiryModal";
 import api from '../../lib/api';
+import { getToken, getUser, setUser as saveUserToStorage } from '../../lib/auth';
 
 import { LuStar } from 'react-icons/lu';
 import { FaCrown } from 'react-icons/fa6';
@@ -16,6 +18,7 @@ import { FiAward } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { FiCamera } from 'react-icons/fi';
+import { RiCoupon3Line } from 'react-icons/ri';
 
 /** Parse "key:value" feature strings into an object */
 function parseFeatures(features) {
@@ -37,12 +40,15 @@ function formatPrice(num) {
 }
 
 const PricingPlans = () => {
+  const navigate = useNavigate();
   const [subscriptionPlans, setSubscriptionPlans] = useState([]);
   const [bannerAds, setBannerAds] = useState([]);
   const [featuredListings, setFeaturedListings] = useState([]);
   const [leadUnlocks, setLeadUnlocks] = useState([]);
   const [digitalMedia, setDigitalMedia] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [paymentLoading, setPaymentLoading] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   const mainPlans = subscriptionPlans.filter(p => !p.title.startsWith('Enterprise'));
   const enterprisePlans = subscriptionPlans.filter(p => p.title.startsWith('Enterprise'));
@@ -54,18 +60,31 @@ const PricingPlans = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const [enquirySource, setEnquirySource] = useState("");
 
+  // Coupon state
+  const [couponCode, setCouponCode] = useState('');
+  const [couponApplied, setCouponApplied] = useState(null);
+  const [couponError, setCouponError] = useState('');
+  const [couponLoading, setCouponLoading] = useState(false);
+
   const sliderRef = useRef(null);
 
   useEffect(() => {
     async function fetchPackages() {
       try {
-        const [subRes, bannerRes, featuredRes, leadRes, digitalRes] = await Promise.all([
+        const requests = [
           api.get('/api/package/public?category=SUBSCRIPTION_PLAN'),
           api.get('/api/package/public?category=BANNER_AD'),
           api.get('/api/package/public?category=FEATURED_LISTING'),
           api.get('/api/package/public?category=LEAD_UNLOCK'),
           api.get('/api/package/public?category=DIGITAL_MEDIA'),
-        ]);
+        ];
+
+        // Fetch profile only if logged in
+        if (getToken()) {
+          requests.push(api.get('/api/user/me').catch(() => null));
+        }
+
+        const [subRes, bannerRes, featuredRes, leadRes, digitalRes, profileRes] = await Promise.all(requests);
 
         setSubscriptionPlans(subRes.data.data || []);
         setBannerAds(bannerRes.data.data || []);
@@ -74,6 +93,8 @@ const PricingPlans = () => {
 
         const dm = digitalRes.data.data;
         if (dm && dm.length > 0) setDigitalMedia(dm[0]);
+
+        if (profileRes?.data?.data) setProfile(profileRes.data.data);
 
         const banners = bannerRes.data.data || [];
         if (banners.length) setSelectedAd(banners[0]);
@@ -124,6 +145,109 @@ const PricingPlans = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [loading]);
 
+  const handleApplyCoupon = async (pkg) => {
+    if (!couponCode.trim()) return;
+    if (!getToken()) {
+      navigate('/sign-in', { state: { from: '/browse/pricing-plans' } });
+      return;
+    }
+    setCouponError('');
+    setCouponLoading(true);
+    try {
+      const res = await api.post('/api/coupon/validate', {
+        code: couponCode.trim(),
+        amount: pkg.price,
+      });
+      setCouponApplied(res.data.data);
+      setCouponError('');
+    } catch (err) {
+      setCouponApplied(null);
+      setCouponError(err.response?.data?.message || 'Invalid coupon code');
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setCouponApplied(null);
+    setCouponCode('');
+    setCouponError('');
+  };
+
+  const handleSubscribe = async (pkg) => {
+    if (paymentLoading || pkg.price === 0) return;
+
+    // If not logged in, redirect to sign-in
+    if (!getToken()) {
+      navigate('/sign-in', { state: { from: '/browse/pricing-plans' } });
+      return;
+    }
+
+    setPaymentLoading(pkg.id);
+
+    try {
+      const body = { packageId: pkg.id };
+      if (couponApplied) {
+        body.couponCode = couponApplied.code;
+      }
+      const orderRes = await api.post('/api/subscription/create-order', body);
+      const { orderId, amount, currency, keyId } = orderRes.data.data;
+
+      const options = {
+        key: keyId || import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount,
+        currency,
+        name: 'Billionaire Auctions',
+        description: `${pkg.title} - Annual Subscription`,
+        order_id: orderId,
+        prefill: {
+          name: profile?.name || '',
+          email: profile?.email || '',
+          contact: profile?.phone || '',
+        },
+        handler: async (response) => {
+          try {
+            const verifyRes = await api.post('/api/subscription/verify', {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+            const updatedUser = verifyRes.data.data;
+            setProfile(updatedUser);
+            saveUserToStorage(updatedUser);
+            handleRemoveCoupon();
+            alert('Subscription activated successfully!');
+          } catch {
+            alert('Payment was received but verification failed. Please contact support.');
+          } finally {
+            setPaymentLoading(null);
+          }
+        },
+        modal: {
+          ondismiss: () => setPaymentLoading(null),
+        },
+        theme: { color: '#939311' },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', () => {
+        alert('Payment failed. Please try again.');
+        setPaymentLoading(null);
+      });
+      rzp.open();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to initiate payment. Please try again.');
+      setPaymentLoading(null);
+    }
+  };
+
+  const getButtonLabel = (pkg) => {
+    if (paymentLoading === pkg.id) return 'Processing...';
+    if (pkg.price === 0) return 'Current Plan';
+    if (!getToken()) return 'Get Started';
+    return 'Subscribe';
+  };
+
   const selectedLead = leadUnlocks[step] || null;
 
   const planIcons = {
@@ -153,6 +277,55 @@ const PricingPlans = () => {
       <div className='pricing-page-background'>
         <h1 className='pricing-page-heading'>Flexible Pricing Plans</h1>
       </div>
+      {/* ── Coupon Section ── */}
+      {getToken() && (
+        <div className='coupon-section'>
+          <div className='coupon-input-row'>
+            <RiCoupon3Line className='coupon-icon' />
+            <input
+              type='text'
+              className='coupon-input'
+              placeholder='Enter coupon code'
+              value={couponCode}
+              onChange={(e) => {
+                setCouponCode(e.target.value.toUpperCase());
+                if (couponApplied) handleRemoveCoupon();
+                setCouponError('');
+              }}
+              disabled={!!couponApplied}
+            />
+            {couponApplied ? (
+              <button className='coupon-remove-btn' onClick={handleRemoveCoupon}>Remove</button>
+            ) : (
+              <button
+                className='coupon-apply-btn'
+                onClick={() => {
+                  const target = mainPlans.find(p => p.price > 0) || enterprisePlans[0];
+                  if (target) handleApplyCoupon(target);
+                }}
+                disabled={!couponCode.trim() || couponLoading}
+              >
+                {couponLoading ? 'Checking...' : 'Apply'}
+              </button>
+            )}
+          </div>
+          {couponError && <p className='coupon-error'>{couponError}</p>}
+          {couponApplied && (
+            <div className='coupon-success'>
+              <span className='coupon-success-badge'>
+                {couponApplied.discountType === 'PERCENTAGE'
+                  ? `${couponApplied.discountValue}% OFF`
+                  : `₹${formatPrice(couponApplied.discountValue)} OFF`
+                }
+              </span>
+              <span className='coupon-success-text'>
+                Coupon <strong>{couponApplied.code}</strong> applied successfully
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
       <div className='pricing-page-plans-container'>
         <div className="pricing-arrows">
           <button className="banner-arrow1 left-arrow" onClick={scrollLeft}><FaChevronLeft /> </button>
@@ -163,6 +336,19 @@ const PricingPlans = () => {
           {/* ── Main Plans (Basic / Premium / PRO) ── */}
           {mainPlans.map((plan) => {
             const isPro = plan.title === 'PRO';
+            const isFree = plan.price === 0;
+            const hasDiscount = couponApplied && !isFree;
+            let planDiscount = 0;
+            if (hasDiscount) {
+              if (couponApplied.discountType === 'PERCENTAGE') {
+                planDiscount = Math.round((plan.price * couponApplied.discountValue) / 100);
+                if (couponApplied.maxDiscount && planDiscount > couponApplied.maxDiscount) planDiscount = couponApplied.maxDiscount;
+              } else {
+                planDiscount = couponApplied.discountValue;
+              }
+              if (planDiscount > plan.price) planDiscount = plan.price;
+            }
+            const discountedPrice = hasDiscount ? plan.price - planDiscount : plan.price;
             return (
               <div
                 key={plan.id}
@@ -172,8 +358,14 @@ const PricingPlans = () => {
                   {planIcons[plan.title] || <LuStar className='pricing-crown-icon' />}
                   <h3 className='pricing-heading'>{plan.title}</h3>
                   <h3 className='plan-price'>
-                    <BsCurrencyRupee /> {formatPrice(plan.price)} <p className='pricing-text'>{plan.price === 0 ? 'Free' : '+ GST'}</p>
+                    <BsCurrencyRupee /> {hasDiscount ? formatPrice(discountedPrice) : formatPrice(plan.price)}
                   </h3>
+                  {hasDiscount && (
+                    <p className='pricing-original-price'>
+                      <BsCurrencyRupee /> {formatPrice(plan.price)}
+                    </p>
+                  )}
+                  <p className='pricing-text'>{isFree ? 'Free' : '+ GST'}</p>
                 </div>
                 <div className='pricing-page-list-container'>
                   {plan.features.map((f, i) => {
@@ -192,8 +384,15 @@ const PricingPlans = () => {
                     );
                   })}
                 </div>
-                <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
-                {/* {isPro && <div className='most-poplular-container'>MOST POPULAR</div>} */}
+                <button
+                  className='pricing-popular-btn'
+                  onClick={() => !isFree && handleSubscribe(plan)}
+                  disabled={paymentLoading === plan.id || isFree}
+                  style={isFree ? { opacity: 0.6, cursor: 'default' } : {}}
+                >
+                  {getButtonLabel(plan)}
+                </button>
+                {isPro && <div className='most-poplular-container'>MOST POPULAR</div>}
               </div>
             );
           })}
@@ -218,8 +417,23 @@ const PricingPlans = () => {
                 <LuShield className='pricing-crown-icon' />
                 <h3 className='pricing-heading'>{selectedEnterprise.title}</h3>
                 <h3 className='plan-price'>
-                  <BsCurrencyRupee /> {formatPrice(selectedEnterprise.price)}
+                  <BsCurrencyRupee /> {couponApplied ? formatPrice((() => {
+                    let d = 0;
+                    if (couponApplied.discountType === 'PERCENTAGE') {
+                      d = Math.round((selectedEnterprise.price * couponApplied.discountValue) / 100);
+                      if (couponApplied.maxDiscount && d > couponApplied.maxDiscount) d = couponApplied.maxDiscount;
+                    } else {
+                      d = couponApplied.discountValue;
+                    }
+                    if (d > selectedEnterprise.price) d = selectedEnterprise.price;
+                    return selectedEnterprise.price - d;
+                  })()) : formatPrice(selectedEnterprise.price)}
                 </h3>
+                {couponApplied && (
+                  <p className='pricing-original-price'>
+                    <BsCurrencyRupee /> {formatPrice(selectedEnterprise.price)}
+                  </p>
+                )}
                 <p className='pricing-text'>+ GST</p>
               </div>
               <div className='pricing-page-list-container'>
@@ -236,7 +450,14 @@ const PricingPlans = () => {
                   );
                 })}
               </div>
-              <button className='pricing-popular-btn' onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Get Started</button>
+              <button
+                className='pricing-popular-btn'
+                onClick={() => handleSubscribe(selectedEnterprise)}
+                disabled={!!paymentLoading}
+                style={paymentLoading ? { opacity: 0.6 } : {}}
+              >
+                {getButtonLabel(selectedEnterprise)}
+              </button>
             </div>
           )}
         </div>
@@ -338,7 +559,13 @@ const PricingPlans = () => {
                     <FaCheck className="package-check-icon" /> More Leads
                   </div>
                 </div>
-                <button className="pricing-popular-btn" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>Select Package</button>
+                <button
+                  className="pricing-popular-btn"
+                  onClick={() => handleSubscribe(selectedPackage)}
+                  disabled={!!paymentLoading}
+                >
+                  {paymentLoading === selectedPackage.id ? 'Processing...' : 'Select Package'}
+                </button>
               </div>
             </div>
           )}
@@ -396,8 +623,12 @@ const PricingPlans = () => {
                     }
                     {!isFree && <p className="leads-gst">+ GST</p>}
                   </h2>
-                  <button className="leads-purchase-btn" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
-                    {isFree ? "Included" : "Purchase"}
+                  <button
+                    className="leads-purchase-btn"
+                    onClick={() => !isFree && handleSubscribe(selectedLead)}
+                    disabled={isFree || paymentLoading === selectedLead.id}
+                  >
+                    {paymentLoading === selectedLead.id ? 'Processing...' : isFree ? "Included" : "Purchase"}
                   </button>
                 </div>
               );

@@ -17,6 +17,7 @@ import { FiSearch } from 'react-icons/fi';
 import { GoHomeFill } from 'react-icons/go';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
 import { getToken, getUser } from '../../lib/auth';
+import { getFile } from '../../lib/s3';
 
 const getInitials = (name) => {
   if (!name || typeof name !== 'string') return 'U';
@@ -168,8 +169,12 @@ const MobileNavbar = () => {
           </Link>
           {getToken() ? (
             <div className='mobile-avatar-wrapper'>
-              <div className='mobile-avatar' onClick={() => navigate('/my-account')}>
-                {getInitials(getUser()?.name)}
+              <div className={`mobile-avatar ${getUser()?.profilePic ? 'mobile-avatar-has-pic' : ''}`} onClick={() => navigate('/my-account')}>
+                {getUser()?.profilePic ? (
+                  <img src={getFile(getUser().profilePic)} alt='Profile' className='mobile-avatar-img' />
+                ) : (
+                  getInitials(getUser()?.name)
+                )}
               </div>
             </div>
           ) : (

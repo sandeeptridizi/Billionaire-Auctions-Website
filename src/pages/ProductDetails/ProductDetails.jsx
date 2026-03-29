@@ -357,7 +357,7 @@ const ProductDetails = () => {
             <h2 className="product-info-price">₹{product.value.toLocaleString("en-IN")}</h2>
           </div>
           <div className="product-info-btns-container">
-            <button className="product-info-enquire-btn" onClick={() => {
+            <button className="product-info-enquire-btn" style={!product.meta?.socialMediaLink ? { width: '100%' } : {}} onClick={() => {
               if (getToken()) {
                 const user = getUser();
                 if (user) {
@@ -373,9 +373,11 @@ const ProductDetails = () => {
             }}>
               <LuPhone /> Contact Seller
             </button>
-            <button className="product-info-chat-btn">
-              <FaPlayCircle  /> Watch Video
-            </button>
+            {product.meta?.socialMediaLink && (
+              <a href={product.meta.socialMediaLink} target="_blank" rel="noopener noreferrer" className="product-info-chat-btn">
+                <FaPlayCircle  /> Watch Video
+              </a>
+            )}
           </div>
           {showEnquiryForm && (
             <div className="enquiry-modal-overlay" onClick={() => setShowEnquiryForm(false)}>
@@ -516,7 +518,7 @@ const ProductDetails = () => {
       </div>
       <div className="product-page-specifications-container">
         <div className="product-page-specifications">
-          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views').length > 0 && (
+          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views' && k !== 'socialMediaLink').length > 0 && (
             <div className="product-description-container">
               <h2 className="product-description">
                 {product.category === "CARS" || product.category === "BIKES" ? (
@@ -535,7 +537,7 @@ const ProductDetails = () => {
               </h2>
               <div className="product-grid-item-container">
                 {Object.entries(product.meta)
-                  .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views')
+                  .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views' && key !== 'socialMediaLink')
                   .map(([key, value]) => (
                     <div className="product-grid-item" key={key}>
                       <p className="product-brand">

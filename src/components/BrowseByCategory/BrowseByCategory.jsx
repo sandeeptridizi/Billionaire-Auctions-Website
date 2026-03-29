@@ -9,6 +9,8 @@ import { FaCrown } from 'react-icons/fa6';
 import { BsBoxSeam } from 'react-icons/bs';
 import { BsStars } from 'react-icons/bs';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { GoArrowRight } from 'react-icons/go';
 import useAppContext from '../../context/AppContext';
 import RealEstateComponentCard from '../RealEstateComponentCard/RealEstateComponentCard';
 import { mapProductToCard } from '../../lib/products';
@@ -40,9 +42,21 @@ const btns = [
   { id: 8, icon: <BsStars />, title: 'Others', name: 'others' },
 ];
 
+const MARKETPLACE_CATEGORY_KEY = {
+  realEstate: 'REAL_ESTATE',
+  cars: 'CARS',
+  furniture: 'FURNITURE',
+  jewellery: 'JEWELLERY_AND_WATCHES',
+  arts: 'ARTS_AND_PAINTINGS',
+  antiques: 'ANTIQUES',
+  collectables: 'COLLECTABLES',
+  others: 'OTHERS',
+};
+
 const BrowseByCategory = () => {
   const [category, setCategory] = useState(btns[0].name);
   const { products } = useAppContext();
+  const navigate = useNavigate();
 
   const apiCategory = CATEGORY_MAP[category];
   const filtered = products.filter((p) => {
@@ -82,12 +96,20 @@ const BrowseByCategory = () => {
       </div>
 
       {filtered.length > 0 ? (
-        <div className='browse-category-products-grid'>
-          {filtered.slice(0, 3).map((product) => {
-            const card = mapProductToCard(product);
-            return <RealEstateComponentCard key={card.id} {...card} />;
-          })}
-        </div>
+        <>
+          <div className='browse-category-products-grid'>
+            {filtered.slice(0, 3).map((product) => {
+              const card = mapProductToCard(product);
+              return <RealEstateComponentCard key={card.id} {...card} />;
+            })}
+          </div>
+          <button
+            className='browse-category-view-all-btn'
+            onClick={() => navigate(`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`)}
+          >
+            View All <GoArrowRight className='browse-category-view-all-arrow' />
+          </button>
+        </>
       ) : (
         <p className='browse-category-empty'>No products found in this category.</p>
       )}

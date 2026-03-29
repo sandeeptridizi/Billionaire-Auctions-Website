@@ -5,7 +5,7 @@ import {
   LuBadgeCheck, LuAward, LuWrench, LuBox, LuPuzzle,
   LuPaintbrush, LuPalette, LuPenTool, LuGlobe, LuFileText,
   LuHash, LuChartColumnIncreasing, LuIndianRupee, LuWallet, LuCalendarCheck,
-  LuSmartphone, LuTag, LuInfo, LuLandmark, LuMapPin,
+  LuSmartphone, LuTag, LuInfo, LuLandmark, LuMapPin, LuKeyRound,
 } from "react-icons/lu";
 
 export const metaFieldIconMap = {
@@ -65,6 +65,7 @@ export const metaFieldIconMap = {
   category: LuTag,
   brandModel: LuTag,
   areaLocality: LuMapPin,
+  ownershipType: LuKeyRound,
 };
 
 export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
@@ -76,7 +77,7 @@ const categoryMetaFields = {
     { key: 'areaLocality', label: 'Area Locality', fallbacks: ['locality', 'area'] },
     { key: 'propertyAge', label: 'Property Age' },
     { key: 'furnishing', label: 'Furnishing' },
-    { key: 'facing', label: 'Facing' },
+    { key: 'ownershipType', label: 'Ownership Type' },
     { key: 'parking', label: 'Parking' },
   ],
   CARS: [

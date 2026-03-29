@@ -1,5 +1,6 @@
 import './AuctionCard.css';
 
+import { getFile } from '../../lib/s3';
 import { LuCalendar } from 'react-icons/lu';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsBoxSeam } from 'react-icons/bs';
@@ -18,7 +19,7 @@ const AuctionCard = ({
   return (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
-        <img src={image} alt={title} className='featured-img' />
+        <img src={getFile(image)} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           <div className='auction-card-open-container'>
             <div className='auction-card-circle'></div> Open
