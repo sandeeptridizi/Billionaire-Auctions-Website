@@ -1,0 +1,218 @@
+.filter-widget {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Select */
+.filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.25px solid rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  color: rgba(30, 41, 57, 1);
+  outline: none;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.filter-select:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+}
+
+/* Checkbox group */
+.filter-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: rgba(54, 65, 83, 1);
+}
+
+.filter-checkbox {
+  display: none;
+}
+
+.filter-checkbox-custom {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1.5px solid rgba(209, 213, 220, 1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.filter-checkbox:checked + .filter-checkbox-custom {
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  border-color: #d4af37;
+}
+
+.filter-checkbox:checked + .filter-checkbox-custom::after {
+  content: '✓';
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.filter-checkbox-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-show-more {
+  background: none;
+  border: none;
+  color: rgba(212, 175, 55, 1);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0 0;
+}
+
+/* Range inputs */
+.filter-range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-range-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1.25px solid rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: rgba(30, 41, 57, 1);
+  outline: none;
+  background: #fff;
+}
+
+.filter-range-input:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+}
+
+.filter-range-input::placeholder {
+  color: rgba(153, 153, 153, 1);
+}
+
+/* Remove number input spinners */
+.filter-range-input::-webkit-outer-spin-button,
+.filter-range-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.filter-range-input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.filter-range-separator {
+  font-size: 12px;
+  color: rgba(106, 114, 130, 1);
+  flex-shrink: 0;
+}
+
+.filter-range-unit {
+  font-size: 11px;
+  color: rgba(106, 114, 130, 1);
+  margin-top: 2px;
+}
+
+/* Boolean toggle */
+.filter-boolean-row {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-bool-btn {
+  flex: 1;
+  padding: 6px 12px;
+  border: 1.25px solid rgba(209, 213, 220, 1);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(54, 65, 83, 1);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-bool-btn:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.filter-bool-active {
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  border-color: #d4af37;
+  color: #fff;
+}
+
+/* Text input */
+.filter-text-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.25px solid rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: rgba(30, 41, 57, 1);
+  outline: none;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.filter-text-input:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+}
+
+.filter-text-input::placeholder {
+  color: rgba(153, 153, 153, 1);
+}
+
+@media screen and (max-width: 510px) {
+  .filter-select,
+  .filter-text-input,
+  .filter-range-input {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .filter-checkbox-label {
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .filter-checkbox-custom {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+  }
+
+  .filter-bool-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}

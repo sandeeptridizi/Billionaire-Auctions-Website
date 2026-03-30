@@ -523,9 +523,18 @@
   color: rgba(0, 166, 62, 1);
 }
 
-.similar-luxury-items-container {
+/* Content layout: sidebar + product grid */
+.product-page-content-layout {
   width: 90%;
-  margin: 32px auto;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.similar-luxury-items-container {
+  flex: 1;
+  min-width: 0;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -759,6 +768,11 @@
     gap: 6px;
   }
 
+  .product-page-content-layout {
+    width: 100%;
+    flex-direction: column;
+  }
+
   .product-page-search-category-container {
     width: 100%;
     margin: 4px auto;
@@ -772,6 +786,7 @@
   .product-page-search-btn-container {
     width: 100%;
     padding: 3px 6px;
+    gap: 6px;
   }
 
   .product-search {

@@ -169,9 +169,9 @@ const MobileNavbar = () => {
           </Link>
           {getToken() ? (
             <div className='mobile-avatar-wrapper'>
-              <div className={`mobile-avatar ${getUser()?.profilePic ? 'mobile-avatar-has-pic' : ''}`} onClick={() => navigate('/my-account')}>
-                {getUser()?.profilePic ? (
-                  <img src={getFile(getUser().profilePic)} alt='Profile' className='mobile-avatar-img' />
+              <div className={`mobile-avatar ${getUser()?.profilePicture ? 'mobile-avatar-has-pic' : ''}`} onClick={() => navigate('/my-account')}>
+                {getUser()?.profilePicture ? (
+                  <img src={getFile(getUser().profilePicture)} alt='Profile' className='mobile-avatar-img' />
                 ) : (
                   getInitials(getUser()?.name)
                 )}

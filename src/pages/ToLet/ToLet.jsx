@@ -8,10 +8,13 @@ import { MdVerified } from 'react-icons/md';
 import { TbCurrencyRupee } from 'react-icons/tb';
 import { FaCrown } from 'react-icons/fa6';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
+import { LuSlidersHorizontal } from 'react-icons/lu';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
+import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
 import { getToLetProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
 import useAppContext from '../../context/AppContext';
+import useProductFilters from '../../hooks/useProductFilters';
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
 
@@ -44,8 +47,9 @@ const rentsData = [
 
 const ToLet = () => {
   const [search, setSearch] = useState('');
-  const [properties, setProperties] = useState([]);
+  const [rawProducts, setRawProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   useEffect(() => {
@@ -53,11 +57,7 @@ const ToLet = () => {
       try {
         setLoading(true);
         const list = await getToLetProducts({ country: selectedCountry });
-        const mapped = list.map((product) => ({
-          ...mapProductToCard(product),
-          rawCategory: product.category,
-        }));
-        setProperties(mapped);
+        setRawProducts(list);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Failed to load to-let products', error);
@@ -68,6 +68,22 @@ const ToLet = () => {
 
     fetchProducts();
   }, [selectedCountry]);
+
+  const {
+    filters,
+    filteredProducts: metaFilteredProducts,
+    setFilter,
+    clearAllFilters,
+    activeFilterCount,
+    filterDefs,
+  } = useProductFilters(rawProducts, null, 'TO_LET');
+
+  const properties = useMemo(() => {
+    return metaFilteredProducts.map((product) => ({
+      ...mapProductToCard(product),
+      rawCategory: product.category,
+    }));
+  }, [metaFilteredProducts]);
 
   const filteredProperties = useMemo(() => {
     if (!search) return properties;
@@ -119,12 +135,33 @@ const ToLet = () => {
             />
           </div>
           <div className='buy-now-filter-container'>
+            <button
+              className='listing-filter-toggle-btn'
+              onClick={() => setFilterDrawerOpen(true)}
+            >
+              <LuSlidersHorizontal size={14} />
+              Filters
+              {activeFilterCount > 0 && (
+                <span className='filter-count-badge'>{activeFilterCount}</span>
+              )}
+            </button>
             <Link to='/products/to-let/all' className='buy-now-filter-btn'>
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
         </div>
       </div>
+      <FilterSidebar
+        filterDefs={filterDefs}
+        products={rawProducts}
+        filters={filters}
+        onFilterChange={setFilter}
+        onClearAll={clearAllFilters}
+        activeFilterCount={activeFilterCount}
+        isOpen={filterDrawerOpen}
+        onClose={() => setFilterDrawerOpen(false)}
+        drawerOnly
+      />
       {loading ? (
         <p style={{ padding: '40px', textAlign: 'center' }}>Loading properties...</p>
       ) : groupedCategories.length === 0 ? (

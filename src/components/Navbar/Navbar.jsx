@@ -165,9 +165,9 @@ const Navbar = () => {
         </Link>
         {getToken() ? (
           <div className='nav-avatar-wrapper' ref={avatarRef}>
-            <div className={`nav-avatar ${getUser()?.profilePic ? 'nav-avatar-has-pic' : ''}`} onClick={() => setAvatarOpen(!avatarOpen)}>
-              {getUser()?.profilePic ? (
-                <img src={getFile(getUser().profilePic)} alt='Profile' className='nav-avatar-img' />
+            <div className={`nav-avatar ${getUser()?.profilePicture ? 'nav-avatar-has-pic' : ''}`} onClick={() => setAvatarOpen(!avatarOpen)}>
+              {getUser()?.profilePicture ? (
+                <img src={getFile(getUser().profilePicture)} alt='Profile' className='nav-avatar-img' />
               ) : (
                 getInitials(getUser()?.name)
               )}

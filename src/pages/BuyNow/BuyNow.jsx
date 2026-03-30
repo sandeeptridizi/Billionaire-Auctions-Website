@@ -6,6 +6,7 @@ import { MdVerified } from "react-icons/md";
 import { FiTruck } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { HiOutlineArrowSmRight } from "react-icons/hi";
+import { LuSlidersHorizontal } from "react-icons/lu";
 
 import { FaCrown } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
@@ -13,6 +14,7 @@ import { IoDiamond } from "react-icons/io5";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
+import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 import {
@@ -22,6 +24,7 @@ import {
   mapProductToCard,
 } from "../../lib/products";
 import useAppContext from "../../context/AppContext";
+import useProductFilters from "../../hooks/useProductFilters";
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
 
@@ -58,6 +61,7 @@ const BuyNow = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   useEffect(() => {
@@ -88,6 +92,15 @@ const BuyNow = () => {
     }
   };
 
+  const {
+    filters,
+    filteredProducts: metaFilteredProducts,
+    setFilter,
+    clearAllFilters,
+    activeFilterCount,
+    filterDefs,
+  } = useProductFilters(products, null, 'BUY_NOW');
+
   const filteredProducts = useMemo(() => {
     const normalizedTier =
       selectedBtn === "Luxury"
@@ -102,7 +115,7 @@ const BuyNow = () => {
         )
       : null;
 
-    return products.filter((product) => {
+    return metaFilteredProducts.filter((product) => {
       const byTier = normalizedTier ? product.tier === normalizedTier : true;
       const bySearch = search
         ? matchedCategory
@@ -111,7 +124,7 @@ const BuyNow = () => {
         : true;
       return byTier && bySearch;
     });
-  }, [products, search, selectedBtn]);
+  }, [metaFilteredProducts, search, selectedBtn]);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
@@ -211,12 +224,33 @@ const BuyNow = () => {
             />
           </div>
           <div className="buy-now-filter-container">
+            <button
+              className="listing-filter-toggle-btn"
+              onClick={() => setFilterDrawerOpen(true)}
+            >
+              <LuSlidersHorizontal size={14} />
+              Filters
+              {activeFilterCount > 0 && (
+                <span className="filter-count-badge">{activeFilterCount}</span>
+              )}
+            </button>
             <Link to="/products/buy-now/all" className="buy-now-filter-btn">
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
         </div>
       </div>
+      <FilterSidebar
+        filterDefs={filterDefs}
+        products={products}
+        filters={filters}
+        onFilterChange={setFilter}
+        onClearAll={clearAllFilters}
+        activeFilterCount={activeFilterCount}
+        isOpen={filterDrawerOpen}
+        onClose={() => setFilterDrawerOpen(false)}
+        drawerOnly
+      />
       {loading ? (
         <p style={{ padding: "40px", textAlign: "center" }}>
           Loading products...

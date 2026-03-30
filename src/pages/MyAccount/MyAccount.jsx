@@ -74,9 +74,9 @@ const MyAccount = () => {
     <div className='my-account-container'>
       <div className='my-account-main'>
         <div className='my-account-header'>
-          <div className={`my-account-avatar ${user?.profilePic ? 'my-account-avatar-has-pic' : ''}`}>
-            {user?.profilePic ? (
-              <img src={getFile(user.profilePic)} alt='Profile' className='my-account-avatar-img' />
+          <div className={`my-account-avatar ${user?.profilePicture ? 'my-account-avatar-has-pic' : ''}`}>
+            {user?.profilePicture ? (
+              <img src={getFile(user.profilePicture)} alt='Profile' className='my-account-avatar-img' />
             ) : (
               getInitials(user?.name)
             )}

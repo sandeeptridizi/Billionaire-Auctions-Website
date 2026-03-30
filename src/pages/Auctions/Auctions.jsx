@@ -3,6 +3,7 @@ import "./Auctions.css";
 import { IoDiamond } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { HiOutlineArrowSmRight } from "react-icons/hi";
+import { LuSlidersHorizontal } from "react-icons/lu";
 
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,6 +15,7 @@ import { FaCrown } from "react-icons/fa6";
 
 import apartment from "../../assets/apartment.jpg";
 import AuctionCardComponent from "../../components/AuctionCardComponent/AuctionCardComponent";
+import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 import {
@@ -23,6 +25,7 @@ import {
   formatCategoryLabel,
 } from "../../lib/products";
 import useAppContext from "../../context/AppContext";
+import useProductFilters from "../../hooks/useProductFilters";
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
 
@@ -56,9 +59,10 @@ const stepsData = [
 const Auctions = () => {
   const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState([]);
+  const [rawProducts, setRawProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   useEffect(() => {
@@ -66,27 +70,7 @@ const Auctions = () => {
       try {
         setLoading(true);
         const list = await getAuctionsProducts({ country: selectedCountry });
-        const mapped = list.map((product) => {
-          const card = mapProductToCard(product);
-          return {
-            id: card.id,
-            title: card.title,
-            image: card.image || apartment,
-            cost:
-              typeof product.value === "number"
-                ? `${product.value.toLocaleString("en-IN")}+`
-                : "Price on request",
-            location:
-              product.meta?.auctionVenue ||
-              product.meta?.location ||
-              "Unspecified",
-            date: product.meta?.auctionDate || product.meta?.date || "",
-            lots: product.meta?.lots || "",
-            registered: product.meta?.registered || "",
-            rawCategory: product.category,
-          };
-        });
-        setProducts(mapped);
+        setRawProducts(list);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("Failed to load auction products", error);
@@ -97,6 +81,38 @@ const Auctions = () => {
 
     fetchProducts();
   }, [selectedCountry]);
+
+  const {
+    filters,
+    filteredProducts: metaFilteredProducts,
+    setFilter,
+    clearAllFilters,
+    activeFilterCount,
+    filterDefs,
+  } = useProductFilters(rawProducts, null, 'AUCTIONS');
+
+  const products = useMemo(() => {
+    return metaFilteredProducts.map((product) => {
+      const card = mapProductToCard(product);
+      return {
+        id: card.id,
+        title: card.title,
+        image: card.image || apartment,
+        cost:
+          typeof product.value === "number"
+            ? `${product.value.toLocaleString("en-IN")}+`
+            : "Price on request",
+        location:
+          product.meta?.auctionVenue ||
+          product.meta?.location ||
+          "Unspecified",
+        date: product.meta?.auctionDate || product.meta?.date || "",
+        lots: product.meta?.lots || "",
+        registered: product.meta?.registered || "",
+        rawCategory: product.category,
+      };
+    });
+  }, [metaFilteredProducts]);
 
   const handleSwitch = (type) => {
     if (type === selectedBtn) return;
@@ -216,12 +232,33 @@ const Auctions = () => {
             />
           </div>
           <div className="buy-now-filter-container">
+            <button
+              className="listing-filter-toggle-btn"
+              onClick={() => setFilterDrawerOpen(true)}
+            >
+              <LuSlidersHorizontal size={14} />
+              Filters
+              {activeFilterCount > 0 && (
+                <span className="filter-count-badge">{activeFilterCount}</span>
+              )}
+            </button>
             <Link to="/products/auctions/all" className="buy-now-filter-btn">
               View All <HiOutlineArrowSmRight />
             </Link>
           </div>
         </div>
       </div>
+      <FilterSidebar
+        filterDefs={filterDefs}
+        products={rawProducts}
+        filters={filters}
+        onFilterChange={setFilter}
+        onClearAll={clearAllFilters}
+        activeFilterCount={activeFilterCount}
+        isOpen={filterDrawerOpen}
+        onClose={() => setFilterDrawerOpen(false)}
+        drawerOnly
+      />
       <div className="auctions-flex-container">
         {loading ? (
           <p style={{ padding: "40px", textAlign: "center" }}>

@@ -4,10 +4,12 @@ import './ProductPage.css';
 
 import { FaCrown } from 'react-icons/fa6';
 import { IoDiamond } from 'react-icons/io5';
-import { LuSquareArrowOutUpRight } from 'react-icons/lu';
+import { LuSquareArrowOutUpRight, LuSlidersHorizontal } from 'react-icons/lu';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
+import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
 import { getPublicProducts, formatCategoryLabel, mapProductToCard } from '../../lib/products';
+import useProductFilters from '../../hooks/useProductFilters';
 import useAppContext from '../../context/AppContext';
 
 const listingTypeMap = {
@@ -22,22 +24,24 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   const { page, category } = useParams();
+
+  const listingType = page ? listingTypeMap[page.toLowerCase()] : undefined;
+  const categoryKey =
+    category && category.toLowerCase() !== 'all'
+      ? category.toUpperCase().replace(/[- ]/g, '_').replace(/&/g, 'AND')
+      : null;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         const params = { country: selectedCountry };
-        if (page && listingTypeMap[page.toLowerCase()]) {
-          params.listingType = listingTypeMap[page.toLowerCase()];
-        }
-        if (category && category.toLowerCase() !== 'all') {
-          const catKey = category.toUpperCase().replace(/[- ]/g, '_').replace(/&/g, 'AND');
-          params.category = catKey;
-        }
+        if (listingType) params.listingType = listingType;
+        if (categoryKey) params.category = categoryKey;
         const list = await getPublicProducts(params);
         setProducts(list);
       } catch {
@@ -48,9 +52,18 @@ const ProductPage = () => {
     };
 
     fetchProducts();
-  }, [page, category, selectedCountry]);
+  }, [page, category, selectedCountry, listingType, categoryKey]);
 
-  const filteredProducts = products.filter((product) => {
+  const {
+    filters,
+    filteredProducts: metaFilteredProducts,
+    setFilter,
+    clearAllFilters,
+    activeFilterCount,
+    filterDefs,
+  } = useProductFilters(products, categoryKey, listingType);
+
+  const filteredProducts = metaFilteredProducts.filter((product) => {
     const byTier =
       selectedBtn === 'Luxury'
         ? product.tier === 'LUXURY'
@@ -76,6 +89,16 @@ const ProductPage = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
+          <button
+            className='mobile-filter-toggle-btn'
+            onClick={() => setFilterDrawerOpen(true)}
+          >
+            <LuSlidersHorizontal size={14} />
+            Filters
+            {activeFilterCount > 0 && (
+              <span className='filter-count-badge'>{activeFilterCount}</span>
+            )}
+          </button>
         </div>
         <div className='product-page-breadcrums-category-btns-container'>
           <div className='product-page-bread-crums'>
@@ -115,27 +138,42 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <div className='similar-luxury-items-container'>
-        <div className='similar-luxury-items-header'>
-          <h2 className='similar-luxury-items-heading'>
-            {category || 'Products'} ({filteredProducts.length})
-          </h2>
-        </div>
-        {loading ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>Loading products...</p>
-        ) : filteredProducts.length === 0 ? (
-          <p style={{ padding: '40px', textAlign: 'center' }}>No products found.</p>
-        ) : (
-          <div className='similar-luxury-items-grid-container'>
-            {filteredProducts.map((product) => {
-              const card = mapProductToCard(product);
-              return (
-                <RealEstateComponentCard key={product.id} {...card} />
-              );
-            })}
+
+      <div className='product-page-content-layout'>
+        <FilterSidebar
+          filterDefs={filterDefs}
+          products={products}
+          filters={filters}
+          onFilterChange={setFilter}
+          onClearAll={clearAllFilters}
+          activeFilterCount={activeFilterCount}
+          isOpen={filterDrawerOpen}
+          onClose={() => setFilterDrawerOpen(false)}
+        />
+
+        <div className='similar-luxury-items-container'>
+          <div className='similar-luxury-items-header'>
+            <h2 className='similar-luxury-items-heading'>
+              {category || 'Products'} ({filteredProducts.length})
+            </h2>
           </div>
-        )}
+          {loading ? (
+            <p style={{ padding: '40px', textAlign: 'center' }}>Loading products...</p>
+          ) : filteredProducts.length === 0 ? (
+            <p style={{ padding: '40px', textAlign: 'center' }}>No products found.</p>
+          ) : (
+            <div className='similar-luxury-items-grid-container'>
+              {filteredProducts.map((product) => {
+                const card = mapProductToCard(product);
+                return (
+                  <RealEstateComponentCard key={product.id} {...card} />
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
+
       <div className='product-page-footer-container'>
         <h2 className='product-page-footer-heading'>
           <FaCrown className='product-footer-icon' /> Join Billionaire Auction

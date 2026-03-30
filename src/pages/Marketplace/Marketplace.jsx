@@ -2,7 +2,7 @@ import "./Marketplace.css";
 
 import { IoSearch } from "react-icons/io5";
 
-import { LuHouse, LuCar } from "react-icons/lu";
+import { LuHouse, LuCar, LuSlidersHorizontal } from "react-icons/lu";
 import { FaCrown } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
 import { TbSofa } from "react-icons/tb";
@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
+import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import luxuryLoading from "../../assets/luxury web.mp4";
 import classicLoading from "../../assets/classic web.mp4";
 
@@ -23,6 +24,7 @@ import {
   mapProductToCard,
 } from "../../lib/products";
 import useAppContext from "../../context/AppContext";
+import useProductFilters from "../../hooks/useProductFilters";
 
 const categoryBtns = [
   { icon: <LuHouse />, title: "Real Estate", key: "REAL_ESTATE" },
@@ -43,6 +45,7 @@ const Marketplace = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   useEffect(() => {
@@ -72,6 +75,15 @@ const Marketplace = () => {
     }
   };
 
+  const {
+    filters,
+    filteredProducts: metaFilteredProducts,
+    setFilter,
+    clearAllFilters,
+    activeFilterCount,
+    filterDefs,
+  } = useProductFilters(products, selectedCategory, 'MARKETPLACE');
+
   const filteredProducts = useMemo(() => {
     const normalizedTier =
       selectedBtn === "Luxury"
@@ -86,7 +98,7 @@ const Marketplace = () => {
         )
       : null;
 
-    return products.filter((product) => {
+    return metaFilteredProducts.filter((product) => {
       const byTier = normalizedTier ? product.tier === normalizedTier : true;
       const bySearch = search
         ? matchedCategory
@@ -102,7 +114,7 @@ const Marketplace = () => {
         : true;
       return byTier && bySearch && byCategory;
     });
-  }, [products, search, selectedBtn, selectedCategory]);
+  }, [metaFilteredProducts, search, selectedBtn, selectedCategory]);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
@@ -199,17 +211,27 @@ const Marketplace = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          {selectedCategory && (
-            <div className="buy-now-filter-container">
+          <div className="buy-now-filter-container">
+            <button
+              className="listing-filter-toggle-btn"
+              onClick={() => setFilterDrawerOpen(true)}
+            >
+              <LuSlidersHorizontal size={14} />
+              Filters
+              {activeFilterCount > 0 && (
+                <span className="filter-count-badge">{activeFilterCount}</span>
+              )}
+            </button>
+            {selectedCategory && (
               <div
                 className="buy-now-filter-btn"
                 style={{ cursor: "pointer" }}
                 onClick={() => setSelectedCategory(null)}
               >
-                Clear Filter
+                Clear Category
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <div className="marketplace-category-icons-row">
           {categoryBtns.map((btn) => (
@@ -238,6 +260,17 @@ const Marketplace = () => {
           ))}
         </div>
       </div>
+      <FilterSidebar
+        filterDefs={filterDefs}
+        products={products}
+        filters={filters}
+        onFilterChange={setFilter}
+        onClearAll={clearAllFilters}
+        activeFilterCount={activeFilterCount}
+        isOpen={filterDrawerOpen}
+        onClose={() => setFilterDrawerOpen(false)}
+        drawerOnly
+      />
       {loading ? (
         <p style={{ padding: "40px", textAlign: "center" }}>
           Loading products...

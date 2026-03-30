@@ -1,0 +1,258 @@
+/* Desktop sidebar */
+.filter-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: #fff;
+  border: 1.25px solid rgba(229, 231, 235, 1);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.filter-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+}
+
+.filter-sidebar--mobile {
+  display: none;
+}
+
+.filter-sidebar-overlay {
+  display: none;
+}
+
+/* Header */
+.filter-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(229, 231, 235, 1);
+}
+
+.filter-sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(30, 41, 57, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-count-badge {
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+  line-height: 16px;
+}
+
+.filter-sidebar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-clear-btn {
+  background: none;
+  border: none;
+  color: rgba(212, 175, 55, 1);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.filter-clear-btn:hover {
+  text-decoration: underline;
+}
+
+.filter-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(54, 65, 83, 1);
+  cursor: pointer;
+  padding: 2px;
+}
+
+/* Body */
+.filter-sidebar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Filter group (collapsible) */
+.filter-group {
+  border-top: 1px solid rgba(229, 231, 235, 0.6);
+  padding-top: 10px;
+}
+
+.filter-group-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  color: rgba(54, 65, 83, 1);
+}
+
+.filter-group-header:hover {
+  color: rgba(30, 41, 57, 1);
+}
+
+.filter-group-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(30, 41, 57, 1);
+}
+
+.filter-group-body {
+  padding: 8px 0 4px;
+}
+
+/* Drawer-only mode: force drawer styles on all screen sizes */
+.filter-sidebar--force {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  z-index: 1000;
+  border-radius: 0 16px 16px 0;
+  max-height: 100vh;
+  animation: filterSlideIn 0.25s ease;
+}
+
+.filter-sidebar--force .filter-close-btn {
+  display: block;
+}
+
+.filter-sidebar-overlay--force {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+  animation: filterFadeIn 0.2s ease;
+}
+
+@keyframes filterSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes filterFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Listing page filter toggle button */
+.listing-filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Mobile toggle button (rendered externally, styled here) */
+.mobile-filter-toggle-btn {
+  display: none;
+}
+
+@media screen and (max-width: 510px) {
+  .filter-sidebar--desktop {
+    display: none;
+  }
+
+  .filter-sidebar--mobile {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 320px;
+    z-index: 1000;
+    border-radius: 0 16px 16px 0;
+    max-height: 100vh;
+    animation: filterSlideIn 0.25s ease;
+  }
+
+  .filter-sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+    animation: filterFadeIn 0.2s ease;
+  }
+
+  .filter-close-btn {
+    display: block;
+  }
+
+  .mobile-filter-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .listing-filter-toggle-btn {
+    padding: 6px 14px;
+    font-size: 10px;
+  }
+}
