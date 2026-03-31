@@ -2,17 +2,17 @@ import "./BuyNow.css";
 
 import { TiFlashOutline } from "react-icons/ti";
 import { FiShield } from "react-icons/fi";
-import { MdVerified } from "react-icons/md";
+import { MdVerified, MdOutlinePalette } from "react-icons/md";
 import { FiTruck } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
-import { HiOutlineArrowSmRight } from "react-icons/hi";
-import { LuSlidersHorizontal } from "react-icons/lu";
+import { LuHouse, LuCar, LuSlidersHorizontal } from "react-icons/lu";
+import { TbSofa } from "react-icons/tb";
+import { BsBoxSeam, BsStars } from "react-icons/bs";
 
 import { FaCrown } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
 
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
 import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import luxuryLoading from "../../assets/luxury web.mp4";
@@ -26,7 +26,16 @@ import {
 import useAppContext from "../../context/AppContext";
 import useProductFilters from "../../hooks/useProductFilters";
 
-const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
+const buyNowCategoryBtns = [
+  { icon: <LuHouse />, title: "Real Estate", key: "REAL_ESTATE" },
+  { icon: <LuCar />, title: "Cars & Bikes", key: "CARS" },
+  { icon: <TbSofa />, title: "Furniture", key: "FURNITURE" },
+  { icon: <IoDiamond />, title: "Jewellery", key: "JEWELLERY_AND_WATCHES" },
+  { icon: <MdOutlinePalette />, title: "Arts", key: "ARTS_AND_PAINTINGS" },
+  { icon: <FaCrown />, title: "Antiques", key: "ANTIQUES" },
+  { icon: <BsBoxSeam />, title: "Collectables", key: "COLLECTABLES" },
+  { icon: <BsStars />, title: "Others", key: "OTHERS" },
+];
 
 const data = [
   {
@@ -58,6 +67,7 @@ const data = [
 const BuyNow = () => {
   const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -99,7 +109,7 @@ const BuyNow = () => {
     clearAllFilters,
     activeFilterCount,
     filterDefs,
-  } = useProductFilters(products, null, 'BUY_NOW');
+  } = useProductFilters(products, selectedCategory, 'BUY_NOW');
 
   const filteredProducts = useMemo(() => {
     const normalizedTier =
@@ -122,9 +132,16 @@ const BuyNow = () => {
           ? product.category === matchedCategory
           : product.title.toLowerCase().includes(search.toLowerCase())
         : true;
-      return byTier && bySearch;
+      const byCategory = selectedCategory
+        ? selectedCategory === "OTHERS"
+          ? !categoryOrder.includes(product.category)
+          : selectedCategory === "CARS"
+            ? product.category === "CARS" || product.category === "BIKES"
+            : product.category === selectedCategory
+        : true;
+      return byTier && bySearch && byCategory;
     });
-  }, [metaFilteredProducts, search, selectedBtn]);
+  }, [metaFilteredProducts, search, selectedBtn, selectedCategory]);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
@@ -234,10 +251,42 @@ const BuyNow = () => {
                 <span className="filter-count-badge">{activeFilterCount}</span>
               )}
             </button>
-            <Link to="/products/buy-now/all" className="buy-now-filter-btn">
-              View All <HiOutlineArrowSmRight />
-            </Link>
+            {selectedCategory && (
+              <div
+                className="buy-now-filter-btn"
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedCategory(null)}
+              >
+                Clear Category
+              </div>
+            )}
           </div>
+        </div>
+        <div className="marketplace-category-icons-row">
+          {buyNowCategoryBtns.map((btn) => (
+            <div
+              className="marketplace-category-icon-item"
+              key={btn.key}
+              onClick={() =>
+                setSelectedCategory(
+                  selectedCategory === btn.key ? null : btn.key,
+                )
+              }
+            >
+              <div
+                className={
+                  selectedCategory === btn.key
+                    ? "marketplace-category-icon-circle marketplace-category-active"
+                    : "marketplace-category-icon-circle"
+                }
+              >
+                {btn.icon}
+              </div>
+              <span className="marketplace-category-icon-label">
+                {btn.title}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <FilterSidebar
@@ -263,11 +312,12 @@ const BuyNow = () => {
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
             key={catKey}
-            data={items.slice(0, 3)}
+            data={selectedCategory ? items : items.slice(0, 3)}
             name={formatCategoryLabel(catKey)}
             totalCount={items.length}
-            showViewAll={true}
-            viewAllLink={`/products/buy-now/${categoryToSlug(catKey)}`}
+            showViewAll={!selectedCategory && items.length > 3}
+            viewAllLink={null}
+            onViewAll={() => setSelectedCategory(catKey)}
           />
         ))
       )}

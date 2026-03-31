@@ -141,6 +141,57 @@
   cursor: pointer;
 }
 
+.marketplace-category-icons-row {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.marketplace-category-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.marketplace-category-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 1);
+  border: 2.5px solid rgba(229, 231, 235, 1);
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: rgba(74, 85, 101, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marketplace-category-icon-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.marketplace-category-active {
+  background: rgba(212, 175, 55, 1);
+  border-color: rgba(212, 175, 55, 1);
+  color: #fff;
+}
+
+.marketplace-category-icon-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(54, 65, 83, 1);
+  text-align: center;
+}
+
 .to-let-properties-container {
   width: 90%;
   margin: 32px auto;
@@ -296,6 +347,31 @@
     width: 100%;
     flex-wrap: wrap;
     padding: 32px 18px;
+  }
+
+  .marketplace-category-icons-row {
+    width: 100%;
+    gap: 0;
+    justify-content: space-evenly;
+    padding: 0 4px 4px;
+  }
+
+  .marketplace-category-icon-item {
+    flex: 1;
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .marketplace-category-icon-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    border-width: 1.5px;
+  }
+
+  .marketplace-category-icon-label {
+    font-size: 6px;
+    line-height: 10px;
   }
 
   .to-let-properties-container {
