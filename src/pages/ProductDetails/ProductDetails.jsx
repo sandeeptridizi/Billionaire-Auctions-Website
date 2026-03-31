@@ -62,6 +62,17 @@ const metaFieldIconMap = {
   approvalStatus: LuCircleCheckBig,
   noOfCarParking: LuSquareParking,
   ageOfPropertyYears: LuHourglass,
+  ageOfProperty: LuHourglass,
+  plotArea: LuRuler,
+  plotDimensions: LuRuler,
+  plotAreaInSqYards: LuRuler,
+  builtUpAreaInSqYards: LuRuler,
+  cornerPlot: LuMapPin,
+  approvalType: LuShieldCheck,
+  roadWidth: LuRuler,
+  boundaryWall: LuLayers,
+  electricityAvailable: LuSettings2,
+  waterConnection: LuFuel,
 
   // Cars & Bikes
   brand: LuTag,
@@ -109,6 +120,8 @@ const metaFieldIconMap = {
   yearOfPurchase: LuCalendar,
   workingCondition: LuWrench,
   boxAndPapers: LuBox,
+  boxPappers: LuBox,
+  boxPapers: LuBox,
   originalParts: LuPuzzle,
 
   // Art & Paintings
@@ -131,6 +144,7 @@ const metaFieldIconMap = {
   // Collectibles
   itemType: LuBox,
   rarityLevel: LuStar,
+  raretyLevel: LuStar,
   limitedEdition: LuHash,
   serialNumber: LuHash,
   authentication: LuShieldCheck,
