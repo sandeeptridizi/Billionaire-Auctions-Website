@@ -53,9 +53,9 @@ const MobileNavbar = () => {
     };
   }, []);
 
-  const hasPageSearch = ['/marketplace', '/buy-now', '/auctions', '/to-let'].some(
-    (path) => location.pathname.startsWith(path)
-  );
+  const showSearchOnPages = ['/marketplace','/buy-now','/auctions','/tolet'];
+  const shouldShowSearch = showSearchOnPages.includes(location.pathname);
+
   return (
     <div className='mobile-navbar-container'>
       <div className='mobile-nav-logo-links-container'>
@@ -135,7 +135,7 @@ const MobileNavbar = () => {
         </div>
       </div>
       <div className='mobile-nav-search-container'>
-        {!hasPageSearch && (
+        {shouldShowSearch && (
           <div className='mobile-search-row'>
             {location.pathname === '/' && (
               <Link to="/" className="mobile-home-link">
