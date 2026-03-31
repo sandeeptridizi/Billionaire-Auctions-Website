@@ -168,12 +168,12 @@
     gap: 10px;
   }
 
-  .mobile-search-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 75%;
-  }
+    .mobile-search-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 75%;
+    }
 
   .mobile-home-link {
     display: flex !important;

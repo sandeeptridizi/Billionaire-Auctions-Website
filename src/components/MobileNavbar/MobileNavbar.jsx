@@ -53,9 +53,6 @@ const MobileNavbar = () => {
     };
   }, []);
 
-  const showSearchOnPages = ['/marketplace','/buy-now','/auctions','/tolet'];
-  const shouldShowSearch = showSearchOnPages.includes(location.pathname);
-
   return (
     <div className='mobile-navbar-container'>
       <div className='mobile-nav-logo-links-container'>
@@ -135,13 +132,10 @@ const MobileNavbar = () => {
         </div>
       </div>
       <div className='mobile-nav-search-container'>
-        {shouldShowSearch && (
           <div className='mobile-search-row'>
-            {location.pathname === '/' && (
               <Link to="/" className="mobile-home-link">
                 <GoHomeFill className="mobile-home-icon" /> Home
               </Link>
-            )}
             <div className='mobile-search-container'>
               <FiSearch className='mobile-search-icon' />
               <input
@@ -158,9 +152,7 @@ const MobileNavbar = () => {
               />
             </div>
           </div>
-        )}
         <div className='mobile-icons-login-container'>
-          {/* <GrLocation className='mobile-location-icon' /> */}
           <Link to='wishlist' className='mobile-wishlist-link'>
             <FaRegHeart className='mobile-wishlist-icon' />
             {wishlist.length > 0 && (
