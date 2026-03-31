@@ -18,6 +18,7 @@ export const metaFieldIconMap = {
   facing: LuCompass,
   parking: LuCar,
   monthlyRent: LuIndianRupee,
+  rentPerMonth: LuIndianRupee,
   securityDeposit: LuWallet,
   availableFrom: LuCalendarCheck,
   brand: LuTag,
@@ -194,7 +195,7 @@ const categoryMetaFields = {
   RENTALS: [
     { key: 'bhk', label: 'BHK' },
     { key: 'carpetArea', label: 'Carpet Area' },
-    { key: 'monthlyRent', label: 'Monthly Rent' },
+    { key: 'monthlyRent', label: 'Monthly Rent', fallbacks: ['rentPerMonth'] },
     { key: 'furnishingStatus', label: 'Furnishing', fallbacks: ['furnishing'] },
     { key: 'securityDeposit', label: 'Deposit' },
     { key: 'availableFrom', label: 'Available From' },
@@ -202,7 +203,7 @@ const categoryMetaFields = {
   TO_LET: [
     { key: 'bhk', label: 'BHK' },
     { key: 'carpetArea', label: 'Carpet Area' },
-    { key: 'monthlyRent', label: 'Monthly Rent' },
+    { key: 'monthlyRent', label: 'Monthly Rent', fallbacks: ['rentPerMonth'] },
     { key: 'furnishingStatus', label: 'Furnishing', fallbacks: ['furnishing'] },
     { key: 'securityDeposit', label: 'Deposit' },
     { key: 'availableFrom', label: 'Available From' },

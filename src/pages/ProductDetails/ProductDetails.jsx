@@ -51,6 +51,7 @@ const metaFieldIconMap = {
   facing: LuCompass,
   parking: LuCar,
   monthlyRent: LuIndianRupee,
+  rentPerMonth: LuIndianRupee,
   securityDeposit: LuWallet,
   availableFrom: LuCalendarCheck,
   city: LuMapPin,
