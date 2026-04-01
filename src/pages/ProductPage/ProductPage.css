@@ -1184,3 +1184,16 @@
     border-radius: 4px;
   }
 }
+
+@media screen and (max-width: 360px) {
+ .product-page-safety-tips-container {
+  width: 82%;
+  background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);
+  border: 1.25px solid rgba(253, 199, 0, 1);
+  border-radius: 16px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+}

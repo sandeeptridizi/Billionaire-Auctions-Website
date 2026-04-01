@@ -271,3 +271,26 @@
     color: rgba(153, 161, 175, 1);
   }
 }
+
+@media screen and (max-width: 360px) {
+  .footer-container {
+    padding: 0 12px;
+    gap: 32px;
+  }
+
+  
+
+  .footer-info-header {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .footer-info-text {
+    width: 100%;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+}
+

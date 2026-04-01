@@ -1424,6 +1424,58 @@
   }
 }
 
+@media screen and (max-width: 360px){
+  .product-text {
+    font-size: 14px;
+    width: 85%;
+  }
+
+  .product-page-safety-tips-container {
+  max-width: 82%;
+  background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);
+  border: 1.25px solid rgba(253, 199, 0, 1);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-description-container{
+  max-width: 82%;;
+}
+
+.brand-name{
+  max-width: 70%;
+}
+
+
+.product-quick-information-container {
+  background: rgba(255, 255, 255, 1);
+  border: 1.25px solid rgba(229, 231, 235, 1);
+  padding: 12px;
+  max-width: 82%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-page-ad-container{
+  max-width: 82%;
+}
+
+.product-page-ad-title {
+    font-size: 12px;
+    max-width: 65%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+}
+  
+
 /* Enquiry Modal */
 .enquiry-modal-overlay {
   position: fixed;

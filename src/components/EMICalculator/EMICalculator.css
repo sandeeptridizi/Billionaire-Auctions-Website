@@ -87,3 +87,54 @@
     font-size: 18px;
   }
 }
+
+@media screen and (max-width: 360px) {
+  .emi-container {
+    padding: 14px;
+    border-radius: 10px;
+    max-width: 82%;
+  }
+
+  .emi-container h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .emi-field {
+    margin-bottom: 14px;
+  }
+
+  .emi-field label {
+    font-size: 12px;
+  }
+
+  .emi-field input[type="number"] {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .emi-field input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+  }
+
+  .emi-field input[type="range"]::-webkit-slider-thumb {
+    height: 14px;
+    width: 14px;
+    margin-top: -5px;
+  }
+
+  .emi-field span {
+    font-size: 13px;
+  }
+
+  .emi-result {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .emi-result h2 {
+    font-size: 18px;
+  }
+}
+
