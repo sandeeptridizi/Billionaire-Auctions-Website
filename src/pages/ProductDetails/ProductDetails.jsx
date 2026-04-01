@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import {
   LuPhone, LuSquareArrowOutUpRight, LuHouse, LuChevronRight,
   LuBedDouble, LuRuler, LuCalendar, LuArmchair, LuCompass,
@@ -177,11 +182,7 @@ const ProductDetails = () => {
   const [enquiryError, setEnquiryError] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [showShare, setShowShare] = useState(false);
-  const [thumbStart, setThumbStart] = useState(0);
-  const THUMB_VISIBLE = 4;
-
-  const prevThumbs = () => setThumbStart((s) => Math.max(0, s - 1));
-  const nextThumbs = (total) => setThumbStart((s) => Math.min(total - THUMB_VISIBLE, s + 1));
+  const mainSwiperRef = useRef(null);
   const [showReportForm, setShowReportForm] = useState(false);
   const [reportForm, setReportForm] = useState({ visitorName: "", visitorEmail: "", visitorPhone: "", reason: "", details: "" });
   const [reportSubmitting, setReportSubmitting] = useState(false);
@@ -190,7 +191,10 @@ const ProductDetails = () => {
 
   const [productAds, setProductAds] = useState([]);
   const images = product?.media || [];
-  useEffect(() => { setActiveIndex(0); setThumbStart(0); }, [id]);
+  useEffect(() => {
+    setActiveIndex(0);
+    if (mainSwiperRef.current) mainSwiperRef.current.slideTo(0);
+  }, [id]);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -300,47 +304,47 @@ const ProductDetails = () => {
       <div className="product-page-image-info-container">
         <div className="product-gallery">
 
-          {/* Main Image */}
-          <div
-            className="product-main-image-container"
-          >
-            <img
-              src={images[activeIndex] ? getFile(images[activeIndex]) : ""}
-              className="product-main-image"
-              alt="product"
-            />
-            <div className="image-counter">
-              {activeIndex + 1} / {images.length}
-            </div>
+          {/* Main Image Swiper */}
+          <div className="product-main-image-container">
+            <Swiper
+              modules={[Navigation, Pagination, A11y]}
+              spaceBetween={0}
+              slidesPerView={1}
+              navigation
+              pagination={{ type: "fraction" }}
+              onSwiper={(swiper) => { mainSwiperRef.current = swiper; }}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              className="product-main-swiper"
+            >
+              {images.map((img, i) => (
+                <SwiperSlide key={i}>
+                  <img
+                    src={getFile(img)}
+                    className="product-main-image"
+                    alt={`product ${i + 1}`}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {/* Thumbnails */}
-          <div className="product-thumbnails-wrapper">
-            <button
-              className="thumb-nav"
-              onClick={prevThumbs}
-              disabled={thumbStart === 0}
-            >&#8249;</button>
+          {images.length > 1 && (
             <div className="product-thumbnails">
-              {images.slice(thumbStart, thumbStart + THUMB_VISIBLE).map((img, i) => {
-                const index = thumbStart + i;
-                return (
-                  <img
-                    key={index}
-                    src={getFile(img)}
-                    className={`thumbnail ${index === activeIndex ? "active-thumb" : ""}`}
-                    onClick={() => setActiveIndex(index)}
-                    alt="thumb"
-                  />
-                );
-              })}
+              {images.map((img, index) => (
+                <img
+                  key={index}
+                  src={getFile(img)}
+                  className={`thumbnail ${index === activeIndex ? "active-thumb" : ""}`}
+                  onClick={() => {
+                    setActiveIndex(index);
+                    if (mainSwiperRef.current) mainSwiperRef.current.slideTo(index);
+                  }}
+                  alt={`thumb ${index + 1}`}
+                />
+              ))}
             </div>
-            <button
-              className="thumb-nav"
-              onClick={() => nextThumbs(images.length)}
-              disabled={thumbStart >= images.length - THUMB_VISIBLE}
-            >&#8250;</button>
-          </div>
+          )}
 
         </div>
         <div className="product-page-info-container">
