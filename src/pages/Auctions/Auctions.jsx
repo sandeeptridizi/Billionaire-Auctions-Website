@@ -2,16 +2,15 @@ import "./Auctions.css";
 
 import { IoDiamond } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
-import { HiOutlineArrowSmRight } from "react-icons/hi";
-import { LuSlidersHorizontal } from "react-icons/lu";
+import { LuHouse, LuCar, LuSlidersHorizontal } from "react-icons/lu";
 
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 
 import { GoPeople } from "react-icons/go";
-import { BsBoxSeam } from "react-icons/bs";
-import { TbHammer } from "react-icons/tb";
+import { BsBoxSeam, BsStars } from "react-icons/bs";
+import { TbHammer, TbSofa } from "react-icons/tb";
 import { FaCrown } from "react-icons/fa6";
+import { MdOutlinePalette } from "react-icons/md";
 
 import apartment from "../../assets/apartment.jpg";
 import AuctionCardComponent from "../../components/AuctionCardComponent/AuctionCardComponent";
@@ -28,6 +27,17 @@ import useAppContext from "../../context/AppContext";
 import useProductFilters from "../../hooks/useProductFilters";
 
 const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, "-");
+
+const auctionCategoryBtns = [
+  { icon: <LuHouse />, title: "Real Estate", key: "REAL_ESTATE" },
+  { icon: <LuCar />, title: "Cars & Bikes", key: "CARS" },
+  { icon: <TbSofa />, title: "Furniture", key: "FURNITURE" },
+  { icon: <IoDiamond />, title: "Jewellery", key: "JEWELLERY_AND_WATCHES" },
+  { icon: <MdOutlinePalette />, title: "Arts", key: "ARTS_AND_PAINTINGS" },
+  { icon: <FaCrown />, title: "Antiques", key: "ANTIQUES" },
+  { icon: <BsBoxSeam />, title: "Collectables", key: "COLLECTABLES" },
+  { icon: <BsStars />, title: "Others", key: "OTHERS" },
+];
 
 const stepsData = [
   {
@@ -59,6 +69,7 @@ const stepsData = [
 const Auctions = () => {
   const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [rawProducts, setRawProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
@@ -89,7 +100,7 @@ const Auctions = () => {
     clearAllFilters,
     activeFilterCount,
     filterDefs,
-  } = useProductFilters(rawProducts, null, 'AUCTIONS');
+  } = useProductFilters(rawProducts, selectedCategory, 'AUCTIONS');
 
   const products = useMemo(() => {
     return metaFilteredProducts.map((product) => {
@@ -126,17 +137,37 @@ const Auctions = () => {
   };
 
   const filteredProducts = useMemo(() => {
-    if (!search) return products;
-    const matchedCategory = categoryOrder.find((cat) =>
-      formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
-    );
-    if (matchedCategory) {
-      return products.filter((item) => item.rawCategory === matchedCategory);
-    }
-    return products.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase()),
-    );
-  }, [products, search]);
+    const normalizedTier =
+      selectedBtn === "Luxury"
+        ? "LUXURY"
+        : selectedBtn === "Classic"
+          ? "CLASSIC"
+          : null;
+
+    const matchedCategory = search
+      ? categoryOrder.find((cat) =>
+          formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
+        )
+      : null;
+
+    return products.filter((item) => {
+      const rawProduct = metaFilteredProducts.find((p) => p.id === item.id) || {};
+      const byTier = normalizedTier ? rawProduct.tier === normalizedTier : true;
+      const bySearch = search
+        ? matchedCategory
+          ? item.rawCategory === matchedCategory
+          : item.title.toLowerCase().includes(search.toLowerCase())
+        : true;
+      const byCategory = selectedCategory
+        ? selectedCategory === "OTHERS"
+          ? !categoryOrder.includes(item.rawCategory)
+          : selectedCategory === "CARS"
+            ? item.rawCategory === "CARS" || item.rawCategory === "BIKES"
+            : item.rawCategory === selectedCategory
+        : true;
+      return byTier && bySearch && byCategory;
+    });
+  }, [products, search, selectedBtn, selectedCategory, metaFilteredProducts]);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
@@ -242,10 +273,42 @@ const Auctions = () => {
                 <span className="filter-count-badge">{activeFilterCount}</span>
               )}
             </button>
-            <Link to="/products/auctions/all" className="buy-now-filter-btn">
-              View All <HiOutlineArrowSmRight />
-            </Link>
+            {selectedCategory && (
+              <div
+                className="buy-now-filter-btn"
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedCategory(null)}
+              >
+                Clear Category
+              </div>
+            )}
           </div>
+        </div>
+        <div className="marketplace-category-icons-row">
+          {auctionCategoryBtns.map((btn) => (
+            <div
+              className="marketplace-category-icon-item"
+              key={btn.key}
+              onClick={() =>
+                setSelectedCategory(
+                  selectedCategory === btn.key ? null : btn.key,
+                )
+              }
+            >
+              <div
+                className={
+                  selectedCategory === btn.key
+                    ? "marketplace-category-icon-circle marketplace-category-active"
+                    : "marketplace-category-icon-circle"
+                }
+              >
+                {btn.icon}
+              </div>
+              <span className="marketplace-category-icon-label">
+                {btn.title}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <FilterSidebar
@@ -272,11 +335,12 @@ const Auctions = () => {
           groupedCategories.map(([catKey, items]) => (
             <AuctionCardComponent
               key={catKey}
-              data={items.slice(0, 3)}
+              data={selectedCategory ? items : items.slice(0, 3)}
               name={formatCategoryLabel(catKey)}
               totalCount={items.length}
-              showViewAll={true}
+              showViewAll={!selectedCategory && items.length > 3}
               viewAllLink={`/products/auctions/${categoryToSlug(catKey)}`}
+              onViewAll={() => setSelectedCategory(catKey)}
             />
           ))
         )}

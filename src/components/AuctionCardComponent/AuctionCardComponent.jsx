@@ -5,7 +5,7 @@ import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import AuctionCard from '../AuctionCard/AuctionCard';
 
-const AuctionCardComponent = ({ data, name, totalCount, showViewAll, viewAllLink }) => {
+const AuctionCardComponent = ({ data, name, totalCount, showViewAll, viewAllLink, onViewAll }) => {
   return (
     <div className='real-estate-component-container'>
       <div className='featured-listings-header'>
@@ -19,6 +19,10 @@ const AuctionCardComponent = ({ data, name, totalCount, showViewAll, viewAllLink
           <Link to={viewAllLink} className='real-estate-component-view-btn'>
             View All ({totalCount}) <HiOutlineArrowSmRight />
           </Link>
+        ) : showViewAll && onViewAll ? (
+          <div className='real-estate-component-view-btn' style={{ cursor: 'pointer' }} onClick={onViewAll}>
+            View All ({totalCount}) <HiOutlineArrowSmRight />
+          </div>
         ) : totalCount != null ? (
           <div className='real-estate-component-view-btn'>
             {totalCount} {totalCount === 1 ? 'Item' : 'Items'} <HiOutlineArrowSmRight />

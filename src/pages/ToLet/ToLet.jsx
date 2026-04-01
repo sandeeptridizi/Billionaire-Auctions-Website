@@ -1,22 +1,33 @@
 import './ToLet.css';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FiHome } from 'react-icons/fi';
 import { IoSearch } from 'react-icons/io5';
-import { MdVerified } from 'react-icons/md';
+import { MdVerified, MdApartment } from 'react-icons/md';
 import { TbCurrencyRupee } from 'react-icons/tb';
 import { FaCrown } from 'react-icons/fa6';
 import { HiOutlineArrowSmRight } from 'react-icons/hi';
-import { LuSlidersHorizontal } from 'react-icons/lu';
+import { LuSlidersHorizontal, LuBuilding2, LuWarehouse } from 'react-icons/lu';
+import { BsShop, BsStars } from 'react-icons/bs';
+import { PiMapPinArea } from 'react-icons/pi';
+import { RiHotelLine } from 'react-icons/ri';
 
 import RealEstateComponentCard from '../../components/RealEstateComponentCard/RealEstateComponentCard';
 import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
-import { getToLetProducts, mapProductToCard, categoryOrder, formatCategoryLabel } from '../../lib/products';
+import { getToLetProducts, mapProductToCard } from '../../lib/products';
 import useAppContext from '../../context/AppContext';
 import useProductFilters from '../../hooks/useProductFilters';
 
-const categoryToSlug = (catKey) => catKey.toLowerCase().replace(/_/g, '-');
+const toletCategoryBtns = [
+  { icon: <FiHome />, title: "Residential", key: "residential" },
+  { icon: <LuBuilding2 />, title: "Office Space", key: "office" },
+  { icon: <BsShop />, title: "Shops", key: "shops" },
+  { icon: <LuWarehouse />, title: "Warehouses", key: "warehouses" },
+  { icon: <PiMapPinArea />, title: "Open Plots", key: "plots" },
+  { icon: <RiHotelLine />, title: "PG & Hostels", key: "hostels" },
+  { icon: <MdApartment />, title: "Luxury Coliving", key: "coliving" },
+  { icon: <BsStars />, title: "Others", key: "others" },
+];
 
 const rentsData = [
   {
@@ -47,6 +58,7 @@ const rentsData = [
 
 const ToLet = () => {
   const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [rawProducts, setRawProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
@@ -82,32 +94,52 @@ const ToLet = () => {
     return metaFilteredProducts.map((product) => ({
       ...mapProductToCard(product),
       rawCategory: product.category,
+      toletCategory: product.meta?.toletCategory || 'others',
     }));
   }, [metaFilteredProducts]);
 
   const filteredProperties = useMemo(() => {
-    if (!search) return properties;
-    const matchedCategory = categoryOrder.find((cat) =>
-      formatCategoryLabel(cat).toLowerCase().includes(search.toLowerCase()),
-    );
-    if (matchedCategory) {
-      return properties.filter((item) => item.rawCategory === matchedCategory);
+    let result = properties;
+
+    if (selectedCategory) {
+      result = result.filter((item) => {
+        if (selectedCategory === 'others') {
+          const knownKeys = toletCategoryBtns.filter(b => b.key !== 'others').map(b => b.key);
+          return !knownKeys.includes(item.toletCategory);
+        }
+        return item.toletCategory === selectedCategory;
+      });
     }
-    return properties.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase()),
-    );
-  }, [properties, search]);
+
+    if (search) {
+      const lowerSearch = search.toLowerCase();
+      const matchedToletCat = toletCategoryBtns.find((btn) =>
+        btn.title.toLowerCase().includes(lowerSearch),
+      );
+      if (matchedToletCat) {
+        result = result.filter((item) => item.toletCategory === matchedToletCat.key);
+      } else {
+        result = result.filter((item) =>
+          item.title.toLowerCase().includes(lowerSearch),
+        );
+      }
+    }
+
+    return result;
+  }, [properties, search, selectedCategory]);
+
+  const toletCategoryOrder = toletCategoryBtns.map(b => b.key);
 
   const groupedCategories = useMemo(() => {
     const map = new Map();
     filteredProperties.forEach((item) => {
-      const key = item.rawCategory || 'OTHERS';
+      const key = item.toletCategory || 'others';
       if (!map.has(key)) map.set(key, []);
       map.get(key).push(item);
     });
     return Array.from(map.entries()).sort((a, b) => {
-      const aIdx = categoryOrder.indexOf(a[0]);
-      const bIdx = categoryOrder.indexOf(b[0]);
+      const aIdx = toletCategoryOrder.indexOf(a[0]);
+      const bIdx = toletCategoryOrder.indexOf(b[0]);
       return (aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx) - (bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx);
     });
   }, [filteredProperties]);
@@ -145,10 +177,42 @@ const ToLet = () => {
                 <span className='filter-count-badge'>{activeFilterCount}</span>
               )}
             </button>
-            <Link to='/products/to-let/all' className='buy-now-filter-btn'>
-              View All <HiOutlineArrowSmRight />
-            </Link>
+            {selectedCategory && (
+              <div
+                className='buy-now-filter-btn'
+                style={{ cursor: 'pointer' }}
+                onClick={() => setSelectedCategory(null)}
+              >
+                Clear Category
+              </div>
+            )}
           </div>
+        </div>
+        <div className='marketplace-category-icons-row'>
+          {toletCategoryBtns.map((btn) => (
+            <div
+              className='marketplace-category-icon-item'
+              key={btn.key}
+              onClick={() =>
+                setSelectedCategory(
+                  selectedCategory === btn.key ? null : btn.key,
+                )
+              }
+            >
+              <div
+                className={
+                  selectedCategory === btn.key
+                    ? 'marketplace-category-icon-circle marketplace-category-active'
+                    : 'marketplace-category-icon-circle'
+                }
+              >
+                {btn.icon}
+              </div>
+              <span className='marketplace-category-icon-label'>
+                {btn.title}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <FilterSidebar
@@ -167,21 +231,30 @@ const ToLet = () => {
       ) : groupedCategories.length === 0 ? (
         <p style={{ padding: '40px', textAlign: 'center' }}>No properties found.</p>
       ) : (
-        groupedCategories.map(([catKey, items]) => (
-          <div className='to-let-properties-container' key={catKey}>
-            <div className='property-header'>
-              <h2 className='property-heading'>{formatCategoryLabel(catKey)}</h2>
-              <Link to={`/products/to-let/${categoryToSlug(catKey)}`} className='real-estate-component-view-btn'>
-                View All ({items.length}) <HiOutlineArrowSmRight />
-              </Link>
+        groupedCategories.map(([catKey, items]) => {
+          const catLabel = toletCategoryBtns.find(b => b.key === catKey)?.title || catKey;
+          return (
+            <div className='to-let-properties-container' key={catKey}>
+              <div className='property-header'>
+                <h2 className='property-heading'>{catLabel}</h2>
+                {!selectedCategory && items.length > 3 && (
+                  <div
+                    className='real-estate-component-view-btn'
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setSelectedCategory(catKey)}
+                  >
+                    View All ({items.length}) <HiOutlineArrowSmRight />
+                  </div>
+                )}
+              </div>
+              <div className='real-estate-component-grid-container'>
+                {(selectedCategory ? items : items.slice(0, 3)).map((item) => (
+                  <RealEstateComponentCard key={item.id} {...item} />
+                ))}
+              </div>
             </div>
-            <div className='real-estate-component-grid-container'>
-              {items.slice(0, 3).map((item) => (
-                <RealEstateComponentCard key={item.id} {...item} />
-              ))}
-            </div>
-          </div>
-        ))
+          );
+        })
       )}
       <div className='to-let-rent-us-container'>
         <h2 className='rent-us-heading'>Why Rent With Us?</h2>

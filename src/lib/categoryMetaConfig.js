@@ -18,6 +18,7 @@ export const metaFieldIconMap = {
   facing: LuCompass,
   parking: LuCar,
   monthlyRent: LuIndianRupee,
+  rentPerMonth: LuIndianRupee,
   securityDeposit: LuWallet,
   availableFrom: LuCalendarCheck,
   brand: LuTag,
@@ -66,6 +67,25 @@ export const metaFieldIconMap = {
   brandModel: LuTag,
   areaLocality: LuMapPin,
   ownershipType: LuKeyRound,
+  plotArea: LuRuler,
+  plotDimensions: LuRuler,
+  plotAreaInSqYards: LuRuler,
+  builtUpAreaInSqYards: LuRuler,
+  cornerPlot: LuMapPin,
+  approvalType: LuShieldCheck,
+  roadWidth: LuRuler,
+  boundaryWall: LuLayers,
+  electricityAvailable: LuSettings2,
+  waterConnection: LuFuel,
+  noOfCarParking: LuCar,
+  ageOfPropertyYears: LuCalendar,
+  ageOfProperty: LuCalendar,
+  boxPappers: LuBox,
+  boxPapers: LuBox,
+  raretyLevel: LuStar,
+  approximateAgeYears: LuClock,
+  dimensionsLWH: LuRuler,
+  noOfOwners: LuUser,
 };
 
 export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
@@ -73,35 +93,45 @@ export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
 const categoryMetaFields = {
   REAL_ESTATE: [
     { key: 'bhk', label: 'BHK' },
-    { key: 'builtUpArea', label: 'Built-up Area', compose: (meta) => meta.builtUpArea ? `${meta.builtUpArea} sq. yards` : null },
+    { key: 'builtUpArea', label: 'Built-up Area', compose: (meta) => (meta.builtUpArea || meta.builtUpAreaInSqYards) ? `${meta.builtUpArea || meta.builtUpAreaInSqYards} sq. yards` : null },
     { key: 'areaLocality', label: 'Area Locality', fallbacks: ['locality', 'area'] },
-    { key: 'propertyAge', label: 'Property Age' },
+    { key: 'propertyAge', label: 'Property Age', fallbacks: ['ageOfPropertyYears', 'ageOfProperty'] },
     { key: 'furnishing', label: 'Furnishing' },
     { key: 'ownershipType', label: 'Ownership Type' },
-    { key: 'parking', label: 'Parking' },
+    { key: 'parking', label: 'Parking', fallbacks: ['noOfCarParking'] },
+  ],
+  REAL_ESTATE_PLOT: [
+    { key: 'plotArea', label: 'Plot Area', compose: (meta) => (meta.plotArea || meta.plotAreaInSqYards) ? `${meta.plotArea || meta.plotAreaInSqYards} sq. yards` : null },
+    { key: 'plotDimensions', label: 'Dimensions' },
+    { key: 'areaLocality', label: 'Locality', fallbacks: ['locality', 'area'] },
+    { key: 'cornerPlot', label: 'Corner Plot' },
+    { key: 'approvalType', label: 'Approval Type' },
+    { key: 'roadWidth', label: 'Road Width' },
+    { key: 'ownershipType', label: 'Ownership' },
+    { key: 'waterConnection', label: 'Water' },
   ],
   CARS: [
     { key: 'brandModel', label: 'Brand + Model', compose: (meta) => [meta.brand, meta.model].filter(Boolean).join(' ') || meta.brandModel },
-    { key: 'year', label: 'Year' },
+    { key: 'year', label: 'Year', fallbacks: ['yearOfManufacture'] },
     { key: 'kmDriven', label: 'KM Driven' },
     { key: 'fuelType', label: 'Fuel Type' },
     { key: 'transmission', label: 'Transmission' },
-    { key: 'ownership', label: 'Ownership' },
+    { key: 'ownership', label: 'Ownership', fallbacks: ['noOfOwners'] },
   ],
   BIKES: [
     { key: 'brandModel', label: 'Brand + Model', compose: (meta) => [meta.brand, meta.model].filter(Boolean).join(' ') || meta.brandModel },
     { key: 'yearOfManufacture', label: 'Year', fallbacks: ['year'] },
     { key: 'kmDriven', label: 'KM Driven' },
     { key: 'fuelType', label: 'Fuel Type' },
-    { key: 'ownership', label: 'Ownership' },
+    { key: 'ownership', label: 'Ownership', fallbacks: ['noOfOwners'] },
     { key: 'insuranceStatus', label: 'Insurance', fallbacks: ['insurance'] },
   ],
   FURNITURE: [
     { key: 'furnitureType', label: 'Type', fallbacks: ['type'] },
     { key: 'material', label: 'Material' },
     { key: 'condition', label: 'Condition' },
-    { key: 'dimensions', label: 'Dimensions' },
-    { key: 'seatingCapacity', label: 'Seating' },
+    { key: 'dimensions', label: 'Dimensions', fallbacks: ['dimensionsLWH'] },
+    { key: 'seatingCapacity', label: 'Seating', fallbacks: ['seatingCapacityIfApplicable'] },
     { key: 'ageOfFurniture', label: 'Age', fallbacks: ['age'] },
   ],
   JEWELLERY: [
@@ -122,12 +152,20 @@ const categoryMetaFields = {
     { key: 'purity', label: 'Purity' },
     { key: 'certification', label: 'Certification' },
   ],
+  JEWELLERY_AND_WATCHES_WATCH: [
+    { key: 'brand', label: 'Brand' },
+    { key: 'model', label: 'Model' },
+    { key: 'yearOfPurchase', label: 'Year', fallbacks: ['year'] },
+    { key: 'workingCondition', label: 'Condition', fallbacks: ['condition'] },
+    { key: 'boxAndPapers', label: 'Box & Papers', fallbacks: ['boxPappers', 'boxPapers'] },
+    { key: 'originalParts', label: 'Original Parts' },
+  ],
   WATCHES: [
     { key: 'brand', label: 'Brand' },
     { key: 'model', label: 'Model' },
     { key: 'yearOfPurchase', label: 'Year', fallbacks: ['year'] },
     { key: 'workingCondition', label: 'Condition', fallbacks: ['condition'] },
-    { key: 'boxAndPapers', label: 'Box & Papers' },
+    { key: 'boxAndPapers', label: 'Box & Papers', fallbacks: ['boxPappers', 'boxPapers'] },
     { key: 'originalParts', label: 'Original Parts' },
   ],
   ARTS_AND_PAINTINGS: [
@@ -140,7 +178,7 @@ const categoryMetaFields = {
   ],
   ANTIQUES: [
     { key: 'antiqueType', label: 'Type', fallbacks: ['type'] },
-    { key: 'approximateAge', label: 'Age', fallbacks: ['age'] },
+    { key: 'approximateAge', label: 'Age', fallbacks: ['approximateAgeYears', 'age'] },
     { key: 'origin', label: 'Origin' },
     { key: 'material', label: 'Material' },
     { key: 'condition', label: 'Condition' },
@@ -148,7 +186,7 @@ const categoryMetaFields = {
   ],
   COLLECTABLES: [
     { key: 'itemType', label: 'Type', fallbacks: ['type'] },
-    { key: 'rarityLevel', label: 'Rarity', fallbacks: ['rarity'] },
+    { key: 'rarityLevel', label: 'Rarity', fallbacks: ['raretyLevel', 'rarity'] },
     { key: 'limitedEdition', label: 'Limited Edition' },
     { key: 'serialNumber', label: 'Serial No.' },
     { key: 'authentication', label: 'Authentication' },
@@ -157,7 +195,7 @@ const categoryMetaFields = {
   RENTALS: [
     { key: 'bhk', label: 'BHK' },
     { key: 'carpetArea', label: 'Carpet Area' },
-    { key: 'monthlyRent', label: 'Monthly Rent' },
+    { key: 'monthlyRent', label: 'Monthly Rent', fallbacks: ['rentPerMonth'] },
     { key: 'furnishingStatus', label: 'Furnishing', fallbacks: ['furnishing'] },
     { key: 'securityDeposit', label: 'Deposit' },
     { key: 'availableFrom', label: 'Available From' },
@@ -165,7 +203,7 @@ const categoryMetaFields = {
   TO_LET: [
     { key: 'bhk', label: 'BHK' },
     { key: 'carpetArea', label: 'Carpet Area' },
-    { key: 'monthlyRent', label: 'Monthly Rent' },
+    { key: 'monthlyRent', label: 'Monthly Rent', fallbacks: ['rentPerMonth'] },
     { key: 'furnishingStatus', label: 'Furnishing', fallbacks: ['furnishing'] },
     { key: 'securityDeposit', label: 'Deposit' },
     { key: 'availableFrom', label: 'Available From' },
@@ -199,9 +237,21 @@ const getFieldValue = (field, meta) => {
   return null;
 };
 
+const resolveFieldsKey = (categoryKey, meta) => {
+  if (categoryKey === 'JEWELLERY_AND_WATCHES' && meta.itemType === 'Watch') {
+    return 'JEWELLERY_AND_WATCHES_WATCH';
+  }
+  if (categoryKey === 'REAL_ESTATE') {
+    const pt = meta.propertyType;
+    if (pt === 'Plot' || pt === 'Land') return 'REAL_ESTATE_PLOT';
+  }
+  return categoryKey;
+};
+
 export const getMetaFieldsForCategory = (categoryKey, meta) => {
   if (!meta || typeof meta !== 'object') return [];
-  const fields = categoryMetaFields[categoryKey] || defaultMetaFields;
+  const resolvedKey = resolveFieldsKey(categoryKey, meta);
+  const fields = categoryMetaFields[resolvedKey] || categoryMetaFields[categoryKey] || defaultMetaFields;
   const result = [];
   for (const field of fields) {
     const value = getFieldValue(field, meta);
