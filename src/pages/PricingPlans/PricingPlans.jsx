@@ -392,7 +392,7 @@ const PricingPlans = () => {
                 >
                   {getButtonLabel(plan)}
                 </button>
-                {isPro && <div className='most-poplular-container'>MOST POPULAR</div>}
+                {/* {isPro && <div className='most-poplular-container'>MOST POPULAR</div>} */}
               </div>
             );
           })}
