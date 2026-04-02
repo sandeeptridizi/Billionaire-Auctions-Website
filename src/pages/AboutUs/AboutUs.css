@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
-  padding: 32px;
+  padding: 16px;
 }
 
 .aboutusnavlogo{
@@ -162,7 +162,8 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 12px 0 0 0;
+  background-color: #fff8e7;
+  padding: 5px;
 }
 
 .founder-name {
@@ -916,7 +917,7 @@
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 440px) {
   .about-us-heading {
     font-size: 20px;
   }
