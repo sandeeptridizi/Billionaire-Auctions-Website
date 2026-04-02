@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
@@ -32,10 +33,19 @@ import PopupAd from './components/PopupAd/PopupAd';
 import useAppContext from './context/AppContext';
 import useAuthContext from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
+import { getToken, setUser } from './lib/auth';
+import api from './lib/api';
 
 const App = () => {
   const { products } = useAppContext();
   const { openAuthenticationModal } = useAuthContext();
+
+  useEffect(() => {
+    if (!getToken()) return;
+    api.get('/api/user/me')
+      .then(({ data }) => setUser(data.data || data.user || data))
+      .catch(() => {});
+  }, []);
 
   return (
     <BrowserRouter>

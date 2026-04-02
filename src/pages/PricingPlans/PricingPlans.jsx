@@ -94,7 +94,10 @@ const PricingPlans = () => {
         const dm = digitalRes.data.data;
         if (dm && dm.length > 0) setDigitalMedia(dm[0]);
 
-        if (profileRes?.data?.data) setProfile(profileRes.data.data);
+        if (profileRes?.data?.data) {
+          setProfile(profileRes.data.data);
+          saveUserToStorage(profileRes.data.data);
+        }
 
         const banners = bannerRes.data.data || [];
         if (banners.length) setSelectedAd(banners[0]);
@@ -198,7 +201,7 @@ const PricingPlans = () => {
         amount,
         currency,
         name: 'Billionaire Auctions',
-        description: `${pkg.title} - Annual Subscription`,
+        description: `${pkg.title} - Monthly Subscription`,
         order_id: orderId,
         prefill: {
           name: profile?.name || '',
