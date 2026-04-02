@@ -82,13 +82,18 @@ const HeroBanner = () => {
         ))}
       </div>
 
-      <button className="banner-arrow left-arrow" onClick={prevSlide}>
-        <FaChevronLeft />
-      </button>
+      {index > 0 && (
+        <button className="banner-arrow left-arrow" onClick={prevSlide}>
+          <FaChevronLeft />
+        </button>
+      )}
 
-      <button className="banner-arrow right-arrow" onClick={nextSlide}>
-        <FaChevronRight />
-      </button>
+      {/* RIGHT ARROW */}
+      {index < totalSlides - 1 && (
+        <button className="banner-arrow right-arrow" onClick={nextSlide}>
+          <FaChevronRight />
+        </button>
+      )}
 
       <div className="search-row">
         <Link to="/" className="search-home-link">
