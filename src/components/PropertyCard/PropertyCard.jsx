@@ -2,7 +2,7 @@ import './PropertyCard.css';
 
 import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { MdOutlineRemoveRedEye } from 'react-icons/md';
+
 import { GrFavorite } from 'react-icons/gr';
 
 import { LuBed } from 'react-icons/lu';
@@ -19,7 +19,7 @@ const PropertyCard = ({
   deposit,
   available,
   category,
-  views,
+
   title,
 }) => {
   return (
@@ -67,9 +67,6 @@ const PropertyCard = ({
         </div>
         <div className='property-furnished-views-container'>
           <div className='property-furnished-container'>{category}</div>
-          <div className='property-views-container'>
-            <MdOutlineRemoveRedEye /> {views}
-          </div>
         </div>
         <div className='real-estate-component-btn-container'>
           <div className='real-estate-component-enquire-btn'>View Details</div>

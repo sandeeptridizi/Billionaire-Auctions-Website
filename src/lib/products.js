@@ -33,7 +33,7 @@ export const mapProductToCard = (product) => ({
     ? product.value.toLocaleString("en-IN")
     : "Price on request",
   location: product.meta?.city || product.meta?.location || "Location not specified",
-  views: "0 views",
+
   category: formatCategoryLabel(product.category),
   tier: product.tier || "GENERAL",
   meta: product.meta || {},

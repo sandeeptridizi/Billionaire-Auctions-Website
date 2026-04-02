@@ -116,15 +116,7 @@
   color: rgba(212, 175, 55, 1);
 }
 
-.property-views-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  color: rgba(106, 114, 130, 1);
-}
+
 
 @media screen and (max-width: 510px) {
   .property-card-header {
@@ -189,8 +181,4 @@
     line-height: 8px;
   }
 
-  .property-views-container {
-    font-size: 6px;
-    gap: 2px;
-  }
 }
