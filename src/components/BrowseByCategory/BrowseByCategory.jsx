@@ -94,7 +94,12 @@ const BrowseByCategory = () => {
           );
         })}
       </div>
-
+        <button
+            className='browse-category-view-all-btn'
+            onClick={() => navigate(`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`)}
+          >
+            View All <GoArrowRight className='browse-category-view-all-arrow' />
+          </button>
       {filtered.length > 0 ? (
         <>
           <div className='browse-category-products-grid'>
@@ -103,12 +108,6 @@ const BrowseByCategory = () => {
               return <RealEstateComponentCard key={card.id} {...card} />;
             })}
           </div>
-          <button
-            className='browse-category-view-all-btn'
-            onClick={() => navigate(`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`)}
-          >
-            View All <GoArrowRight className='browse-category-view-all-arrow' />
-          </button>
         </>
       ) : (
         <p className='browse-category-empty'>No products found in this category.</p>

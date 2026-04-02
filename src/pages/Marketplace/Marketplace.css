@@ -97,11 +97,15 @@
   }
 
   .marketplace-category-icon-item {
-    flex: 1;
-    min-width: 0;
-    gap: 2px;
-  }
-
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 2px;
+}
   .marketplace-category-icon-circle {
     width: 28px;
     height: 28px;
@@ -110,7 +114,14 @@
   }
 
   .marketplace-category-icon-label {
-    font-size: 6px;
-    line-height: 10px;
-  }
+  font-size: 6px;
+  line-height: 10px;
+  text-align: center;
+
+  height: 20px;             
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 }
