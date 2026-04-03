@@ -50,7 +50,7 @@ const EnquiryModal = ({ onClose, productId, source }) => {
         {/* Form */}
         {success ? (
           <div className="enquiry-form" style={{ textAlign: "center", padding: "2rem" }}>
-            <p style={{ color: "green", fontSize: "1.1rem", fontWeight: 600 }}>Enquiry submitted successfully!</p>
+            <h2 style={{ color: "green", fontSize: "1.1rem", fontWeight: 600 }}>Enquiry submitted Successfully!</h2>
           </div>
         ) : (
           <form className="enquiry-form" onSubmit={handleSubmit}>

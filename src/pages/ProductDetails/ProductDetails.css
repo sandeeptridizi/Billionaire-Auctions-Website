@@ -1625,8 +1625,17 @@
 }
 .enquiry-success-msg {
   color: #16a34a;
-  font-weight: 500;
+  font-weight: bold;
   text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+}
+
+.enquiry-success-text{
+  color: #2c2c2c;
+  font-weight: 400;
+  text-align: center;
+  font-size: 12px;
   padding: 20px 0;
 }
 .enquiry-error-msg {

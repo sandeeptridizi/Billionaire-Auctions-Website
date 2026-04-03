@@ -4,7 +4,7 @@ import "./EMICalculator.css";
 const EMICalculator = ({ price = 50000 }) => {
   const [loanAmount, setLoanAmount] = useState(price);
   const [interestRate, setInterestRate] = useState(10);
-  const [tenure, setTenure] = useState(12);
+  const [tenure, setTenure] = useState(1); // ✅ now in YEARS
   const [emi, setEmi] = useState(0);
 
   useEffect(() => {
@@ -12,12 +12,16 @@ const EMICalculator = ({ price = 50000 }) => {
   }, [loanAmount, interestRate, tenure]);
 
   const calculateEMI = () => {
+    const principal = Number(loanAmount);
     const monthlyRate = interestRate / 12 / 100;
+
+    const months = tenure * 12; // ✅ convert years → months
+
     const emiValue =
-      (loanAmount *
+      (principal *
         monthlyRate *
-        Math.pow(1 + monthlyRate, tenure)) /
-      (Math.pow(1 + monthlyRate, tenure) - 1);
+        Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1);
 
     setEmi(emiValue || 0);
   };
@@ -48,18 +52,21 @@ const EMICalculator = ({ price = 50000 }) => {
       </div>
 
       <div className="emi-field">
-        <label>Tenure (Months)</label>
+        {/* ✅ Label changed */}
+        <label>Tenure (Years)</label>
         <input
           type="range"
-          min="3"
-          max="60"
+          min="1"
+          max="30" // adjust if needed
           value={tenure}
-          onChange={(e) => setTenure(e.target.value)}
+          onChange={(e) => setTenure(Number(e.target.value))}
         />
-        <span>{tenure} months</span>
+        {/* ✅ Display in years */}
+        <span>{tenure} years</span>
       </div>
 
       <div className="emi-result">
+        {/* ✅ Monthly EMI */}
         <h2>₹ {emi.toFixed(0)} / month</h2>
       </div>
     </div>

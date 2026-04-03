@@ -5,7 +5,7 @@ import starIcon from '../../assets/star-icon.png';
 import { GoPerson } from 'react-icons/go';
 import { RiGraduationCapLine } from 'react-icons/ri';
 import { LuBriefcase } from 'react-icons/lu';
-
+import founderImg from '../../assets/founder-img.png';
 import { FaFireFlameSimple } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { FiShield } from 'react-icons/fi';
@@ -143,6 +143,7 @@ const AboutUs = () => {
 
         <div className='about-us-founder-left'>
           <div className='founder-background-container'>
+            <img src={founderImg} alt="Founder" />
           </div>
           <div className='founder-info-container'>
             <h2 className='founder-name'>Sai Venkat Malempati</h2>
@@ -158,9 +159,7 @@ const AboutUs = () => {
             <div className='founder-education-details'>
               <h3 className='education-heading'>Education</h3>
               <p className='education-text'>
-                Bachelor's degree in Computer Science & Engineering and a
-                Master's degree with advanced research in Data Science and
-                Analytics.
+                Master’s Degree in Data Science and Analytics (Advanced Research) from University of Hertfordshire, United Kingdom, and a Bachelor’s Degree in Computer Science and Engineering
               </p>
             </div>
           </div>

@@ -368,8 +368,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Business Hours</h3>
-                <p className='email'>Monday - Friday: 9:00 AM - 8:00 PM</p>
-                <p className='email'>Saturday: 10:00 AM - 6:00 PM</p>
+                <p className='email'>Monday - Saturday: 10:00 AM - 06:00 PM</p>
                 <p className='email'>Sunday: Closed</p>
               </div>
             </div>

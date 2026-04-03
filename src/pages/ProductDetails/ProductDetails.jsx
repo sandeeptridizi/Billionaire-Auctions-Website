@@ -402,13 +402,15 @@ const ProductDetails = () => {
             <div className="enquiry-modal-overlay" onClick={() => setShowEnquiryForm(false)}>
               <div className="enquiry-modal" onClick={(e) => e.stopPropagation()}>
                 <h3>Enquire About This Product</h3>
-                {enquirySuccess ? (
-                  <p className="enquiry-success-msg">Enquiry submitted successfully!</p>
-                ) : (
+                {enquirySuccess ? (<>
+                  <h4 className="enquiry-success-msg">Enquiry submitted!</h4>
+                  <p className="enquiry-success-text">Your enquiry has been submitted to the seller. They will contact you as soon as possible</p>
+                  <p className="enquiry-success-text">Expect to hear back within 24 hours</p>
+                 </>) : (
                   <form onSubmit={handleEnquirySubmit} className="enquiry-form">
                     <input type="text" placeholder="Your Name *" required value={enquiryForm.visitorName} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorName: e.target.value })} />
                     <input type="email" placeholder="Your Email *" required value={enquiryForm.visitorEmail} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorEmail: e.target.value })} />
-                    <input type="tel" placeholder="Your Phone (optional)" value={enquiryForm.visitorPhone} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorPhone: e.target.value })} />
+                    <input type="tel" placeholder="Your Phone *" required value={enquiryForm.visitorPhone} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorPhone: e.target.value })} />
                     <textarea placeholder="Your Message *" required rows={4} value={enquiryForm.message} onChange={(e) => setEnquiryForm({ ...enquiryForm, message: e.target.value })} />
                     {enquiryError && <p className="enquiry-error-msg">{enquiryError}</p>}
                     <div className="enquiry-form-btns">
