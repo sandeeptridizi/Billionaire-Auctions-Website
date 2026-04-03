@@ -59,7 +59,8 @@ const BrowseByCategory = () => {
   const navigate = useNavigate();
 
   const apiCategory = CATEGORY_MAP[category];
-  const filtered = products.filter((p) => {
+  const marketplaceProducts = products.filter((p) => p.listingType === 'MARKETPLACE');
+  const filtered = marketplaceProducts.filter((p) => {
     if (apiCategory === null) {
       return !KNOWN_CATEGORIES.includes(p.category);
     }
