@@ -595,7 +595,7 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="product-page-quick-info-container">
-          <EMICalculator price={Number(product.value)} />
+          {product.listingType !== 'TO_LET' && <EMICalculator price={Number(product.value)} />}
           <div className="product-page-safety-tips-container">
             <h3 className="tips-heading">
               <RiErrorWarningLine className="error-icon" /> Safety Tips
