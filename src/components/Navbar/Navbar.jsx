@@ -95,7 +95,7 @@ const Navbar = () => {
         <Link to='/'>
           <img
             src={companyLogo}
-            alt='Billionaire Auctions Website'
+            alt='Billionaire Auction Website'
             className='company-logo'
           />
         </Link>

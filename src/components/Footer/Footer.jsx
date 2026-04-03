@@ -17,7 +17,7 @@ const Footer = () => {
       <div className='footer-info-links-container'>
         <div className='footer-info-container'>
           <Link to='/' onClick={() => window.scrollTo(0, 0)}>
-            <img src={companyLogo} alt='Billionaire Auctions' className='company-logo1' />
+            <img src={companyLogo} alt='Billionaire Auction' className='company-logo1' />
            </Link>
           <p className='footer-info-text'>
             The world's premier marketplace for luxury properties, rare

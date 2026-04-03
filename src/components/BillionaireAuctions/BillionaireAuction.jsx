@@ -32,7 +32,7 @@ const BillionaireAuction = () => {
 
   return (
     <div className='auction-container'>
-      <img src={companyLogo} alt='Billionaire Auctions' className='company-logo2' />
+      <img src={companyLogo} alt='Billionaire Auction' className='company-logo2' />
       <p className='auction-text'>
         Join India's Most Exclusive Luxury Marketplace
       </p>

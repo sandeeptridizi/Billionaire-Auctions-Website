@@ -122,7 +122,7 @@ const SignUp = () => {
     <div className='fe-sign-up-container'>
       <div className='fe-sign-up-main'>
         <div className='fe-sign-up-header'>
-          <img src={companyLogo} alt='Billionaire Auctions' className='fe-auth-logo' />
+          <img src={companyLogo} alt='Billionaire Auction' className='fe-auth-logo' />
           <p className='fe-sign-up-text'>
             <LuShield className='fe-shield-icon' /> Create Your Account
           </p>
