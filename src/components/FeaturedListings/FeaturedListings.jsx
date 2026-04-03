@@ -111,7 +111,7 @@ const FeaturedListings = () => {
                   </div>
                   <div className='featured-listings-card-footer'>
                     <p className='mobile-item-cost'>₹{item.cost}</p>
-                    <p className='mobile-item-location'>
+                    <p className='mobile-item-cost'>
                       <GrLocation /> {item.location}
                     </p>
                   </div>

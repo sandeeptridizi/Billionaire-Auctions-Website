@@ -312,12 +312,12 @@ const HowToBuyAndSell = () => {
   return (
     <div className='how-it-works-container'>
       <div className='how-it-works-background'>
-        <h1 className='how-it-works-heading'>How to Buy & Sell</h1>
+        <h1 className='how-it-works-heading'>Frequently Asked Questions</h1>
         <p className='how-it-works-text'>
-          Your complete guide to luxury transactions
+          Find answers to common questions about Billionaire Auction
         </p>
       </div>
-      <div className='how-to-buy-container'>
+      {/* <div className='how-to-buy-container'>
         <h2 className='how-to-buy-heading'>How to Buy</h2>
         <div className='how-to-buy-grid-container'>
           {buyData.map((item) => {
@@ -348,15 +348,15 @@ const HowToBuyAndSell = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
       <div className='contact-us-faqs-container'>
-              <div className='faqs-header'>
+              {/* <div className='faqs-header'>
                 <GrCircleQuestion className='question-mark-icon' />
                 <h2 className='faqs-heading'>Frequently Asked Questions</h2>
                 <p className='faqs-text'>
                   Find answers to common questions about Billionaire Auction
                 </p>
-              </div>
+              </div> */}
               <div className='contact-us-faqs-accordion-container'>
                 <div className='accordion-container'>
                   <h3 className='accordion-heading'>Getting Started</h3>

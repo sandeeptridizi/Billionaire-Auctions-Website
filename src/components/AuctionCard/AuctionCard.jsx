@@ -17,7 +17,7 @@ const AuctionCard = ({
   registered,
 }) => {
   return (
-    <div className='featured-listings-card-container'>
+    <div className='featured-listings-card-container2'>
       <div className='featured-listings-card-image-container'>
         <img src={getFile(image)} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
@@ -31,18 +31,18 @@ const AuctionCard = ({
         </div>
       </div>
       <div className='featured-listings-content-container'>
-        <h3 className='featured-listings-title'>{title}</h3>
-        <div className='auction-card-info-container'>
-          <div className='auction-card-info'>
+        <h3 className='featured-listings-title card-title-single-line'>{title}</h3>
+        <div className='card-meta-grid'>
+          <div className='card-meta-item'>
             <LuCalendar className='auction-card-icon' /> {date}
           </div>
-          <div className='auction-card-info'>
+          <div className='card-meta-item'>
             <HiOutlineLocationMarker className='auction-card-icon' /> {location}
           </div>
-          <div className='auction-card-info'>
+          <div className='card-meta-item'>
             <BsBoxSeam className='auction-card-icon' /> {lots}
           </div>
-          <div className='auction-card-info'>
+          <div className='card-meta-item'>
             <GoPeople className='auction-card-icon' /> {registered}
           </div>
         </div>

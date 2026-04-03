@@ -1280,7 +1280,10 @@
 
   .product-main-swiper .swiper-button-next,
   .product-main-swiper .swiper-button-prev {
-    display: none;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.55);
   }
 
   .product-thumbnails {

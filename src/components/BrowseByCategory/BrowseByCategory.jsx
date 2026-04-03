@@ -1,5 +1,5 @@
 import './BrowseByCategory.css';
-
+import { Link } from 'react-router-dom';
 import { LuHouse } from 'react-icons/lu';
 import { LuCar } from 'react-icons/lu';
 import { TbSofa } from 'react-icons/tb';
@@ -94,12 +94,12 @@ const BrowseByCategory = () => {
           );
         })}
       </div>
-        <button
+        <Link
             className='browse-category-view-all-btn'
             onClick={() => navigate(`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`)}
           >
             View All <GoArrowRight className='browse-category-view-all-arrow' />
-          </button>
+          </Link>
       {filtered.length > 0 ? (
         <>
           <div className='browse-category-products-grid'>

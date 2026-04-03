@@ -87,7 +87,7 @@
   width: 90%;
   margin: 32px auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
@@ -206,7 +206,7 @@
   }
 
   .auctions-step-grid-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: 20px 0px;
   }
 
@@ -222,6 +222,7 @@
 
   .auctions-step-item-title {
     font-size: 18px;
+    text-align: center;
   }
 
   .auctions-step-item-text {

@@ -51,7 +51,7 @@ const RealEstateComponentCard = ({
         </button>
         <div className="featured-listings-card-footer">
           <h3 className="real-estate-component-cost">&#8377; {cost}</h3>
-          <p className="location">
+          <p className="real-estate-component-cost">
             <HiOutlineLocationMarker /> {location}
           </p>
         </div>

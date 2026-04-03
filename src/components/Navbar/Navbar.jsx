@@ -116,12 +116,6 @@ const Navbar = () => {
             <div onClick={() => setIsBrowseLinksOpen(prev => !prev)}> Browse <FaAngleDown /></div>
             {isBrowseLinksOpen && (
               <div className='browse-links-container'>
-                <Link to='browse/our-partners' onClick={() => setIsBrowseLinksOpen(false)}>
-                  <span>Our Partners</span>
-                </Link>
-                <Link to='browse/our-services' onClick={() => setIsBrowseLinksOpen(false)}>
-                  <span>Services</span>
-                </Link>
                 <Link to='browse/about-us' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>About Us</span>
                 </Link>
@@ -133,6 +127,12 @@ const Navbar = () => {
                 </Link>
                 <Link to='browse/advertise' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Advertise</span>
+                </Link>
+                <Link to='browse/our-partners' onClick={() => setIsBrowseLinksOpen(false)}>
+                  <span>Our Partners</span>
+                </Link>
+                <Link to='browse/our-services' onClick={() => setIsBrowseLinksOpen(false)}>
+                  <span>Services</span>
                 </Link>
                 <Link to='/contact-us' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Contact Us</span>

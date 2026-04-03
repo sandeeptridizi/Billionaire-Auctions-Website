@@ -105,12 +105,6 @@ const MobileNavbar = () => {
             <SlMenu className='mobile-menu-icon' onClick={() => setIsBrowseLinksOpen(!isBrowseLinksOpen)} />
             {isBrowseLinksOpen && (
               <div className='browse-links-container1'>
-                <Link to='browse/our-partners' onClick={() => setIsBrowseLinksOpen(false)}>
-                  <span>Our Partners</span>
-                </Link>
-                <Link to='browse/our-services' onClick={() => setIsBrowseLinksOpen(false)}>
-                  <span>Services</span>
-                </Link>
                 <Link to='browse/about-us' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>About Us</span>
                 </Link>
@@ -123,7 +117,13 @@ const MobileNavbar = () => {
                 <Link to='browse/advertise' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Advertise</span>
                 </Link>
-                <Link to='contact-us' onClick={() => setIsBrowseLinksOpen(false)}>
+                <Link to='browse/our-partners' onClick={() => setIsBrowseLinksOpen(false)}>
+                  <span>Our Partners</span>
+                </Link>
+                <Link to='browse/our-services' onClick={() => setIsBrowseLinksOpen(false)}>
+                  <span>Services</span>
+                </Link>
+                <Link to='/contact-us' onClick={() => setIsBrowseLinksOpen(false)}>
                   <span>Contact Us</span>
                 </Link>
               </div>
