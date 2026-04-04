@@ -55,7 +55,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<LandingPage />}>
           <Route index element={<HomePage />} />
-          <Route path='marketplace' element={<Marketplace />} />
+          <Route path="/marketplace" element={<Marketplace key="marketplace" />} />
           <Route path="product/:id" element={<ProductDetails />} />
           <Route path='buy-now' element={<BuyNow />} />
           <Route path='auctions' element={<Auctions />} />

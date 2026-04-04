@@ -37,7 +37,7 @@
   }
 
   .card-meta-item {
-    flex: 0 0 100%; /* 2 items per row */
+    flex: 0 0 45%; /* 2 items per row */
     gap: 4px;
     font-size: 8px;
   }
@@ -54,4 +54,25 @@
     font-size: 8px;
     line-height: 11px;
   }
+}
+
+@media screen and (max-width: 365px) {
+  .card-meta-item {
+    flex: 0 0 calc(50% - 10px);
+    gap: 4px;
+    font-size: 6px;
+  }
+
+  .card-meta-item svg {
+    width: 10px;
+    height: 10px;
+  }
+  .card-meta-icon {
+    font-size: 8px;
+  }
+
+  .card-meta-value {
+    font-size: 6px;
+    line-height: 9px;
+}
 }

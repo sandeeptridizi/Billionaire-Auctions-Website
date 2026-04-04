@@ -1172,7 +1172,7 @@ object-position: 50% 35%;
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 365px) {
 
   .about-us-heading {
     font-size: 20px;

@@ -222,14 +222,7 @@
     width: 25%;
     display: flex;
     align-items: center;
-    gap: 5px;
-  }
-
-  .mobile-location-icon {
-    width: 20px;
-    height: 20px;
-    color: rgba(184, 148, 31, 1);
-    cursor: pointer;
+    gap: 15px;
   }
 
   .mobile-wishlist-link {
@@ -361,7 +354,7 @@
 
   .mobile-icons-login-container {
     width: 30%;
-    gap: 4px;
+    gap: 12px;
   }
 
   .mobile-search-container {

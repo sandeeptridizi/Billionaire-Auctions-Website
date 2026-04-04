@@ -1185,7 +1185,7 @@
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 365px) {
  .product-page-safety-tips-container {
   width: 82%;
   background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);

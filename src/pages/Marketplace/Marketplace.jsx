@@ -10,8 +10,7 @@ import { MdOutlinePalette } from "react-icons/md";
 import { BsBoxSeam, BsStars } from "react-icons/bs";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-
+import { useSearchParams, useLocation } from "react-router-dom";
 import RealEstateComponent from "../../components/RealEstateComponent/RealEstateComponent";
 import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import luxuryLoading from "../../assets/luxury web.mp4";
@@ -39,40 +38,61 @@ const categoryBtns = [
 
 const Marketplace = () => {
   const [searchParams] = useSearchParams();
+  const [showVideo, setShowVideo] = useState(false);
   const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [nextBtn, setNextBtn] = useState(null);
+  const location = useLocation();
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const { selectedCountry } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
+        setIsFetching(true);
         const list = await getMarketplaceProducts({ country: selectedCountry });
         setProducts(list);
       } catch (error) {
         console.error("Failed to load marketplace products", error);
       } finally {
-        setLoading(false);
+        setIsFetching(false);
       }
     };
 
     fetchProducts();
   }, [selectedCountry]);
 
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant", // or "smooth"
+  });
+  }, [searchParams]);
+
+  useEffect(() => {
+  setIsTransitioning(false);
+  setNextBtn(null);
+  setShowVideo(false); 
+}, [location.pathname]);
+
   const handleSwitch = (type) => {
     if (type === selectedBtn) return;
 
     if (type === "Luxury" || type === "Classic") {
       setNextBtn(type);
-      setLoading(true);
-    } else {
-      setSelectedBtn(type);
-    }
+      setIsTransitioning(true);
+    setTimeout(() => {
+      setShowVideo(true);
+    }, 150); // 120–180ms sweet spot
+  } else {
+    setSelectedBtn(type);
+  }
   };
 
   const {
@@ -177,7 +197,7 @@ const Marketplace = () => {
           >
             <IoDiamond /> Classic
           </div>
-          {loading && (
+          {isTransitioning && nextBtn && showVideo && selectedBtn !== nextBtn && (
             <div className="tier-loader-overlay">
               <video
                 autoPlay
@@ -187,7 +207,9 @@ const Marketplace = () => {
                 className="tier-loader-video"
                 onEnded={() => {
                   setSelectedBtn(nextBtn);
-                  setLoading(false);
+                  setIsTransitioning(false);
+                  setNextBtn(null);
+                  setShowVideo(false);
                 }}
               >
                 <source

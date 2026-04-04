@@ -280,7 +280,7 @@ const PricingPlans = () => {
       <div className='pricing-page-background'>
         <h1 className='pricing-page-heading'>Flexible Pricing Plans</h1>
       </div>
-      {/* ── Coupon Section ── */}
+      {/* ── Coupon Section ──
       {getToken() && (
         <div className='coupon-section'>
           <div className='coupon-input-row'>
@@ -327,7 +327,7 @@ const PricingPlans = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       <div className='pricing-page-plans-container'>
         <div className="pricing-arrows">
