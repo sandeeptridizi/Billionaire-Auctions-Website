@@ -226,6 +226,25 @@
   color: rgba(82, 82, 92, 1);
 }
 
+@media screen and (min-width: 768px) and (max-width: 820px) {
+  .fe-sign-in-container {
+    padding: 24px;
+  }
+
+  .fe-sign-in-main {
+    width: 460px;
+    padding: 28px 24px;
+  }
+
+  .fe-auth-logo {
+    width: 220px;
+  }
+
+  .fe-sign-in-heading {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .fe-sign-in-container {
     padding: 20px 12px;

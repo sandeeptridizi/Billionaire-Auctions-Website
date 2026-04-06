@@ -8,8 +8,8 @@
 }
 
 .exclusive-updates-content-container {
-  width: 75%;
-  margin: 48px auto;
+  width: 100%;
+  padding: 48px 5%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -76,6 +76,31 @@
   object-fit:cover;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .market-place-background-container {
+    width: 100%;
+    padding: 32px 24px;
+    gap: 12px;
+  }
+
+  .marketplace-category-icons-row {
+    width: 95%;
+    gap: 12px;
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .marketplace-category-icon-circle {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .marketplace-category-icon-item span {
+    font-size: 11px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .market-place-background-container {
     width: 100%;

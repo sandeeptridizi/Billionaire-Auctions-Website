@@ -46,6 +46,17 @@
   padding: 0;
 }
 
+@media screen and (min-width: 768px) and (max-width: 820px) {
+  .fe-sign-up-container {
+    padding: 24px;
+  }
+
+  .fe-sign-up-main {
+    width: 480px;
+    padding: 28px 24px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .fe-sign-up-container {
     padding: 20px 12px;

@@ -1,6 +1,6 @@
 .buy-sell-container {
-  width: 90%;
-  margin: 0px auto;
+  width: 100%;
+  padding: 0 5%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;

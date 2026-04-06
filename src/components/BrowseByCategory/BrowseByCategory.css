@@ -1,6 +1,6 @@
 .browse-category-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;

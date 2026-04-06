@@ -305,6 +305,42 @@
   text-align: center;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .buy-now-container {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .buy-now-background-container {
+    width: 100%;
+    padding: 40px 32px;
+    gap: 16px;
+  }
+
+  .buy-now-heading {
+    font-size: 28px;
+  }
+
+  .buy-now-text {
+    font-size: 15px;
+  }
+
+  .buy-now-grid-container {
+    width: 100%;
+    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .buy-now-item-container {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .buy-now-title {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .buy-now-container {
     width: 100%;

@@ -5,3 +5,10 @@
   flex-direction: column;
   gap: 16px;
 }
+
+@media screen and (max-width: 820px) {
+  .home-page-container {
+    gap: 24px;
+    width: 100%;
+  }
+}

@@ -26,6 +26,17 @@
   gap: 24px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .real-estate-component-container {
+    width: 95%;
+  }
+
+  .real-estate-component-grid-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .real-estate-component-container {
     width: 100%;

@@ -193,6 +193,34 @@
   color: rgba(212, 175, 55, 1);
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .how-it-works-container {
+    width: 100%;
+  }
+
+  .how-it-works-background {
+    width: 100%;
+    padding: 40px 32px;
+  }
+
+  .how-it-works-heading {
+    font-size: 32px;
+  }
+
+  .how-it-works-text {
+    font-size: 16px;
+  }
+
+  .how-to-buy-container {
+    width: 95%;
+    padding: 0 12px;
+  }
+
+  .how-to-buy-heading {
+    font-size: 28px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .how-it-works-container {
     width: 100%;
