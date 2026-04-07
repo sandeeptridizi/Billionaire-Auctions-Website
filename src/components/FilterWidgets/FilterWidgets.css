@@ -135,9 +135,9 @@
 }
 
 .filter-range-unit {
-  font-size: 11px;
+  font-size: 13px;
   color: rgba(106, 114, 130, 1);
-  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 /* Boolean toggle */

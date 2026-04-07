@@ -60,6 +60,7 @@ const Marketplace = () => {
       } catch (error) {
         console.error("Failed to load marketplace products", error);
       } finally {
+        setLoading(false);
         setIsFetching(false);
       }
     };

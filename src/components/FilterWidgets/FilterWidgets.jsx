@@ -73,6 +73,7 @@ export const RangeFilter = ({ value = {}, onChange, unit }) => {
   return (
     <div className="filter-widget">
       <div className="filter-range-row">
+        {unit && <span className="filter-range-unit">{unit}</span>}
         <input
           type="number"
           className="filter-range-input"
@@ -89,7 +90,6 @@ export const RangeFilter = ({ value = {}, onChange, unit }) => {
           onChange={(e) => handleChange('max', e.target.value)}
         />
       </div>
-      {unit && <span className="filter-range-unit">{unit}</span>}
     </div>
   );
 };
