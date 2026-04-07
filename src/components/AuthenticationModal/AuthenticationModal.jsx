@@ -2,7 +2,7 @@ import './AuthenticationModal.css';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import companyLogo from '../../assets/company-logo.png';
+import { getFile } from '../../lib/s3';
 import { LuShield } from 'react-icons/lu';
 import { CiMobile2 } from 'react-icons/ci';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -134,7 +134,7 @@ const AuthenticationModal = () => {
       <div className='fe-overlay'></div>
       <div className='fe-modal-content'>
         <div className='fe-modal-header'>
-          <img src={companyLogo} alt='company' className='fe-modal-logo' />
+          <img src={getFile("static/logo.png")} alt='company' className='fe-modal-logo' />
           <div className='fe-modal-text'>
             <LuShield className='fe-modal-shield-icon' /> Create Your Account
           </div>

@@ -7,7 +7,7 @@ import { TbDeviceMobile } from 'react-icons/tb';
 import { MdOutlineEmail } from 'react-icons/md';
 import { FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { FaArrowRight } from 'react-icons/fa6';
-import companyLogo from '../../assets/company-logo.png';
+import { getFile } from '../../lib/s3';
 import api from '../../lib/api';
 import { setToken, setUser } from '../../lib/auth';
 
@@ -65,7 +65,7 @@ const SignIn = () => {
     <div className='fe-sign-in-container'>
       <div className='fe-sign-in-main'>
         <div className='fe-sign-in-header'>
-          <img src={companyLogo} alt='Billionaire Auction' className='fe-auth-logo' />
+          <img src={getFile("static/logo.png")} alt='Billionaire Auction' className='fe-auth-logo' />
           <div className='fe-sign-in-heading'>
             <LuShield className='fe-shield-icon' /> Log In
           </div>

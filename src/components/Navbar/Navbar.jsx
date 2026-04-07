@@ -8,7 +8,7 @@ import { FiShoppingBag, FiTarget, FiMessageSquare } from 'react-icons/fi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
 
-import companyLogo from '../../assets/company-logo.png';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import useAppContext, { COUNTRIES } from '../../context/AppContext';
@@ -94,7 +94,7 @@ const Navbar = () => {
       <div className='navbar-logo-links-container'>
         <Link to='/'>
           <img
-            src={companyLogo}
+            src={getFile("static/logo.png")}
             alt='Billionaire Auction Website'
             className='company-logo'
           />

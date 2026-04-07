@@ -1,6 +1,6 @@
 import './Footer.css';
 
-import companyLogo from '../../assets/company-logo.png';
+import { getFile } from '../../lib/s3';
 import { FiFacebook } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
 import { FaYoutube } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Footer = () => {
       <div className='footer-info-links-container'>
         <div className='footer-info-container'>
           <Link to='/' onClick={() => window.scrollTo(0, 0)}>
-            <img src={companyLogo} alt='Billionaire Auction' className='company-logo1' />
+            <img src={getFile("static/logo.png")} alt='Billionaire Auction' className='company-logo1' />
            </Link>
           <p className='footer-info-text'>
             The world's premier marketplace for luxury properties, rare

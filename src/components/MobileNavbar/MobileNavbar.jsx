@@ -1,6 +1,6 @@
 import './MobileNavbar.css';
 
-import companyLogo from '../../assets/company-logo.png';
+
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 
@@ -57,7 +57,7 @@ const MobileNavbar = () => {
     <div className='mobile-navbar-container'>
       <div className='mobile-nav-logo-links-container'>
         <Link to='/'>
-          <img src={companyLogo} alt='company logo' className='mobile-logo' />
+          <img src={getFile("static/logo.png")} alt='company logo' className='mobile-logo' />
         </Link>
         <div className='mobile-nav-links-container'>
 

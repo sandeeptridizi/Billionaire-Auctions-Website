@@ -10,7 +10,7 @@ import { MdOutlineEmail } from 'react-icons/md';
 import { LuBuilding2 } from 'react-icons/lu';
 import { FiLock } from 'react-icons/fi';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import companyLogo from '../../assets/company-logo.png';
+import { getFile } from '../../lib/s3';
 import api from '../../lib/api';
 import useAuthContext from '../../context/AuthContext';
 
@@ -122,7 +122,7 @@ const SignUp = () => {
     <div className='fe-sign-up-container'>
       <div className='fe-sign-up-main'>
         <div className='fe-sign-up-header'>
-          <img src={companyLogo} alt='Billionaire Auction' className='fe-auth-logo' />
+          <img src={getFile("static/logo.png")} alt='Billionaire Auction' className='fe-auth-logo' />
           <p className='fe-sign-up-text'>
             <LuShield className='fe-shield-icon' /> Create Your Account
           </p>
