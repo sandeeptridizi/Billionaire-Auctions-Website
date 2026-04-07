@@ -163,19 +163,7 @@
   }
 
   .search-row {
-    top: 25%; /* Move search bar down from 10% */
-    width: 90%;
-    justify-content: center;
-  }
-
-  .search-icon-container {
-    width: 100%;
-    max-width: 500px; /* Limit width but keep it responsive */
-    padding: 10px 16px;
-  }
-
-  .search-input {
-    font-size: 14px;
+    display: none; /* Hide the grey search bar as MobileNavbar handles it */
   }
 
   .banner-arrow {

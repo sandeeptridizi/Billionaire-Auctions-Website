@@ -7,10 +7,10 @@
 
 .card-meta-item {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
   font-size: 16px;
-  min-width: 0;
+  min-width: 120px;
 }
 
 .card-meta-icon {
@@ -22,11 +22,15 @@
 .card-meta-value {
   font-size: 12px;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 1.25;
   color: rgba(44, 44, 44, 1);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 /* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
@@ -64,6 +68,12 @@
   .card-meta-value {
     font-size: 8px;
     line-height: 11px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -85,5 +95,11 @@
   .card-meta-value {
     font-size: 6px;
     line-height: 9px;
-}
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

@@ -11,7 +11,7 @@ const RealEstateCard = ({ title, image, cost, city, location, meta = {}, categor
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           <div className='card-icon-container'>
-            <MdVerified />
+            <MdVerified className='real-estate-component-icon' /> Verified
           </div>
           <div className='luxury-container'>Luxury</div>
         </div>

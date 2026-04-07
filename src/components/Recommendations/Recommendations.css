@@ -25,8 +25,8 @@
   color: rgba(152, 16, 250, 1);
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
-@media screen and (min-width: 511px) and (max-width: 1024px) {
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1023px) */
+@media screen and (min-width: 511px) and (max-width: 1023px) {
   .recommendations-container {
     padding: 16px 20px; /* Match FeaturedListings */
   }
@@ -82,13 +82,13 @@
   }
 
   .mobile-grid-item-check-icon-container {
-    width: 15px;
-    height: 15px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 7px;
+    font-size: 12px;
     color: rgba(152, 16, 250, 1);
     background: #fff;
     box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);

@@ -14,9 +14,10 @@
 .real-estate-component-name {
   font-size: 12px;
   font-weight: 700;
-  line-height: 16px;
+  line-height: 20px;
   justify-content: left;
   color: rgba(212, 175, 55, 1);
+  padding-bottom: 5px;
 }
 
 .productviewlink{
@@ -133,7 +134,13 @@
   color: #fff;
 }
 
-/* Tablet - iPad Minor, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+/* Dedicated fix for bottom text clipping */
+.featured-listings-content-container1 {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .featured-listings-card-container {
     max-width: 100%;
@@ -176,11 +183,7 @@
   }
 
   .real-estate-component-name {
-    font-size: 9px;
-    line-height: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none;
   }
 
   .real-estate-component-justify-container {
