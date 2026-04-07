@@ -771,53 +771,119 @@ object-position: 50% 35%;
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .about-us-container {
     width: 100%;
+    overflow-x: hidden;
   }
 
-  .about-us-background-container {
-    padding: 40px 24px;
+  .about-us-background {
+    height: auto;
+    min-height: 650px;
+    padding: 60px 24px;
+    gap: 32px;
   }
 
   .about-us-heading {
-    font-size: 32px;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
   }
 
   .about-us-text {
-    font-size: 16px;
-    width: 90%;
+    font-size: 18px;
+    width: 95%;
+  }
+
+  .aboutusherobanner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .aboutusherocontainer {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .about-us-founder-info-grid-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  .about-us-founder-left {
+    position: relative;
+    top: 0;
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .founder-background-container {
+    width: 100%;
+    max-width: 450px;
+    height: 400px;
+  }
+
+  .about-us-founder-right {
+    height: auto;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .about-us-founder-info-grid-item-two-container {
+    width: 100%;
+    gap: 24px;
   }
 
   .billionaire-auction-container {
     width: 100%;
-    margin: 12px auto;
+    padding: 24px;
   }
 
-  .about-us-achievement-container-1 {
-    padding: 24px 20px;
+  .billionaire-heading {
+    font-size: 32px;
+    text-align: center;
   }
 
-  .about-us-achievement-row {
-    gap: 12px;
+  .billionaire-auction-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
-  .about-us-experience-section-container {
-    padding: 24px 20px;
-  }
-
-  .about-us-journey-section-container {
-    padding: 24px 20px;
-  }
-
-  .about-us-founder-info-container {
-    width: 100%;
+  .why-choose-section {
     padding: 40px 24px;
   }
 
-  .founder-heading {
-    font-size: 28px;
+  .why-choose-heading {
+    font-size: 32px;
   }
 
-  .founder-text {
-    font-size: 16px;
+  .why-choose-grid-item-container {
+    flex: 0 0 280px;
+  }
+
+  .future-roadmap-container {
+    padding: 40px 24px;
+  }
+
+  .future-roadmap-heading {
+    font-size: 32px;
+  }
+
+  .future-roadmap-grid-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+  }
+
+  .offline-luxury-auctions-container,
+  .community-membership-container {
+    height: auto;
+    padding: 24px;
+  }
+
+  .offline-luxury-auctions-desc-container {
+    margin-top: 10px;
   }
 }
 

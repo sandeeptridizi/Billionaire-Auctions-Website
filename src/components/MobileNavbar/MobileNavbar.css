@@ -249,12 +249,10 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
   }
-
   .mobile-avatar-wrapper {
     position: relative;
   }
@@ -310,78 +308,78 @@
   /* Tablet Upscaling Context (iPad Mini/Air/Pro) */
   @media screen and (min-width: 511px) {
     .mobile-navbar-container {
-      padding: 16px 24px;
-      gap: 16px;
+      padding: 10px 16px;
+      gap: 12px;
     }
 
     .mobile-logo {
-      width: 160px;
+      width: 140px;
       height: auto;
     }
 
     .mobile-nav-links-container {
-      gap: 24px;
+      gap: 16px;
     }
 
     .mobile-nav-link-container span {
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .mobile-nav-logo {
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
     }
 
     .mobile-country-btn {
-      font-size: 13px;
-      padding: 8px 12px;
+      font-size: 11px;
+      padding: 6px 10px;
     }
 
     .mobile-globe-icon {
-      width: 16px;
-      height: 16px;
+      width: 12px;
+      height: 12px;
     }
 
     .mobile-menu-icon {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
 
     .mobile-search-container {
-      height: 40px;
-      padding: 8px 16px;
+      height: 36px;
+      padding: 6px 14px;
     }
 
     .mobile-input::placeholder, .mobile-input {
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .mobile-search-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
     }
 
     .mobile-wishlist-icon {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
 
     .mobile-wishlist-badge {
-      width: 18px;
-      height: 18px;
-      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      font-size: 9px;
     }
 
     .mobile-avatar {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
     }
 
     .mobile-login-btn {
-      font-size: 14px;
-      padding: 8px 16px;
-      gap: 6px;
+      font-size: 12px;
+      padding: 6px 14px;
+      gap: 5px;
     }
 
     .mobile-nav-search-container {
@@ -399,6 +397,35 @@
     .browse-links-container1 a {
       font-size: 20px;
       padding: 12px 24px;
+    }
+  }
+
+  /* iPad Specific Refinements */
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    .mobile-search-row {
+      width: 60%;
+    }
+
+    .mobile-icons-login-container {
+      width: 40%;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .mobile-login-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .mobile-wishlist-icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    .mobile-avatar {
+      width: 38px;
+      height: 38px;
     }
   }
 }

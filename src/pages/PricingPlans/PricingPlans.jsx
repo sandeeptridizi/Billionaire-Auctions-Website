@@ -338,7 +338,7 @@ const PricingPlans = () => {
 
           {/* ── Main Plans (Basic / Premium / PRO) ── */}
           {mainPlans.map((plan) => {
-            const isPro = plan.title === 'PRO';
+            const isPremium = plan.title === 'Premium';
             const isFree = plan.price === 0;
             const hasDiscount = couponApplied && !isFree;
             let planDiscount = 0;
@@ -355,7 +355,7 @@ const PricingPlans = () => {
             return (
               <div
                 key={plan.id}
-                className={isPro ? 'pricing-page-grid-item-two-container' : 'pricing-page-grid-item-container'}
+                className={isPremium ? 'pricing-page-grid-item-two-container' : 'pricing-page-grid-item-container'}
               >
                 <div className='pricing-page-header'>
                   {planIcons[plan.title] || <LuStar className='pricing-crown-icon' />}
@@ -395,7 +395,6 @@ const PricingPlans = () => {
                 >
                   {getButtonLabel(plan)}
                 </button>
-                {/* {isPro && <div className='most-poplular-container'>MOST POPULAR</div>} */}
               </div>
             );
           })}

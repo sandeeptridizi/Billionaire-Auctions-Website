@@ -247,6 +247,33 @@
     padding: 12px;
     font-size: 14px;
   }
+
+  .contact-us-faqs-container {
+    padding: 60px 32px 120px 32px;
+  }
+
+  .contact-us-faqs-accordion-container {
+    width: 96%;
+    margin: 24px auto;
+  }
+
+  .accordion-container {
+    padding: 20px;
+  }
+
+  .accordion-heading {
+    font-size: 22px;
+  }
+
+  .accordion-question {
+    font-size: 18px;
+    padding: 12px 0;
+  }
+
+  .accordion-answer p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
 }
 
 @media screen and (max-width: 510px) {

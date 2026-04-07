@@ -297,59 +297,67 @@
 
 @media screen and (min-width: 511px) and (max-width: 1024px) {
   .to-let-page-container {
-    width: 100%;
+    padding-bottom: 120px;
   }
 
   .to-let-page-background {
     width: 100%;
-    padding: 48px 24px;
-  }
-
-  .to-let-page-category-container {
-    padding: 24px;
-  }
-
-  .to-let-page-category-grid-container {
-    grid-template-columns: repeat(4, 1fr); /* 4 columns instead of 8 */
-  }
-
-  .to-let-quick-filters-container {
-    padding: 24px;
-    flex-wrap: wrap; /* Allow wrapping if buttons don't fit */
+    padding: 60px 32px;
   }
 
   .to-let-heading {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   .to-let-text {
     font-size: 16px;
   }
 
+  .buy-now-categories-container {
+    padding: 24px 32px;
+  }
+
+  .buy-now-search-filter-container {
+    width: 100%;
+    gap: 12px;
+  }
+
   .marketplace-category-icons-row {
     width: 100%;
-    margin: 0;
-    padding: 0 16px;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 2 rows on tablet */
+    gap: 20px;
+    padding: 16px 0;
+  }
+
+  .marketplace-category-icon-circle {
+    width: 54px;
+    height: 54px;
+    font-size: 24px;
   }
 
   .to-let-properties-container {
-    width: 100%;
+    width: 92%;
     margin: 24px auto;
-    padding: 0 24px;
   }
 
-  .property-grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-    gap: 20px;
+  .property-heading {
+    font-size: 24px;
+  }
+
+  .real-estate-component-grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2-column grid for tablets */
+    gap: 24px;
   }
 
   .to-let-rent-us-container {
-    padding: 48px 24px;
+    padding: 60px 32px;
   }
 
   .rent-us-grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 instead of 4x1 */
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
     gap: 32px;
   }
 }

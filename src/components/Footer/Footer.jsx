@@ -66,7 +66,6 @@ const Footer = () => {
 
           </div>
         </div>
-        <div className='footer-section-grid-container'>
           <div className='footer-link-container'>
             <h3 className='footer-link-heading'>Quick Links</h3>
             <div className='footer-links'>
@@ -116,7 +115,6 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-        </div>
         <div className='footer-link-container'>
           <h3 className='footer-link-heading'>Customer Care</h3>
           <div className='footer-contact-info-container'>

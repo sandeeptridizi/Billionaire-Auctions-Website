@@ -3,7 +3,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .pricing-page-background {
@@ -158,7 +157,7 @@
 
 .pricing-page-grid-item-two-container {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 16px;
   padding: 32px;
   background: rgba(255, 255, 255, 1);
@@ -189,22 +188,15 @@
   left: 26%;
 }
 
-.pricing-page-grid-item-container,
-.pricing-page-grid-item-two-container {
+.pricing-page-grid-item-container {
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  padding: 8px;
+  padding: 32px;
   display: flex;
-    background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1);
   border: 1.25px solid rgba(229, 231, 235, 1);
   flex-direction: column;
-}
-
-.pricing-page-grid-item-container:hover,
-.pricing-page-grid-item-two-container:hover {
-  transform: scale(0.96);
-  box-shadow: 0px 18px 40px rgba(0,0,0,0.12);
 }
 
 .pricing-page-plans-container {
@@ -936,7 +928,8 @@
 /* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .pricing-page-background {
-    padding: 40px 32px;
+    padding: 64px 32px;
+    text-align: center;
   }
 
   .pricing-page-heading {
@@ -948,11 +941,23 @@
     font-size: 18px;
   }
 
+  .pricing-page-container {
+    padding-bottom: 120px;
+  }
+
   .pricing-page-grid-container {
-    width: 100%;
-    margin: 12px auto;
+    width: 96%;
+    margin: 24px auto;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .pricing-page-grid-item-container,
+  .pricing-page-grid-item-two-container {
+    width: 100%;
+    margin: 0;
+    padding: 24px;
   }
 
   .pricing-heading {
@@ -961,6 +966,45 @@
 
   .plan-price {
     font-size: 28px;
+  }
+
+  .pricing-page-plans-container {
+    padding: 40px 32px;
+  }
+
+  .website-advertising-container {
+    padding: 60px 32px;
+  }
+
+  .website-advertising-grid-container {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leads-selector-container {
+    width: 92%;
+  }
+
+  .leads-container {
+    padding: 60px 32px;
+  }
+
+  .leads-grid-container {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .digital-media-container {
+    padding: 60px 32px;
+  }
+
+  .digital-media-icon-content-container {
+    width: 100%;
+  }
+
+  .pricing-page-footer-container {
+    padding: 60px 32px 140px;
+    text-align: center;
   }
 }
 
