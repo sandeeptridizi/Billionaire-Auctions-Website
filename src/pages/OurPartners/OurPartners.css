@@ -418,6 +418,50 @@
   .our-partners-text {
     font-size: 18px;
   }
+
+  /* Fix padding for large footer sections */
+  .learn-more-about-partners-container {
+    padding: 40px 20px;
+  }
+
+  .learn-more-about-partners-child-container {
+    width: 95%;
+  }
+
+  .learn-more-partner-heading {
+    font-size: 28px;
+  }
+
+  .learn-more-text {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .why-this-matters-container {
+    padding: 40px 20px;
+  }
+
+  .why-this-matters-heading {
+    font-size: 32px;
+  }
+
+  .why-this-matters-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .our-partners-footer-container {
+    width: 85%;
+  }
+
+  .our-partners-footer-heading {
+    font-size: 28px;
+  }
+
+  .our-partners-footer-text {
+    width: 100%;
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 510px) {

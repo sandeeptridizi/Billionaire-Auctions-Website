@@ -933,6 +933,37 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .pricing-page-background {
+    padding: 40px 32px;
+  }
+
+  .pricing-page-heading {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .pricing-page-text {
+    font-size: 18px;
+  }
+
+  .pricing-page-grid-container {
+    width: 100%;
+    margin: 12px auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .pricing-heading {
+    font-size: 20px;
+  }
+
+  .plan-price {
+    font-size: 28px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .pricing-page-background {
     padding: 16px 18px;

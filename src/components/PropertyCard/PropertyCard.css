@@ -116,7 +116,25 @@
   color: rgba(212, 175, 55, 1);
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .property-card-container {
+    max-width: 100%;
+    height: 320px;
+  }
 
+  .property-card-image {
+    height: 180px;
+  }
+
+  .property-available-price {
+    font-size: 14px;
+  }
+
+  .property-card-title {
+    font-size: 14px;
+  }
+}
 
 @media screen and (max-width: 510px) {
   .property-card-header {

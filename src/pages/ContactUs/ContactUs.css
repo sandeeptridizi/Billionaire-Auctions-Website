@@ -364,6 +364,31 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .contact-us-background {
+    padding: 48px 32px;
+  }
+
+  .contact-us-heading {
+    font-size: 36px;
+  }
+
+  .contact-us-text {
+    font-size: 18px;
+  }
+
+  .contact-us-grid-container {
+    width: 100%;
+    margin: 32px auto;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .contact-form-group {
+    grid-column: span 1;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .contact-us-container {
     width: 100%;

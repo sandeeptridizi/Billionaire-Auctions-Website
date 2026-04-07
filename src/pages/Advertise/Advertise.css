@@ -560,6 +560,54 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .advertise-background {
+    padding: 40px 32px;
+  }
+
+  .advertise-heading {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .advertise-text {
+    font-size: 18px;
+  }
+
+  .package-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .package-heading {
+    font-size: 28px;
+  }
+
+  .package-cost {
+    font-size: 36px;
+  }
+
+  .media-promotion-content-container {
+    width: 100%;
+    margin: 32px auto;
+    padding: 32px 20px;
+  }
+
+  .includes-heading {
+    font-size: 20px;
+  }
+
+  .media-promotions-content-grid {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 16px;
+  }
+
+  .media-promotions-grid-item-container {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   * {
     margin: 0;

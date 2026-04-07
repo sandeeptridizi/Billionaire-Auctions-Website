@@ -1,5 +1,6 @@
 .featured-listings-container {
   width: 100%;
+  max-width: 100%;
   border: 1.25px solid rgba(212, 175, 55, 0.3);
   background: rgba(255, 255, 255, 0.5);
   padding: 16px 5%;
@@ -7,6 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: hidden; /* Prevent child content from pushing width */
 }
 
 .featured-listings-header {
@@ -99,6 +101,29 @@
 
 .mobile-featured-listings-container {
   display: none;
+}
+
+/* Tablet Layout (768px - 1024px) */
+@media screen and (min-width: 511px) and (max-width: 1024px) {
+  .featured-listings-container {
+    padding: 16px 20px; /* Reduced from 5% to save horizontal space */
+  }
+
+  .featured-listings-grid-container {
+    gap: 16px; /* Slightly tighter gap */
+  }
+
+  .featured-listings-grid-container > * {
+    flex: 0 0 calc((100% - 16px) / 2); /* Force 2 columns */
+    min-width: 0;
+    max-width: calc((100% - 16px) / 2);
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .featured-listings-heading {
+    font-size: 22px;
+  }
 }
 
 @media screen and (max-width: 510px) {

@@ -1197,6 +1197,28 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .product-page-container {
+    width: 100%;
+  }
+
+  .product-page-search-category-container {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+
+  .product-page-search-btn-container {
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .product-page-search-container {
+    width: 85%;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .product-page-container {
     width: 96%;

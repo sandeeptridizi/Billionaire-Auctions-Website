@@ -27,6 +27,38 @@
   height: auto;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .auction-container {
+    padding: 20px 3%;
+  }
+
+  .auction-heading {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .company-logo2 {
+    width: 350px;
+  }
+
+  .auction-text {
+    font-size: 16px;
+  }
+
+  .experience-container {
+    width: 90%;
+  }
+
+  .experience-heading {
+    font-size: 24px;
+  }
+
+  .experience-text {
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .company-logo2{
     width: 200px;

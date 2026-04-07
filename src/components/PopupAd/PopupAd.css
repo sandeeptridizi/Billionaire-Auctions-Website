@@ -106,7 +106,7 @@
   transform: scale(1.03);
 }
 
-@media screen and (max-width: 510px) {
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */\n@media screen and (min-width: 768px) and (max-width: 1024px) {\n  .popup-ad-card {\n    width: 85%;\n    max-width: 520px;\n    border-radius: 14px;\n  }\n\n  .popup-ad-heading {\n    font-size: 18px;\n  }\n\n  .popup-ad-text {\n    font-size: 14px;\n  }\n\n  .popup-ad-close-button {\n    width: 28px;\n    height: 28px;\n    font-size: 18px;\n  }\n}\n\n@media screen and (max-width: 510px) {
   .popup-ad-card {
     max-width: 92%;
     border-radius: 12px;

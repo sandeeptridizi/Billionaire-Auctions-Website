@@ -28,7 +28,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .real-estate-component-container {
-    width: 95%;
+    width: 100%;
   }
 
   .real-estate-component-grid-container {

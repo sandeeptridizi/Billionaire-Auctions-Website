@@ -150,6 +150,25 @@
   border-top: 1.25px solid rgba(229, 231, 235, 1);
 }
 
+/* Desktop Footer is hidden on Tablets and Mobile (up to 1025px) */
+@media screen and (max-width: 1024px) {
+  .footer-container {
+    display: none;
+  }
+}
+
+/* Mobile and small tablets */
+.footer-copy-right-container {
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 33.24px;
+  padding-bottom: 33.24px;
+  border-top: 1.25px solid rgba(229, 231, 235, 1);
+}
+
 .footer-copy-right-text {
   font-size: 14px;
   font-weight: 400;

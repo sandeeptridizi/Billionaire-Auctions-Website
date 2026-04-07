@@ -352,6 +352,31 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .our-services-background {
+    padding: 48px 32px;
+  }
+
+  .our-services-heading {
+    font-size: 36px;
+  }
+
+  .our-services-text {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .our-services-offer-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .offer-heading {
+    font-size: 28px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .our-services-container {
     width: 100%;

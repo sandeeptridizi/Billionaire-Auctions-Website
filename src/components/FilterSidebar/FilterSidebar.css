@@ -201,6 +201,24 @@
   display: none;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .filter-sidebar {
+    width: 240px;
+    min-width: 240px;
+    padding: 16px;
+  }
+
+  .filter-sidebar-title {
+    font-size: 14px;
+  }
+
+  .filter-count-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .filter-sidebar--desktop {
     display: none;

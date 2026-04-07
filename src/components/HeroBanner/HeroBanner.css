@@ -156,6 +156,34 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 511px) and (max-width: 1024px) {
+  .hero-banner-container {
+    height: 320px; /* Slightly shorter for tablets to avoid too much white space */
+  }
+
+  .search-row {
+    top: 25%; /* Move search bar down from 10% */
+    width: 90%;
+    justify-content: center;
+  }
+
+  .search-icon-container {
+    width: 100%;
+    max-width: 500px; /* Limit width but keep it responsive */
+    padding: 10px 16px;
+  }
+
+  .search-input {
+    font-size: 14px;
+  }
+
+  .banner-arrow {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 /* MOBILE */
 @media screen and (max-width: 510px) {
   .hero-banner-container {

@@ -197,9 +197,9 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <Link to='/sign-up' className='list-btn'>List/Sell Item</Link>
+            <Link to='/sign-up' className='list-btn'><span>List/Sell Item</span></Link>
             <Link to='/sign-in' className='login-btn'>
-              <RxPerson /> Login
+              <RxPerson /> <span>Login</span>
             </Link>
           </>
         )}

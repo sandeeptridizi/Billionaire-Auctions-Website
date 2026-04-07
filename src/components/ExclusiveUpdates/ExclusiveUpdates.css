@@ -56,12 +56,14 @@
   font-weight: 400;
   line-height: 28px;
   color: rgba(209, 213, 220, 1);
-  width: 846px;
+  width: 100%;
+  max-width: 846px;
   text-align: center;
 }
 
 .exclusive-email-subscribe-btn-container {
-  width: 896px;
+  width: 100%;
+  max-width: 896px;
   padding: 34px;
   border-radius: 16px;
   display: flex;
@@ -72,7 +74,8 @@
 }
 
 .exclusive-email-btn-container {
-  width: 829px;
+  width: 100%;
+  max-width: 829px;
   height: 56px;
   display: flex;
   justify-content: space-between;
@@ -177,6 +180,53 @@
   font-weight: 700;
   line-height: 20px;
   color: rgba(212, 175, 55, 1);
+}
+
+/* Tablet - iPad Mini (744px), iPad Air (820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 511px) and (max-width: 1024px) {
+  .exclusive-updates-background,
+  .exclusive-updates-content-container {
+    width: 100%;
+    padding: 32px 5%;
+  }
+
+  .exclusive-updates-heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .sub-heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .exclusive-updates-text {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 600px;
+  }
+
+  .exclusive-email-subscribe-btn-container {
+    padding: 24px;
+    gap: 16px;
+    max-width: 700px;
+  }
+
+  .exclusive-email-btn-container {
+    height: auto;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exclusive-email-icon-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .exclusive-btn {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 510px) {

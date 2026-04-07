@@ -295,7 +295,7 @@
   color: rgba(153, 161, 175, 1);
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 511px) and (max-width: 1024px) {
   .to-let-page-container {
     width: 100%;
   }
@@ -303,6 +303,19 @@
   .to-let-page-background {
     width: 100%;
     padding: 48px 24px;
+  }
+
+  .to-let-page-category-container {
+    padding: 24px;
+  }
+
+  .to-let-page-category-grid-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns instead of 8 */
+  }
+
+  .to-let-quick-filters-container {
+    padding: 24px;
+    flex-wrap: wrap; /* Allow wrapping if buttons don't fit */
   }
 
   .to-let-heading {
@@ -313,15 +326,31 @@
     font-size: 16px;
   }
 
-  .to-let-select-section {
-    width: 95%;
-    gap: 12px;
+  .marketplace-category-icons-row {
+    width: 100%;
+    margin: 0;
+    padding: 0 16px;
+    gap: 16px;
   }
 
-  .search-button {
-    width: 140px;
-    padding: 12px;
-    font-size: 14px;
+  .to-let-properties-container {
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 24px;
+  }
+
+  .property-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    gap: 20px;
+  }
+
+  .to-let-rent-us-container {
+    padding: 48px 24px;
+  }
+
+  .rent-us-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2x2 instead of 4x1 */
+    gap: 32px;
   }
 }
 

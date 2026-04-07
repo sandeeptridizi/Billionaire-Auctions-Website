@@ -212,12 +212,40 @@
   }
 
   .how-to-buy-container {
-    width: 95%;
+    width: 100%;
     padding: 0 12px;
+    margin: 32px auto;
   }
 
   .how-to-buy-heading {
     font-size: 28px;
+  }
+
+  .how-to-buy-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* Fix large padding sections */
+  .how-to-sell-container {
+    padding: 40px 20px;
+  }
+
+  .safety-tips-container {
+    padding: 40px 20px;
+  }
+
+  .safety-tips-heading {
+    font-size: 24px;
+  }
+
+  .safety-tips-list-container {
+    width: 100%;
+  }
+
+  .safety-tips-item-container {
+    padding: 12px;
+    font-size: 14px;
   }
 }
 

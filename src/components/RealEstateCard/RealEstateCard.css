@@ -12,6 +12,17 @@
   color: rgba(106, 114, 130, 1);
 }
 
+/* Tablet - iPad Minor, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .featured-listings-card-image-container {
+    height: 180px;
+  }
+
+  .realestate-title {
+    font-size: 12px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .featured-listings-card-image-container {
     width: 100%;

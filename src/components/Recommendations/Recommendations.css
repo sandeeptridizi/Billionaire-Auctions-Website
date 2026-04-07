@@ -8,6 +8,7 @@
 
 .recommendations-container {
   width: 100%;
+  max-width: 100%;
   border: 1.25px solid rgba(173, 70, 255, 0.3);
   background: rgba(255, 255, 255, 0.5);
   padding: 16px 5%;
@@ -15,12 +16,37 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: hidden; /* Prevent child content from pushing width */
 }
 
 .star-icon {
   width: 28px;
   height: 28px;
   color: rgba(152, 16, 250, 1);
+}
+
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 511px) and (max-width: 1024px) {
+  .recommendations-container {
+    padding: 16px 20px; /* Match FeaturedListings */
+  }
+
+  .featured-listings-grid-container {
+    gap: 16px;
+  }
+
+  .featured-listings-grid-container > * {
+    flex: 0 0 calc((100% - 16px) / 2); /* Force 2 columns */
+    min-width: 0;
+    max-width: calc((100% - 16px) / 2);
+    flex-shrink: 0;
+  }
+
+  .recommendation-item {
+    padding: 8px 12px;
+    min-height: 32px;
+    font-size: 13px;
+  }
 }
 
 @media screen and (max-width: 510px) {

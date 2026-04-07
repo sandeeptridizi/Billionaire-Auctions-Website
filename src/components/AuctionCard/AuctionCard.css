@@ -100,6 +100,40 @@
   cursor: pointer;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .featured-listings-card-container2 {
+    max-width: 100%;
+    height: 380px;
+  }
+
+  .auction-card-open-container {
+    padding: 6px 8px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .auction-card-value {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .auction-card-cost {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .auction-card-info {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .register-now-btn {
+    width: 100%;
+    margin: 0 auto 16px auto;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .auction-card-open-container {
     padding: 3px 5px;

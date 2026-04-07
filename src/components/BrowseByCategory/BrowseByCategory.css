@@ -132,6 +132,22 @@
   margin: 24px 0 32px;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .browse-category-container {
+    width: 100%;
+  }
+
+  .browse-category-heading {
+    font-size: 24px;
+  }
+
+  .browse-category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .browse-category-container {
     width: 100%;

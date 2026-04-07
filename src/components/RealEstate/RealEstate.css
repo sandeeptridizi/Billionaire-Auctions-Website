@@ -63,6 +63,18 @@
   gap: 24px;
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .real-estate-container {
+    width: 100%;
+  }
+
+  .real-estate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .real-estate-container {
     width: 98%;

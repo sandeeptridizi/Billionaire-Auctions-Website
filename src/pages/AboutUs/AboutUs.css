@@ -773,6 +773,10 @@ object-position: 50% 35%;
     width: 100%;
   }
 
+  .about-us-background-container {
+    padding: 40px 24px;
+  }
+
   .about-us-heading {
     font-size: 32px;
   }
@@ -780,6 +784,27 @@ object-position: 50% 35%;
   .about-us-text {
     font-size: 16px;
     width: 90%;
+  }
+
+  .billionaire-auction-container {
+    width: 100%;
+    margin: 12px auto;
+  }
+
+  .about-us-achievement-container-1 {
+    padding: 24px 20px;
+  }
+
+  .about-us-achievement-row {
+    gap: 12px;
+  }
+
+  .about-us-experience-section-container {
+    padding: 24px 20px;
+  }
+
+  .about-us-journey-section-container {
+    padding: 24px 20px;
   }
 
   .about-us-founder-info-container {

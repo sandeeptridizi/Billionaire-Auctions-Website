@@ -350,6 +350,22 @@
   color: rgba(212, 175, 55, 1);
 }
 
+/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .privacy-policy-background {
+    padding: 40px 32px;
+  }
+
+  .privacy-policy-heading {
+    font-size: 36px;
+  }
+
+  .privacy-policy-text {
+    font-size: 18px;
+    width: 95%;
+  }
+}
+
 @media screen and (max-width: 510px) {
   .privacy-policy-container {
     width: 100%;
