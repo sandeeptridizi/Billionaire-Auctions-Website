@@ -836,6 +836,11 @@ object-position: 50% 35%;
     gap: 24px;
   }
 
+  .about-us-billionaire-auction-container {
+    padding: 40px 48px;
+    width: 100%;
+  }
+
   .billionaire-auction-container {
     width: 100%;
     padding: 24px;
@@ -932,38 +937,38 @@ object-position: 50% 35%;
   }
 
   .about-us-founder-left {
-    position: sticky;
-    top: 80px;
+    position: relative; /* Remove sticky on mobile */
+    top: 0;
     z-index: 2;
   }
 
-
-  .about-us-billionaire-auction-container {
-    width: 100%;
-    padding: 32px 18px;
-  }
-
-  .billionaire-heading {
-    font-size: 24px;
-  }
-
-  .billionaire-auction-container {
-    width: 100%;
-  }
-
-  .founder-background-container {
-    height: 280px;
-    align-items: center;
-  }
+  /* ... */
 
   .about-us-founder-right {
-    height: 350px;
-    overflow-y: auto;
+    height: auto; /* Make static */
+    overflow-y: visible; /* Remove scroll */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding-right: 6px;
+    padding-right: 0;
+  }
+
+  .about-us-billionaire-auction-container {
+    width: 100%;
+    padding: 32px 16px;
+  }
+
+  .billionaire-heading {
+    font-size: 24px;
+    text-align: center;
+    line-height: normal;
+  }
+
+  .billionaire-auction-container {
+    width: 100%;
+    margin: 12px 0;
+    padding: 20px 16px;
   }
 
   .billionaire-auction-grid-container {
@@ -988,7 +993,15 @@ object-position: 50% 35%;
     grid-template-columns: 1fr;
   }
 
+  .why-choose-slider-track {
+    display: flex;
+    width: max-content;
+    animation: scrollCards 20s linear infinite;
+    gap: 20px;
+  }
+
   .why-choose-grid-item-container {
+    flex: 0 0 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1124,7 +1137,8 @@ object-position: 50% 35%;
   border: 1.25px solid rgba(212, 175, 35, 1);
   border-radius: 16px;
   padding: 24px;
-  width: 370px;
+  width: 100%; /* Fix overflow */
+  max-width: 370px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -1147,12 +1161,16 @@ object-position: 50% 35%;
 }
 
   .billionaire-heading {
-    font-size: 20px;
+    font-size: 22px; /* Slightly larger than 20px */
     text-align: center;
+    line-height: 1.3;
+    width: 100%;
+    padding: 0 10px;
   }
 
   .billionaire-auction-container {
-    padding: 16px;
+    padding: 18px;
+    width: 100%;
   }
 
   .billionaire-auction-text {
@@ -1325,7 +1343,7 @@ object-position: 50% 35%;
   }
 
   .about-us-founder-right {
-    height: 300px;
+    height: auto;
     gap: 16px;
   }
 
