@@ -6,6 +6,7 @@ import {
   LuPaintbrush, LuPalette, LuPenTool, LuGlobe, LuFileText,
   LuHash, LuChartColumnIncreasing, LuIndianRupee, LuWallet, LuCalendarCheck,
   LuSmartphone, LuTag, LuInfo, LuLandmark, LuMapPin, LuKeyRound,
+  LuBath, LuHouse,
 } from "react-icons/lu";
 
 export const metaFieldIconMap = {
@@ -86,6 +87,11 @@ export const metaFieldIconMap = {
   approximateAgeYears: LuClock,
   dimensionsLWH: LuRuler,
   noOfOwners: LuUser,
+  bedrooms: LuBedDouble,
+  bathrooms: LuBath,
+  rentalType: LuHouse,
+  rent: LuIndianRupee,
+  furnishedStatus: LuArmchair,
 };
 
 export const getMetaIcon = (key) => metaFieldIconMap[key] || LuInfo;
@@ -201,11 +207,13 @@ const categoryMetaFields = {
     { key: 'availableFrom', label: 'Available From' },
   ],
   TO_LET: [
-    { key: 'bhk', label: 'BHK' },
-    { key: 'carpetArea', label: 'Carpet Area' },
-    { key: 'monthlyRent', label: 'Monthly Rent', fallbacks: ['rentPerMonth'] },
-    { key: 'furnishingStatus', label: 'Furnishing', fallbacks: ['furnishing'] },
+    { key: 'bedrooms', label: 'Bedrooms', fallbacks: ['bhk'] },
+    { key: 'bathrooms', label: 'Bathrooms' },
+    { key: 'furnishedStatus', label: 'Furnishing', fallbacks: ['furnishingStatus', 'furnishing'] },
     { key: 'securityDeposit', label: 'Deposit' },
+    { key: 'carpetArea', label: 'Carpet Area' },
+    { key: 'rentalType', label: 'Type' },
+    { key: 'builtUpArea', label: 'Built-up Area' },
     { key: 'availableFrom', label: 'Available From' },
   ],
 };

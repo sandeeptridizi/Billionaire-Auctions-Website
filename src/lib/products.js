@@ -34,10 +34,12 @@ export const mapProductToCard = (product) => ({
     : "Price on request",
   location: product.meta?.city || product.meta?.location || "Location not specified",
 
-  category: formatCategoryLabel(product.category),
+  category: product.listingType === "TO_LET" && product.category === "REAL_ESTATE"
+    ? "Residential"
+    : formatCategoryLabel(product.category),
   tier: product.tier || "GENERAL",
   meta: product.meta || {},
-  categoryKey: product.category || "",
+  categoryKey: product.listingType === "TO_LET" ? "TO_LET" : (product.category || ""),
 });
 
 export const getPublicProducts = async (params = {}) => {
