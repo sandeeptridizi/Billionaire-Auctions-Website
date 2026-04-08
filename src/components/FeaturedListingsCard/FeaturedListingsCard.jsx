@@ -18,15 +18,18 @@ const FeaturedListingsCard = ({
   isStatic,
   meta = {},
   categoryKey = '',
+  isVerified = false,
 }) => {
   const content = (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
-          <div className='card-icon-container'>
-            <MdVerified className='check-icon' />
-          </div>
+          {isVerified && (
+            <div className='card-icon-container'>
+              <MdVerified className='check-icon' />
+            </div>
+          )}
           <div className='luxury-container'>Luxury</div>
         </div>
         <div className='featured-listings-card-footer'>

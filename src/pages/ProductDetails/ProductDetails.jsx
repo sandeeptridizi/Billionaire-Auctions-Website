@@ -350,9 +350,11 @@ const ProductDetails = () => {
         <div className="product-page-info-container">
           <div className="product-info-header">
             <div className="product-info-tags-container">
-              <div className="product-verified-container">
-                <MdVerified className="product-check-icon" /> Verified
-              </div>
+              {product.isVerified && (
+                <div className="product-verified-container">
+                  <MdVerified className="product-check-icon" /> Verified
+                </div>
+              )}
               <div className="product-luxury-container">
                 <FaCrown className="product-crown-icon" /> {product.tier}
               </div>

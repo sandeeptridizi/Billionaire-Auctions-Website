@@ -19,6 +19,7 @@ const RealEstateComponentCard = ({
   tier,
   meta = {},
   categoryKey = '',
+  isVerified = false,
 }) => {
   const { toggleWishlist, isWishlisted } = useAppContext();
   const wishlisted = isWishlisted(id);
@@ -35,10 +36,12 @@ const RealEstateComponentCard = ({
       <div className="featured-listings-card-image-container">
         <img src={getFile(image)} alt={title} className="featured-img" />
         <div className="featured-listings-card-header">
-          <div className="real-estate-card-icon-container">
-            <MdVerified className="real-estate-component-icon" />
-            <span>Verified</span>
-          </div>
+          {isVerified && (
+            <div className="real-estate-card-icon-container">
+              <MdVerified className="real-estate-component-icon" />
+              <span>Verified</span>
+            </div>
+          )}
           <div className="real-estate-luxury-container">
             <FaCrown />
             <span>{tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}</span>

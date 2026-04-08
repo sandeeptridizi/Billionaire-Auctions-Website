@@ -57,6 +57,7 @@ const FeaturedListings = () => {
           location: product.meta?.city || product.meta?.location || 'Location not specified',
           meta: product.meta || {},
           categoryKey: product.category || '',
+          isVerified: !!product.isVerified,
         }));
         for (let i = mapped.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -94,7 +95,7 @@ const FeaturedListings = () => {
           )}
         </div>
         <div className='mobile-featured-listings-grid-container' ref={mobileGridRef}>
-          {featuredData.map((item) => (
+          {featuredData.slice(0, 6).map((item) => (
             <Link to={`/product/${item.id}`} className='mobile-featured-card-link' key={item.id}>
               <div className='featured-listings-card-container1'>
                 <div className='featured-listings-card-image-container'>
@@ -104,9 +105,11 @@ const FeaturedListings = () => {
                     className='mobile-apartment-img'
                   />
                   <div className='mobile-featured-grid-item-header'>
-                    <div className='mobile-grid-item-check-icon-container'>
-                      <MdVerified className='mobile-check-icon' />
-                    </div>
+                    {item.isVerified && (
+                      <div className='mobile-grid-item-check-icon-container'>
+                        <MdVerified className='mobile-check-icon' />
+                      </div>
+                    )}
                     <div className='mobile-item-luxury-container'>Luxury</div>
                   </div>
                   <div className='featured-listings-card-footer'>

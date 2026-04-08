@@ -21,6 +21,7 @@ const PropertyCard = ({
   category,
 
   title,
+  isVerified = false,
 }) => {
   return (
     <div className='featured-listings-card-container'>
@@ -28,9 +29,11 @@ const PropertyCard = ({
         <img src={image} alt={title} className='featured-img' />
         <div className='property-card-header'>
           <div className='property-available-container'>AVAILABLE</div>
-          <div className='real-estate-card-icon-container'>
-            <MdVerified className='real-estate-component-icon' /> Verified
-          </div>
+          {isVerified && (
+            <div className='real-estate-card-icon-container'>
+              <MdVerified className='real-estate-component-icon' /> Verified
+            </div>
+          )}
         </div>
         <div className='property-card-footer'>
           <div className='property-card-footer-header'>

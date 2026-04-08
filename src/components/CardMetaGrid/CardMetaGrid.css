@@ -46,28 +46,28 @@
 
 @media screen and (max-width: 510px) {
   .card-meta-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px 10px;
   }
 
   .card-meta-item {
-    flex: 0 0 45%; /* 2 items per row */
-    gap: 4px;
-    font-size: 8px;
+    min-width: 0;
+    gap: 2px;
+    font-size: 7px;
   }
 
   .card-meta-item svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
   }
   .card-meta-icon {
-    font-size: 10px;
+    font-size: 8px;
   }
 
   .card-meta-value {
-    font-size: 8px;
-    line-height: 11px;
+    font-size: 7px;
+    line-height: 9px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -79,7 +79,7 @@
 
 @media screen and (max-width: 365px) {
   .card-meta-item {
-    flex: 0 0 calc(50% - 10px);
+    min-width: 0;
     gap: 4px;
     font-size: 6px;
   }

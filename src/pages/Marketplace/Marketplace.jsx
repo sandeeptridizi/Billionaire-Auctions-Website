@@ -306,7 +306,7 @@ const Marketplace = () => {
         groupedCategories.map(([catKey, items]) => (
           <RealEstateComponent
             key={catKey}
-            data={selectedCategory ? items : items.slice(0, 3)}
+            data={selectedCategory ? items : items.slice(0, 6)}
             name={formatCategoryLabel(catKey)}
             totalCount={items.length}
             showViewAll={!selectedCategory && items.length > 3}

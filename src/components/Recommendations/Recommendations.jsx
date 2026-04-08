@@ -55,7 +55,8 @@ const Recommendations = () => {
               : 'Price on request',
           category: formatCategoryLabel(product.category),
           location: product.meta?.city || product.meta?.location || 'Location not specified',
-          icon1: product.isFeatured ? <MdVerified /> : '',
+          isVerified: !!product.isVerified,
+          icon1: product.isVerified ? <MdVerified /> : '',
           icon2: product.isRecommended ? <FaFireFlameSimple /> : '',
           meta: product.meta || {},
           categoryKey: product.category || '',
@@ -96,15 +97,15 @@ const Recommendations = () => {
           )}
         </div>
         <div className='mobile-featured-listings-grid-container' ref={mobileGridRef}>
-          {recommendationData.map((item) => (
+          {recommendationData.slice(0, 6).map((item) => (
             <Link to={`/product/${item.id}`} className='mobile-recommendation-card-link' key={item.id}>
               <div className='featured-listings-card-container1'>
                 <div className='featured-listings-card-image-container'>
                   <img src={item.image} alt={item.title} className='mobile-apartment-img' />
                   <div className='mobile-featured-grid-item-header'>
-                    {item.icon1 && (
+                    {item.isVerified && (
                       <div className='mobile-grid-item-check-icon-container'>
-                        {item.icon1}
+                        <MdVerified />
                       </div>
                     )}
                     <div className='mobile-item-luxury-container'>

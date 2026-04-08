@@ -4,15 +4,17 @@ import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
-const RealEstateCard = ({ title, image, cost, city, location, meta = {}, categoryKey = '' }) => {
+const RealEstateCard = ({ title, image, cost, city, location, meta = {}, categoryKey = '', isVerified = false }) => {
   return (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
-          <div className='card-icon-container'>
-            <MdVerified className='real-estate-component-icon' /> Verified
-          </div>
+          {isVerified && (
+            <div className='card-icon-container'>
+              <MdVerified className='real-estate-component-icon' /> Verified
+            </div>
+          )}
           <div className='luxury-container'>Luxury</div>
         </div>
         <div className='featured-listings-card-footer'>

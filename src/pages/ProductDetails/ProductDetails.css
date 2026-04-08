@@ -335,7 +335,7 @@
 .product-check-icon {
   width: 16px;
   height: 16px;
-  color: rgba(21, 93, 252, 1);
+  color: rgba(212, 175, 55, 1);
 }
 
 .product-luxury-container {
@@ -1397,8 +1397,8 @@
     min-width: 0;
     border-radius: 6px;
     gap: 0;
-    height: 220px;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
   }
 
   .product-car {
@@ -1469,25 +1469,31 @@
 
   .product-grid-item-container {
     width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .product-grid-item {
-    gap: 0px;
+    gap: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.4);
   }
 
   .product-brand {
-    font-size: 8px;
+    font-size: 10px;
+    color: rgba(106, 114, 130, 1);
+    font-weight: 500;
   }
 
   .brand-name {
-    font-size: 10px;
-    width: 185px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 100%;
     display: block;
     word-wrap: break-word;
-  overflow-wrap: break-word;
-
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    color: rgba(44, 44, 44, 1);
   }
 
   .exterior-point-grid-container {
@@ -1607,39 +1613,38 @@
   }
 
   .product-page-safety-tips-container {
-  max-width: 82%;
-  background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);
-  border: 1.25px solid rgba(253, 199, 0, 1);
-  border-radius: 16px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+    max-width: 100%;
+    background: linear-gradient(135deg, #fefce8 0%, #ffffff 100%);
+    border: 1.25px solid rgba(253, 199, 0, 1);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.product-description-container{
-  max-width: 82%;;
-}
+  .product-description-container {
+    max-width: 100%;
+  }
 
-.brand-name{
-  max-width: 70%;
-}
+  .brand-name {
+    max-width: 100%;
+  }
 
+  .product-quick-information-container {
+    background: rgba(255, 255, 255, 1);
+    border: 1.25px solid rgba(229, 231, 235, 1);
+    padding: 16px;
+    max-width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.product-quick-information-container {
-  background: rgba(255, 255, 255, 1);
-  border: 1.25px solid rgba(229, 231, 235, 1);
-  padding: 12px;
-  max-width: 82%;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.product-page-ad-container{
-  max-width: 82%;
-}
+  .product-page-ad-container {
+    max-width: 100%;
+  }
 
 .product-page-ad-title {
     font-size: 12px;

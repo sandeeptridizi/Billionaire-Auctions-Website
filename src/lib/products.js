@@ -40,6 +40,7 @@ export const mapProductToCard = (product) => ({
   tier: product.tier || "GENERAL",
   meta: product.meta || {},
   categoryKey: product.listingType === "TO_LET" ? "TO_LET" : (product.category || ""),
+  isVerified: !!product.isVerified,
 });
 
 export const getPublicProducts = async (params = {}) => {
