@@ -34,10 +34,10 @@ const AuctionCard = ({
         <h3 className='featured-listings-title card-title-single-line'>{title}</h3>
         <div className='card-meta-grid'>
           <div className='card-meta-item'>
-            <LuCalendar className='auction-card-icon' /> {date}
+            <LuCalendar className='auction-card-icon' /> {date || "To be announced"}
           </div>
           <div className='card-meta-item'>
-            <HiOutlineLocationMarker className='auction-card-icon' /> {location}
+            <HiOutlineLocationMarker className='auction-card-icon' /> {location || "Will be announced soon"}
           </div>
           <div className='card-meta-item'>
             <BsBoxSeam className='auction-card-icon' /> {lots}

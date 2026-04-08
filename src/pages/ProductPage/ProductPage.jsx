@@ -74,6 +74,17 @@ const ProductPage = () => {
       ? product.title.toLowerCase().includes(search.toLowerCase())
       : true;
     return byTier && bySearch;
+  }).sort((a, b) => {
+    // For auctions, sort by date: nearest first, TBA/missing at end
+    if (listingType !== 'AUCTIONS') return 0;
+    const aDate = a.meta?.auctionDate || a.meta?.date || '';
+    const bDate = b.meta?.auctionDate || b.meta?.date || '';
+    const aIsTBA = !aDate || aDate === 'TBA';
+    const bIsTBA = !bDate || bDate === 'TBA';
+    if (aIsTBA && bIsTBA) return 0;
+    if (aIsTBA) return 1;
+    if (bIsTBA) return -1;
+    return new Date(aDate) - new Date(bDate);
   });
 
   return (

@@ -103,8 +103,18 @@ const Auctions = () => {
   } = useProductFilters(rawProducts, selectedCategory, 'AUCTIONS');
 
   const products = useMemo(() => {
-    return metaFilteredProducts.map((product) => {
+    const formatAuctionDate = (raw) => {
+      if (!raw || raw === "TBA") return "To be announced";
+      try {
+        const d = new Date(raw);
+        if (isNaN(d.getTime())) return "To be announced";
+        return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+      } catch { return "To be announced"; }
+    };
+
+    const mapped = metaFilteredProducts.map((product) => {
       const card = mapProductToCard(product);
+      const rawDate = product.meta?.auctionDate || product.meta?.date || "";
       return {
         id: card.id,
         title: card.title,
@@ -117,12 +127,25 @@ const Auctions = () => {
           product.meta?.auctionVenue ||
           product.meta?.location ||
           "Unspecified",
-        date: product.meta?.auctionDate || product.meta?.date || "",
+        date: formatAuctionDate(rawDate),
+        _rawDate: rawDate,
         lots: product.meta?.lots || "",
         registered: product.meta?.registered || "",
         rawCategory: product.category,
       };
     });
+
+    // Sort by auction date: nearest upcoming first, TBA at end
+    mapped.sort((a, b) => {
+      const aIsTBA = !a._rawDate || a._rawDate === "TBA";
+      const bIsTBA = !b._rawDate || b._rawDate === "TBA";
+      if (aIsTBA && bIsTBA) return 0;
+      if (aIsTBA) return 1;
+      if (bIsTBA) return -1;
+      return new Date(a._rawDate) - new Date(b._rawDate);
+    });
+
+    return mapped;
   }, [metaFilteredProducts]);
 
   const handleSwitch = (type) => {
