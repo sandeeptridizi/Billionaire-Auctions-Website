@@ -8,6 +8,7 @@ import { GrLocation } from 'react-icons/gr';
 import { MdAccessTime } from 'react-icons/md';
 import { GrCircleQuestion } from 'react-icons/gr';
 import { FaChevronDown } from 'react-icons/fa';
+import { submitEnquiry } from '../../lib/products';
 
 const faqsData = [
   {
@@ -271,9 +272,45 @@ const ContactUs = () => {
   const platformPhones = platform?.phone || ['+91 78422 01879'];
   const platformAddress = platform?.address || 'Izzat Nagar, Kondapur, Hyderabad, Telangana 500084';
   const [activeIndex, setActiveIndex] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error'
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) return;
+    setSubmitting(true);
+    setSubmitStatus(null);
+    try {
+      await submitEnquiry({
+        visitorName: formData.name,
+        visitorEmail: formData.email,
+        visitorPhone: formData.phone || undefined,
+        message: `[${formData.subject}] ${formData.message}`,
+        source: 'contact_us',
+      });
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch {
+      setSubmitStatus('error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const toggleAccordion = (index) => {
-  setActiveIndex(activeIndex === index ? null : index);
-};
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <div className='contact-us-container'>
@@ -287,28 +324,45 @@ const ContactUs = () => {
       <div className='contact-us-grid-container'>
         <div className='contact-us-form-container'>
           <h2 className='form-heading'>Send Us a Message</h2>
-          <form className='form-container'>
+          <form className='form-container' onSubmit={handleSubmit}>
+            {submitStatus === 'success' && (
+              <p className='form-success-msg'>Your message has been sent successfully!</p>
+            )}
+            {submitStatus === 'error' && (
+              <p className='form-error-msg'>Failed to send message. Please try again.</p>
+            )}
             <div className='form-label-container'>
               <label className='label-text'>Name *</label>
               <input
                 type='text'
+                name='name'
+                value={formData.name}
+                onChange={handleChange}
                 placeholder='Your full name'
                 className='form-input'
+                required
               />
             </div>
             <div className='form-grid-container'>
               <div className='form-label-container'>
                 <label className='label-text'>Email *</label>
                 <input
-                  type='text'
+                  type='email'
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder='your@email.com'
                   className='form-input'
+                  required
                 />
               </div>
               <div className='form-label-container'>
                 <label className='label-text'>Phone</label>
                 <input
                   type='text'
+                  name='phone'
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder='+91 XXXXX XXXXX'
                   className='form-input'
                 />
@@ -318,21 +372,28 @@ const ContactUs = () => {
               <label className='label-text'>Subject *</label>
               <input
                 type='text'
+                name='subject'
+                value={formData.subject}
+                onChange={handleChange}
                 placeholder='How can we help?'
                 className='form-input'
+                required
               />
             </div>
             <div className='form-label-container'>
               <label className='label-text'>Message *</label>
               <textarea
-                type='text'
+                name='message'
+                value={formData.message}
+                onChange={handleChange}
                 placeholder='Tell us more about your inquiry...'
                 className='form-input'
                 rows={5}
+                required
               ></textarea>
             </div>
-            <button type='submit' className='form-btn'>
-              <RiTelegram2Line /> Send Message
+            <button type='submit' className='form-btn' disabled={submitting}>
+              <RiTelegram2Line /> {submitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
