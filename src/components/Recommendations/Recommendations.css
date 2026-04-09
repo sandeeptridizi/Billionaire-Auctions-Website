@@ -36,9 +36,9 @@
   }
 
   .featured-listings-grid-container > * {
-    flex: 0 0 calc((100% - 16px) / 2); /* Force 2 columns */
-    min-width: 0;
-    max-width: calc((100% - 16px) / 2);
+    flex: 0 0 calc((100% - 32px) / 3); /* Force 3 columns */
+    min-width: calc((100% - 32px) / 3);
+    max-width: calc((100% - 32px) / 3);
     flex-shrink: 0;
   }
 
@@ -67,28 +67,16 @@
     color: #fff;
   }
 
-  .mobile-grid-item-growth-icon-container {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 7px;
-    color: #fff;
-    background: rgba(0, 201, 80, 0.95);
-    box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 5.23px 7.84px -1.57px rgba(0, 0, 0, 0.1);
-  }
+
 
   .mobile-grid-item-check-icon-container {
-    width: 22px;
-    height: 22px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 8.5px;
     color: rgba(212, 175, 55, 1);
     background: #fff;
     box-shadow: 0px 2.09px 3.14px -2.09px rgba(0, 0, 0, 0.1);

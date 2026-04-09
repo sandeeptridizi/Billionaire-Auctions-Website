@@ -114,9 +114,9 @@
   }
 
   .featured-listings-grid-container > * {
-    flex: 0 0 calc((100% - 16px) / 2); /* Force 2 columns */
-    min-width: 0;
-    max-width: calc((100% - 16px) / 2);
+    flex: 0 0 calc((100% - 32px) / 3); /* Force 3 columns */
+    min-width: calc((100% - 32px) / 3);
+    max-width: calc((100% - 32px) / 3);
     scroll-snap-align: start;
     flex-shrink: 0;
   }
@@ -190,9 +190,12 @@
 
   .mobile-featured-listings-grid-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .mobile-featured-listings-grid-container::-webkit-scrollbar {
@@ -200,8 +203,11 @@
   }
 
   .mobile-featured-listings-grid-container > * {
-    min-width: 0;
-    max-width: 100%;
+    flex: 0 0 calc((100% - 8px) / 3);
+    min-width: calc((100% - 8px) / 3);
+    max-width: calc((100% - 8px) / 3);
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 
   .mobile-featured-grid-item-one-container {
@@ -251,8 +257,8 @@
   }
 
   .mobile-grid-item-check-icon-container {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.9);
     display: flex;
@@ -261,8 +267,8 @@
   }
 
   .mobile-check-icon {
-    width: 10px;
-    height: 10px;
+    width: 8.5px;
+    height: 8.5px;
     color: rgba(212, 175, 55, 1);
   }
 
@@ -407,9 +413,12 @@
 
   .mobile-featured-listings-grid-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .mobile-featured-listings-grid-container::-webkit-scrollbar {
@@ -417,8 +426,11 @@
   }
 
   .mobile-featured-listings-grid-container > * {
-    min-width: 0;
-    max-width: 100%;
+    flex: 0 0 calc((100% - 8px) / 3);
+    min-width: calc((100% - 8px) / 3);
+    max-width: calc((100% - 8px) / 3);
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 
   .mobile-featured-grid-item-one-container {
@@ -451,8 +463,8 @@
   }
 
   .mobile-grid-item-check-icon-container {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.9);
     display: flex;
@@ -461,8 +473,8 @@
   }
 
   .mobile-check-icon {
-    width: 12px;
-    height: 12px;
+    width: 8.5px;
+    height: 8.5px;
     color: rgba(212, 175, 55, 1);
   }
 

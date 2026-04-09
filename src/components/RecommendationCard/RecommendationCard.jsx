@@ -14,7 +14,6 @@ const RecommendationCard = ({
   category,
   location,
   icon1,
-  icon2,
   isStatic,
   meta = {},
   categoryKey = '',
@@ -26,7 +25,7 @@ const RecommendationCard = ({
         <div className='featured-listings-card-header'>
           {icon1 && <div className='card-icon1-container'>{icon1}</div>}
           <div className='recommendation-luxury-container'>Luxury</div>
-          {/* {icon2 && <div className='card-icon2-container'>{icon2}</div>} */}
+
         </div>
         <div className='featured-listings-card-footer'>
           <h3 className='recommendation-cost'>&#8377; {cost}</h3>

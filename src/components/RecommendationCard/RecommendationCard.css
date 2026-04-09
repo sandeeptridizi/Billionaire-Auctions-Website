@@ -12,20 +12,7 @@
   color: rgba(212, 175, 55, 1);
 }
 
-.card-icon2-container {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 201, 80, 0.95);
 
-  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 1);
-}
 
 .recommendation-luxury-container {
   width: fit-content;
@@ -97,7 +84,6 @@
     line-height: 8.37px;
   }
 
-  .card-icon2-container,
   .card-icon1-container {
     width: 13.58px;
     height: 13.58px;

@@ -104,7 +104,7 @@ const BrowseByCategory = () => {
       {filtered.length > 0 ? (
         <>
           <div className='browse-category-products-grid'>
-            {filtered.slice(0, 6).map((product) => {
+            {filtered.slice(0, 3).map((product) => {
               const card = mapProductToCard(product);
               return <RealEstateComponentCard key={card.id} {...card} />;
             })}

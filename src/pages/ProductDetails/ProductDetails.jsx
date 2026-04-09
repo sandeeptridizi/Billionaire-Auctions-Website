@@ -561,15 +561,20 @@ const ProductDetails = () => {
               <div className="product-grid-item-container">
                 {Object.entries(product.meta)
                   .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views' && key !== 'socialMediaLink')
-                  .map(([key, value]) => (
-                    <div className="product-grid-item" key={key}>
-                      <p className="product-brand">
-                        {(() => { const Icon = getMetaFieldIcon(key); return <Icon className="meta-field-icon" />; })()}
-                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}
-                      </p>
-                      <p className="brand-name">{String(value)}</p>
-                    </div>
-                  ))}
+                  .map(([key, value]) => {
+                    const Icon = getMetaFieldIcon(key);
+                    return (
+                      <div className="product-grid-item" key={key}>
+                        <div className="product-grid-item-header">
+                          <Icon className="meta-field-icon" />
+                          <p className="product-grid-item-label">
+                            {key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}
+                          </p>
+                        </div>
+                        <p className="product-grid-item-value">{String(value)}</p>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           )}

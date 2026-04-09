@@ -8,7 +8,6 @@ import { FaStar } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
 import { MdVerified } from 'react-icons/md';
-import { FaFireFlameSimple } from 'react-icons/fa6';
 import { GrLocation } from 'react-icons/gr';
 import { IoMdTime } from 'react-icons/io';
 
@@ -57,7 +56,6 @@ const Recommendations = () => {
           location: product.meta?.city || product.meta?.location || 'Location not specified',
           isVerified: !!product.isVerified,
           icon1: product.isVerified ? <MdVerified /> : '',
-          icon2: product.isRecommended ? <FaFireFlameSimple /> : '',
           meta: product.meta || {},
           categoryKey: product.category || '',
         }));
@@ -111,11 +109,7 @@ const Recommendations = () => {
                     <div className='mobile-item-luxury-container'>
                       Luxury
                     </div>
-                    {item.icon2 && (
-                      <div className='mobile-grid-item-growth-icon-container'>
-                        {item.icon2}
-                      </div>
-                    )}
+
                   </div>
                   <div className='featured-listings-card-footer'>
                     <p className='mobile-item-recommendation-cost'>₹{item.cost}</p>
