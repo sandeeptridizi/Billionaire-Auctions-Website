@@ -2,6 +2,10 @@
   display: none;
 }
 
+.mobile-navbar-spacer {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .mobile-navbar-container {
     width: 100%;
@@ -10,10 +14,16 @@
     flex-direction: column;
     gap: 10px;
     padding: 12px;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
     background: #fff;
+  }
+
+  .mobile-navbar-spacer {
+    display: block;
+    height: 120px;
   }
 
   .mobile-nav-logo-links-container {

@@ -54,6 +54,7 @@ const MobileNavbar = () => {
   }, []);
 
   return (
+    <>
     <div className='mobile-navbar-container'>
       <div className='mobile-nav-logo-links-container'>
         <Link to='/'>
@@ -177,6 +178,8 @@ const MobileNavbar = () => {
         </div>
       </div>
     </div>
+    <div className='mobile-navbar-spacer' />
+    </>
   );
 };
 

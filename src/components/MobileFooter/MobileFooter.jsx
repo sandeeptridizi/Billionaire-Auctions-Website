@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import luxuryLoading from "../../assets/luxury-loading.mp4";
 import classicLoading from "../../assets/classic-loading.mp4";
 
-const allowedPaths = ["/", "/marketplace", "/auctions", "/buy-now", "/browse/about-us", "/browse/buy-sell", "/browse/our-services", "/browse/pricing-plans", "/browse/advertise", "/contact-us"];
+const allowedPaths = ["/", "/marketplace", "/auctions", "/buy-now"];
 
 const MobileFooter = () => {
   const { pathname } = useLocation();
