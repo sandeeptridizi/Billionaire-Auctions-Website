@@ -8,6 +8,7 @@ import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 const RecommendationCard = ({
   id,
   title,
+  tier,
   time,
   image,
   cost,
@@ -24,7 +25,7 @@ const RecommendationCard = ({
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           {icon1 && <div className='card-icon1-container'>{icon1}</div>}
-          <div className='recommendation-luxury-container'>Luxury</div>
+          <div className='recommendation-luxury-container'>{tier}</div>
 
         </div>
         <div className='featured-listings-card-footer'>

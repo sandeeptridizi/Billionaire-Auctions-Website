@@ -30,32 +30,93 @@
 /* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .auction-container {
-    padding: 20px 3%;
+    padding: 20px 2%;
+    margin: 32px 0;
   }
 
   .auction-heading {
-    font-size: 28px;
-    line-height: 32px;
+    font-size: 26px;
+    line-height: 30px;
+    gap: 6px;
   }
 
   .company-logo2 {
-    width: 350px;
+    width: 280px;
+    margin-bottom: 8px;
   }
 
   .auction-text {
-    font-size: 16px;
+    font-size: 14px;
+    margin: 12px 0px;
   }
 
   .experience-container {
-    width: 90%;
+    width: 85%;
+    padding: 24px;
+    gap: 12px;
   }
 
   .experience-heading {
-    font-size: 24px;
+    font-size: 18px;
+    line-height: 26px;
+    white-space: nowrap;
   }
 
   .experience-text {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .experience-icon-content-container {
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .auction-icon {
+    width: 40px;
+    height: 32px;
+    font-size: 32px;
+  }
+
+  .auction-title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .auction-desc {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .experience-content-container {
+    gap: 6px;
+    text-align: center;
+  }
+
+  .auction-btn-container {
+    gap: 12px;
+    margin: 16px 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .start-buying-btn {
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .list-your-item-btn {
+    width: 180px;
+    height: 50px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .auction-footer {
+    font-size: 12px;
+    line-height: 18px;
   }
 }
 
@@ -106,16 +167,18 @@
 .experience-icon-content-container {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
+  gap: 12px;
 }
 
 .experience-content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 8px;
+  text-align: center;
 }
 
 .auction-icon {
@@ -231,13 +294,18 @@
 
   .experience-icon-content-container {
     width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 4px;
   }
 
   .experience-content-container {
     width: auto;
     display: flex;
     flex-direction: column;
-    gap: 4.64px;
+    gap: 3px;
+    text-align: center;
   }
 
   .auction-icon {
@@ -248,12 +316,12 @@
 
   .auction-title {
     font-size: 9px;
-    line-height: 9.28px;
+    line-height: 12px;
   }
 
-  .auctions-desc {
+  .auction-desc {
     font-size: 7px;
-    line-height: 7.73px;
+    line-height: 10px;
   }
 
   .auction-btn-container {

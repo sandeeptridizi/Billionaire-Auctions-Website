@@ -199,6 +199,8 @@
   font-weight: 400;
   line-height: 24px;
   color: rgba(74, 85, 101, 1);
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .contact-us-faqs-container {
