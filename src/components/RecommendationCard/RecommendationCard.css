@@ -78,10 +78,12 @@
   }
 
   .recommendation-luxury-container {
-    width: 30.85px;
-    height: 13.58px;
+    width: fit-content;
+    height: auto;
     font-size: 6.27px;
     line-height: 8.37px;
+    padding: 3px 8px;
+    border-radius: 16px;
   }
 
   .card-icon1-container {

@@ -703,12 +703,16 @@
   }
 
   .package-header {
-    gap: 16px;
+    gap: 8px;
   }
 
   .package-heading,
   .package-cost {
     font-size: 24px;
+  }
+
+  .package-cost {
+    margin-top: -8px; /* Specifically pull the price closer to the title */
   }
 
   .package-btn {
@@ -726,11 +730,14 @@
   }
 
   .package-tag-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: -35px auto 20px;
     font-size: 10px;
-    top: 20px;
-    right: 5px;
     gap: 3px;
-    padding: 8px;
+    padding: 8px 12px;
+    z-index: 10;
   }
 
   .media-promotion-container {

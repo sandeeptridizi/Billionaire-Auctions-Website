@@ -113,22 +113,47 @@ export const BooleanFilter = ({ value, onChange }) => (
   </div>
 );
 
-export const TextFilter = ({ label, value, onChange, suggestions = [] }) => (
-  <div className="filter-widget">
-    <input
-      type="text"
-      className="filter-text-input"
-      placeholder={`Search ${label}...`}
-      value={value || ''}
-      onChange={(e) => onChange(e.target.value || null)}
-      list={suggestions.length > 0 ? `suggestions-${label}` : undefined}
-    />
-    {suggestions.length > 0 && (
-      <datalist id={`suggestions-${label}`}>
-        {suggestions.map((s) => (
-          <option key={s} value={s} />
-        ))}
-      </datalist>
-    )}
-  </div>
-);
+export const TextFilter = ({ label, value, onChange, suggestions = [] }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const filteredSuggestions = suggestions.filter(s => 
+    !value || s.toLowerCase().includes(value.toLowerCase())
+  );
+
+  return (
+    <div className="filter-widget filter-searchable-select">
+      <div className="filter-input-wrapper">
+        <input
+          type="text"
+          className="filter-text-input"
+          placeholder={`Search ${label}...`}
+          value={value || ''}
+          onChange={(e) => {
+            onChange(e.target.value || null);
+            setIsOpen(true);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+        />
+        <LuChevronDown className={`filter-select-icon ${isOpen ? 'rotated' : ''}`} />
+      </div>
+      
+      {isOpen && filteredSuggestions.length > 0 && (
+        <div className="filter-custom-dropdown">
+          {filteredSuggestions.map((s) => (
+            <div 
+              key={s} 
+              className="filter-dropdown-item"
+              onClick={() => {
+                onChange(s);
+                setIsOpen(false);
+              }}
+            >
+              {s}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};

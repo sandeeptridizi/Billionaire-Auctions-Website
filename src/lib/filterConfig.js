@@ -6,7 +6,14 @@ export const FILTER_TYPES = {
   TEXT: 'text',
 };
 
-const commonLocationFilter = { key: 'city', label: 'City', type: FILTER_TYPES.SELECT, deriveOptions: true, fallbacks: ['location', 'locality'] };
+const commonLocationFilter = { 
+  key: 'city', 
+  label: 'City', 
+  type: FILTER_TYPES.TEXT, 
+  deriveOptions: true, 
+  options: ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Pune', 'Surat'],
+  fallbacks: ['location', 'locality'] 
+};
 const priceRangeFilter = { key: 'price', label: 'Price Range', type: FILTER_TYPES.RANGE, unit: '₹', isTopLevel: true };
 
 export const categoryFilterConfig = {

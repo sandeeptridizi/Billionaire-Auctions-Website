@@ -193,11 +193,13 @@
 
   .real-estate-card-icon-container {
     height: auto;
-    padding: 2px 5px;
+    padding: 4px 8px;
     border-radius: 16px;
-    font-size: 6px;
-    line-height: 9px;
-    gap: 2px;
+    font-size: 11px;
+    line-height: 14px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
   }
 
   .real-estate-luxury-container {
@@ -207,6 +209,13 @@
     font-size: 6px;
     line-height: 9px;
     gap: 2px;
+    display: flex;
+    align-items: center;
+  }
+
+  .real-estate-luxury-container svg {
+    font-size: 8px;
+    margin-bottom: 1px; /* Subtle alignment fix for smaller scale */
   }
 
   .card-wishlist-btn {

@@ -267,8 +267,8 @@ import useAppContext from '../../context/AppContext';
 
 const ContactUs = () => {
   const { platform } = useAppContext();
-  const platformEmail = platform?.email?.[0] || 'elite@billionaireauction.com';
-  const platformPhone = platform?.phone?.[0] || '+91 78422 01879';
+  const platformEmails = platform?.email || ['elite@billionaireauction.com'];
+  const platformPhones = platform?.phone || ['+91 78422 01879'];
   const platformAddress = platform?.address || 'Izzat Nagar, Kondapur, Hyderabad, Telangana 500084';
   const [activeIndex, setActiveIndex] = useState(null);
   const toggleAccordion = (index) => {
@@ -345,7 +345,9 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Email</h3>
-                <p className='email'>{platformEmail}</p>
+                {platformEmails.map((email, idx) => (
+                  <p key={idx} className='email'>{email}</p>
+                ))}
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -354,7 +356,9 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Phone</h3>
-                <p className='email'>{platformPhone}</p>
+                {platformPhones.map((phone, idx) => (
+                  <p key={idx} className='email'>{phone}</p>
+                ))}
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -455,7 +459,7 @@ const ContactUs = () => {
           help.
         </p>
         <button className='contact-footer-btn' onClick={() =>
-    (window.location.href = `mailto:${platformEmail}?subject=Support Request`)}>
+    (window.location.href = `mailto:${platformEmails[0]}?subject=Support Request`)}>
           <MdMailOutline /> Contact Support
         </button>
       </div>

@@ -69,6 +69,9 @@ const Advertise = () => {
         </p>
       </div>
       <div className='package-container'>
+        <div className='package-tag-container'>
+          <FaStar className='package-star-icon' /> Most Popular
+        </div>
         <div className='package-header'>
           <h2 className='package-heading'>Digital Media Package</h2>
           <h2 className='package-cost'>
@@ -109,9 +112,6 @@ const Advertise = () => {
             <RiErrorWarningLine className='package-footer-icon' /> Additional
             travel charges may apply for other locations
           </div>
-        </div>
-        <div className='package-tag-container'>
-          <FaStar className='package-star-icon' /> Most Popular
         </div>
       </div>
       <div className='media-promotion-container'>

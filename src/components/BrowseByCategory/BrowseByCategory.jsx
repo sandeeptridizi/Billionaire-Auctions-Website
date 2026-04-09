@@ -96,11 +96,11 @@ const BrowseByCategory = () => {
         })}
       </div>
         <Link
-            className='browse-category-view-all-btn'
-            onClick={() => navigate(`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`)}
-          >
-            View All <GoArrowRight className='browse-category-view-all-arrow' />
-          </Link>
+          className='browse-category-view-all-btn'
+          to={`/marketplace?category=${MARKETPLACE_CATEGORY_KEY[category]}`}
+        >
+          View All <GoArrowRight className='browse-category-view-all-arrow' />
+        </Link>
       {filtered.length > 0 ? (
         <>
           <div className='browse-category-products-grid'>

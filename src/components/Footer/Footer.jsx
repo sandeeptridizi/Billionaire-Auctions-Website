@@ -14,8 +14,8 @@ import useAppContext from '../../context/AppContext';
 
 const Footer = () => {
   const { platform } = useAppContext();
-  const platformEmail = platform?.email?.[0] || 'Elite@billionaireauction.com';
-  const platformPhone = platform?.phone?.[0] || '+91 78422 01879';
+  const platformEmails = platform?.email || ['Elite@billionaireauction.com'];
+  const platformPhones = platform?.phone || ['+91 78422 01879'];
   const platformAddress = platform?.address || 'Izzath Nagar, Kondapur, Hyderabad, Telangana 500084';
   return (
     <div className='footer-container'>
@@ -122,22 +122,26 @@ const Footer = () => {
           </div>
         <div className='footer-link-container'>
           <h3 className='footer-link-heading'>Customer Care</h3>
-          <div className='footer-contact-info-container'>
-            <a href={`tel:${platformPhone.replace(/\s/g, '')}`} className='footer-icon-info-container'>
-              <FiPhone className='footer-icons' /> {platformPhone}
-            </a>
-          </div>
+          {platformPhones.map((phone, idx) => (
+            <div key={idx} className='footer-contact-info-container'>
+              <a href={`tel:${phone.replace(/\s/g, '')}`} className='footer-icon-info-container'>
+                <FiPhone className='footer-icons' /> {phone}
+              </a>
+            </div>
+          ))}
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
               <GrLocation className='footer-icons' /> {platformAddress}
             </div>
           </div>
-          <div className='footer-contact-info-container'>
-            <a href={`mailto:${platformEmail}`} className='footer-icon-info-container'>
-              <MdMailOutline className='footer-icons' />
-              {platformEmail}
-            </a>
-          </div>
+          {platformEmails.map((email, idx) => (
+            <div key={idx} className='footer-contact-info-container'>
+              <a href={`mailto:${email}`} className='footer-icon-info-container'>
+                <MdMailOutline className='footer-icons' />
+                {email}
+              </a>
+            </div>
+          ))}
         </div>
       </div>
       <div className='footer-copy-right-container'>

@@ -23,6 +23,7 @@ import { LuHotel } from 'react-icons/lu';
 import { GrLocation } from 'react-icons/gr';
 import { FaArrowRight } from 'react-icons/fa6';
 import { LuCircleCheckBig } from 'react-icons/lu';
+import useAppContext from '../../context/AppContext';
 
 const aboutData = [
   {
@@ -108,12 +109,20 @@ const futureData = [
 ];
 
 const AboutUs = () => {
+  const { platform } = useAppContext();
+  const aboutText = platform?.about || "Billionaire Auction is an all-in-one luxury and classic platform designed to connect buyers and sellers for valuable assets and premium listings.\nThe platform brings together Marketplace, Buy Now, Offline Auctions, and To-Let listings in one trusted ecosystem where individuals, dealers, and businesses can list and discover assets with transparency and confidence.\nOur goal is to provide a modern platform where premium assets such as real estate, luxury cars, watches, antiques, collectibles, art, furniture, and other valuable items can be listed, promoted, and connected with serious buyers.";
+
   return (
     <div className='about-us-container'>
       <div className='about-us-background'>
         <h1 className='about-us-heading'>About Billionaire Auction</h1>
         <p className='about-us-text'>
-          Billionaire Auction is an all-in-one luxury and classic platform designed to connect buyers and sellers for valuable assets and premium listings. <br></br>The platform brings together Marketplace, Buy Now, Offline Auctions, and To-Let listings in one trusted ecosystem where individuals, dealers, and businesses can list and discover assets with transparency and confidence. <br></br>Our goal is to provide a modern platform where premium assets such as real estate, luxury cars, watches, antiques, collectibles, art, furniture, and other valuable items can be listed, promoted, and connected with serious buyers.
+          {aboutText.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index !== aboutText.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </p>
         <div className='aboutusherobanner'>
           <div className='aboutusherocontainer'>

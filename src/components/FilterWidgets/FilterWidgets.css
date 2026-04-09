@@ -192,6 +192,65 @@
   color: rgba(153, 153, 153, 1);
 }
 
+.filter-searchable-select {
+  position: relative;
+}
+
+.filter-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-select-icon {
+  position: absolute;
+  right: 12px;
+  color: rgba(106, 114, 130, 1);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.filter-select-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.filter-custom-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1.25px solid rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filter-dropdown-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: rgba(54, 65, 83, 1);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.filter-dropdown-item:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: rgba(212, 175, 55, 1);
+}
+
+.filter-custom-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter-custom-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+}
+
 @media screen and (max-width: 510px) {
   .filter-select,
   .filter-text-input,

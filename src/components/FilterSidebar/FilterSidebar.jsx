@@ -113,7 +113,7 @@ const FilterSidebar = ({
             label={def.label}
             value={filters[def.key]}
             onChange={(v) => onFilterChange(def.key, v)}
-            suggestions={derivedOptionsMap[def.key] || []}
+            suggestions={Array.from(new Set([...(def.options || []), ...(derivedOptionsMap[def.key] || [])])).sort()}
           />
         );
 

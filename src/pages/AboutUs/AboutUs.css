@@ -17,9 +17,9 @@
   padding: 16px;
 }
 
-.aboutusnavlogo{
-  width: 160px;
-  height: 40px;
+.aboutusnavlogo {
+  width: 32px;
+  height: 32px;
   color: #d4af37;
 }
 
@@ -198,6 +198,7 @@ object-position: 50% 35%;
   width: 32px;
   height: 32px;
   color: rgba(212, 175, 55, 1);
+  flex-shrink: 0;
 }
 
 .founder-education-details {
@@ -626,15 +627,16 @@ object-position: 50% 35%;
 }
 
 .location-icon-container {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(212, 175, 55, 1);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
+  flex-shrink: 0;
 }
 
 .location-name {
@@ -759,6 +761,7 @@ object-position: 50% 35%;
   width: 20px;
   height: 20px;
   color: rgba(212, 175, 55, 1);
+  flex-shrink: 0;
 }
 
 .community-footer-text {
@@ -918,8 +921,8 @@ object-position: 50% 35%;
   }
 
   .person-icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 
   .founder-heading {
@@ -1072,8 +1075,8 @@ object-position: 50% 35%;
   }
 
   .graduate-icon {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 
   .education-heading {
@@ -1240,8 +1243,8 @@ object-position: 50% 35%;
   }
 
   .hotel-icon {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
   }
 
   .offline-luxury-auctions-heading {
@@ -1273,8 +1276,8 @@ object-position: 50% 35%;
   }
 
   .community-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 
   .community-heading {
