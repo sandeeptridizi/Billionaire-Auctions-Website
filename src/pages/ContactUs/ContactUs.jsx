@@ -263,7 +263,13 @@ const faqsData = [
   },
 ];
 
+import useAppContext from '../../context/AppContext';
+
 const ContactUs = () => {
+  const { platform } = useAppContext();
+  const platformEmail = platform?.email?.[0] || 'elite@billionaireauction.com';
+  const platformPhone = platform?.phone?.[0] || '+91 78422 01879';
+  const platformAddress = platform?.address || 'Izzat Nagar, Kondapur, Hyderabad, Telangana 500084';
   const [activeIndex, setActiveIndex] = useState(null);
   const toggleAccordion = (index) => {
   setActiveIndex(activeIndex === index ? null : index);
@@ -339,7 +345,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Email</h3>
-                <p className='email'>elite@billionaireauction.com</p>
+                <p className='email'>{platformEmail}</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -348,8 +354,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Phone</h3>
-                <p className='email'>+91 78422 01879</p>
-                <p className='email'>+91 78425 01879</p>
+                <p className='email'>{platformPhone}</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -358,8 +363,7 @@ const ContactUs = () => {
               </div>
               <div className='contact-us-content-container'>
                 <h3 className='content-heading'>Address</h3>
-                <p className='email'>Izzat Nagar, Kondapur</p>
-                <p className='email'>Hyderabad, Telangana 500084</p>
+                <p className='email'>{platformAddress}</p>
               </div>
             </div>
             <div className='contact-us-icon-content-container'>
@@ -451,7 +455,7 @@ const ContactUs = () => {
           help.
         </p>
         <button className='contact-footer-btn' onClick={() =>
-    (window.location.href ="mailto:Elite@billionaireauction.com?subject=Support Request")}>
+    (window.location.href = `mailto:${platformEmail}?subject=Support Request`)}>
           <MdMailOutline /> Contact Support
         </button>
       </div>

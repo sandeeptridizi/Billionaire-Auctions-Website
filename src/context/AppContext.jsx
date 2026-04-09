@@ -25,6 +25,7 @@ export const COUNTRIES = [
 export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
+  const [platform, setPlatform] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(() => {
     try {
       return localStorage.getItem(COUNTRY_KEY) || 'INDIA';
@@ -55,6 +56,12 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchProducts(selectedCountry);
   }, [selectedCountry]);
+
+  useEffect(() => {
+    api.get('/api/platform')
+      .then((res) => setPlatform(res?.data?.data || null))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(COUNTRY_KEY, selectedCountry);
@@ -117,7 +124,7 @@ export const AppProvider = ({ children }) => {
   const countryLabel = COUNTRIES.find((c) => c.value === selectedCountry)?.label || selectedCountry;
 
   return (
-    <AppContext.Provider value={{ products, wishlist, toggleWishlist, isWishlisted, selectedCountry, setSelectedCountry, countryLabel }}>
+    <AppContext.Provider value={{ products, wishlist, toggleWishlist, isWishlisted, selectedCountry, setSelectedCountry, countryLabel, platform }}>
       {children}
     </AppContext.Provider>
   );

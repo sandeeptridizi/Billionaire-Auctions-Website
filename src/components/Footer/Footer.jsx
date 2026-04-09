@@ -10,8 +10,13 @@ import { GrLocation } from 'react-icons/gr';
 import { FiPhone } from 'react-icons/fi';
 import { MdMailOutline } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import useAppContext from '../../context/AppContext';
 
 const Footer = () => {
+  const { platform } = useAppContext();
+  const platformEmail = platform?.email?.[0] || 'Elite@billionaireauction.com';
+  const platformPhone = platform?.phone?.[0] || '+91 78422 01879';
+  const platformAddress = platform?.address || 'Izzath Nagar, Kondapur, Hyderabad, Telangana 500084';
   return (
     <div className='footer-container'>
       <div className='footer-info-links-container'>
@@ -118,22 +123,19 @@ const Footer = () => {
         <div className='footer-link-container'>
           <h3 className='footer-link-heading'>Customer Care</h3>
           <div className='footer-contact-info-container'>
-            <a href="tel:+917842201879" className='footer-icon-info-container'>
-              <FiPhone className='footer-icons' /> +91 78422 01879
-            </a>
-            <a href="tel:+917842501879" className='footer-icon-info-container'>
-              <FiPhone className='footer-icons' /> +91 78425 01879
+            <a href={`tel:${platformPhone.replace(/\s/g, '')}`} className='footer-icon-info-container'>
+              <FiPhone className='footer-icons' /> {platformPhone}
             </a>
           </div>
           <div className='footer-contact-info-container'>
             <div className='footer-icon-info-container'>
-              <GrLocation className='footer-icons' /> Izzath Nagar, Kondapur, Hyderabad, Telangana 500084
+              <GrLocation className='footer-icons' /> {platformAddress}
             </div>
           </div>
           <div className='footer-contact-info-container'>
-            <a href="mailto:Elite@billionaireauction.com" className='footer-icon-info-container'>
+            <a href={`mailto:${platformEmail}`} className='footer-icon-info-container'>
               <MdMailOutline className='footer-icons' />
-              Elite@billionaireauction.com
+              {platformEmail}
             </a>
           </div>
         </div>
