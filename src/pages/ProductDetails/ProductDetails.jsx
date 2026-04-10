@@ -541,7 +541,7 @@ const ProductDetails = () => {
       </div>
       <div className="product-page-specifications-container">
         <div className="product-page-specifications">
-          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views' && k !== 'socialMediaLink').length > 0 && (
+          {product.meta && typeof product.meta === 'object' && Object.keys(product.meta).filter(k => k !== 'location' && k !== 'views' && k !== 'socialMediaLink' && k !== 'status' && k !== 'toletCategory').length > 0 && (
             <div className="product-description-container">
               <h2 className="product-description">
                 {product.category === "CARS" || product.category === "BIKES" ? (
@@ -560,7 +560,7 @@ const ProductDetails = () => {
               </h2>
               <div className="product-grid-item-container">
                 {Object.entries(product.meta)
-                  .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views' && key !== 'socialMediaLink')
+                  .filter(([key]) => key !== 'location' && key !== 'city' && key !== 'views' && key !== 'socialMediaLink' && key !== 'status' && key !== 'toletCategory')
                   .map(([key, value]) => {
                     const Icon = getMetaFieldIcon(key);
                     return (
