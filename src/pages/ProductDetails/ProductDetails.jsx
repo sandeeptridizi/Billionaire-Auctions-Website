@@ -21,7 +21,7 @@ import {
 import { MdVerified } from "react-icons/md";
 import { FaCrown } from "react-icons/fa6";
 import { GoHomeFill } from 'react-icons/go';
-import { formatCategoryLabel, getPublicProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
+import { formatCategoryLabel, getPublicProducts, getMarketplaceProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import EMICalculator from "../../components/EMICalculator/EMICalculator";
 import { getFile } from "../../lib/s3";
@@ -260,7 +260,7 @@ const ProductDetails = () => {
     if (!product?.category) return;
     const fetchFeatured = async () => {
       try {
-        const list = await getPublicProducts({ category: product.category, country: selectedCountry });
+        const list = await getMarketplaceProducts({ category: product.category, country: selectedCountry });
         setFeatured(list.filter((item) => item.id !== id && item.category === product.category));
       } catch (error) {
         // eslint-disable-next-line no-console
