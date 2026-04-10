@@ -722,7 +722,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="featured-listings-content-container1">
-                <h3 className="featured-listings-title card-title-single-line">{item.title}</h3>
+                <h3 className="featured-listings-title card-title-multi-line">{item.title}</h3>
                 <CardMetaGrid categoryKey={item.category} meta={item.meta || {}} />
               </div>
             </div>

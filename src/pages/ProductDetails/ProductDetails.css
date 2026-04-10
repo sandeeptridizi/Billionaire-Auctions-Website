@@ -131,7 +131,8 @@
 }
 
 .product-page-image-info-container {
-  width: 90%;
+  width: 100%;
+  max-width: 90%;
   margin: 0px auto;
   display: grid;
   grid-template-columns: minmax(0, 45%) minmax(0, 55%);
@@ -142,6 +143,7 @@
   width: 100%;
   min-width: 0;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .product-main-image-container {
@@ -778,11 +780,6 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.product-page-ad:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
-}
-
 .product-page-ad-clickable {
   cursor: pointer;
 }
@@ -1293,8 +1290,59 @@
   border-radius:6px;
 }
 
-.similarproduct{
+.similarproduct {
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.similarproduct .featured-listings-card-container2 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.similarproduct .featured-listings-card-image-container {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.similarproduct .featured-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.similarproduct .featured-listings-content-container1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 4px; /* Reduced from 8px to minimize gaps */
+}
+
+.card-title-multi-line {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1a1a1a;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 2.8em;
+  margin-bottom: 2px;
 }
 
 .product-footer-btn-container {
@@ -1588,12 +1636,24 @@
 
   .similar-luxury-items-grid-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
+    gap: 8px;
   }
 
-  .luxury-item-img-container {
-    height: auto;
-    aspect-ratio: 1 / 1;
+  .similarproduct .featured-listings-content-container1 {
+    padding: 6px 4px;
+    gap: 4px;
+  }
+
+  .card-title-multi-line {
+    font-size: 10px;
+    line-height: 1.3;
+    min-height: 2.6em;
+    margin-bottom: 0;
+  }
+
+  .similarproduct .featured-listings-card-image-container {
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
   }
 
   .luxury-item-img {
