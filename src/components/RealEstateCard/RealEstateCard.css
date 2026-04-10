@@ -30,6 +30,9 @@
 .luxury-container {
   min-width: 80px;
   padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
   border-radius: 32px;
   font-size: 12px;
@@ -89,5 +92,6 @@
     font-size: 8px;
     line-height: 11px;
     border-radius: 16px;
+    gap: 3px;
   }
 }

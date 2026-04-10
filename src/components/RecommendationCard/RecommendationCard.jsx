@@ -3,6 +3,7 @@ import './RecommendationCard.css';
 import { Link } from 'react-router-dom';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
+import { FaCrown } from 'react-icons/fa6';
 import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
 const RecommendationCard = ({
@@ -25,7 +26,10 @@ const RecommendationCard = ({
         <img src={image} alt={title} className='featured-img' />
         <div className='featured-listings-card-header'>
           {icon1 && <div className='card-icon1-container'>{icon1}</div>}
-          <div className='recommendation-luxury-container'>{tier}</div>
+          <div className='recommendation-luxury-container'>
+            <FaCrown />
+            {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
+          </div>
 
         </div>
         <div className='featured-listings-card-footer'>

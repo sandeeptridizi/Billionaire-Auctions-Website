@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdAccessTime } from 'react-icons/md';
+import { FaCrown } from 'react-icons/fa6';
 import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
 const FeaturedListingsCard = ({
@@ -15,6 +16,7 @@ const FeaturedListingsCard = ({
   cost,
   category,
   location,
+  tier,
   isStatic,
   meta = {},
   categoryKey = '',
@@ -30,7 +32,10 @@ const FeaturedListingsCard = ({
               <MdVerified className='check-icon' />
             </div>
           )}
-          <div className='luxury-container'>Luxury</div>
+          <div className='luxury-container'>
+            <FaCrown />
+            {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
+          </div>
         </div>
         <div className='featured-listings-card-footer'>
           <h3 className='cost'>&#8377; {cost}</h3>

@@ -55,6 +55,7 @@ const FeaturedListings = () => {
               : 'Price on request',
           category: formatCategoryLabel(product.category),
           location: product.meta?.city || product.meta?.location || 'Location not specified',
+          tier: product.tier || 'GENERAL',
           meta: product.meta || {},
           categoryKey: product.category || '',
           isVerified: !!product.isVerified,
@@ -110,7 +111,10 @@ const FeaturedListings = () => {
                         <MdVerified className='mobile-check-icon' />
                       </div>
                     )}
-                    <div className='mobile-item-luxury-container'>Luxury</div>
+                    <div className='mobile-item-luxury-container'>
+                      <FaCrown />
+                      {item.tier ? item.tier.charAt(0) + item.tier.slice(1).toLowerCase() : 'General'}
+                    </div>
                   </div>
                   <div className='featured-listings-card-footer'>
                     <p className='mobile-item-cost'>₹{item.cost}</p>

@@ -29,6 +29,7 @@ const RealEstate = () => {
             : 'Price on request',
           city: product.meta?.city || product.meta?.location || 'Location not specified',
           location: product.meta?.city || product.meta?.location || 'Location not specified',
+          tier: product.tier || 'GENERAL',
           meta: product.meta || {},
           categoryKey: product.category || '',
         }));

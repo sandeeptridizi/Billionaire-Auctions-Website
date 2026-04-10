@@ -3,7 +3,7 @@ import './Recommendations.css';
 import { useEffect, useState, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa6';
+import { FaStar, FaCrown } from 'react-icons/fa6';
 
 import { FaAngleLeft } from 'react-icons/fa6';
 import { FaAngleRight } from 'react-icons/fa6';
@@ -108,7 +108,8 @@ const Recommendations = () => {
                       </div>
                     )}
                     <div className='mobile-item-luxury-container'>
-                      Luxury
+                      <FaCrown />
+                      {item.tier ? item.tier.charAt(0) + item.tier.slice(1).toLowerCase() : 'General'}
                     </div>
 
                   </div>

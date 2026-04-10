@@ -2,9 +2,10 @@ import './RealEstateCard.css';
 
 import { MdVerified } from 'react-icons/md';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { FaCrown } from 'react-icons/fa6';
 import CardMetaGrid from '../CardMetaGrid/CardMetaGrid';
 
-const RealEstateCard = ({ title, image, cost, city, location, meta = {}, categoryKey = '', isVerified = false }) => {
+const RealEstateCard = ({ title, image, cost, city, location, tier, meta = {}, categoryKey = '', isVerified = false }) => {
   return (
     <div className='featured-listings-card-container'>
       <div className='featured-listings-card-image-container'>
@@ -15,7 +16,10 @@ const RealEstateCard = ({ title, image, cost, city, location, meta = {}, categor
               <MdVerified className='real-estate-component-icon' /> Verified
             </div>
           )}
-          <div className='luxury-container'>Luxury</div>
+          <div className='luxury-container'>
+            <FaCrown />
+            {tier ? tier.charAt(0) + tier.slice(1).toLowerCase() : 'General'}
+          </div>
         </div>
         <div className='featured-listings-card-footer'>
           <h3 className='cost'>&#8377; {cost}</h3>

@@ -250,15 +250,17 @@
 
   .mobile-wishlist-badge {
     position: absolute;
-    top: -6px;
-    right: -6px;
+    top: -5px;
+    right: -5px;
     background: #d4af37;
     color: #fff;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 700;
-    width: 14px;
-    height: 14px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
     border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
@@ -375,9 +377,9 @@
     }
 
     .mobile-wishlist-badge {
-      width: 16px;
-      height: 16px;
-      font-size: 9px;
+      min-width: 18px;
+      height: 18px;
+      font-size: 10px;
     }
 
     .mobile-avatar {
@@ -510,9 +512,9 @@
   }
 
   .mobile-wishlist-badge {
-    width: 12px;
-    height: 12px;
-    font-size: 7px;
+    min-width: 14px;
+    height: 14px;
+    font-size: 8px;
   }
 
   .mobile-login-btn {

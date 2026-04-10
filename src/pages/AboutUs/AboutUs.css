@@ -940,9 +940,9 @@ object-position: 50% 35%;
   }
 
   .about-us-founder-left {
-    position: relative; /* Remove sticky on mobile */
+    position: relative;
     top: 0;
-    z-index: 2;
+    z-index: auto;
   }
 
   /* ... */
@@ -1336,13 +1336,15 @@ object-position: 50% 35%;
   }
 
   .about-us-founder-left {
-    top: 60px;   /* less sticky offset */
+    position: relative;
+    top: 0;
+    z-index: auto;
   }
 
-  /* 🔥 FIX OVERFLOW */
   .founder-background-container {
-    width: 90%;        /* ✅ instead of 400px */
-    height: 220px;      /* smaller image */
+    width: 90%;
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 
   .about-us-founder-right {
