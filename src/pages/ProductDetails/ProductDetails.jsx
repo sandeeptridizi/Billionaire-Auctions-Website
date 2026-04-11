@@ -21,7 +21,7 @@ import {
 import { MdVerified } from "react-icons/md";
 import { FaCrown } from "react-icons/fa6";
 import { GoHomeFill } from 'react-icons/go';
-import { formatCategoryLabel, getPublicProducts, getMarketplaceProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
+import { formatCategoryLabel, getMarketplaceProducts, getPublicProductById, submitEnquiry } from "../../lib/products";
 import "./ProductDetails.css";
 import EMICalculator from "../../components/EMICalculator/EMICalculator";
 import { getFile } from "../../lib/s3";
@@ -288,6 +288,17 @@ const ProductDetails = () => {
     );
   }
 
+  // Determine breadcrumb based on product listing type
+  const getBreadcrumbInfo = () => {
+    if (product.listingType === "TO_LET") {
+      return { path: "/to-let", label: "To Let" };
+    }
+    // Default to Marketplace for other types
+    return { path: "/marketplace", label: "Marketplace" };
+  };
+
+  const breadcrumbInfo = getBreadcrumbInfo();
+
   return (
     <div className="product-page-container">
       <div className="product-page-search-category-container">
@@ -295,7 +306,7 @@ const ProductDetails = () => {
           <div className="product-page-bread-crums">
             <Link to="/" className="breadcrumb-link"><LuHouse className="breadcrumb-icon" /> Home</Link>
             <LuChevronRight className="breadcrumb-separator" />
-            <Link to="/marketplace" className="breadcrumb-link">Marketplace</Link>
+            <Link to={breadcrumbInfo.path} className="breadcrumb-link">{breadcrumbInfo.label}</Link>
             <LuChevronRight className="breadcrumb-separator" />
             <span className="product-category">{product.title}</span>
           </div>
