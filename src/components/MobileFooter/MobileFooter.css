@@ -141,6 +141,24 @@
   .hammer { right: 50px; bottom: 30px; }
   .tolet { right: 10px; bottom: -28px; }
 
+  .footer-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+
+  .footer-loader-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* Tablet Upscaling Context (iPad Mini/Air) */
   @media screen and (min-width: 511px) {
     .footer-wrapper {

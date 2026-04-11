@@ -413,6 +413,8 @@
 
   .our-partners-grid-container {
     grid-template-columns: repeat(2, 1fr);
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .our-partners-text {
@@ -467,10 +469,12 @@
 @media screen and (max-width: 510px) {
   .our-partners-container {
     width: 100%;
+    margin-top: -2.5rem;
+    gap: 1rem;
   }
 
   .our-partners-background {
-    min-height: 160px;
+    min-height: 140px;
     padding: 20px 12px;
     background-size: contain;
   }
@@ -493,8 +497,16 @@
     font-size: 16px;
   }
 
+  .partners-icon-container {
+    flex-shrink: 0;
+    min-width: 56px;
+    min-height: 56px;
+  }
+
   .our-partners-grid-container {
     grid-template-columns: 1fr;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .our-services-offer-grid-container1 {
