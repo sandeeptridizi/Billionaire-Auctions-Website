@@ -12,6 +12,15 @@
   color: rgba(212, 175, 55, 1);
 }
 
+.featured-listings-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 
 
 .recommendation-luxury-container {
@@ -21,7 +30,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  background:  rgba(212, 175, 55, 1);
+  background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
   box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   padding: 8px;
@@ -68,6 +77,12 @@
 }
 
 @media screen and (max-width: 510px) {
+  .featured-listings-card-header {
+    top: 4px;
+    right: 4px;
+    gap: 2px;
+  }
+
   .recommendation-cost {
     font-size: 9.41px;
     line-height: 14.64px;
@@ -76,16 +91,34 @@
   .recommendation-category {
     font-size: 6.27px;
     line-height: 8.37px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .recommendation-luxury-container {
     width: fit-content;
     height: auto;
+    font-size: 6px;
+    line-height: 9px;
+    padding: 2px 5px;
+    border-radius: 16px;
+    gap: 2px;
+    display: flex;
+    align-items: center;
+  }
+
+  .recommendation-luxury-container svg {
+    font-size: 8px;
+    margin-bottom: 1px;
+  }
+
+  .featured-listings-time {
     font-size: 6.27px;
     line-height: 8.37px;
-    padding: 3px 8px;
-    border-radius: 16px;
-    gap: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .card-icon1-container {

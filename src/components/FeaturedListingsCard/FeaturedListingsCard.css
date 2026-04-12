@@ -233,11 +233,18 @@
     width: fit-content;
     height: auto;
     border-radius: 16px;
-    padding: 3px 8px;
-    font-size: 8px;
-    line-height: 11px;
+    padding: 2px 5px;
+    font-size: 6px;
+    line-height: 9px;
     font-weight: 700;
-    gap: 3px;
+    gap: 2px;
+    display: flex;
+    align-items: center;
+  }
+
+  .luxury-container svg {
+    font-size: 8px;
+    margin-bottom: 1px;
   }
 
   .featured-listings-card-footer {
@@ -275,11 +282,17 @@
   .featured-listings-year {
     font-size: 7px;
     line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .year {
     font-size: 7px;
     line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .featured-listings-time-category-container {
@@ -292,5 +305,8 @@
   .featured-listings-category {
     font-size: 7px;
     line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

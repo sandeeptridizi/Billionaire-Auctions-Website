@@ -469,13 +469,13 @@
 @media screen and (max-width: 510px) {
   .our-partners-container {
     width: 100%;
-    margin-top: -2.5rem;
-    gap: 1rem;
+    margin-top: -5rem;
+    gap: 0rem;
   }
 
   .our-partners-background {
-    min-height: 140px;
-    padding: 20px 12px;
+    min-height: 260px;
+    padding: 0px 12px 20px 12px;
     background-size: contain;
   }
 
@@ -505,7 +505,7 @@
 
   .our-partners-grid-container {
     grid-template-columns: 1fr;
-    margin-top: 0;
+    margin-top: -20px;
     padding-top: 0;
   }
 
