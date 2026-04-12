@@ -83,7 +83,8 @@
     line-height: 18px;
   }
 
-  .auction-desc {
+  .auction-desc,
+  .auctions-desc {
     font-size: 12px;
     line-height: 16px;
   }
@@ -319,7 +320,8 @@
     line-height: 12px;
   }
 
-  .auction-desc {
+  .auction-desc,
+  .auctions-desc {
     font-size: 7px;
     line-height: 10px;
   }

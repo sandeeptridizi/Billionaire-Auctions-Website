@@ -274,16 +274,22 @@
 
   .mobile-item-luxury-container {
     width: fit-content;
-    padding: 3px 8px;
+    height: auto;
+    padding: 2px 5px;
     border-radius: 16px;
     background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
-    font-size: 7px;
+    font-size: 6px;
     font-weight: 700;
-    line-height: normal;
+    line-height: 9px;
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
+  }
+
+  .mobile-item-luxury-container svg {
+    font-size: 8px;
+    margin-bottom: 1px;
   }
 
   .mobile-featured-item-footer {
@@ -483,16 +489,22 @@
 
   .mobile-item-luxury-container {
     width: fit-content;
-    padding: 4px 10px;
+    height: auto;
+    padding: 2px 5px;
     border-radius: 16px;
     background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
-    font-size: 8px;
+    font-size: 6px;
     font-weight: 700;
-    line-height: normal;
+    line-height: 9px;
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
+  }
+
+  .mobile-item-luxury-container svg {
+    font-size: 8px;
+    margin-bottom: 1px;
   }
 
   .mobile-featured-item-footer {
