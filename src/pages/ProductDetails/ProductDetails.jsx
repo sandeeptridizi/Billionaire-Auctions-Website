@@ -196,7 +196,7 @@ const ProductDetails = () => {
     if (mainSwiperRef.current) mainSwiperRef.current.slideTo(0);
   }, [id]);
 
-  const handleToLetContact = () => {
+  const handleDirectContact = () => {
     const ownerPhone = product?.owner?.phone?.trim();
     const ownerEmail = product?.owner?.email?.trim();
     const isSuperAdminCreated = !product?.ownerId;
@@ -416,8 +416,8 @@ const ProductDetails = () => {
           </div>
           <div className="product-info-btns-container">
             <button className="product-info-enquire-btn" style={!product.meta?.socialMediaLink ? { width: '100%' } : {}} onClick={() => {
-              if (product.listingType === "TO_LET") {
-                handleToLetContact();
+              if (product.listingType === "TO_LET" || product.listingType === "MARKETPLACE") {
+                handleDirectContact();
                 return;
               }
               if (getToken()) {
