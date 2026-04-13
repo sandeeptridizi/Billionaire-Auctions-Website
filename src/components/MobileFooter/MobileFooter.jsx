@@ -8,6 +8,9 @@ import { useLocation } from "react-router-dom";
 import luxuryLoading from "../../assets/luxury-loading.mp4";
 import classicLoading from "../../assets/classic-loading.mp4";
 import useAppContext from "../../context/AppContext";
+import { getToken } from "../../lib/auth";
+
+const USER_APP_URL = import.meta.env.VITE_USER_APP_URL || "https://user.billionaireauction.com";
 
 const allowedPaths = ["/", "/marketplace", "/auctions", "/buy-now"];
 
@@ -65,6 +68,21 @@ const MobileFooter = () => {
     setLoading(true);
   };
 
+  const LISTING_ROUTES = {
+    marketplace: "/productcreation/marketplace",
+    sell:        "/productcreation/buynow",
+    auction:     "/productcreation/auction",
+    tolet:       "/productcreation/tolet",
+  };
+
+  const handleListingNav = (type) => {
+    setShowLinks(false);
+    const token = getToken();
+    const path = LISTING_ROUTES[type] || "/productcreation";
+    const query = token ? `?authtoken=${encodeURIComponent(token)}` : "";
+    window.open(`${USER_APP_URL}${path}${query}`, "_blank");
+  };
+
   return (
     <div className="footer-wrapper">
       <div className="footer-bar">
@@ -101,22 +119,22 @@ const MobileFooter = () => {
         {/* FLOATING MENU */}
         {showLinks && (
           <div className="footer-links1">
-            <div className="menu-item market" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
+            <div className="menu-item market" onClick={() => handleListingNav("marketplace")}>
               <FaStore style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Marketplace</span>
             </div>
 
-            <div className="menu-item sell" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
+            <div className="menu-item sell" onClick={() => handleListingNav("sell")}>
               <FaTag style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Sell Now</span>
             </div>
 
-            <div className="menu-item hammer" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
+            <div className="menu-item hammer" onClick={() => handleListingNav("auction")}>
               <FaGavel style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>Auctions</span>
             </div>
 
-            <div className="menu-item tolet" onClick={() => window.open("https://user.billionaireauction.com/", "_blank")}>
+            <div className="menu-item tolet" onClick={() => handleListingNav("tolet")}>
               <FaBuilding style={{ color: "#FFD700", fontSize: "24px" }} />
               <span>To-Let</span>
             </div>
