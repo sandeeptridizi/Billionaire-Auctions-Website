@@ -171,7 +171,7 @@ import cityApartment from "../../assets/city-apartment.jpg";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { toggleWishlist, isWishlisted, selectedCountry } = useAppContext();
+  const { toggleWishlist, isWishlisted, selectedCountry, platform } = useAppContext();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState([]);
@@ -196,6 +196,26 @@ const ProductDetails = () => {
     if (mainSwiperRef.current) mainSwiperRef.current.slideTo(0);
   }, [id]);
 
+  const handleToLetContact = () => {
+    const ownerPhone = product?.owner?.phone?.trim();
+    const ownerEmail = product?.owner?.email?.trim();
+    const isSuperAdminCreated = !product?.ownerId;
+
+    let target = "";
+    if (!isSuperAdminCreated && ownerPhone) {
+      target = `tel:${ownerPhone}`;
+    } else if (!isSuperAdminCreated && ownerEmail) {
+      target = `mailto:${ownerEmail}`;
+    } else {
+      const platformPhone = Array.isArray(platform?.phone) ? platform.phone.find((p) => p && p.trim()) : null;
+      const platformEmail = Array.isArray(platform?.email) ? platform.email.find((e) => e && e.trim()) : null;
+      if (platformPhone) target = `tel:${platformPhone.trim()}`;
+      else if (platformEmail) target = `mailto:${platformEmail.trim()}`;
+    }
+
+    if (target) window.location.href = target;
+  };
+
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
     setEnquirySubmitting(true);
@@ -204,7 +224,7 @@ const ProductDetails = () => {
       await submitEnquiry({ productId: id, ...enquiryForm });
       setEnquirySuccess(true);
       setEnquiryForm({ visitorName: "", visitorEmail: "", visitorPhone: "", message: "" });
-      setTimeout(() => { setShowEnquiryForm(false); setEnquirySuccess(false); }, 2000);
+      setTimeout(() => { setShowEnquiryForm(false); setEnquirySuccess(false); }, 7000);
     } catch (err) {
       setEnquiryError(err.response?.data?.message || "Failed to submit enquiry");
     } finally {
@@ -292,6 +312,12 @@ const ProductDetails = () => {
   const getBreadcrumbInfo = () => {
     if (product.listingType === "TO_LET") {
       return { path: "/to-let", label: "To Let" };
+    }
+    if (product.listingType === "AUCTIONS") {
+      return { path: "/auctions", label: "Auctions" };
+    }
+    if (product.listingType === "BUY_NOW") {
+      return { path: "/buy-now", label: "Buy Now" };
     }
     // Default to Marketplace for other types
     return { path: "/marketplace", label: "Marketplace" };
@@ -390,6 +416,10 @@ const ProductDetails = () => {
           </div>
           <div className="product-info-btns-container">
             <button className="product-info-enquire-btn" style={!product.meta?.socialMediaLink ? { width: '100%' } : {}} onClick={() => {
+              if (product.listingType === "TO_LET") {
+                handleToLetContact();
+                return;
+              }
               if (getToken()) {
                 const user = getUser();
                 if (user) {
@@ -403,7 +433,7 @@ const ProductDetails = () => {
               }
               setShowEnquiryForm(true);
             }}>
-              <LuPhone /> Contact Seller
+              <LuPhone /> {product.listingType === "BUY_NOW" ? "Enquiry Now" : product.listingType === "AUCTIONS" ? "Register Now" : "Contact Seller"}
             </button>
             {product.meta?.socialMediaLink && (
               <a href={product.meta.socialMediaLink} target="_blank" rel="noopener noreferrer" className="product-info-chat-btn">
@@ -417,8 +447,7 @@ const ProductDetails = () => {
                 <h3>Enquire About This Product</h3>
                 {enquirySuccess ? (<>
                   <h4 className="enquiry-success-msg">Enquiry submitted!</h4>
-                  <p className="enquiry-success-text">Your enquiry has been submitted to the seller. They will contact you as soon as possible</p>
-                  <p className="enquiry-success-text">Expect to hear back within 24 hours</p>
+                  <p className="enquiry-success-text">Our team will contact you as soon as possible</p>
                  </>) : (
                   <form onSubmit={handleEnquirySubmit} className="enquiry-form">
                     <input type="text" placeholder="Your Name *" required value={enquiryForm.visitorName} onChange={(e) => setEnquiryForm({ ...enquiryForm, visitorName: e.target.value })} />

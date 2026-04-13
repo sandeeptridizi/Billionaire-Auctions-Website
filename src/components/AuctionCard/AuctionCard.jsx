@@ -1,5 +1,6 @@
 import './AuctionCard.css';
 
+import { Link } from 'react-router-dom';
 import { getFile } from '../../lib/s3';
 import { LuCalendar } from 'react-icons/lu';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
@@ -8,6 +9,7 @@ import { GoPeople } from 'react-icons/go';
 import { MdVerified } from 'react-icons/md';
 
 const AuctionCard = ({
+  id,
   title,
   image,
   cost,
@@ -16,7 +18,7 @@ const AuctionCard = ({
   lots,
   registered,
 }) => {
-  return (
+  const content = (
     <div className='featured-listings-card-container2'>
       <div className='featured-listings-card-image-container'>
         <img src={getFile(image)} alt={title} className='featured-img' />
@@ -51,6 +53,14 @@ const AuctionCard = ({
         <MdVerified /> Register Now
       </button>
     </div>
+  );
+
+  if (!id) return content;
+
+  return (
+    <Link to={`/product/${id}`} className='auction-card-link'>
+      {content}
+    </Link>
   );
 };
 

@@ -65,14 +65,13 @@ const data = [
 ];
 
 const BuyNow = () => {
-  const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextBtn, setNextBtn] = useState(null);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
-  const { selectedCountry } = useAppContext();
+  const { selectedCountry, selectedTier: selectedBtn, setSelectedTier: setSelectedBtn } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {

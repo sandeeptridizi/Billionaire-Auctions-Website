@@ -1,3 +1,9 @@
+.auction-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .auction-card-open-container {
   width: fit-content;
   height: fit-content;

@@ -39,7 +39,6 @@ const categoryBtns = [
 const Marketplace = () => {
   const [searchParams] = useSearchParams();
   const [showVideo, setShowVideo] = useState(false);
-  const [selectedBtn, setSelectedBtn] = useState("All");
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || null);
   const [products, setProducts] = useState([]);
@@ -49,7 +48,7 @@ const Marketplace = () => {
   const [nextBtn, setNextBtn] = useState(null);
   const location = useLocation();
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
-  const { selectedCountry } = useAppContext();
+  const { selectedCountry, selectedTier: selectedBtn, setSelectedTier: setSelectedBtn } = useAppContext();
 
   useEffect(() => {
     const fetchProducts = async () => {

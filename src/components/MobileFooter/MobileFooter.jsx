@@ -2,33 +2,68 @@ import "./MobileFooter.css";
 import { FaCrown } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
 import { FaPlus, FaStore, FaTag, FaGavel, FaBuilding } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import luxuryLoading from "../../assets/luxury-loading.mp4";
 import classicLoading from "../../assets/classic-loading.mp4";
+import useAppContext from "../../context/AppContext";
 
 const allowedPaths = ["/", "/marketplace", "/auctions", "/buy-now"];
+
+const tierToMode = (tier) => (tier === "Luxury" ? "luxury" : tier === "Classic" ? "classic" : null);
+const modeToTier = (mode) => (mode === "luxury" ? "Luxury" : "Classic");
 
 const MobileFooter = () => {
   const { pathname } = useLocation();
   const isAllowed = allowedPaths.includes(pathname);
+  const { selectedTier, setSelectedTier } = useAppContext();
   const [showLinks, setShowLinks] = useState(false);
-  const [active, setActive] = useState("luxury");
   const [loading, setLoading] = useState(false);
   const [nextMode, setNextMode] = useState(null);
   const [videoReady, setVideoReady] = useState(false);
+  const videoRef = useRef(null);
+  const timeoutRef = useRef(null);
 
+  const active = tierToMode(selectedTier);
+
+  const finishSwitch = (target) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    if (target) setSelectedTier(modeToTier(target));
+    setLoading(false);
+    setNextMode(null);
+    setVideoReady(false);
+  };
+
+  useEffect(() => {
+    if (!loading || !nextMode) return;
+    const video = videoRef.current;
+    if (video) {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => finishSwitch(nextMode));
+      }
+    }
+    timeoutRef.current = setTimeout(() => finishSwitch(nextMode), 4000);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [loading, nextMode]);
 
   if (!isAllowed) return null;
 
   const handleSwitch = (type) => {
-  if (type === active) return;
-
-  setNextMode(type);
-  setVideoReady(false);
-  setLoading(true);
-};
+    if (type === active || loading) return;
+    setNextMode(type);
+    setVideoReady(false);
+    setLoading(true);
+  };
 
   return (
     <div className="footer-wrapper">
@@ -89,27 +124,28 @@ const MobileFooter = () => {
         )}
 
         {loading && (
-  <div className="footer-loader-overlay">
-    <video
-      autoPlay
-      muted
-      playsInline
-      preload="auto"
-      className="footer-loader-video"
-      onLoadedData={() => setVideoReady(true)}
-      onEnded={() => {
-        setActive(nextMode);
-        setLoading(false);
-      }}
-      style={{ visibility: videoReady ? "visible" : "hidden" }}
-    >
-      <source
-        src={nextMode === "luxury" ? luxuryLoading : classicLoading}
-        type="video/mp4"
-      />
-    </video>
-  </div>
-)}
+          <div className="footer-loader-overlay">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              className="footer-loader-video"
+              onLoadedData={() => setVideoReady(true)}
+              onEnded={() => finishSwitch(nextMode)}
+              onError={() => finishSwitch(nextMode)}
+              onStalled={() => finishSwitch(nextMode)}
+              style={{ visibility: videoReady ? "visible" : "hidden" }}
+              key={nextMode}
+            >
+              <source
+                src={nextMode === "luxury" ? luxuryLoading : classicLoading}
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        )}
 
 
       </div>

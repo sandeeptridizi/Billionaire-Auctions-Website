@@ -33,6 +33,7 @@ export const AppProvider = ({ children }) => {
       return 'INDIA';
     }
   });
+  const [selectedTier, setSelectedTier] = useState("All");
   const [wishlist, setWishlist] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem(WISHLIST_KEY) || '[]');
@@ -124,7 +125,7 @@ export const AppProvider = ({ children }) => {
   const countryLabel = COUNTRIES.find((c) => c.value === selectedCountry)?.label || selectedCountry;
 
   return (
-    <AppContext.Provider value={{ products, wishlist, toggleWishlist, isWishlisted, selectedCountry, setSelectedCountry, countryLabel, platform }}>
+    <AppContext.Provider value={{ products, wishlist, toggleWishlist, isWishlisted, selectedCountry, setSelectedCountry, countryLabel, platform, selectedTier, setSelectedTier }}>
       {children}
     </AppContext.Provider>
   );
