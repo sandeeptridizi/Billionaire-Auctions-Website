@@ -28,7 +28,7 @@ export const categoryFilterConfig = {
     { key: 'facing', label: 'Facing', type: FILTER_TYPES.SELECT, options: ['North', 'South', 'East', 'West', 'NE', 'NW', 'SE', 'SW'] },
     { key: 'parking', label: 'Parking', type: FILTER_TYPES.SELECT, options: ['None', '1', '2', '3+'] },
     { key: 'propertyAge', label: 'Age of Property', type: FILTER_TYPES.SELECT, options: ['New', '0-5 Years', '5-10 Years', '10+ Years'], fallbacks: ['age'] },
-    // Houses & Villas
+
     { key: 'builtUpArea', label: 'Built-up Area', type: FILTER_TYPES.RANGE, unit: 'sq ft', showWhen: { key: 'propertyType', values: ['House', 'Villa', 'Apartment', 'Flat'] } },
     { key: 'plotArea', label: 'Plot Area', type: FILTER_TYPES.RANGE, unit: 'sq ft', showWhen: { key: 'propertyType', values: ['House', 'Villa', 'Plot', 'Land'] } },
     { key: 'bedrooms', label: 'Bedrooms', type: FILTER_TYPES.SELECT, options: ['1', '2', '3', '4', '5+'], showWhen: { key: 'propertyType', values: ['House', 'Villa'] } },
@@ -38,7 +38,7 @@ export const categoryFilterConfig = {
     { key: 'garden', label: 'Garden', type: FILTER_TYPES.BOOLEAN, showWhen: { key: 'propertyType', values: ['House', 'Villa'] } },
     { key: 'powerBackup', label: 'Power Backup', type: FILTER_TYPES.SELECT, options: ['None', 'Partial', 'Full'] },
     { key: 'gatedCommunity', label: 'Gated Community', type: FILTER_TYPES.BOOLEAN, showWhen: { key: 'propertyType', values: ['House', 'Villa'] } },
-    // Apartments & Flats
+
     { key: 'bhk', label: 'BHK', type: FILTER_TYPES.SELECT, options: ['1', '2', '3', '4+'], showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] } },
     { key: 'floorNumber', label: 'Floor Number', type: FILTER_TYPES.TEXT, showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] } },
     { key: 'totalFloors', label: 'Total Floors', type: FILTER_TYPES.TEXT, showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] } },
@@ -47,14 +47,14 @@ export const categoryFilterConfig = {
     { key: 'balconyCount', label: 'Balcony Count', type: FILTER_TYPES.SELECT, options: ['0', '1', '2', '3+'], showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] }, fallbacks: ['balconies'] },
     { key: 'parkingType', label: 'Parking Type', type: FILTER_TYPES.SELECT, options: ['None', 'Open', 'Covered'], showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] } },
     { key: 'amenities', label: 'Amenities', type: FILTER_TYPES.MULTI_SELECT, options: ['Gym', 'Pool', 'Clubhouse', 'Security', 'Power Backup'], showWhen: { key: 'propertyType', values: ['Apartment', 'Flat'] } },
-    // Plots & Land
+
     { key: 'roadWidth', label: 'Road Width', type: FILTER_TYPES.SELECT, options: ['<20 ft', '20-30 ft', '30-40 ft', '40+ ft'], showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
     { key: 'approvalType', label: 'Approval Type', type: FILTER_TYPES.SELECT, options: ['DTCP', 'HMDA', 'RERA', 'Panchayat', 'NA'], showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
     { key: 'cornerPlot', label: 'Corner Plot', type: FILTER_TYPES.BOOLEAN, showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
     { key: 'boundaryWall', label: 'Boundary Wall', type: FILTER_TYPES.BOOLEAN, showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
     { key: 'electricityAvailable', label: 'Electricity Available', type: FILTER_TYPES.BOOLEAN, showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
     { key: 'waterConnection', label: 'Water Connection', type: FILTER_TYPES.SELECT, options: ['Municipal', 'Borewell', 'Both', 'None'], showWhen: { key: 'propertyType', values: ['Plot', 'Land'] } },
-    // Commercial
+
     { key: 'commercialType', label: 'Commercial Type', type: FILTER_TYPES.SELECT, options: ['Office', 'Shop', 'Showroom', 'Warehouse', 'Industrial'], showWhen: { key: 'propertyType', values: ['Commercial'] } },
     { key: 'suitableFor', label: 'Suitable For', type: FILTER_TYPES.MULTI_SELECT, options: ['Office', 'Retail', 'Clinic', 'Restaurant', 'Storage'], showWhen: { key: 'propertyType', values: ['Commercial'] } },
     { key: 'powerLoad', label: 'Power Load', type: FILTER_TYPES.SELECT, options: ['<5 KW', '5-10 KW', '10+ KW'], showWhen: { key: 'propertyType', values: ['Commercial'] } },

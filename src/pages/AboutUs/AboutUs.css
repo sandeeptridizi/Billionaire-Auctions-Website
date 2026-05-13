@@ -945,11 +945,9 @@ object-position: 50% 35%;
     z-index: auto;
   }
 
-  /* ... */
-
   .about-us-founder-right {
-    height: auto; /* Make static */
-    overflow-y: visible; /* Remove scroll */
+    height: auto; 
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1164,7 +1162,7 @@ object-position: 50% 35%;
 }
 
   .billionaire-heading {
-    font-size: 22px; /* Slightly larger than 20px */
+    font-size: 22px; 
     text-align: center;
     line-height: 1.3;
     width: 100%;

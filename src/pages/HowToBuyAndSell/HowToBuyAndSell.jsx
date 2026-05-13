@@ -350,13 +350,6 @@ const HowToBuyAndSell = () => {
         </div>
       </div> */}
       <div className='contact-us-faqs-container'>
-              {/* <div className='faqs-header'>
-                <GrCircleQuestion className='question-mark-icon' />
-                <h2 className='faqs-heading'>Frequently Asked Questions</h2>
-                <p className='faqs-text'>
-                  Find answers to common questions about Billionaire Auction
-                </p>
-              </div> */}
               <div className='contact-us-faqs-accordion-container'>
                 <div className='accordion-container'>
                   <h3 className='accordion-heading'>Getting Started</h3>
@@ -378,10 +371,8 @@ const HowToBuyAndSell = () => {
       
                         <div className={`accordion-answer ${activeIndex === index ? "open" : ""}`}>
                           
-                          {/* ✅ Handle string answers */}
                           {typeof item.answer === "string" && <p>{item.answer}</p>}
       
-                          {/* ✅ Handle object answers */}
                           {typeof item.answer === "object" && (
                             <>
                               {item.answer.intro && <p>{item.answer.intro}</p>}

@@ -35,7 +35,7 @@ const RealEstate = () => {
         }));
         setProperties(mapped);
       } catch {
-        // silent fail
+        
       } finally {
         setLoading(false);
       }

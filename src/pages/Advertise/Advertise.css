@@ -561,7 +561,6 @@
   cursor: pointer;
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .advertise-background {
     padding: 40px 32px;
@@ -712,7 +711,7 @@
   }
 
   .package-cost {
-    margin-top: -8px; /* Specifically pull the price closer to the title */
+    margin-top: -8px; 
   }
 
   .package-btn {

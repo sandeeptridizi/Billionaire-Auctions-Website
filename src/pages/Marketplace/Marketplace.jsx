@@ -71,7 +71,7 @@ const Marketplace = () => {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "instant", // or "smooth"
+    behavior: "instant", 
   });
   }, [searchParams]);
 
@@ -89,7 +89,7 @@ const Marketplace = () => {
       setIsTransitioning(true);
     setTimeout(() => {
       setShowVideo(true);
-    }, 150); // 120–180ms sweet spot
+    }, 150); 
   } else {
     setSelectedBtn(type);
   }

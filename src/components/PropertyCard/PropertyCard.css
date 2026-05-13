@@ -1,5 +1,4 @@
 .property-card-header {
-  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,7 +115,6 @@
   color: rgba(212, 175, 55, 1);
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .property-card-container {
     max-width: 100%;

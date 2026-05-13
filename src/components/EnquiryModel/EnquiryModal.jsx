@@ -37,7 +37,6 @@ const EnquiryModal = ({ onClose, productId, source }) => {
     <div className="enquiry-overlay">
       <div className="enquiry-modal">
 
-        {/* Header */}
         <div className="enquiry-header">
           <div>
             <h2>Enquire Now</h2>
@@ -47,7 +46,6 @@ const EnquiryModal = ({ onClose, productId, source }) => {
           <button className="close-btn" onClick={onClose}>✕</button>
         </div>
 
-        {/* Form */}
         {success ? (
           <div className="enquiry-form" style={{ textAlign: "center", padding: "2rem" }}>
             <h2 style={{ color: "green", fontSize: "1.1rem", fontWeight: 600 }}>Enquiry submitted Successfully!</h2>

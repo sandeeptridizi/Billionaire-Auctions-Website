@@ -71,7 +71,6 @@ const ToLet = () => {
         const list = await getToLetProducts({ country: selectedCountry });
         setRawProducts(list);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error('Failed to load to-let products', error);
       } finally {
         setLoading(false);

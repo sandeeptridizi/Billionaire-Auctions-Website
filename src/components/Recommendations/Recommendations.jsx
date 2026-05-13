@@ -66,7 +66,6 @@ const Recommendations = () => {
         }
         setRecommended(mapped);
       } catch {
-        // ignore and fall back to static data
       } finally {
         setLoading(false);
       }

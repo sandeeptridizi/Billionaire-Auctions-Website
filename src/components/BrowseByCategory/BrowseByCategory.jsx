@@ -28,7 +28,7 @@ const CATEGORY_MAP = {
   arts: 'ARTS_AND_PAINTINGS',
   antiques: 'ANTIQUES',
   collectables: 'COLLECTABLES',
-  others: null, // special: everything not in known categories
+  others: null, 
 };
 
 const btns = [

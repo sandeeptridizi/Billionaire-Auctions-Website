@@ -80,7 +80,6 @@ const BuyNow = () => {
         const list = await getBuyNowProducts({ country: selectedCountry });
         setProducts(list);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error("Failed to load buy now products", error);
       } finally {
         setLoading(false);

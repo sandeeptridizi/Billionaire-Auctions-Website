@@ -317,7 +317,6 @@
     text-decoration: none;
   }
 
-  /* Tablet Upscaling Context (iPad Mini/Air/Pro) */
   @media screen and (min-width: 511px) {
     .mobile-navbar-container {
       padding: 10px 16px;
@@ -412,7 +411,6 @@
     }
   }
 
-  /* iPad Specific Refinements */
   @media screen and (min-width: 768px) and (max-width: 950px) {
     .mobile-search-row {
       width: 60%;

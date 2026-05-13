@@ -163,15 +163,12 @@
   margin-top: 40px;
 }
 
-/* Desktop Footer is hidden on Tablets and Mobile (up to 1025px) */
-/* Desktop Footer is hidden on smaller Mobiles (up to 767px) */
 @media screen and (max-width: 767px) {
   .footer-container {
     display: none;
   }
 }
 
-/* Tablet Styling (iPad Air/Pro) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .footer-info-links-container {
     display: grid;
@@ -212,7 +209,6 @@
   }
 }
 
-/* Mobile and small tablets */
 
 .footer-copy-right-text {
   font-size: 14px;
@@ -235,7 +231,6 @@
   cursor: pointer;
 }
 
-/* Removed footer-section-grid-container as it is no longer used */
 
 .footer-links a {
   text-decoration: none;

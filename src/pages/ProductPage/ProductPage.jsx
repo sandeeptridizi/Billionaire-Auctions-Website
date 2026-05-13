@@ -45,7 +45,6 @@ const ProductPage = () => {
         const list = await getPublicProducts(params);
         setProducts(list);
       } catch {
-        // silent fail
       } finally {
         setLoading(false);
       }
@@ -75,7 +74,6 @@ const ProductPage = () => {
       : true;
     return byTier && bySearch;
   }).sort((a, b) => {
-    // For auctions, sort by date: nearest first, TBA/missing at end
     if (listingType !== 'AUCTIONS') return 0;
     const aDate = a.meta?.auctionDate || a.meta?.date || '';
     const bDate = b.meta?.auctionDate || b.meta?.date || '';

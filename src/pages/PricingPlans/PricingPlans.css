@@ -298,18 +298,6 @@
 }
 
 
-/* .website-grid-item-container {
-  background: linear-gradient(180deg, #fff8e7 0%, #ffffff 100%);
-  border: 1.25px solid rgba(212, 175, 55, 1);
-  border-radius: 14px;
-  min-width: 100%;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-} */
 
 .website-grid-item-icon-container {
   width: 64px;
@@ -403,7 +391,6 @@
   background:#e5e7eb;
 }
 
-/* Slider Thumb */
 
 .leads-slider::-webkit-slider-thumb{
   appearance:none;
@@ -414,7 +401,6 @@
   cursor:pointer;
 }
 
-/* Points */
 
 .slider-points{
   display:flex;
@@ -457,7 +443,6 @@
   background:#d4af37;
 }
 
-/* Card */
 
 .leads-card{
   width:100%;
@@ -925,7 +910,6 @@
   cursor: pointer;
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .pricing-page-background {
     padding: 64px 32px;
@@ -1082,7 +1066,7 @@
   width: 21px;
   margin-top: -100px;
   height: 21px;
-  background: rgba(233, 193, 62, 0.5); /* softer glass */
+  background: rgba(233, 193, 62, 0.5); 
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
   display: flex;
@@ -1104,9 +1088,8 @@
   opacity: 0.9;
 }
 
-/* Hover Effect (Premium feel) */
 .banner-arrow1:hover {
-  background: rgba(212, 175, 55, 0.9); /* gold highlight */
+  background: rgba(212, 175, 55, 0.9); 
   border-color: transparent;
   transform: none
 }
@@ -1131,8 +1114,8 @@
     border-radius: 50%;
     border: none;
     
-    background: rgba(212, 175, 55, 0.6); /* 🔥 transparent gold */
-    backdrop-filter: blur(6px); /* 🔥 glass effect */
+    background: rgba(212, 175, 55, 0.6); 
+    backdrop-filter: blur(6px); 
     
     color: #fff;
     font-size: 18px;
@@ -1409,21 +1392,21 @@
   }
 
   .leads-selector-container {
-    width: 100%;              /* 🔥 remove fixed width */
-    padding: 0 12px;          /* add side spacing */
+    width: 100%;              
+    padding: 0 12px;          
     gap: 16px;
   }
 
   .slider-wrapper {
-    width: 100%;              /* full width on mobile */
+    width: 100%;              
   }
 
   .slider-label {
-    font-size: 10px;          /* smaller labels */
+    font-size: 10px;         
   }
 
   .slider-label.active {
-    transform: scale(1.1);    /* reduce scaling */
+    transform: scale(1.1);   
   }
 
   .point {
@@ -1432,12 +1415,12 @@
   }
 
   .leads-card {
-    padding: 18px;            /* reduce padding */
+    padding: 18px;            
     border-radius: 12px;
   }
 
   .leads-heading {
-    font-size: 18px;          /* smaller heading */
+    font-size: 18px;          
   }
 
   .plan {
@@ -1460,7 +1443,6 @@
 
 }
 
-/* ── Coupon Section ── */
 .coupon-section {
   max-width: 520px;
   margin: 0 auto 28px auto;

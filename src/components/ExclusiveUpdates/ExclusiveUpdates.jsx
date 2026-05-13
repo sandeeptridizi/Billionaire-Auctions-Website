@@ -8,7 +8,7 @@ import { FaArrowRight } from 'react-icons/fa6';
 
 const ExclusiveUpdates = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState(null); // { type: 'success' | 'error', message }
+  const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async () => {

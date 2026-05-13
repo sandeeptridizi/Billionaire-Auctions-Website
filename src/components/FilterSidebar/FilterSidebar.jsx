@@ -48,13 +48,12 @@ const FilterSidebar = ({
   const shouldShow = (def) => {
     if (!def.showWhen) return true;
     const current = filters[def.showWhen.key];
-    if (!current) return true; // show if parent filter not set
+    if (!current) return true; 
     return def.showWhen.values.includes(current);
   };
 
   const visibleDefs = filterDefs.filter((def) => {
     if (!shouldShow(def)) return false;
-    // Hide select/text filters with no options when deriveOptions is true
     if (def.deriveOptions && (derivedOptionsMap[def.key] || []).length === 0) return false;
     return true;
   });
@@ -157,14 +156,12 @@ const FilterSidebar = ({
 
   return (
     <>
-      {/* Desktop sidebar (hidden in drawer-only mode) */}
       {!drawerOnly && (
         <aside className="filter-sidebar filter-sidebar--desktop">
           {sidebarContent}
         </aside>
       )}
 
-      {/* Drawer overlay */}
       {isOpen && (
         <>
           <div className={`filter-sidebar-overlay ${drawerOnly ? 'filter-sidebar-overlay--force' : ''}`} onClick={onClose} />

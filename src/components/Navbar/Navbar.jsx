@@ -39,12 +39,10 @@ const Navbar = () => {
   useEffect(() => {
   const handleClick = (e) => {
 
-    // ✅ Avatar dropdown close
     if (avatarRef.current && !avatarRef.current.contains(e.target)) {
       setAvatarOpen(false);
     }
 
-    // ✅ Browse dropdown close
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setIsBrowseLinksOpen(false);
     }

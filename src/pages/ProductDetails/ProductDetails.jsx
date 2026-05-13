@@ -44,9 +44,7 @@ import { RiBankLine } from 'react-icons/ri';
 import { FaPlayCircle } from "react-icons/fa";
 import CardMetaGrid from "../../components/CardMetaGrid/CardMetaGrid";
 
-// Icon mapping for product meta field tiles
 const metaFieldIconMap = {
-  // Real Estate (Sale) & Rentals
   bhk: LuBedDouble,
   builtUpArea: LuRuler,
   carpetArea: LuRuler,
@@ -80,7 +78,6 @@ const metaFieldIconMap = {
   electricityAvailable: LuSettings2,
   waterConnection: LuFuel,
 
-  // Cars & Bikes
   brand: LuTag,
   model: LuCarFront,
   year: LuCalendar,
@@ -100,7 +97,6 @@ const metaFieldIconMap = {
   accidentHistory: LuShieldAlert,
   registrationState: LuMapPinHouse,
 
-  // Furniture
   furnitureType: LuArmchair,
   material: LuLayers,
   condition: LuThumbsUp,
@@ -116,13 +112,11 @@ const metaFieldIconMap = {
   reasonForSelling: LuMessageSquareText,
   originalPurchasePriceOptional: LuReceipt,
 
-  // Jewellery
   type: LuGem,
   weight: LuWeight,
   purity: LuBadgeCheck,
   certification: LuAward,
 
-  // Watches
   yearOfPurchase: LuCalendar,
   workingCondition: LuWrench,
   boxAndPapers: LuBox,
@@ -130,7 +124,6 @@ const metaFieldIconMap = {
   boxPapers: LuBox,
   originalParts: LuPuzzle,
 
-  // Art & Paintings
   artistName: LuPaintbrush,
   medium: LuPalette,
   size: LuRuler,
@@ -138,7 +131,6 @@ const metaFieldIconMap = {
   signed: LuPenTool,
   certificate: LuAward,
 
-  // Antiques
   antiqueType: LuLandmark,
   approximateAge: LuClock,
   approximateAgeYears: LuHourglass,
@@ -147,7 +139,6 @@ const metaFieldIconMap = {
   restoration: LuWrench,
   historicalPeriod: LuScroll,
 
-  // Collectibles
   itemType: LuBox,
   rarityLevel: LuStar,
   raretyLevel: LuStar,
@@ -156,12 +147,10 @@ const metaFieldIconMap = {
   authentication: LuShieldCheck,
   conditionGrade: LuChartColumnIncreasing,
 
-  // Electronics
   purchaseYear: LuCalendar,
   warranty: LuShieldCheck,
   usageType: LuSmartphone,
 
-  // Others
   category: LuTag,
 };
 
@@ -249,7 +238,6 @@ const ProductDetails = () => {
     }
   };
 
-  // Fetch product page advertisements
   useEffect(() => {
     api.get("/api/advertisement/public", { params: { placement: "product_listing" } })
       .then((res) => {
@@ -283,7 +271,6 @@ const ProductDetails = () => {
         const list = await getMarketplaceProducts({ category: product.category, country: selectedCountry });
         setFeatured(list.filter((item) => item.id !== id && item.category === product.category));
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error("Failed to load featured products", error);
       }
     };
@@ -308,7 +295,6 @@ const ProductDetails = () => {
     );
   }
 
-  // Determine breadcrumb based on product listing type
   const getBreadcrumbInfo = () => {
     if (product.listingType === "TO_LET") {
       return { path: "/to-let", label: "To Let" };
@@ -319,7 +305,6 @@ const ProductDetails = () => {
     if (product.listingType === "BUY_NOW") {
       return { path: "/buy-now", label: "Buy Now" };
     }
-    // Default to Marketplace for other types
     return { path: "/marketplace", label: "Marketplace" };
   };
 
@@ -341,7 +326,7 @@ const ProductDetails = () => {
       <div className="product-page-image-info-container">
         <div className="product-gallery">
 
-          {/* Main Image Swiper */}
+
           <div className="product-main-image-container">
             <Swiper
               modules={[Navigation, Pagination, A11y]}
@@ -365,7 +350,6 @@ const ProductDetails = () => {
             </Swiper>
           </div>
 
-          {/* Thumbnails */}
           {images.length > 1 && (
             <div className="product-thumbnails">
               {images.map((img, index) => (

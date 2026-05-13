@@ -20,7 +20,6 @@ import { GoPeople } from 'react-icons/go';
 import { FiCamera } from 'react-icons/fi';
 import { RiCoupon3Line } from 'react-icons/ri';
 
-/** Parse "key:value" feature strings into an object */
 function parseFeatures(features) {
   const map = {};
   for (const f of features) {
@@ -34,7 +33,6 @@ function parseFeatures(features) {
   return map;
 }
 
-/** Format a number as Indian-style currency string */
 function formatPrice(num) {
   return num.toLocaleString('en-IN');
 }
@@ -60,7 +58,6 @@ const PricingPlans = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const [enquirySource, setEnquirySource] = useState("");
 
-  // Coupon state
   const [couponCode, setCouponCode] = useState('');
   const [couponApplied, setCouponApplied] = useState(null);
   const [couponError, setCouponError] = useState('');
@@ -79,7 +76,6 @@ const PricingPlans = () => {
           api.get('/api/package/public?category=DIGITAL_MEDIA'),
         ];
 
-        // Fetch profile only if logged in
         if (getToken()) {
           requests.push(api.get('/api/user/me').catch(() => null));
         }
@@ -180,7 +176,6 @@ const PricingPlans = () => {
   const handleSubscribe = async (pkg) => {
     if (paymentLoading || pkg.price === 0) return;
 
-    // If not logged in, redirect to sign-in
     if (!getToken()) {
       navigate('/sign-in', { state: { from: '/browse/pricing-plans' } });
       return;
@@ -336,7 +331,6 @@ const PricingPlans = () => {
         </div>
         <div className='pricing-page-grid-container' ref={sliderRef}>
 
-          {/* ── Main Plans (Basic / Premium / PRO) ── */}
           {mainPlans.map((plan) => {
             const isPremium = plan.title === 'Premium';
             const isFree = plan.price === 0;
@@ -399,7 +393,6 @@ const PricingPlans = () => {
             );
           })}
 
-          {/* ── Enterprise Plans ── */}
           {enterprisePlans.length > 0 && selectedEnterprise && (
             <div className='pricing-page-grid-item-container'>
               <div className="enterprise-options">
@@ -465,7 +458,6 @@ const PricingPlans = () => {
         </div>
       </div>
 
-      {/* ── Banner Ads & Featured Listings ── */}
       <div className="pricing-options-flex">
         <div className='website-advertising-container'>
           <div className='website-advertising-header'>
@@ -574,7 +566,6 @@ const PricingPlans = () => {
         </div>
       </div>
 
-      {/* ── Lead Contacts Unlock ── */}
       {leadUnlocks.length > 0 && (
         <div className='leads-container'>
           <div className='packages-header'>
@@ -639,7 +630,6 @@ const PricingPlans = () => {
         </div>
       )}
 
-      {/* ── Digital Media Package ── */}
       {digitalMedia && (
         <div className='digital-media-container'>
           <div className='digital-media-icon-content-container'>

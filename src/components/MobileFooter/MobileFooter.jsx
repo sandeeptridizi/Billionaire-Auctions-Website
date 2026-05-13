@@ -87,7 +87,6 @@ const MobileFooter = () => {
     <div className="footer-wrapper">
       <div className="footer-bar">
 
-        {/* LEFT SIDE */}
         <div
           className={`footer-side luxury ${active === "luxury" ? "active" : ""}`}
           onClick={() => handleSwitch("luxury")}
@@ -96,7 +95,6 @@ const MobileFooter = () => {
           <span>LUXURY</span>
         </div>
 
-        {/* CENTER BUTTON */}
         <div className="footer-center">
           <div
             className="plus-btn"
@@ -107,7 +105,6 @@ const MobileFooter = () => {
           <span className="center-text">List / Sell</span>
         </div>
 
-        {/* RIGHT SIDE */}
         <div
           className={`footer-side classic ${active === "classic" ? "active" : ""}`}
           onClick={() => handleSwitch("classic")}
@@ -116,7 +113,6 @@ const MobileFooter = () => {
           <span>CLASSIC</span>
         </div>
 
-        {/* FLOATING MENU */}
         {showLinks && (
           <div className="footer-links1">
             <div className="menu-item market" onClick={() => handleListingNav("marketplace")}>

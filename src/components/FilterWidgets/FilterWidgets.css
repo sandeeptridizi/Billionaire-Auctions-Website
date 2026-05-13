@@ -5,7 +5,6 @@
   gap: 4px;
 }
 
-/* Select */
 .filter-select {
   width: 100%;
   padding: 8px 12px;
@@ -25,7 +24,6 @@
   box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
 }
 
-/* Checkbox group */
 .filter-checkbox-group {
   display: flex;
   flex-direction: column;
@@ -88,8 +86,7 @@
   gap: 4px;
   padding: 4px 0 0;
 }
-
-/* Range inputs */
+ 
 .filter-range-row {
   display: flex;
   align-items: center;
@@ -117,8 +114,7 @@
 .filter-range-input::placeholder {
   color: rgba(153, 153, 153, 1);
 }
-
-/* Remove number input spinners */
+ 
 .filter-range-input::-webkit-outer-spin-button,
 .filter-range-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -139,8 +135,7 @@
   color: rgba(106, 114, 130, 1);
   flex-shrink: 0;
 }
-
-/* Boolean toggle */
+ 
 .filter-boolean-row {
   display: flex;
   gap: 8px;
@@ -168,8 +163,7 @@
   border-color: #d4af37;
   color: #fff;
 }
-
-/* Text input */
+ 
 .filter-text-input {
   width: 100%;
   padding: 8px 12px;

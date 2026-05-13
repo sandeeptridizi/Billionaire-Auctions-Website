@@ -13,23 +13,19 @@ const HeroBanner = () => {
   const [bannerAds, setBannerAds] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch homepage banner advertisements
   useEffect(() => {
     api.get("/api/advertisement/public", { params: { placement: "homepage_banner" } })
       .then((res) => {
         const ads = res.data?.data || [];
-        // Only use ads that have a media image
         const validAds = ads.filter((ad) => ad.media);
         if (validAds.length > 0) {
           setBannerAds(validAds);
         }
       })
       .catch(() => {
-        // Silently fall back to static banners
       });
   }, []);
 
-  // 2 fixed static banners + any API banners appended after
   const totalSlides = 2 + bannerAds.length;
 
   useEffect(() => {
@@ -50,7 +46,6 @@ const HeroBanner = () => {
 
   const handleBannerClick = (ctaUrl) => {
     if (!ctaUrl) return;
-    // Open external links in new tab, internal links via navigate
     if (ctaUrl.startsWith("http://") || ctaUrl.startsWith("https://")) {
       window.open(ctaUrl, "_blank", "noopener,noreferrer");
     } else {
@@ -65,11 +60,9 @@ const HeroBanner = () => {
         className="hero-banner-slider"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
-        {/* Fixed static banners (always shown as slide 1 & 2) */}
         <div className="hero-slide hero-slide1"></div>
         <div className="hero-slide hero-slide2"></div>
 
-        {/* Dynamic API banners (slide 3 onwards) */}
         {bannerAds.map((ad) => (
           <div
             key={ad.id}
@@ -88,7 +81,6 @@ const HeroBanner = () => {
         </button>
       )}
 
-      {/* RIGHT ARROW */}
       {index < totalSlides - 1 && (
         <button className="banner-arrow right-arrow" onClick={nextSlide}>
           <FaChevronRight />

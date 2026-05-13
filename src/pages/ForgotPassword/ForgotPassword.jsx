@@ -13,7 +13,7 @@ import api from '../../lib/api';
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const [step, setStep] = useState(1); // 1: enter email/phone, 2: verify OTP, 3: new password
+  const [step, setStep] = useState(1); 
   const [tab, setTab] = useState('email');
   const [phoneDigits, setPhoneDigits] = useState('');
   const [email, setEmail] = useState('');
@@ -80,7 +80,6 @@ const ForgotPassword = () => {
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) {
-      // Handle paste
       const digits = value.replace(/\D/g, '').slice(0, 6);
       const newOtp = [...otp];
       for (let i = 0; i < 6; i++) {

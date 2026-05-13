@@ -280,7 +280,7 @@ const ContactUs = () => {
     message: '',
   });
   const [submitting, setSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error'
+  const [submitStatus, setSubmitStatus] = useState(null); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

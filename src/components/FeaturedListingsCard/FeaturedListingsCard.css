@@ -170,7 +170,6 @@
   display: block;
 }
 
-/* Tablet - iPad Mini (744px), iPad Air (820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 511px) and (max-width: 1024px) {
   .featured-listings-card-container {
     max-width: 100%;

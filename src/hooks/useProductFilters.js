@@ -9,7 +9,6 @@ const useProductFilters = (products, category, listingType) => {
     [category, listingType]
   );
 
-  // Reset filters when category changes
   useEffect(() => {
     setFilters({});
   }, [category, listingType]);
@@ -36,11 +35,9 @@ const useProductFilters = (products, category, listingType) => {
   const filteredProducts = useMemo(() => {
     if (activeFilterCount === 0) return products;
 
-    // Build a lookup of filter defs by key for fallback resolution
     const defsByKey = {};
     for (const def of filterDefs) {
       defsByKey[def.key] = def;
-      // For range filters, also map the Min/Max keys
       if (def.type === FILTER_TYPES.RANGE) {
         defsByKey[def.key + 'Min'] = def;
         defsByKey[def.key + 'Max'] = def;
@@ -55,7 +52,6 @@ const useProductFilters = (products, category, listingType) => {
 
         const def = defsByKey[filterKey];
 
-        // Price range — uses product.value (top-level)
         if (filterKey === 'priceMin') {
           if (typeof product.value === 'number' && product.value < filterValue) return false;
           continue;
@@ -65,7 +61,6 @@ const useProductFilters = (products, category, listingType) => {
           continue;
         }
 
-        // Range filter min/max on meta fields
         if (filterKey.endsWith('Min')) {
           const baseKey = filterKey.slice(0, -3);
           const baseDef = defsByKey[baseKey];
@@ -87,15 +82,12 @@ const useProductFilters = (products, category, listingType) => {
           continue;
         }
 
-        // Multi-select (array of values)
         if (Array.isArray(filterValue)) {
           if (filterValue.length === 0) continue;
           const metaVal = def
             ? getMetaValue(meta, def.key, def.fallbacks)
             : String(meta[filterKey] || '');
           if (!metaVal) return false;
-          // For multi-select, check if the meta value contains any of the selected options
-          // or if meta value is a comma-separated list, check intersection
           const metaValues = metaVal.split(',').map((v) => v.trim().toLowerCase());
           const hasMatch = filterValue.some((fv) =>
             metaValues.some((mv) => mv === fv.toLowerCase())
@@ -104,7 +96,6 @@ const useProductFilters = (products, category, listingType) => {
           continue;
         }
 
-        // Boolean filter
         if (typeof filterValue === 'boolean') {
           const metaVal = def
             ? getMetaValue(meta, def.key, def.fallbacks)
@@ -118,7 +109,6 @@ const useProductFilters = (products, category, listingType) => {
           continue;
         }
 
-        // Select / Text — case-insensitive match
         const metaVal = def
           ? getMetaValue(meta, def.key, def.fallbacks)
           : String(meta[filterKey] || '');

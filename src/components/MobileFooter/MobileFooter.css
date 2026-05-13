@@ -24,7 +24,6 @@
     overflow: visible;
   }
 
-  /* CENTER CURVE */
   .footer-bar::before {
     content: "";
     position: absolute;
@@ -159,7 +158,6 @@
     object-fit: cover;
   }
 
-  /* Tablet Upscaling Context (iPad Mini/Air) */
   @media screen and (min-width: 511px) {
     .footer-wrapper {
       bottom: 16px;
@@ -216,4 +214,4 @@
     .hammer { right: 100px; bottom: 60px; }
     .tolet { right: 40px; bottom: -30px; }
   }
-}
+}

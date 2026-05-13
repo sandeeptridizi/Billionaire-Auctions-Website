@@ -68,7 +68,6 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem(COUNTRY_KEY, selectedCountry);
   }, [selectedCountry]);
 
-  // Sync wishlist from server on login / app load
   useEffect(() => {
     const token = getToken();
     if (!token) return;
@@ -77,25 +76,21 @@ export const AppProvider = ({ children }) => {
       try {
         const localWishlist = JSON.parse(localStorage.getItem(WISHLIST_KEY) || '[]');
 
-        // If there are local items, sync them to server first
         if (localWishlist.length > 0) {
           const res = await api.put('/api/wishlist/sync', { productIds: localWishlist });
           const serverIds = res?.data?.data || [];
           setWishlist(serverIds);
         } else {
-          // Just fetch from server
           const res = await api.get('/api/wishlist');
           setWishlist(res?.data?.data || []);
         }
       } catch {
-        // If API fails, keep using localStorage wishlist
       }
     };
 
     syncFromServer();
   }, []);
 
-  // Persist to localStorage whenever wishlist changes
   useEffect(() => {
     localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
   }, [wishlist]);
@@ -107,7 +102,6 @@ export const AppProvider = ({ children }) => {
       const isCurrentlyWishlisted = prev.includes(id);
       const next = isCurrentlyWishlisted ? prev.filter((item) => item !== id) : [...prev, id];
 
-      // Sync with backend if logged in (fire-and-forget)
       if (token) {
         if (isCurrentlyWishlisted) {
           api.delete(`/api/wishlist/${id}`).catch(() => {});

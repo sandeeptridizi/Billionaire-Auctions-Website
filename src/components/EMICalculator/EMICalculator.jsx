@@ -15,7 +15,7 @@ const EMICalculator = ({ price = 50000 }) => {
     const principal = Number(loanAmount);
     const monthlyRate = interestRate / 12 / 100;
 
-    const months = tenure * 12; // ✅ convert years → months
+    const months = tenure * 12;
 
     const emiValue =
       (principal *
@@ -52,7 +52,7 @@ const EMICalculator = ({ price = 50000 }) => {
       </div>
 
       <div className="emi-field">
-        {/* ✅ Label changed */}
+
         <label>Tenure (Years)</label>
         <input
           type="range"
@@ -61,12 +61,12 @@ const EMICalculator = ({ price = 50000 }) => {
           value={tenure}
           onChange={(e) => setTenure(Number(e.target.value))}
         />
-        {/* ✅ Display in years */}
+
         <span>{tenure} years</span>
       </div>
 
       <div className="emi-result">
-        {/* ✅ Monthly EMI */}
+
         <h2>₹ {emi.toFixed(0)} / month</h2>
       </div>
     </div>

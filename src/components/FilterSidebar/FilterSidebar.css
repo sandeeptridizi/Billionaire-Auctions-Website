@@ -1,4 +1,4 @@
-/* Desktop sidebar */
+
 .filter-sidebar {
   width: 280px;
   min-width: 280px;
@@ -32,7 +32,6 @@
   display: none;
 }
 
-/* Header */
 .filter-sidebar-header {
   display: flex;
   align-items: center;
@@ -92,14 +91,12 @@
   padding: 2px;
 }
 
-/* Body */
 .filter-sidebar-body {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-/* Filter group (collapsible) */
 .filter-group {
   border-top: 1px solid rgba(229, 231, 235, 0.6);
   padding-top: 10px;
@@ -131,7 +128,6 @@
   padding: 8px 0 4px;
 }
 
-/* Drawer-only mode: force drawer styles on all screen sizes */
 .filter-sidebar--force {
   display: flex;
   position: fixed;
@@ -182,7 +178,6 @@
   }
 }
 
-/* Listing page filter toggle button */
 .listing-filter-toggle-btn {
   display: flex;
   align-items: center;
@@ -198,12 +193,10 @@
   white-space: nowrap;
 }
 
-/* Mobile toggle button (rendered externally, styled here) */
 .mobile-filter-toggle-btn {
   display: none;
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .filter-sidebar {
     width: 240px;

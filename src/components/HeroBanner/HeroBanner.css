@@ -7,7 +7,6 @@
   will-change: transform;
 }
 
-/* SLIDER */
 .hero-banner-slider {
   display: flex;
   height: 100%;
@@ -15,14 +14,12 @@
   will-change: transform;
 }
 
-/* SLIDES */
 .hero-slide {
   width: 100%; /* instead of min-width */
   height: 100%;
   flex-shrink: 0; /* prevents shrinking */
 }
 
-/* DYNAMIC BANNER (from API) */
 .hero-slide-dynamic {
   background-size: contain;
   background-position: center;
@@ -33,7 +30,6 @@
   cursor: pointer;
 }
 
-/* STATIC BANNER IMAGE 1 (fallback) */
 .hero-slide1 {
   background: url("https://bauctionprod.s3.ap-south-1.amazonaws.com/ba/static/ba-hero-banner.png");
   background-size: contain;
@@ -41,7 +37,6 @@
   background-repeat: no-repeat;
 }
 
-/* STATIC BANNER IMAGE 2 (fallback) */
 .hero-slide2 {
   background: url("https://bauctionprod.s3.ap-south-1.amazonaws.com/ba/static/ba-hero-banner-2.jpeg");
   background-size: contain;
@@ -69,28 +64,25 @@
 
   cursor: pointer;
 
-  backdrop-filter: blur(10px); /* stronger blur */
+  backdrop-filter: blur(10px); 
   -webkit-backdrop-filter: blur(10px);
 
   transition: all 0.3s ease;
   z-index: 20;
 }
 
-/* Icon */
 .banner-arrow svg {
   color: white;
   font-size: 16px;
   opacity: 0.9;
 }
 
-/* Hover Effect (Premium feel) */
 .banner-arrow:hover {
   background: rgba(212, 175, 55, 0.9); /* gold highlight */
   border-color: transparent;
   transform: translateY(-50%) scale(1.05);
 }
 
-/* Positioning */
 .left-arrow {
   left: 20px;
 }
@@ -124,7 +116,6 @@
   border-radius: 40px;
 }
 
-/* HOME ICON LINK */
 .search-home-link {
   display: flex;
   align-items: center;
@@ -134,13 +125,11 @@
   display: none;
 }
 
-/* SEARCH ICON */
 .search-icon {
   color: white;
   font-size: 20px;
 }
 
-/* SEARCH INPUT */
 .search-input {
   flex: 1;
   border: none;
@@ -151,19 +140,17 @@
   color: white;
 }
 
-/* PLACEHOLDER */
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Tablet - iPad Mini, iPad Air (768px-820px), iPad Pro (820px-1024px) */
 @media screen and (min-width: 511px) and (max-width: 1024px) {
   .hero-banner-container {
-    height: 320px; /* Slightly shorter for tablets to avoid too much white space */
+    height: 320px; 
   }
 
   .search-row {
-    display: none; /* Hide the grey search bar as MobileNavbar handles it */
+    display: none; 
   }
 
   .banner-arrow {
@@ -172,7 +159,6 @@
   }
 }
 
-/* MOBILE */
 @media screen and (max-width: 510px) {
   .hero-banner-container {
     height: 138px;

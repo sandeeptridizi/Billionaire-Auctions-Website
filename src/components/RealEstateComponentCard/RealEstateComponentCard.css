@@ -134,7 +134,6 @@
   color: #fff;
 }
 
-/* Dedicated fix for bottom text clipping */
 .featured-listings-content-container1 {
   padding-bottom: 20px;
   display: flex;
@@ -215,7 +214,7 @@
 
   .real-estate-luxury-container svg {
     font-size: 8px;
-    margin-bottom: 1px; /* Subtle alignment fix for smaller scale */
+    margin-bottom: 1px; 
   }
 
   .card-wishlist-btn {

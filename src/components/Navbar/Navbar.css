@@ -222,7 +222,6 @@
   text-decoration: none;
 }
 
-/* Avatar dropdown */
 .nav-avatar-wrapper {
   position: relative;
 }
@@ -336,14 +335,12 @@
   }
 }
 
-/* Desktop Navbar is hidden on Tablets and Mobile (up to 1025px) */
 @media screen and (max-width: 1024px) {
   .navbar-container {
     display: none;
   }
 }
 
-/* Mobile */
 @media screen and (max-width: 510px) {
 
   .navbar-container {
